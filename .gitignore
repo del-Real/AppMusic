@@ -3,8 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-ProjectName/bin
-ProjectName/obj
+AppMusic/bin
+AppMusic/obj
 *.user
 *.suo
 _ReSharper.*
