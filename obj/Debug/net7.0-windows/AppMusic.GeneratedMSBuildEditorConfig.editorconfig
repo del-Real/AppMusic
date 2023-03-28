@@ -14,4 +14,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AppMusic
+<<<<<<< Updated upstream
 build_property.ProjectDir = C:\Users\eduma\Documents\GitHub\AppMusic\
+=======
+build_property.ProjectDir = C:\Users\redsantar\Desktop\MAIN\AppMusic\
+>>>>>>> Stashed changes

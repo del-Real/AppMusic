@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "RoYbaULDCDL2e2+3Wv4IHTRm2Xs1fxhHi9SBny3vnhIAtrxWjn+mkq7hwgRGoIIWtABYweNOyJ8JWmHwYRhOiQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\eduma\\Documents\\GitHub\\AppMusic\\AppMusic.vbproj",
+=======
+  "dgSpecHash": "2DTfGAMHw+ml6/C0usTZXh4v7wMRc1y4sz6vUDZl0pnTf0p/D9Rwe4DewvbF2rX7Ce3lKp//+Lnn0rVDgimKrg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj",
+>>>>>>> Stashed changes
   "expectedPackageFiles": [],
   "logs": []
 }
