@@ -14,6 +14,10 @@
         Me.Canciones = canciones
         Me.ConDAO = New ConciertoDAO
     End Sub
+
+    Public Sub New(toString As String)
+    End Sub
+
     Public Sub LeerTodosConciertos(ruta As String)
         Me.ConDAO.LeerTodas(ruta)
     End Sub
