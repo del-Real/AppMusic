@@ -8,11 +8,16 @@
 
     Public Sub LeerTodas()
         Dim c As Cancion
+        Dim a As Album
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
         For Each aux In col
-            c = New Cancion(aux(1), aux(2).ToString, aux(3), aux(4), aux(5))
+            c = New Cancion(CInt(aux(1)))
             c.NomCancion = aux(2).ToString
+            c.Duracion = CInt(aux(3))
+            a = aux(4)
+            c.Album = a
+            c.OrdenCancion = CInt(aux(5))
             Me.Canciones.Add(c)
         Next
     End Sub

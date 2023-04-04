@@ -10,8 +10,14 @@
         Me.Pais = pais
         Me.ArtDAO = New ArtistaDAO
     End Sub
-    Public Sub LeerTodosArtistas(ruta As String)
-        Me.ArtDAO.LeerTodos(ruta)
+
+    Public Sub New(id As Integer)
+        Me.IDArtista = id
+        Me.ArtDAO = New ArtistaDAO
+    End Sub
+
+    Public Sub LeerTodosArtistas()
+        Me.ArtDAO.LeerTodos()
     End Sub
 
     Public Sub LeerArtista()

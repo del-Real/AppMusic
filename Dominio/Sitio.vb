@@ -13,8 +13,14 @@
         Me.tipo = tipo
         Me.SitDAO = New SitioDAO
     End Sub
-    Public Sub LeerTodosSitios(ruta As String)
-        Me.SitDAO.LeerTodas(ruta)
+
+    Public Sub New(id As Integer)
+        Me.IDSitio = id
+        Me.SitDAO = New SitioDAO
+    End Sub
+
+    Public Sub LeerTodosSitios()
+        Me.SitDAO.LeerTodas()
     End Sub
 
     Public Sub LeerSitio()

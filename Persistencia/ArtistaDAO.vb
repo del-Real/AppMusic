@@ -6,12 +6,16 @@
         Me.Artistas = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Sub LeerTodos()
         Dim a As Artista
+        Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
         For Each aux In col
-            a = New Artista(aux(1), aux(2).ToString, aux(3))
+            a = New Artista(CInt(aux(1)))
+            a.NomArtista = aux(2).ToString
+            p = aux(3)
+            a.Pais = p
             Me.Artistas.Add(a)
         Next
     End Sub

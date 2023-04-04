@@ -11,7 +11,8 @@
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
         For Each aux In col
-            p = New Pais(aux(1).ToString, aux(2).ToString)
+            p = New Pais(aux(1).ToString)
+            p.NomPais = aux(2).ToString
             Me.Paises.Add(p)
         Next
     End Sub

@@ -8,11 +8,15 @@
 
     Public Sub LeerTodas()
         Dim s As Sitio
+        Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
         For Each aux In col
-            s = New Sitio(aux(1), aux(2).ToString, aux(3), aux(4).ToString)
+            s = New Sitio(CInt(aux(1)))
             s.NomSitio = aux(2).ToString
+            p = aux(3)
+            s.Pais = p
+            s.tipo = aux(4).ToString
             Me.Sitios.Add(s)
         Next
     End Sub

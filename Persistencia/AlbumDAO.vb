@@ -8,10 +8,15 @@
 
     Public Sub LeerTodos()
         Dim a As Album
+        Dim ar As Artista
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
         For Each aux In col
-            a = New Album(aux(1), aux(2).ToString, CInt(aux(3)), aux(4))
+            a = New Album(CInt(aux(1)))
+            a.NomAlbum = aux(2).ToString
+            a.AnoAlbum = CInt(aux(3))
+            ar = aux(4)
+            a.Artista = ar
             Me.Albumes.Add(a)
         Next
     End Sub

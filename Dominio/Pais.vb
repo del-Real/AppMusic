@@ -8,8 +8,14 @@
         Me.NomPais = nombre
         Me.PaiDAO = New PaisDAO
     End Sub
-    Public Sub LeerTodosPaises(ruta As String)
-        Me.PaiDAO.LeerTodas(ruta)
+
+    Public Sub New(id As String)
+        Me.IDPais = id
+        Me.PaiDAO = New PaisDAO
+    End Sub
+
+    Public Sub LeerTodosPaises()
+        Me.PaiDAO.LeerTodas()
     End Sub
 
     Public Sub LeerPais()
