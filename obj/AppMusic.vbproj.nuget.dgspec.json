@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj": {}
+    "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj": {}
   },
   "projects": {
-    "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj": {
+    "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj",
+        "projectUniqueName": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj",
         "projectName": "AppMusic",
-        "projectPath": "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj",
-        "packagesPath": "C:\\Users\\redsantar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\redsantar\\Desktop\\MAIN\\AppMusic\\obj\\",
+        "projectPath": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj",
+        "packagesPath": "C:\\Users\\palen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\redsantar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\palen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
