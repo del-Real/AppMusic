@@ -211,9 +211,9 @@ Partial Class Form1
         ' 
         ListBox2.FormattingEnabled = True
         ListBox2.ItemHeight = 15
-        ListBox2.Location = New Point(234, 399)
+        ListBox2.Location = New Point(234, 408)
         ListBox2.Name = "ListBox2"
-        ListBox2.Size = New Size(336, 109)
+        ListBox2.Size = New Size(336, 94)
         ListBox2.TabIndex = 2
         ' 
         ' Label3
@@ -228,7 +228,7 @@ Partial Class Form1
         ' 
         ' Button5
         ' 
-        Button5.Location = New Point(26, 443)
+        Button5.Location = New Point(26, 439)
         Button5.Name = "Button5"
         Button5.Size = New Size(178, 23)
         Button5.TabIndex = 4
@@ -237,7 +237,7 @@ Partial Class Form1
         ' 
         ' Button6
         ' 
-        Button6.Location = New Point(26, 485)
+        Button6.Location = New Point(26, 479)
         Button6.Name = "Button6"
         Button6.Size = New Size(178, 23)
         Button6.TabIndex = 5
@@ -247,7 +247,7 @@ Partial Class Form1
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(26, 409)
+        Label4.Location = New Point(26, 408)
         Label4.Name = "Label4"
         Label4.Size = New Size(80, 15)
         Label4.TabIndex = 6
