@@ -1,38 +1,38 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net7.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\redsa\\.nuget\\packages\\": {}
+    "C:\\Users\\palen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\redsa\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj",
+      "projectUniqueName": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj",
       "projectName": "AppMusic",
-      "projectPath": "C:\\Users\\redsa\\Desktop\\MAIN\\AppMusic\\AppMusic.vbproj",
-      "packagesPath": "C:\\Users\\redsa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\redsa\\Desktop\\MAIN\\AppMusic\\obj\\",
+      "projectPath": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\AppMusic.vbproj",
+      "packagesPath": "C:\\Users\\palen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\palen\\OneDrive\\Escritorio\\Ingeniería Informática\\2º Año, 2º Cuatrimestre\\BBDD\\Laboratorio\\Practica3\\AppMusic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\redsa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\palen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows7.0"
+        "net7.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0-windows7.0": {
-          "targetAlias": "net6.0-windows7.0",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "projectReferences": {}
         }
       },
@@ -43,8 +43,8 @@
       }
     },
     "frameworks": {
-      "net6.0-windows7.0": {
-        "targetAlias": "net6.0-windows7.0",
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
         "imports": [
           "net461",
           "net462",
@@ -64,7 +64,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
