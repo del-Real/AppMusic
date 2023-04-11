@@ -1,6 +1,7 @@
 # AppMusic
 
-##Cómo organizar la interfaz
+
+Cómo organizar la interfaz
 -------------------------
 
 - Cuadros texto para input -> ID, Nombre
@@ -18,13 +19,12 @@ crear objeto ListViewItem y asignar valor concreto de cada una de las columnas)
 
 - NumericUpDown -> contador 
 
-=============================================
-
+```
 Public Overrides FUnction Totring() As String
 	Return IDPersona & ""& Nombre
 End Function
 
-=============================================
+```
 
 Debe de ser usable: no abusar de los TextBox, que se muestre información completa
 Al hcer doble click en la barra de la ventana del formulario crea un método que gestiona
@@ -32,6 +32,7 @@ la carga del formulario (por si elegimos la opción de crear varios formularios)
 
 
 INSTALACIÓN CONECTOR + AGENTEDB
+--------------------------------
 
 Desde MySQL Installer -> instalar Connector 8.0/NET
 Botón derecho sobre carpeta Dependencies -> Browse/Examinar -> Archivos de programa (x86) -> MySQL -> Connector NET 8.0 ->
