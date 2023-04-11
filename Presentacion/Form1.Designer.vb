@@ -24,24 +24,24 @@ Partial Class Form1
     Private Sub InitializeComponent()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        ButtonClearAll = New Button()
+        ButtonDelete = New Button()
+        ButtonModify = New Button()
+        ButtonAdd = New Button()
+        Label2 = New Label()
+        TB_Name = New TextBox()
+        Label1 = New Label()
+        TB_Id = New TextBox()
         TabPage2 = New TabPage()
         TabPage3 = New TabPage()
         TabPage4 = New TabPage()
         TabPage5 = New TabPage()
         TabPage6 = New TabPage()
-        Label1 = New Label()
-        TextBox1 = New TextBox()
-        Label2 = New Label()
-        TextBox2 = New TextBox()
         ListBox1 = New ListBox()
-        Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
         ListBox2 = New ListBox()
         Label3 = New Label()
-        Button5 = New Button()
-        Button6 = New Button()
+        ButtonSelect = New Button()
+        ButtonConnect = New Button()
         Label4 = New Label()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
@@ -63,14 +63,14 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
-        TabPage1.Controls.Add(Button4)
-        TabPage1.Controls.Add(Button3)
-        TabPage1.Controls.Add(Button2)
-        TabPage1.Controls.Add(Button1)
+        TabPage1.Controls.Add(ButtonClearAll)
+        TabPage1.Controls.Add(ButtonDelete)
+        TabPage1.Controls.Add(ButtonModify)
+        TabPage1.Controls.Add(ButtonAdd)
         TabPage1.Controls.Add(Label2)
-        TabPage1.Controls.Add(TextBox2)
+        TabPage1.Controls.Add(TB_Name)
         TabPage1.Controls.Add(Label1)
-        TabPage1.Controls.Add(TextBox1)
+        TabPage1.Controls.Add(TB_Id)
         TabPage1.Location = New Point(4, 24)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
@@ -78,6 +78,74 @@ Partial Class Form1
         TabPage1.TabIndex = 0
         TabPage1.Text = "Album"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonClearAll
+        ' 
+        ButtonClearAll.Location = New Point(47, 242)
+        ButtonClearAll.Name = "ButtonClearAll"
+        ButtonClearAll.Size = New Size(237, 23)
+        ButtonClearAll.TabIndex = 7
+        ButtonClearAll.Text = "Limpiar campos"
+        ButtonClearAll.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonDelete
+        ' 
+        ButtonDelete.Location = New Point(209, 202)
+        ButtonDelete.Name = "ButtonDelete"
+        ButtonDelete.Size = New Size(75, 23)
+        ButtonDelete.TabIndex = 6
+        ButtonDelete.Text = "Eliminar"
+        ButtonDelete.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonModify
+        ' 
+        ButtonModify.Location = New Point(128, 202)
+        ButtonModify.Name = "ButtonModify"
+        ButtonModify.Size = New Size(75, 23)
+        ButtonModify.TabIndex = 5
+        ButtonModify.Text = "Modificar"
+        ButtonModify.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonAdd
+        ' 
+        ButtonAdd.Location = New Point(47, 202)
+        ButtonAdd.Name = "ButtonAdd"
+        ButtonAdd.Size = New Size(75, 23)
+        ButtonAdd.TabIndex = 4
+        ButtonAdd.Text = "Añadir"
+        ButtonAdd.UseVisualStyleBackColor = True
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Location = New Point(47, 121)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(51, 15)
+        Label2.TabIndex = 3
+        Label2.Text = "Nombre"
+        ' 
+        ' TB_Name
+        ' 
+        TB_Name.Location = New Point(47, 139)
+        TB_Name.Name = "TB_Name"
+        TB_Name.Size = New Size(237, 23)
+        TB_Name.TabIndex = 2
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Location = New Point(47, 55)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(18, 15)
+        Label1.TabIndex = 1
+        Label1.Text = "ID"
+        ' 
+        ' TB_Id
+        ' 
+        TB_Id.Location = New Point(47, 73)
+        TB_Id.Name = "TB_Id"
+        TB_Id.Size = New Size(237, 23)
+        TB_Id.TabIndex = 0
         ' 
         ' TabPage2
         ' 
@@ -94,7 +162,7 @@ Partial Class Form1
         TabPage3.Location = New Point(4, 24)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(390, 390)
+        TabPage3.Size = New Size(336, 330)
         TabPage3.TabIndex = 2
         TabPage3.Text = "Canción"
         TabPage3.UseVisualStyleBackColor = True
@@ -104,7 +172,7 @@ Partial Class Form1
         TabPage4.Location = New Point(4, 24)
         TabPage4.Name = "TabPage4"
         TabPage4.Padding = New Padding(3)
-        TabPage4.Size = New Size(390, 390)
+        TabPage4.Size = New Size(336, 330)
         TabPage4.TabIndex = 3
         TabPage4.Text = "Concierto"
         TabPage4.UseVisualStyleBackColor = True
@@ -114,7 +182,7 @@ Partial Class Form1
         TabPage5.Location = New Point(4, 24)
         TabPage5.Name = "TabPage5"
         TabPage5.Padding = New Padding(3)
-        TabPage5.Size = New Size(390, 390)
+        TabPage5.Size = New Size(336, 330)
         TabPage5.TabIndex = 4
         TabPage5.Text = "País"
         TabPage5.UseVisualStyleBackColor = True
@@ -125,42 +193,10 @@ Partial Class Form1
         TabPage6.Name = "TabPage6"
         TabPage6.Padding = New Padding(3)
         TabPage6.RightToLeft = RightToLeft.No
-        TabPage6.Size = New Size(390, 390)
+        TabPage6.Size = New Size(336, 330)
         TabPage6.TabIndex = 5
         TabPage6.Text = "Sitio"
         TabPage6.UseVisualStyleBackColor = True
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(47, 55)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(18, 15)
-        Label1.TabIndex = 1
-        Label1.Text = "ID"
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Location = New Point(47, 73)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(237, 23)
-        TextBox1.TabIndex = 0
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(47, 121)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(51, 15)
-        Label2.TabIndex = 3
-        Label2.Text = "Nombre"
-        ' 
-        ' TextBox2
-        ' 
-        TextBox2.Location = New Point(47, 139)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(237, 23)
-        TextBox2.TabIndex = 2
         ' 
         ' ListBox1
         ' 
@@ -170,42 +206,6 @@ Partial Class Form1
         ListBox1.Name = "ListBox1"
         ListBox1.Size = New Size(178, 334)
         ListBox1.TabIndex = 1
-        ' 
-        ' Button1
-        ' 
-        Button1.Location = New Point(47, 202)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 4
-        Button1.Text = "Añadir"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' Button2
-        ' 
-        Button2.Location = New Point(128, 202)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(75, 23)
-        Button2.TabIndex = 5
-        Button2.Text = "Modificar"
-        Button2.UseVisualStyleBackColor = True
-        ' 
-        ' Button3
-        ' 
-        Button3.Location = New Point(209, 202)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(75, 23)
-        Button3.TabIndex = 6
-        Button3.Text = "Eliminar"
-        Button3.UseVisualStyleBackColor = True
-        ' 
-        ' Button4
-        ' 
-        Button4.Location = New Point(47, 242)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(237, 23)
-        Button4.TabIndex = 7
-        Button4.Text = "Limpiar campos"
-        Button4.UseVisualStyleBackColor = True
         ' 
         ' ListBox2
         ' 
@@ -226,23 +226,23 @@ Partial Class Form1
         Label3.TabIndex = 3
         Label3.Text = "🎵 App Music"
         ' 
-        ' Button5
+        ' ButtonSelect
         ' 
-        Button5.Location = New Point(26, 439)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(178, 23)
-        Button5.TabIndex = 4
-        Button5.Text = "Seleccionar"
-        Button5.UseVisualStyleBackColor = True
+        ButtonSelect.Location = New Point(26, 439)
+        ButtonSelect.Name = "ButtonSelect"
+        ButtonSelect.Size = New Size(178, 23)
+        ButtonSelect.TabIndex = 4
+        ButtonSelect.Text = "Seleccionar"
+        ButtonSelect.UseVisualStyleBackColor = True
         ' 
-        ' Button6
+        ' ButtonConnect
         ' 
-        Button6.Location = New Point(26, 479)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(178, 23)
-        Button6.TabIndex = 5
-        Button6.Text = "Conectar"
-        Button6.UseVisualStyleBackColor = True
+        ButtonConnect.Location = New Point(26, 479)
+        ButtonConnect.Name = "ButtonConnect"
+        ButtonConnect.Size = New Size(178, 23)
+        ButtonConnect.TabIndex = 5
+        ButtonConnect.Text = "Conectar"
+        ButtonConnect.UseVisualStyleBackColor = True
         ' 
         ' Label4
         ' 
@@ -259,8 +259,8 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(602, 539)
         Controls.Add(Label4)
-        Controls.Add(Button6)
-        Controls.Add(Button5)
+        Controls.Add(ButtonConnect)
+        Controls.Add(ButtonSelect)
         Controls.Add(Label3)
         Controls.Add(ListBox2)
         Controls.Add(ListBox1)
@@ -281,18 +281,18 @@ Partial Class Form1
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TabPage6 As TabPage
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonDelete As Button
+    Friend WithEvents ButtonModify As Button
+    Friend WithEvents ButtonAdd As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TB_Name As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TB_Id As TextBox
     Friend WithEvents ListBox1 As ListBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ButtonClearAll As Button
     Friend WithEvents ListBox2 As ListBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button6 As Button
+    Friend WithEvents ButtonSelect As Button
+    Friend WithEvents ButtonConnect As Button
     Friend WithEvents Label4 As Label
 End Class
