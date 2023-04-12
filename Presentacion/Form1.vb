@@ -1,4 +1,6 @@
-﻿Public Class Form1
+﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+
+Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
@@ -17,13 +19,19 @@
         For Each p As Pais In pai.PaiDAO.Paises
             Me.lstPaises.Items.Add(p.IDPais)
         Next
+
+        ' Añade columnas al listView
+        lstPaises.View = View.Details
+        lstPaises.Columns.Add("ID", 50)
+        lstPaises.Columns.Add("Name", 100)
+
     End Sub
 
-    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstPaises.SelectedIndexChanged
+    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim pai As Pais
         If Not Me.lstPaises.SelectedItems Is Nothing Then
             Try
-                pai = New Pais(lstPaises.SelectedItem.ToString)
+                pai = New Pais(lstPaises.SelectedItems.ToString)
                 pai.LeerPais()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -68,7 +76,10 @@
                         Exit Sub
                     End If
                     'COGIDO AÑADIDO
-                    lstPaises.Items.RemoveAt(lstPaises.SelectedIndex)
+                    For Each item As ListViewItem In lstPaises.SelectedItems
+                        lstPaises.Items.Remove(item)
+                    Next
+
                     MessageBox.Show(pai.NomPais.ToString & " Eliminado correctamente")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -105,5 +116,9 @@
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
         Me.TB_Id.Text = String.Empty
         Me.TB_Name.Text = String.Empty
+    End Sub
+
+    Private Sub lstPaises_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles lstPaises.SelectedIndexChanged
+
     End Sub
 End Class

@@ -33,7 +33,6 @@ Partial Class Form1
         TabPage3 = New TabPage()
         TabPage4 = New TabPage()
         TabPage5 = New TabPage()
-        lstPaises = New ListBox()
         ButtonClearAll = New Button()
         ButtonDelete = New Button()
         ButtonModify = New Button()
@@ -45,6 +44,7 @@ Partial Class Form1
         TabPage6 = New TabPage()
         ofdRuta = New OpenFileDialog()
         PictureBox1 = New PictureBox()
+        lstPaises = New ListView()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage5.SuspendLayout()
@@ -164,15 +164,6 @@ Partial Class Form1
         TabPage5.Text = "Country"
         TabPage5.UseVisualStyleBackColor = True
         ' 
-        ' lstPaises
-        ' 
-        lstPaises.FormattingEnabled = True
-        lstPaises.ItemHeight = 15
-        lstPaises.Location = New Point(308, 28)
-        lstPaises.Name = "lstPaises"
-        lstPaises.Size = New Size(195, 274)
-        lstPaises.TabIndex = 22
-        ' 
         ' ButtonClearAll
         ' 
         ButtonClearAll.Location = New Point(40, 285)
@@ -266,6 +257,14 @@ Partial Class Form1
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
         ' 
+        ' lstPaises
+        ' 
+        lstPaises.Location = New Point(312, 44)
+        lstPaises.Name = "lstPaises"
+        lstPaises.Size = New Size(192, 264)
+        lstPaises.TabIndex = 22
+        lstPaises.UseCompatibleStateImageBehavior = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -296,7 +295,6 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents lstPaises As ListBox
     Friend WithEvents ButtonClearAll As Button
     Friend WithEvents ButtonDelete As Button
     Friend WithEvents ButtonModify As Button
@@ -306,4 +304,5 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents TB_Id As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents lstPaises As ListView
 End Class
