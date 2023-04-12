@@ -45,7 +45,7 @@
                     Exit Sub
                 End If
                 'COGIDO AÑADIDO
-                lstPaises.Items.Add(pai.IDPais & pai.NomPais)
+                lstPaises.Items.Add(pai.IDPais & " " & pai.NomPais)
                 MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -64,7 +64,7 @@
                 pai = New Pais(Me.TB_Id.Text, Me.TB_Name.Text)
                 Try
                     If pai.BorrarPais() <> 1 Then
-                        'MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
                     'COGIDO AÑADIDO
@@ -81,5 +81,29 @@
             End If
         End If
 
+    End Sub
+
+    Private Sub ButtonModify_Click(sender As Object, e As EventArgs) Handles ButtonModify.Click
+        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
+            pai = New Pais(Me.TB_Id.Text)
+            pai.NomPais = Me.TB_Id.Text
+            Try
+                If pai.ActualizarPais() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show(pai.NomPais.ToString & " Actualizado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
+        Me.TB_Id.Text = String.Empty
+        Me.TB_Name.Text = String.Empty
     End Sub
 End Class
