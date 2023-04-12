@@ -32,7 +32,7 @@
     End Sub
 
     Public Function Insertar(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Personas VALUES ('" & c.IDConcierto & "', '" & c.Artista.NomArtista & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO personas VALUES ('" & c.IDConcierto & "', '" & c.Artista.NomArtista & "');")
     End Function
 
     Public Function Actualizar(ByVal c As Concierto) As Integer

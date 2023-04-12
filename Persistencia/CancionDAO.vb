@@ -10,7 +10,7 @@
         Dim c As Cancion
         Dim a As Album
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM canciones ORDER BY idCancion")
         For Each aux In col
             c = New Cancion(CInt(aux(1)))
             c.NomCancion = aux(2).ToString
@@ -24,22 +24,22 @@
 
     Public Sub Leer(ByRef c As Cancion)
         Dim col As Collection : Dim aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM Personas WHERE IDPersona='" & c.IDCancion & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM canciones WHERE idCancion='" & c.IDCancion & "';")
         For Each aux In col
             c.NomCancion = aux(2).ToString
         Next
     End Sub
 
     Public Function Insertar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Personas VALUES ('" & c.IDCancion & "', '" & c.NomCancion & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones VALUES ('" & c.IDCancion & "', '" & c.NomCancion & "');")
     End Function
 
     Public Function Actualizar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Personas SET NombrePersona='" & c.NomCancion & "' WHERE IDPersona='" & c.IDCancion & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE canciones SET NombreCancion='" & c.NomCancion & "' WHERE idCancion='" & c.IDCancion & "';")
     End Function
 
     Public Function Borrar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Personas WHERE IDPersona='" & c.IDCancion & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM canciones WHERE idCancion='" & c.IDCancion & "';")
     End Function
 
 End Class
