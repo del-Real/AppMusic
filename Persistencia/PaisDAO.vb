@@ -6,10 +6,10 @@
         Me.Paises = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Sub LeerTodos(ruta As String)
         Dim p As Pais
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM paises ORDER BY idPais")
         For Each aux In col
             p = New Pais(aux(1).ToString)
             p.NomPais = aux(2).ToString
@@ -19,22 +19,22 @@
 
     Public Sub Leer(ByRef p As Pais)
         Dim col As Collection : Dim aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM Personas WHERE IDPersona='" & p.IDPais & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM paises WHERE idPais='" & p.IDPais & "';")
         For Each aux In col
             p.NomPais = aux(2).ToString
         Next
     End Sub
 
     Public Function Insertar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Personas VALUES ('" & p.IDPais & "', '" & p.NomPais & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO paises VALUES ('" & p.IDPais & "', '" & p.NomPais & "');")
     End Function
 
     Public Function Actualizar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Personas SET NombrePersona='" & p.NomPais & "' WHERE IDPersona='" & p.IDPais & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE paises SET NombrePais='" & p.NomPais & "' WHERE idPais='" & p.IDPais & "';")
     End Function
 
     Public Function Borrar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Personas WHERE IDPersona='" & p.IDPais & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM paises WHERE idPais='" & p.IDPais & "';")
     End Function
 
 End Class

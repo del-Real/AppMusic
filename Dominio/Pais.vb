@@ -18,8 +18,8 @@
         Me.PaiDAO = New PaisDAO
     End Sub
 
-    Public Sub LeerTodosPaises()
-        Me.PaiDAO.LeerTodas()
+    Public Sub LeerTodosPaises(ruta As String)
+        Me.PaiDAO.LeerTodos(ruta)
     End Sub
 
     Public Sub LeerPais()
