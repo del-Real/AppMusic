@@ -9,6 +9,10 @@
         Me.PaiDAO = New PaisDAO
     End Sub
 
+    Public Sub New()
+        Me.PaiDAO = New PaisDAO
+    End Sub
+
     Public Sub New(id As String)
         Me.IDPais = id
         Me.PaiDAO = New PaisDAO

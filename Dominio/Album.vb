@@ -13,12 +13,16 @@
         Me.AlbDAO = New AlbumDAO
     End Sub
 
+    Public Sub New()
+        Me.AlbDAO = New AlbumDAO
+    End Sub
+
     Public Sub New(id As Integer)
         Me.IDAlbum = id
         Me.AlbDAO = New AlbumDAO
     End Sub
-    Public Sub LeerTodosAlbums()
-        Me.AlbDAO.LeerTodos()
+    Public Sub LeerTodosAlbums(ruta As String)
+        Me.AlbDAO.LeerTodos(ruta)
     End Sub
 
     Public Sub LeerAlbum()

@@ -2,7 +2,7 @@
 
     Private Shared _instancia As AgenteBD
     Private Shared conexion As MySql.Data.MySqlClient.MySqlConnection
-    Private Const cadenaConexion As String = "server=localhost;database=personas;uid=root;pwd=palenciaaa_54"
+    Private Shared cadenaConexion As String = "server=localhost;database=bbdd;user=root;pwd=palenciaaa_54"
 
     Private Sub New()
         AgenteBD.conexion = New MySql.Data.MySqlClient.MySqlConnection(AgenteBD.cadenaConexion)
@@ -13,6 +13,11 @@
             AgenteBD._instancia = New AgenteBD
         End If
         Return AgenteBD._instancia
+    End Function
+
+    Public Shared Function ObtenerAgente(ruta As String) As AgenteBD
+        AgenteBD.cadenaConexion = AgenteBD.cadenaConexion & ruta
+        Return AgenteBD.ObtenerAgente
     End Function
 
     Public Function Leer(sql As String) As Collection

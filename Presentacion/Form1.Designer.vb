@@ -28,7 +28,7 @@ Partial Class Form1
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.lstAlbumes = New System.Windows.Forms.ListBox()
         Me.ButtonClearAll = New System.Windows.Forms.Button()
         Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonModify = New System.Windows.Forms.Button()
@@ -48,6 +48,7 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.FilePathTextBox = New System.Windows.Forms.TextBox()
+        Me.ofdRuta = New System.Windows.Forms.OpenFileDialog()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
@@ -73,7 +74,7 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.TextBox2)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.ListBox1)
+        Me.TabPage1.Controls.Add(Me.lstAlbumes)
         Me.TabPage1.Controls.Add(Me.ButtonClearAll)
         Me.TabPage1.Controls.Add(Me.ButtonDelete)
         Me.TabPage1.Controls.Add(Me.ButtonModify)
@@ -127,15 +128,15 @@ Partial Class Form1
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "AnioAlbum"
         '
-        'ListBox1
+        'lstAlbumes
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 20
-        Me.ListBox1.Location = New System.Drawing.Point(357, 33)
-        Me.ListBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(222, 364)
-        Me.ListBox1.TabIndex = 8
+        Me.lstAlbumes.FormattingEnabled = True
+        Me.lstAlbumes.ItemHeight = 20
+        Me.lstAlbumes.Location = New System.Drawing.Point(357, 33)
+        Me.lstAlbumes.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstAlbumes.Name = "lstAlbumes"
+        Me.lstAlbumes.Size = New System.Drawing.Size(222, 364)
+        Me.lstAlbumes.TabIndex = 8
         '
         'ButtonClearAll
         '
@@ -328,6 +329,10 @@ Partial Class Form1
         Me.FilePathTextBox.Size = New System.Drawing.Size(385, 85)
         Me.FilePathTextBox.TabIndex = 9
         '
+        'ofdRuta
+        '
+        Me.ofdRuta.FileName = "OpenFileDialog1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -376,5 +381,6 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents lstAlbumes As ListBox
+    Friend WithEvents ofdRuta As OpenFileDialog
 End Class

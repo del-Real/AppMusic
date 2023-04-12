@@ -15,6 +15,10 @@
         Me.ConDAO = New ConciertoDAO
     End Sub
 
+    Public Sub New()
+        Me.ConDAO = New ConciertoDAO
+    End Sub
+
     Public Sub New(id As Integer)
         Me.IDConcierto = id
         Me.ConDAO = New ConciertoDAO

@@ -15,6 +15,10 @@
         Me.CanDAO = New CancionDAO
     End Sub
 
+    Public Sub New()
+        Me.CanDAO = New CancionDAO
+    End Sub
+
     Public Sub New(id As Integer)
         Me.IDCancion = id
         Me.CanDAO = New CancionDAO

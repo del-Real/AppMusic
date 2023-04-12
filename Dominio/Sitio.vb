@@ -14,6 +14,10 @@
         Me.SitDAO = New SitioDAO
     End Sub
 
+    Public Sub New()
+        Me.SitDAO = New SitioDAO
+    End Sub
+
     Public Sub New(id As Integer)
         Me.IDSitio = id
         Me.SitDAO = New SitioDAO
