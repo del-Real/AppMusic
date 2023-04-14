@@ -22,451 +22,427 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.lstPaises = New System.Windows.Forms.ListView()
-        Me.ButtonClearAll = New System.Windows.Forms.Button()
-        Me.ButtonDelete = New System.Windows.Forms.Button()
-        Me.ButtonModify = New System.Windows.Forms.Button()
-        Me.ButtonAdd = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.TB_Name = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.TB_Id = New System.Windows.Forms.TextBox()
-        Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.comboBoxTipo = New System.Windows.Forms.ComboBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TB_Artist_Sitio = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.lstSitios = New System.Windows.Forms.ListView()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TB_Name_Sitio = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.TB_ID_Sitio = New System.Windows.Forms.TextBox()
-        Me.ofdRuta = New System.Windows.Forms.OpenFileDialog()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
-        Me.TabPage6.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-        '
-        'TabControl1
-        '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage4)
-        Me.TabControl1.Controls.Add(Me.TabPage5)
-        Me.TabControl1.Controls.Add(Me.TabPage6)
-        Me.TabControl1.Location = New System.Drawing.Point(30, 83)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(626, 494)
-        Me.TabControl1.TabIndex = 0
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.DateTimePicker1)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.TextBox2)
-        Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage1.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Album"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.CustomFormat = "yyyy"
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker1.Location = New System.Drawing.Point(67, 215)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.ShowUpDown = True
-        Me.DateTimePicker1.Size = New System.Drawing.Size(91, 27)
-        Me.DateTimePicker1.TabIndex = 30
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(70, 260)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(85, 20)
-        Me.Label7.TabIndex = 29
-        Me.Label7.Text = "Artist name"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(70, 284)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(270, 27)
-        Me.TextBox2.TabIndex = 28
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(66, 191)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(37, 20)
-        Me.Label6.TabIndex = 27
-        Me.Label6.Text = "Year"
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage2.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Artist"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'TabPage3
-        '
-        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage3.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Song"
-        Me.TabPage3.UseVisualStyleBackColor = True
-        '
-        'TabPage4
-        '
-        Me.TabPage4.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage4.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage4.TabIndex = 3
-        Me.TabPage4.Text = "Concert"
-        Me.TabPage4.UseVisualStyleBackColor = True
-        '
-        'TabPage5
-        '
-        Me.TabPage5.Controls.Add(Me.lstPaises)
-        Me.TabPage5.Controls.Add(Me.ButtonClearAll)
-        Me.TabPage5.Controls.Add(Me.ButtonDelete)
-        Me.TabPage5.Controls.Add(Me.ButtonModify)
-        Me.TabPage5.Controls.Add(Me.ButtonAdd)
-        Me.TabPage5.Controls.Add(Me.Label2)
-        Me.TabPage5.Controls.Add(Me.TB_Name)
-        Me.TabPage5.Controls.Add(Me.Label1)
-        Me.TabPage5.Controls.Add(Me.TB_Id)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage5.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage5.TabIndex = 4
-        Me.TabPage5.Text = "Country"
-        Me.TabPage5.UseVisualStyleBackColor = True
-        '
-        'lstPaises
-        '
-        Me.lstPaises.Location = New System.Drawing.Point(365, 46)
-        Me.lstPaises.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.lstPaises.MultiSelect = False
-        Me.lstPaises.Name = "lstPaises"
-        Me.lstPaises.Size = New System.Drawing.Size(219, 351)
-        Me.lstPaises.TabIndex = 22
-        Me.lstPaises.UseCompatibleStateImageBehavior = False
-        '
-        'ButtonClearAll
-        '
-        Me.ButtonClearAll.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.ButtonClearAll.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ButtonClearAll.Location = New System.Drawing.Point(23, 245)
-        Me.ButtonClearAll.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ButtonClearAll.Name = "ButtonClearAll"
-        Me.ButtonClearAll.Size = New System.Drawing.Size(311, 53)
-        Me.ButtonClearAll.TabIndex = 21
-        Me.ButtonClearAll.Text = "Clear all"
-        Me.ButtonClearAll.UseVisualStyleBackColor = True
-        '
-        'ButtonDelete
-        '
-        Me.ButtonDelete.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ButtonDelete.Location = New System.Drawing.Point(226, 315)
-        Me.ButtonDelete.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ButtonDelete.Name = "ButtonDelete"
-        Me.ButtonDelete.Size = New System.Drawing.Size(108, 47)
-        Me.ButtonDelete.TabIndex = 20
-        Me.ButtonDelete.Text = "Delete"
-        Me.ButtonDelete.UseVisualStyleBackColor = True
-        '
-        'ButtonModify
-        '
-        Me.ButtonModify.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ButtonModify.Location = New System.Drawing.Point(125, 315)
-        Me.ButtonModify.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ButtonModify.Name = "ButtonModify"
-        Me.ButtonModify.Size = New System.Drawing.Size(104, 47)
-        Me.ButtonModify.TabIndex = 19
-        Me.ButtonModify.Text = "Modify"
-        Me.ButtonModify.UseVisualStyleBackColor = True
-        '
-        'ButtonAdd
-        '
-        Me.ButtonAdd.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.ButtonAdd.Location = New System.Drawing.Point(23, 315)
-        Me.ButtonAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ButtonAdd.Name = "ButtonAdd"
-        Me.ButtonAdd.Size = New System.Drawing.Size(105, 47)
-        Me.ButtonAdd.TabIndex = 18
-        Me.ButtonAdd.Text = "Add"
-        Me.ButtonAdd.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label2.Location = New System.Drawing.Point(37, 129)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(127, 23)
-        Me.Label2.TabIndex = 17
-        Me.Label2.Text = "Country Name"
-        '
-        'TB_Name
-        '
-        Me.TB_Name.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TB_Name.Location = New System.Drawing.Point(37, 153)
-        Me.TB_Name.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_Name.Name = "TB_Name"
-        Me.TB_Name.Size = New System.Drawing.Size(282, 27)
-        Me.TB_Name.TabIndex = 16
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label1.Location = New System.Drawing.Point(37, 59)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(98, 23)
-        Me.Label1.TabIndex = 15
-        Me.Label1.Text = "Country ID"
-        '
-        'TB_Id
-        '
-        Me.TB_Id.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TB_Id.Location = New System.Drawing.Point(37, 86)
-        Me.TB_Id.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_Id.Name = "TB_Id"
-        Me.TB_Id.Size = New System.Drawing.Size(282, 27)
-        Me.TB_Id.TabIndex = 14
-        '
-        'TabPage6
-        '
-        Me.TabPage6.Controls.Add(Me.comboBoxTipo)
-        Me.TabPage6.Controls.Add(Me.Label8)
-        Me.TabPage6.Controls.Add(Me.TB_Artist_Sitio)
-        Me.TabPage6.Controls.Add(Me.Label5)
-        Me.TabPage6.Controls.Add(Me.lstSitios)
-        Me.TabPage6.Controls.Add(Me.Button1)
-        Me.TabPage6.Controls.Add(Me.Button2)
-        Me.TabPage6.Controls.Add(Me.Button3)
-        Me.TabPage6.Controls.Add(Me.Button4)
-        Me.TabPage6.Controls.Add(Me.Label3)
-        Me.TabPage6.Controls.Add(Me.TB_Name_Sitio)
-        Me.TabPage6.Controls.Add(Me.Label4)
-        Me.TabPage6.Controls.Add(Me.TB_ID_Sitio)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.TabPage6.Size = New System.Drawing.Size(618, 461)
-        Me.TabPage6.TabIndex = 5
-        Me.TabPage6.Text = "Site"
-        Me.TabPage6.UseVisualStyleBackColor = True
-        '
-        'comboBoxTipo
-        '
-        Me.comboBoxTipo.FormattingEnabled = True
-        Me.comboBoxTipo.Location = New System.Drawing.Point(44, 189)
-        Me.comboBoxTipo.Name = "comboBoxTipo"
-        Me.comboBoxTipo.Size = New System.Drawing.Size(151, 28)
-        Me.comboBoxTipo.TabIndex = 36
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label8.Location = New System.Drawing.Point(44, 233)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(55, 23)
-        Me.Label8.TabIndex = 35
-        Me.Label8.Text = "Artist"
-        '
-        'TB_Artist_Sitio
-        '
-        Me.TB_Artist_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TB_Artist_Sitio.Location = New System.Drawing.Point(44, 260)
-        Me.TB_Artist_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_Artist_Sitio.Name = "TB_Artist_Sitio"
-        Me.TB_Artist_Sitio.Size = New System.Drawing.Size(282, 27)
-        Me.TB_Artist_Sitio.TabIndex = 34
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label5.Location = New System.Drawing.Point(44, 163)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(48, 23)
-        Me.Label5.TabIndex = 33
-        Me.Label5.Text = "Type"
-        '
-        'lstSitios
-        '
-        Me.lstSitios.Location = New System.Drawing.Point(371, 55)
-        Me.lstSitios.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.lstSitios.MultiSelect = False
-        Me.lstSitios.Name = "lstSitios"
-        Me.lstSitios.Size = New System.Drawing.Size(219, 351)
-        Me.lstSitios.TabIndex = 31
-        Me.lstSitios.UseCompatibleStateImageBehavior = False
-        '
-        'Button1
-        '
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.Button1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Button1.Location = New System.Drawing.Point(30, 300)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(311, 53)
-        Me.Button1.TabIndex = 30
-        Me.Button1.Text = "Clear all"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Button2.Location = New System.Drawing.Point(233, 370)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(108, 47)
-        Me.Button2.TabIndex = 29
-        Me.Button2.Text = "Delete"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Button3.Location = New System.Drawing.Point(132, 370)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(104, 47)
-        Me.Button3.TabIndex = 28
-        Me.Button3.Text = "Modify"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Button4.Location = New System.Drawing.Point(30, 370)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(105, 47)
-        Me.Button4.TabIndex = 27
-        Me.Button4.Text = "Add"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label3.Location = New System.Drawing.Point(44, 96)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(93, 23)
-        Me.Label3.TabIndex = 26
-        Me.Label3.Text = "Site Name"
-        '
-        'TB_Name_Sitio
-        '
-        Me.TB_Name_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TB_Name_Sitio.Location = New System.Drawing.Point(44, 120)
-        Me.TB_Name_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_Name_Sitio.Name = "TB_Name_Sitio"
-        Me.TB_Name_Sitio.Size = New System.Drawing.Size(282, 27)
-        Me.TB_Name_Sitio.TabIndex = 25
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
-        Me.Label4.Location = New System.Drawing.Point(44, 26)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(64, 23)
-        Me.Label4.TabIndex = 24
-        Me.Label4.Text = "Site ID"
-        '
-        'TB_ID_Sitio
-        '
-        Me.TB_ID_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TB_ID_Sitio.Location = New System.Drawing.Point(44, 53)
-        Me.TB_ID_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_ID_Sitio.Name = "TB_ID_Sitio"
-        Me.TB_ID_Sitio.Size = New System.Drawing.Size(282, 27)
-        Me.TB_ID_Sitio.TabIndex = 23
-        '
-        'ofdRuta
-        '
-        Me.ofdRuta.FileName = "OpenFileDialog1"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), System.Drawing.Image)
-        Me.PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
-        Me.PictureBox1.Location = New System.Drawing.Point(30, 28)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(149, 47)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
-        '
-        'Form1
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(683, 609)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.TabControl1)
-        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        Me.TabPage5.ResumeLayout(False)
-        Me.TabPage5.PerformLayout()
-        Me.TabPage6.ResumeLayout(False)
-        Me.TabPage6.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-
+        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form1))
+        TabControl1 = New TabControl()
+        TabPage1 = New TabPage()
+        DateTimePicker1 = New DateTimePicker()
+        Label7 = New Label()
+        TextBox2 = New TextBox()
+        Label6 = New Label()
+        TabPage2 = New TabPage()
+        TabPage3 = New TabPage()
+        TabPage4 = New TabPage()
+        TabPage5 = New TabPage()
+        lstPaises = New ListView()
+        ButtonClearAll = New Button()
+        ButtonDelete = New Button()
+        ButtonModify = New Button()
+        ButtonAdd = New Button()
+        Label2 = New Label()
+        TB_Name = New TextBox()
+        Label1 = New Label()
+        TB_Id = New TextBox()
+        TabPage6 = New TabPage()
+        comboBoxTipo = New ComboBox()
+        Label8 = New Label()
+        TB_Artist_Sitio = New TextBox()
+        Label5 = New Label()
+        lstSitios = New ListView()
+        Button1 = New Button()
+        Button2 = New Button()
+        Button3 = New Button()
+        Button4 = New Button()
+        Label3 = New Label()
+        TB_Name_Sitio = New TextBox()
+        Label4 = New Label()
+        TB_ID_Sitio = New TextBox()
+        ofdRuta = New OpenFileDialog()
+        PictureBox1 = New PictureBox()
+        TabControl1.SuspendLayout()
+        TabPage1.SuspendLayout()
+        TabPage5.SuspendLayout()
+        TabPage6.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        SuspendLayout()
+        ' 
+        ' TabControl1
+        ' 
+        TabControl1.Controls.Add(TabPage1)
+        TabControl1.Controls.Add(TabPage2)
+        TabControl1.Controls.Add(TabPage3)
+        TabControl1.Controls.Add(TabPage4)
+        TabControl1.Controls.Add(TabPage5)
+        TabControl1.Controls.Add(TabPage6)
+        TabControl1.Location = New Point(26, 62)
+        TabControl1.Name = "TabControl1"
+        TabControl1.SelectedIndex = 0
+        TabControl1.Size = New Size(548, 370)
+        TabControl1.TabIndex = 0
+        ' 
+        ' TabPage1
+        ' 
+        TabPage1.Controls.Add(DateTimePicker1)
+        TabPage1.Controls.Add(Label7)
+        TabPage1.Controls.Add(TextBox2)
+        TabPage1.Controls.Add(Label6)
+        TabPage1.Location = New Point(4, 24)
+        TabPage1.Name = "TabPage1"
+        TabPage1.Padding = New Padding(3, 3, 3, 3)
+        TabPage1.Size = New Size(540, 342)
+        TabPage1.TabIndex = 0
+        TabPage1.Text = "Album"
+        TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.CustomFormat = "yyyy"
+        DateTimePicker1.Format = DateTimePickerFormat.Custom
+        DateTimePicker1.Location = New Point(59, 161)
+        DateTimePicker1.Margin = New Padding(3, 2, 3, 2)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.ShowUpDown = True
+        DateTimePicker1.Size = New Size(80, 23)
+        DateTimePicker1.TabIndex = 30
+        ' 
+        ' Label7
+        ' 
+        Label7.AutoSize = True
+        Label7.Location = New Point(61, 195)
+        Label7.Name = "Label7"
+        Label7.Size = New Size(68, 15)
+        Label7.TabIndex = 29
+        Label7.Text = "Artist name"
+        ' 
+        ' TextBox2
+        ' 
+        TextBox2.Location = New Point(61, 213)
+        TextBox2.Name = "TextBox2"
+        TextBox2.Size = New Size(237, 23)
+        TextBox2.TabIndex = 28
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Location = New Point(58, 143)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(29, 15)
+        Label6.TabIndex = 27
+        Label6.Text = "Year"
+        ' 
+        ' TabPage2
+        ' 
+        TabPage2.Location = New Point(4, 24)
+        TabPage2.Name = "TabPage2"
+        TabPage2.Padding = New Padding(3, 3, 3, 3)
+        TabPage2.Size = New Size(540, 342)
+        TabPage2.TabIndex = 1
+        TabPage2.Text = "Artist"
+        TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage3
+        ' 
+        TabPage3.Location = New Point(4, 24)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3, 3, 3, 3)
+        TabPage3.Size = New Size(540, 342)
+        TabPage3.TabIndex = 2
+        TabPage3.Text = "Song"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage4
+        ' 
+        TabPage4.Location = New Point(4, 24)
+        TabPage4.Name = "TabPage4"
+        TabPage4.Padding = New Padding(3, 3, 3, 3)
+        TabPage4.Size = New Size(540, 342)
+        TabPage4.TabIndex = 3
+        TabPage4.Text = "Concert"
+        TabPage4.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage5
+        ' 
+        TabPage5.Controls.Add(lstPaises)
+        TabPage5.Controls.Add(ButtonClearAll)
+        TabPage5.Controls.Add(ButtonDelete)
+        TabPage5.Controls.Add(ButtonModify)
+        TabPage5.Controls.Add(ButtonAdd)
+        TabPage5.Controls.Add(Label2)
+        TabPage5.Controls.Add(TB_Name)
+        TabPage5.Controls.Add(Label1)
+        TabPage5.Controls.Add(TB_Id)
+        TabPage5.Location = New Point(4, 24)
+        TabPage5.Name = "TabPage5"
+        TabPage5.Padding = New Padding(3, 3, 3, 3)
+        TabPage5.Size = New Size(540, 342)
+        TabPage5.TabIndex = 4
+        TabPage5.Text = "Country"
+        TabPage5.UseVisualStyleBackColor = True
+        ' 
+        ' lstPaises
+        ' 
+        lstPaises.Location = New Point(319, 34)
+        lstPaises.MultiSelect = False
+        lstPaises.Name = "lstPaises"
+        lstPaises.Size = New Size(192, 264)
+        lstPaises.TabIndex = 22
+        lstPaises.UseCompatibleStateImageBehavior = False
+        ' 
+        ' ButtonClearAll
+        ' 
+        ButtonClearAll.FlatStyle = FlatStyle.System
+        ButtonClearAll.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonClearAll.Location = New Point(20, 184)
+        ButtonClearAll.Name = "ButtonClearAll"
+        ButtonClearAll.Size = New Size(272, 40)
+        ButtonClearAll.TabIndex = 21
+        ButtonClearAll.Text = "Clear all"
+        ButtonClearAll.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonDelete
+        ' 
+        ButtonDelete.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonDelete.Location = New Point(198, 236)
+        ButtonDelete.Name = "ButtonDelete"
+        ButtonDelete.Size = New Size(94, 35)
+        ButtonDelete.TabIndex = 20
+        ButtonDelete.Text = "Delete"
+        ButtonDelete.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonModify
+        ' 
+        ButtonModify.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonModify.Location = New Point(109, 236)
+        ButtonModify.Name = "ButtonModify"
+        ButtonModify.Size = New Size(91, 35)
+        ButtonModify.TabIndex = 19
+        ButtonModify.Text = "Modify"
+        ButtonModify.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonAdd
+        ' 
+        ButtonAdd.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonAdd.Location = New Point(20, 236)
+        ButtonAdd.Name = "ButtonAdd"
+        ButtonAdd.Size = New Size(92, 35)
+        ButtonAdd.TabIndex = 18
+        ButtonAdd.Text = "Add"
+        ButtonAdd.UseVisualStyleBackColor = True
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label2.Location = New Point(32, 97)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(107, 19)
+        Label2.TabIndex = 17
+        Label2.Text = "Country Name"
+        ' 
+        ' TB_Name
+        ' 
+        TB_Name.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Name.Location = New Point(32, 115)
+        TB_Name.Name = "TB_Name"
+        TB_Name.Size = New Size(247, 23)
+        TB_Name.TabIndex = 16
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label1.Location = New Point(32, 44)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(81, 19)
+        Label1.TabIndex = 15
+        Label1.Text = "Country ID"
+        ' 
+        ' TB_Id
+        ' 
+        TB_Id.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Id.Location = New Point(32, 64)
+        TB_Id.Name = "TB_Id"
+        TB_Id.Size = New Size(247, 23)
+        TB_Id.TabIndex = 14
+        ' 
+        ' TabPage6
+        ' 
+        TabPage6.Controls.Add(comboBoxTipo)
+        TabPage6.Controls.Add(Label8)
+        TabPage6.Controls.Add(TB_Artist_Sitio)
+        TabPage6.Controls.Add(Label5)
+        TabPage6.Controls.Add(lstSitios)
+        TabPage6.Controls.Add(Button1)
+        TabPage6.Controls.Add(Button2)
+        TabPage6.Controls.Add(Button3)
+        TabPage6.Controls.Add(Button4)
+        TabPage6.Controls.Add(Label3)
+        TabPage6.Controls.Add(TB_Name_Sitio)
+        TabPage6.Controls.Add(Label4)
+        TabPage6.Controls.Add(TB_ID_Sitio)
+        TabPage6.Location = New Point(4, 24)
+        TabPage6.Name = "TabPage6"
+        TabPage6.Padding = New Padding(3, 3, 3, 3)
+        TabPage6.RightToLeft = RightToLeft.No
+        TabPage6.Size = New Size(540, 342)
+        TabPage6.TabIndex = 5
+        TabPage6.Text = "Site"
+        TabPage6.UseVisualStyleBackColor = True
+        ' 
+        ' comboBoxTipo
+        ' 
+        comboBoxTipo.FormattingEnabled = True
+        comboBoxTipo.Location = New Point(38, 142)
+        comboBoxTipo.Margin = New Padding(3, 2, 3, 2)
+        comboBoxTipo.Name = "comboBoxTipo"
+        comboBoxTipo.Size = New Size(133, 23)
+        comboBoxTipo.TabIndex = 36
+        ' 
+        ' Label8
+        ' 
+        Label8.AutoSize = True
+        Label8.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label8.Location = New Point(38, 175)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(45, 19)
+        Label8.TabIndex = 35
+        Label8.Text = "Artist"
+        ' 
+        ' TB_Artist_Sitio
+        ' 
+        TB_Artist_Sitio.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Artist_Sitio.Location = New Point(38, 195)
+        TB_Artist_Sitio.Name = "TB_Artist_Sitio"
+        TB_Artist_Sitio.Size = New Size(247, 23)
+        TB_Artist_Sitio.TabIndex = 34
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label5.Location = New Point(38, 122)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(41, 19)
+        Label5.TabIndex = 33
+        Label5.Text = "Type"
+        ' 
+        ' lstSitios
+        ' 
+        lstSitios.Location = New Point(325, 41)
+        lstSitios.MultiSelect = False
+        lstSitios.Name = "lstSitios"
+        lstSitios.Size = New Size(192, 264)
+        lstSitios.TabIndex = 31
+        lstSitios.UseCompatibleStateImageBehavior = False
+        ' 
+        ' Button1
+        ' 
+        Button1.FlatStyle = FlatStyle.System
+        Button1.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button1.Location = New Point(26, 225)
+        Button1.Name = "Button1"
+        Button1.Size = New Size(272, 40)
+        Button1.TabIndex = 30
+        Button1.Text = "Clear all"
+        Button1.UseVisualStyleBackColor = True
+        ' 
+        ' Button2
+        ' 
+        Button2.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button2.Location = New Point(204, 278)
+        Button2.Name = "Button2"
+        Button2.Size = New Size(94, 35)
+        Button2.TabIndex = 29
+        Button2.Text = "Delete"
+        Button2.UseVisualStyleBackColor = True
+        ' 
+        ' Button3
+        ' 
+        Button3.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button3.Location = New Point(116, 278)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(91, 35)
+        Button3.TabIndex = 28
+        Button3.Text = "Modify"
+        Button3.UseVisualStyleBackColor = True
+        ' 
+        ' Button4
+        ' 
+        Button4.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        Button4.Location = New Point(26, 278)
+        Button4.Name = "Button4"
+        Button4.Size = New Size(92, 35)
+        Button4.TabIndex = 27
+        Button4.Text = "Add"
+        Button4.UseVisualStyleBackColor = True
+        ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label3.Location = New Point(38, 72)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(78, 19)
+        Label3.TabIndex = 26
+        Label3.Text = "Site Name"
+        ' 
+        ' TB_Name_Sitio
+        ' 
+        TB_Name_Sitio.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Name_Sitio.Location = New Point(38, 90)
+        TB_Name_Sitio.Name = "TB_Name_Sitio"
+        TB_Name_Sitio.Size = New Size(247, 23)
+        TB_Name_Sitio.TabIndex = 25
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point)
+        Label4.Location = New Point(38, 20)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(52, 19)
+        Label4.TabIndex = 24
+        Label4.Text = "Site ID"
+        ' 
+        ' TB_ID_Sitio
+        ' 
+        TB_ID_Sitio.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_ID_Sitio.Location = New Point(38, 40)
+        TB_ID_Sitio.Name = "TB_ID_Sitio"
+        TB_ID_Sitio.Size = New Size(247, 23)
+        TB_ID_Sitio.TabIndex = 23
+        ' 
+        ' ofdRuta
+        ' 
+        ofdRuta.FileName = "OpenFileDialog1"
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), Image)
+        PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
+        PictureBox1.Location = New Point(234, 12)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(130, 35)
+        PictureBox1.TabIndex = 1
+        PictureBox1.TabStop = False
+        ' 
+        ' Form1
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(598, 457)
+        Controls.Add(PictureBox1)
+        Controls.Add(TabControl1)
+        Name = "Form1"
+        Text = "Form1"
+        TabControl1.ResumeLayout(False)
+        TabPage1.ResumeLayout(False)
+        TabPage1.PerformLayout()
+        TabPage5.ResumeLayout(False)
+        TabPage5.PerformLayout()
+        TabPage6.ResumeLayout(False)
+        TabPage6.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        ResumeLayout(False)
     End Sub
 
     Friend WithEvents TabControl1 As TabControl
