@@ -67,7 +67,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
+    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
         If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
             pai = New Pais(Me.TB_Id.Text)
@@ -92,7 +92,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
+    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
         If Me.TB_Id.Text <> String.Empty Then
 
@@ -123,7 +123,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ButtonModify_Click(sender As Object, e As EventArgs) Handles ButtonModify.Click
+    Private Sub ButtonModify_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
         If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
             pai = New Pais(Me.TB_Id.Text)
@@ -146,7 +146,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
+    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs)
         Me.TB_Id.Text = String.Empty
         Me.TB_Name.Text = String.Empty
     End Sub

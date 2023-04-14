@@ -34,10 +34,6 @@ Partial Class Form1
         TabPage4 = New TabPage()
         TabPage5 = New TabPage()
         lstPaises = New ListView()
-        ButtonClearAll = New Button()
-        ButtonDelete = New Button()
-        ButtonModify = New Button()
-        ButtonAdd = New Button()
         Label2 = New Label()
         TB_Name = New TextBox()
         Label1 = New Label()
@@ -48,16 +44,16 @@ Partial Class Form1
         TB_Artist_Sitio = New TextBox()
         Label5 = New Label()
         lstSitios = New ListView()
-        Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
         Label3 = New Label()
         TB_Name_Sitio = New TextBox()
         Label4 = New Label()
         TB_ID_Sitio = New TextBox()
         ofdRuta = New OpenFileDialog()
         PictureBox1 = New PictureBox()
+        ButtonClearAll = New Button()
+        ButtonDelete = New Button()
+        ButtonAdd = New Button()
+        ButtonModify = New Button()
         TabControl1.SuspendLayout()
         TabPage1.SuspendLayout()
         TabPage5.SuspendLayout()
@@ -73,10 +69,12 @@ Partial Class Form1
         TabControl1.Controls.Add(TabPage4)
         TabControl1.Controls.Add(TabPage5)
         TabControl1.Controls.Add(TabPage6)
-        TabControl1.Location = New Point(26, 62)
+        TabControl1.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        TabControl1.Location = New Point(36, 66)
         TabControl1.Name = "TabControl1"
+        TabControl1.Padding = New Point(18, 3)
         TabControl1.SelectedIndex = 0
-        TabControl1.Size = New Size(548, 370)
+        TabControl1.Size = New Size(548, 322)
         TabControl1.TabIndex = 0
         ' 
         ' TabPage1
@@ -85,10 +83,11 @@ Partial Class Form1
         TabPage1.Controls.Add(Label7)
         TabPage1.Controls.Add(TextBox2)
         TabPage1.Controls.Add(Label6)
-        TabPage1.Location = New Point(4, 24)
+        TabPage1.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TabPage1.Location = New Point(4, 27)
         TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3, 3, 3, 3)
-        TabPage1.Size = New Size(540, 342)
+        TabPage1.Padding = New Padding(3)
+        TabPage1.Size = New Size(540, 291)
         TabPage1.TabIndex = 0
         TabPage1.Text = "Album"
         TabPage1.UseVisualStyleBackColor = True
@@ -97,64 +96,64 @@ Partial Class Form1
         ' 
         DateTimePicker1.CustomFormat = "yyyy"
         DateTimePicker1.Format = DateTimePickerFormat.Custom
-        DateTimePicker1.Location = New Point(59, 161)
+        DateTimePicker1.Location = New Point(59, 82)
         DateTimePicker1.Margin = New Padding(3, 2, 3, 2)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.ShowUpDown = True
-        DateTimePicker1.Size = New Size(80, 23)
+        DateTimePicker1.Size = New Size(80, 25)
         DateTimePicker1.TabIndex = 30
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(61, 195)
+        Label7.Location = New Point(59, 133)
         Label7.Name = "Label7"
-        Label7.Size = New Size(68, 15)
+        Label7.Size = New Size(83, 18)
         Label7.TabIndex = 29
         Label7.Text = "Artist name"
         ' 
         ' TextBox2
         ' 
-        TextBox2.Location = New Point(61, 213)
+        TextBox2.Location = New Point(59, 154)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(237, 23)
+        TextBox2.Size = New Size(237, 25)
         TextBox2.TabIndex = 28
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(58, 143)
+        Label6.Location = New Point(59, 62)
         Label6.Name = "Label6"
-        Label6.Size = New Size(29, 15)
+        Label6.Size = New Size(35, 18)
         Label6.TabIndex = 27
         Label6.Text = "Year"
         ' 
         ' TabPage2
         ' 
-        TabPage2.Location = New Point(4, 24)
+        TabPage2.Location = New Point(4, 27)
         TabPage2.Name = "TabPage2"
-        TabPage2.Padding = New Padding(3, 3, 3, 3)
-        TabPage2.Size = New Size(540, 342)
+        TabPage2.Padding = New Padding(3)
+        TabPage2.Size = New Size(540, 314)
         TabPage2.TabIndex = 1
         TabPage2.Text = "Artist"
         TabPage2.UseVisualStyleBackColor = True
         ' 
         ' TabPage3
         ' 
-        TabPage3.Location = New Point(4, 24)
+        TabPage3.Location = New Point(4, 27)
         TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3, 3, 3, 3)
-        TabPage3.Size = New Size(540, 342)
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(540, 314)
         TabPage3.TabIndex = 2
         TabPage3.Text = "Song"
         TabPage3.UseVisualStyleBackColor = True
         ' 
         ' TabPage4
         ' 
-        TabPage4.Location = New Point(4, 24)
+        TabPage4.Location = New Point(4, 27)
         TabPage4.Name = "TabPage4"
-        TabPage4.Padding = New Padding(3, 3, 3, 3)
-        TabPage4.Size = New Size(540, 342)
+        TabPage4.Padding = New Padding(3)
+        TabPage4.Size = New Size(540, 314)
         TabPage4.TabIndex = 3
         TabPage4.Text = "Concert"
         TabPage4.UseVisualStyleBackColor = True
@@ -162,18 +161,15 @@ Partial Class Form1
         ' TabPage5
         ' 
         TabPage5.Controls.Add(lstPaises)
-        TabPage5.Controls.Add(ButtonClearAll)
-        TabPage5.Controls.Add(ButtonDelete)
-        TabPage5.Controls.Add(ButtonModify)
-        TabPage5.Controls.Add(ButtonAdd)
         TabPage5.Controls.Add(Label2)
         TabPage5.Controls.Add(TB_Name)
         TabPage5.Controls.Add(Label1)
         TabPage5.Controls.Add(TB_Id)
-        TabPage5.Location = New Point(4, 24)
+        TabPage5.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TabPage5.Location = New Point(4, 27)
         TabPage5.Name = "TabPage5"
-        TabPage5.Padding = New Padding(3, 3, 3, 3)
-        TabPage5.Size = New Size(540, 342)
+        TabPage5.Padding = New Padding(3)
+        TabPage5.Size = New Size(540, 314)
         TabPage5.TabIndex = 4
         TabPage5.Text = "Country"
         TabPage5.UseVisualStyleBackColor = True
@@ -183,50 +179,9 @@ Partial Class Form1
         lstPaises.Location = New Point(319, 34)
         lstPaises.MultiSelect = False
         lstPaises.Name = "lstPaises"
-        lstPaises.Size = New Size(192, 264)
+        lstPaises.Size = New Size(192, 226)
         lstPaises.TabIndex = 22
         lstPaises.UseCompatibleStateImageBehavior = False
-        ' 
-        ' ButtonClearAll
-        ' 
-        ButtonClearAll.FlatStyle = FlatStyle.System
-        ButtonClearAll.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonClearAll.Location = New Point(20, 184)
-        ButtonClearAll.Name = "ButtonClearAll"
-        ButtonClearAll.Size = New Size(272, 40)
-        ButtonClearAll.TabIndex = 21
-        ButtonClearAll.Text = "Clear all"
-        ButtonClearAll.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonDelete
-        ' 
-        ButtonDelete.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonDelete.Location = New Point(198, 236)
-        ButtonDelete.Name = "ButtonDelete"
-        ButtonDelete.Size = New Size(94, 35)
-        ButtonDelete.TabIndex = 20
-        ButtonDelete.Text = "Delete"
-        ButtonDelete.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonModify
-        ' 
-        ButtonModify.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonModify.Location = New Point(109, 236)
-        ButtonModify.Name = "ButtonModify"
-        ButtonModify.Size = New Size(91, 35)
-        ButtonModify.TabIndex = 19
-        ButtonModify.Text = "Modify"
-        ButtonModify.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonAdd
-        ' 
-        ButtonAdd.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonAdd.Location = New Point(20, 236)
-        ButtonAdd.Name = "ButtonAdd"
-        ButtonAdd.Size = New Size(92, 35)
-        ButtonAdd.TabIndex = 18
-        ButtonAdd.Text = "Add"
-        ButtonAdd.UseVisualStyleBackColor = True
         ' 
         ' Label2
         ' 
@@ -271,19 +226,15 @@ Partial Class Form1
         TabPage6.Controls.Add(TB_Artist_Sitio)
         TabPage6.Controls.Add(Label5)
         TabPage6.Controls.Add(lstSitios)
-        TabPage6.Controls.Add(Button1)
-        TabPage6.Controls.Add(Button2)
-        TabPage6.Controls.Add(Button3)
-        TabPage6.Controls.Add(Button4)
         TabPage6.Controls.Add(Label3)
         TabPage6.Controls.Add(TB_Name_Sitio)
         TabPage6.Controls.Add(Label4)
         TabPage6.Controls.Add(TB_ID_Sitio)
-        TabPage6.Location = New Point(4, 24)
+        TabPage6.Location = New Point(4, 27)
         TabPage6.Name = "TabPage6"
-        TabPage6.Padding = New Padding(3, 3, 3, 3)
+        TabPage6.Padding = New Padding(3)
         TabPage6.RightToLeft = RightToLeft.No
-        TabPage6.Size = New Size(540, 342)
+        TabPage6.Size = New Size(540, 314)
         TabPage6.TabIndex = 5
         TabPage6.Text = "Site"
         TabPage6.UseVisualStyleBackColor = True
@@ -294,7 +245,7 @@ Partial Class Form1
         comboBoxTipo.Location = New Point(38, 142)
         comboBoxTipo.Margin = New Padding(3, 2, 3, 2)
         comboBoxTipo.Name = "comboBoxTipo"
-        comboBoxTipo.Size = New Size(133, 23)
+        comboBoxTipo.Size = New Size(133, 26)
         comboBoxTipo.TabIndex = 36
         ' 
         ' Label8
@@ -333,47 +284,6 @@ Partial Class Form1
         lstSitios.Size = New Size(192, 264)
         lstSitios.TabIndex = 31
         lstSitios.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Button1
-        ' 
-        Button1.FlatStyle = FlatStyle.System
-        Button1.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Button1.Location = New Point(26, 225)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(272, 40)
-        Button1.TabIndex = 30
-        Button1.Text = "Clear all"
-        Button1.UseVisualStyleBackColor = True
-        ' 
-        ' Button2
-        ' 
-        Button2.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Button2.Location = New Point(204, 278)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(94, 35)
-        Button2.TabIndex = 29
-        Button2.Text = "Delete"
-        Button2.UseVisualStyleBackColor = True
-        ' 
-        ' Button3
-        ' 
-        Button3.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Button3.Location = New Point(116, 278)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(91, 35)
-        Button3.TabIndex = 28
-        Button3.Text = "Modify"
-        Button3.UseVisualStyleBackColor = True
-        ' 
-        ' Button4
-        ' 
-        Button4.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        Button4.Location = New Point(26, 278)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(92, 35)
-        Button4.TabIndex = 27
-        Button4.Text = "Add"
-        Button4.UseVisualStyleBackColor = True
         ' 
         ' Label3
         ' 
@@ -419,17 +329,62 @@ Partial Class Form1
         ' 
         PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), Image)
         PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
-        PictureBox1.Location = New Point(234, 12)
+        PictureBox1.Location = New Point(241, 15)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(130, 35)
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
         ' 
+        ' ButtonClearAll
+        ' 
+        ButtonClearAll.FlatStyle = FlatStyle.System
+        ButtonClearAll.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonClearAll.Location = New Point(40, 401)
+        ButtonClearAll.Name = "ButtonClearAll"
+        ButtonClearAll.Size = New Size(139, 35)
+        ButtonClearAll.TabIndex = 25
+        ButtonClearAll.Text = "Clear all"
+        ButtonClearAll.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonDelete
+        ' 
+        ButtonDelete.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonDelete.Location = New Point(291, 401)
+        ButtonDelete.Name = "ButtonDelete"
+        ButtonDelete.Size = New Size(94, 35)
+        ButtonDelete.TabIndex = 24
+        ButtonDelete.Text = "Delete"
+        ButtonDelete.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonAdd
+        ' 
+        ButtonAdd.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonAdd.Location = New Point(488, 401)
+        ButtonAdd.Name = "ButtonAdd"
+        ButtonAdd.Size = New Size(92, 35)
+        ButtonAdd.TabIndex = 22
+        ButtonAdd.Text = "Add"
+        ButtonAdd.UseVisualStyleBackColor = True
+        ' 
+        ' ButtonModify
+        ' 
+        ButtonModify.Font = New Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonModify.Location = New Point(391, 401)
+        ButtonModify.Name = "ButtonModify"
+        ButtonModify.Size = New Size(91, 35)
+        ButtonModify.TabIndex = 23
+        ButtonModify.Text = "Modify"
+        ButtonModify.UseVisualStyleBackColor = True
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(598, 457)
+        ClientSize = New Size(613, 457)
+        Controls.Add(ButtonClearAll)
+        Controls.Add(ButtonDelete)
+        Controls.Add(ButtonAdd)
+        Controls.Add(ButtonModify)
         Controls.Add(PictureBox1)
         Controls.Add(TabControl1)
         Name = "Form1"
@@ -457,10 +412,6 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents ButtonClearAll As Button
-    Friend WithEvents ButtonDelete As Button
-    Friend WithEvents ButtonModify As Button
-    Friend WithEvents ButtonAdd As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents TB_Name As TextBox
     Friend WithEvents Label1 As Label
@@ -468,10 +419,6 @@ Partial Class Form1
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lstPaises As ListView
     Friend WithEvents lstSitios As ListView
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents TB_Name_Sitio As TextBox
     Friend WithEvents Label4 As Label
@@ -480,4 +427,8 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents TB_Artist_Sitio As TextBox
     Friend WithEvents Label5 As Label
+    Friend WithEvents ButtonClearAll As Button
+    Friend WithEvents ButtonDelete As Button
+    Friend WithEvents ButtonAdd As Button
+    Friend WithEvents ButtonModify As Button
 End Class
