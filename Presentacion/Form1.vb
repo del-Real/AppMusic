@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports Mysqlx.Crud
 
 Public Class Form1
+    Public ReadOnly Property Paises As Collection
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
@@ -17,7 +19,10 @@ Public Class Form1
             Exit Sub
         End Try
         For Each p As Pais In pai.PaiDAO.Paises
-            Me.lstPaises.Items.Add(p.IDPais)
+            Dim item As New ListViewItem
+            item.Text = p.IDPais ' Set the text of the first column to "pai.IDPais"
+            item.SubItems.Add(p.NomPais) ' Add the value of "pai.NomPais" to the second column
+            lstPaises.Items.Add(item)
         Next
 
         ' Añade columnas al listView
@@ -53,7 +58,10 @@ Public Class Form1
                     Exit Sub
                 End If
                 'COGIDO AÑADIDO
-                lstPaises.Items.Add(pai.IDPais & " " & pai.NomPais)
+                Dim item As New ListViewItem
+                item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
+                item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
+                lstPaises.Items.Add(item)
                 MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -76,12 +84,13 @@ Public Class Form1
                         Exit Sub
                     End If
                     'COGIDO AÑADIDO
-                    For Each item As ListViewItem In lstPaises.SelectedItems
+                    Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
                         lstPaises.Items.Remove(item)
-                    Next
-
-                    MessageBox.Show(pai.NomPais.ToString & " Eliminado correctamente")
+                    End If
+                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                 Catch ex As Exception
+
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
 
@@ -98,13 +107,17 @@ Public Class Form1
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
         If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
             pai = New Pais(Me.TB_Id.Text)
-            pai.NomPais = Me.TB_Id.Text
+            pai.NomPais = Me.TB_Name.Text
+            Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
+            End If
             Try
                 If pai.ActualizarPais() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show(pai.NomPais.ToString & " Actualizado correctamente")
+                MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
