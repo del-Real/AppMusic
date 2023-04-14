@@ -3,9 +3,9 @@
     Public Property NomSitio As String
     Public Property Pais As Pais
     Enum TipoSitio
-        Sala
-        Pabellon
-        Estadio
+        Hall
+        Pavilion
+        Stadium
         Festival
     End Enum
     Public Property tipo As String

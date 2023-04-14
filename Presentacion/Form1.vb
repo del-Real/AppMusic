@@ -1,4 +1,6 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿
+Imports System.Security.Policy
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Mysqlx.Crud
 
 Public Class Form1
@@ -25,38 +27,43 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = p.IDPais ' Set the text of the first column to "pai.IDPais"
             item.SubItems.Add(p.NomPais) ' Add the value of "pai.NomPais" to the second column
-            lstPaises.Items.Add(item)
+            lstContries.Items.Add(item)
         Next
         ' Añade columnas al listView
-        lstPaises.View = View.Details
-        lstPaises.Columns.Add("ID", 50)
-        lstPaises.Columns.Add("Name", 100)
+        lstContries.View = View.Details
+        lstContries.Columns.Add("ID", 50)
+        lstContries.Columns.Add("Name", 100)
 
         'SITIOS
         For Each s As Sitio In sit.SitDAO.Sitios
             Dim item As New ListViewItem
             item.Text = s.IDSitio ' Set the text of the first column to "pai.IDPais"
             item.SubItems.Add(s.NomSitio) ' Add the value of "pai.NomPais" to the second column
-            lstSitios.Items.Add(item)
+            lstSites.Items.Add(item)
         Next
         ' Añade columnas al listView
-        lstSitios.View = View.Details
-        lstSitios.Columns.Add("ID", 50)
-        lstSitios.Columns.Add("Name", 100)
-
+        lstSites.View = View.Details
+        lstSites.Columns.Add("ID", 50)
+        lstSites.Columns.Add("Name", 80)
+        lstSites.Columns.Add("Type", 150)
+        lstSites.Columns.Add("ArtistID", 210)
         'Añadir valores del anum al comboBox 
-        CB_Type_Site.Items.Add(sit.TipoSitio.Estadio)
         CB_Type_Site.Items.Add(sit.TipoSitio.Festival)
-        CB_Type_Site.Items.Add(sit.TipoSitio.Pabellon)
-        CB_Type_Site.Items.Add(sit.TipoSitio.Sala)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Hall)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Pavilion)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Stadium)
         CB_Type_Site.SelectedIndex = 0
+
+        For Each item As ListViewItem In lstContries.Items
+            CB_Country_Site.Items.Add(item.SubItems(1).Text)
+        Next
     End Sub
 
-    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
         Dim pai As Pais
-        If Not Me.lstPaises.SelectedItems Is Nothing Then
+        If Not Me.lstContries.SelectedItems Is Nothing Then
             Try
-                pai = New Pais(lstPaises.SelectedItems.ToString)
+                pai = New Pais(lstContries.SelectedItems.ToString)
                 pai.LeerPais()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -67,127 +74,222 @@ Public Class Form1
         End If
     End Sub
 
-<<<<<<< Updated upstream
-    Private Sub ButtonAdd_Click(sender As Object, e As EventArgs)
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-            pai = New Pais(Me.TB_Id_Country.Text)
-            pai.NomPais = Me.TB_Name_Country.Text
+    Private Sub lstSites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSites.SelectedIndexChanged
+        Dim sit As Sitio
+        If Not Me.lstSites.SelectedItems Is Nothing Then
             Try
-                If pai.InsertarPais() <> 1 Then
-                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
-                'COGIDO AÑADIDO
-                Dim item As New ListViewItem
-                item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
-                item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
-                lstPaises.Items.Add(item)
-                MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
+                sit = New Sitio(lstSites.SelectedItems.ToString)
+                sit.LeerSitio()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
+            Me.TB_Id_Country.Text = sit.IDSitio
+            Me.TB_Name_Country.Text = sit.NomSitio
+            Me.CB_Type_Site.Text = sit.tipo
+            Me.CB_Country_Site.Text = sit.Pais.NomPais
+        End If
+    End Sub
 
-=======
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
-        Dim tabPage As TabPage = TabControl1.SelectedTab
->>>>>>> Stashed changes
-            'Comprobar qué pestaña está activa y realizar la acción correspondiente
-            Select Case TabPage.Name
-                Case "TabAlbum"
+        Dim tabPage As TabPage = TabControl.SelectedTab
+
+        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        Select Case tabPage.Name
+            Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
-                Case "TabArtist"
+            Case "TabArtist"
             'Aquí va el código para añadir un nuevo sitio
-                Case "TabSong"
+            Case "TabSong"
             'Aquí va el código para añadir un nuevo artista
-                Case "TabConcert"
+            Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
-                Case "TabCountry"
-                    Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                    If Me.TB_Id.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-                        pai = New Pais(Me.TB_Id.Text)
-                        pai.NomPais = Me.TB_Name_Country.Text
-                        Try
-                            If pai.InsertarPais() <> 1 Then
-                                MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Exit Sub
-                            End If
-                            'COGIDO AÑADIDO
-                            Dim item As New ListViewItem
-                            item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
-                            item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
-                            lstPaises.Items.Add(item)
-                            MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
-                        Catch ex As Exception
-                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Case "TabCountry"
+                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+                    pai = New Pais(Me.TB_Id_Country.Text)
+                    pai.NomPais = Me.TB_Name_Country.Text
+                    Try
+                        If pai.InsertarPais() <> 1 Then
+                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
-                        End Try
+                        End If
+                        'COGIDO AÑADIDO
+                        Dim item As New ListViewItem
+                        item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
+                        item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
+                        lstContries.Items.Add(item)
+                        CB_Country_Site.Items.Add(item.SubItems(1).Text)
+                        MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End Try
+                End If
+            Case "TabSite"
+                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
+                    sit = New Sitio(Me.TB_Id_Site.Text)
+                    sit.NomSitio = Me.TB_Name_Site.Text
+                    sit.tipo = Me.CB_Type_Site.Text
+                    Dim pais As String = CB_Country_Site.Text
 
-                    End If
-                Case "TabSite"
-
-            End Select
+                    Try
+                        If sit.InsertarSitio() <> 1 Then
+                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                        'COGIDO AÑADIDO
+                        Dim item As New ListViewItem
+                        item.Text = sit.IDSitio ' Set the text of the first column to "pai.IDPais"
+                        item.SubItems.Add(sit.NomSitio) ' Add the value of "pai.NomPais" to the second column
+                        lstSites.Items.Add(item)
+                        MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End Try
+                End If
+        End Select
 
     End Sub
 
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id_Country.Text <> String.Empty Then
+        Dim tabPage As TabPage = TabControl.SelectedTab
 
-            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
-                Try
-                    If pai.BorrarPais() <> 1 Then
-                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
+        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        Select Case tabPage.Name
+            Case "TabAlbum"
+            'Aquí va el código para añadir un nuevo país
+            Case "TabArtist"
+            'Aquí va el código para añadir un nuevo sitio
+            Case "TabSong"
+            'Aquí va el código para añadir un nuevo artista
+            Case "TabConcert"
+            'Aquí va el código para añadir una nueva canción
+            Case "TabCountry"
+                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Country.Text <> String.Empty Then
+
+                    If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
+                        Try
+                            If pai.BorrarPais() <> 1 Then
+                                MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                            'COGIDO AÑADIDO
+                            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+                            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                                lstContries.Items.Remove(item)
+                                CB_Country_Site.Items.Remove(item.SubItems(1).Text)
+
+                            End If
+                            MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
+                        Catch ex As Exception
+
+                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+
+                        End Try
+                        'CODIGO ERRONEO
+                        'Me.lstPersonas.Items.Remove(pers.IDPersona)
+                        'Me.bntEliminar.PerformClick()
                     End If
-                    'COGIDO AÑADIDO
-                    Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                        lstPaises.Items.Remove(item)
+                End If
+            Case "TabSite"
+                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Site.Text <> String.Empty Then
+
+                    If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        'sit = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
+                        Try
+                            If sit.BorrarSitio() <> 1 Then
+                                MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                            'COGIDO AÑADIDO
+                            Dim item As ListViewItem = lstContries.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+                            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                                lstContries.Items.Remove(item)
+                            End If
+                            MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
+                        Catch ex As Exception
+
+                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+
+                        End Try
+                        'CODIGO ERRONEO
+                        'Me.lstPersonas.Items.Remove(pers.IDPersona)
+                        'Me.bntEliminar.PerformClick()
                     End If
-                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
-                Catch ex As Exception
-
-                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-
-                End Try
-                'CODIGO ERRONEO
-                'Me.lstPersonas.Items.Remove(pers.IDPersona)
-                'Me.bntEliminar.PerformClick()
-            End If
-        End If
+                End If
+        End Select
 
     End Sub
 
     Private Sub ButtonModify_Click(sender As Object, e As EventArgs) Handles ButtonModify.Click
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-            pai = New Pais(Me.TB_Id_Country.Text)
-            pai.NomPais = Me.TB_Name_Country.Text
-            Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
-            End If
-            Try
-                If pai.ActualizarPais() <> 1 Then
-                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
+        Dim tabPage As TabPage = TabControl.SelectedTab
+
+        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        Select Case tabPage.Name
+            Case "TabAlbum"
+            'Aquí va el código para añadir un nuevo país
+            Case "TabArtist"
+            'Aquí va el código para añadir un nuevo sitio
+            Case "TabSong"
+            'Aquí va el código para añadir un nuevo artista
+            Case "TabConcert"
+            'Aquí va el código para añadir una nueva canción
+            Case "TabCountry"
+                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+                    pai = New Pais(Me.TB_Id_Country.Text)
+                    pai.NomPais = Me.TB_Name_Country.Text
+                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                        item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
+                        Dim indice As Integer = CB_Country_Site.Items.IndexOf(TB_Id_Country)
+                        If indice >= 0 Then
+                            CB_Country_Site.Items(indice) = "Nuevo nombre del elemento"
+                        End If
+
+                    End If
+                    Try
+                        If pai.ActualizarPais() <> 1 Then
+                            MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                        MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End Try
                 End If
-                MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End Try
-        End If
+            Case "TabSite"
+        End Select
 
     End Sub
 
-    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs)
-        Me.TB_Id_Country.Text = String.Empty
-        Me.TB_Name_Country.Text = String.Empty
+    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
+        Dim tabPage As TabPage = TabControl.SelectedTab
+
+        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        Select Case tabPage.Name
+            Case "TabAlbum"
+            'Aquí va el código para añadir un nuevo país
+            Case "TabArtist"
+            'Aquí va el código para añadir un nuevo sitio
+            Case "TabSong"
+            'Aquí va el código para añadir un nuevo artista
+            Case "TabConcert"
+            'Aquí va el código para añadir una nueva canción
+            Case "TabCountry"
+                Me.TB_Id_Country.Text = String.Empty
+                Me.TB_Name_Country.Text = String.Empty
+            Case "TabSite"
+        End Select
     End Sub
 
 End Class

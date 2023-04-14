@@ -23,22 +23,22 @@
 
     Public Sub Leer(ByRef s As Sitio)
         Dim col As Collection : Dim aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM Personas WHERE IDPersona='" & s.IDSitio & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM sitio WHERE idSitio='" & s.IDSitio & "';")
         For Each aux In col
             s.NomSitio = aux(2).ToString
         Next
     End Sub
 
     Public Function Insertar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO Personas VALUES ('" & s.IDSitio & "', '" & s.NomSitio & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO sitio VALUES ('" & s.IDSitio & "', '" & s.NomSitio & "');")
     End Function
 
     Public Function Actualizar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Personas SET NombrePersona='" & s.NomSitio & "' WHERE IDPersona='" & s.IDSitio & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE sitio SET NombreSitio='" & s.NomSitio & "' WHERE idSitio='" & s.IDSitio & "' WHERE País='" & s.Pais.NomPais & "' WHERE Tipo='" & s.tipo & "';")
     End Function
 
     Public Function Borrar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Personas WHERE IDPersona='" & s.IDSitio & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM sitio WHERE idSitio='" & s.IDSitio & "';")
     End Function
 
 End Class
