@@ -35,9 +35,9 @@ Partial Class Form1
         TabPage5 = New TabPage()
         lstPaises = New ListView()
         Label2 = New Label()
-        TB_Name = New TextBox()
+        TB_Name_Country = New TextBox()
         Label1 = New Label()
-        Id_Country = New TextBox()
+        TB_Id_Country = New TextBox()
         TabPage6 = New TabPage()
         CB_Type_Site = New ComboBox()
         Label8 = New Label()
@@ -47,7 +47,7 @@ Partial Class Form1
         Label3 = New Label()
         TB_Name_Site = New TextBox()
         Label4 = New Label()
-        TB_ID_Site = New TextBox()
+        TB_Id_Site = New TextBox()
         ofdRuta = New OpenFileDialog()
         PictureBox1 = New PictureBox()
         ButtonClearAll = New Button()
@@ -162,9 +162,9 @@ Partial Class Form1
         ' 
         TabPage5.Controls.Add(lstPaises)
         TabPage5.Controls.Add(Label2)
-        TabPage5.Controls.Add(TB_Name)
+        TabPage5.Controls.Add(TB_Name_Country)
         TabPage5.Controls.Add(Label1)
-        TabPage5.Controls.Add(Id_Country)
+        TabPage5.Controls.Add(TB_Id_Country)
         TabPage5.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabPage5.Location = New Point(4, 27)
         TabPage5.Name = "TabPage5"
@@ -193,13 +193,13 @@ Partial Class Form1
         Label2.TabIndex = 17
         Label2.Text = "Country Name"
         ' 
-        ' TB_Name
+        ' TB_Name_Country
         ' 
-        TB_Name.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Name.Location = New Point(27, 97)
-        TB_Name.Name = "TB_Name"
-        TB_Name.Size = New Size(247, 23)
-        TB_Name.TabIndex = 16
+        TB_Name_Country.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Name_Country.Location = New Point(27, 97)
+        TB_Name_Country.Name = "TB_Name_Country"
+        TB_Name_Country.Size = New Size(247, 23)
+        TB_Name_Country.TabIndex = 16
         ' 
         ' Label1
         ' 
@@ -211,13 +211,13 @@ Partial Class Form1
         Label1.TabIndex = 15
         Label1.Text = "Country ID"
         ' 
-        ' Id_Country
+        ' TB_Id_Country
         ' 
-        Id_Country.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
-        Id_Country.Location = New Point(27, 46)
-        Id_Country.Name = "Id_Country"
-        Id_Country.Size = New Size(247, 23)
-        Id_Country.TabIndex = 14
+        TB_Id_Country.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Id_Country.Location = New Point(27, 46)
+        TB_Id_Country.Name = "TB_Id_Country"
+        TB_Id_Country.Size = New Size(247, 23)
+        TB_Id_Country.TabIndex = 14
         ' 
         ' TabPage6
         ' 
@@ -229,7 +229,7 @@ Partial Class Form1
         TabPage6.Controls.Add(Label3)
         TabPage6.Controls.Add(TB_Name_Site)
         TabPage6.Controls.Add(Label4)
-        TabPage6.Controls.Add(TB_ID_Site)
+        TabPage6.Controls.Add(TB_Id_Site)
         TabPage6.Location = New Point(4, 27)
         TabPage6.Name = "TabPage6"
         TabPage6.Padding = New Padding(3)
@@ -313,13 +313,13 @@ Partial Class Form1
         Label4.TabIndex = 24
         Label4.Text = "Site ID"
         ' 
-        ' TB_ID_Site
+        ' TB_Id_Site
         ' 
-        TB_ID_Site.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_ID_Site.Location = New Point(38, 40)
-        TB_ID_Site.Name = "TB_ID_Site"
-        TB_ID_Site.Size = New Size(247, 23)
-        TB_ID_Site.TabIndex = 23
+        TB_Id_Site.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Id_Site.Location = New Point(38, 40)
+        TB_Id_Site.Name = "TB_Id_Site"
+        TB_Id_Site.Size = New Size(247, 23)
+        TB_Id_Site.TabIndex = 23
         ' 
         ' ofdRuta
         ' 
@@ -413,16 +413,16 @@ Partial Class Form1
     Friend WithEvents TB_Artist_Album As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents TB_Name As TextBox
+    Friend WithEvents TB_Name_Country As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Id_Country As TextBox
+    Friend WithEvents TB_Id_Country As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lstPaises As ListView
     Friend WithEvents lstSitios As ListView
     Friend WithEvents Label3 As Label
     Friend WithEvents TB_Name_Site As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents TB_ID_Site As TextBox
+    Friend WithEvents TB_Id_Site As TextBox
     Friend WithEvents CB_Type_Site As ComboBox
     Friend WithEvents Label8 As Label
     Friend WithEvents TB_Artist_Site As TextBox

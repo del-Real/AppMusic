@@ -62,17 +62,17 @@ Public Class Form1
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
-            Me.Id_Country.Text = pai.IDPais
-            Me.TB_Name.Text = pai.NomPais
+            Me.TB_Id_Country.Text = pai.IDPais
+            Me.TB_Name_Country.Text = pai.NomPais
         End If
     End Sub
 
 <<<<<<< Updated upstream
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.Id_Country.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
-            pai = New Pais(Me.Id_Country.Text)
-            pai.NomPais = Me.TB_Name.Text
+        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+            pai = New Pais(Me.TB_Id_Country.Text)
+            pai.NomPais = Me.TB_Name_Country.Text
             Try
                 If pai.InsertarPais() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -88,55 +88,55 @@ Public Class Form1
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
+
 =======
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
         Dim tabPage As TabPage = TabControl1.SelectedTab
 >>>>>>> Stashed changes
-
-        'Comprobar qué pestaña está activa y realizar la acción correspondiente
-        Select Case tabPage.Name
-            Case "TabAlbum"
+            'Comprobar qué pestaña está activa y realizar la acción correspondiente
+            Select Case TabPage.Name
+                Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
-            Case "TabArtist"
+                Case "TabArtist"
             'Aquí va el código para añadir un nuevo sitio
-            Case "TabSong"
+                Case "TabSong"
             'Aquí va el código para añadir un nuevo artista
-            Case "TabConcert"
+                Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
-            Case "TabCountry"
-                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
-                    pai = New Pais(Me.TB_Id.Text)
-                    pai.NomPais = Me.TB_Name.Text
-                    Try
-                        If pai.InsertarPais() <> 1 Then
-                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Case "TabCountry"
+                    Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                    If Me.TB_Id.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+                        pai = New Pais(Me.TB_Id.Text)
+                        pai.NomPais = Me.TB_Name_Country.Text
+                        Try
+                            If pai.InsertarPais() <> 1 Then
+                                MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                            'COGIDO AÑADIDO
+                            Dim item As New ListViewItem
+                            item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
+                            item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
+                            lstPaises.Items.Add(item)
+                            MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Exit Sub
-                        End If
-                        'COGIDO AÑADIDO
-                        Dim item As New ListViewItem
-                        item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
-                        item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
-                        lstPaises.Items.Add(item)
-                        MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
+                        End Try
 
-                End If
-            Case "TabSite"
+                    End If
+                Case "TabSite"
 
-        End Select
+            End Select
 
     End Sub
 
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.Id_Country.Text <> String.Empty Then
+        If Me.TB_Id_Country.Text <> String.Empty Then
 
-            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                pai = New Pais(Me.Id_Country.Text, Me.TB_Name.Text)
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
                 Try
                     If pai.BorrarPais() <> 1 Then
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -164,9 +164,9 @@ Public Class Form1
 
     Private Sub ButtonModify_Click(sender As Object, e As EventArgs) Handles ButtonModify.Click
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.Id_Country.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
-            pai = New Pais(Me.Id_Country.Text)
-            pai.NomPais = Me.TB_Name.Text
+        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+            pai = New Pais(Me.TB_Id_Country.Text)
+            pai.NomPais = Me.TB_Name_Country.Text
             Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
             If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
                 item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
@@ -185,35 +185,9 @@ Public Class Form1
 
     End Sub
 
-<<<<<<< Updated upstream
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs)
-        Me.Id_Country.Text = String.Empty
-        Me.TB_Name.Text = String.Empty
+        Me.TB_Id_Country.Text = String.Empty
+        Me.TB_Name_Country.Text = String.Empty
     End Sub
 
-    Private Sub lstPaises_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles lstPaises.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub TB_Name_TextChanged(sender As Object, e As EventArgs) Handles TB_Name.TextChanged
-
-    End Sub
-
-    Private Sub ButtonAdd_Click_1(sender As Object, e As EventArgs) Handles ButtonAdd.Click
-
-    End Sub
-
-    Private Sub ButtonClearAll_Click_1(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
-
-    End Sub
-
-    Private Sub Id_Country_TextChanged(sender As Object, e As EventArgs) Handles Id_Country.TextChanged
-
-    End Sub
-=======
-    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
-        Me.TB_Id.Text = String.Empty
-        Me.TB_Name.Text = String.Empty
-    End Sub
->>>>>>> Stashed changes
 End Class
