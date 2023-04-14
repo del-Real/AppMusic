@@ -45,11 +45,11 @@ Public Class Form1
         lstSitios.Columns.Add("Name", 100)
 
         'Añadir valores del anum al comboBox 
-        comboBoxTipo.Items.Add(sit.TipoSitio.Estadio)
-        comboBoxTipo.Items.Add(sit.TipoSitio.Festival)
-        comboBoxTipo.Items.Add(sit.TipoSitio.Pabellon)
-        comboBoxTipo.Items.Add(sit.TipoSitio.Sala)
-        comboBoxTipo.SelectedIndex = 0
+        CB_Type_Site.Items.Add(sit.TipoSitio.Estadio)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Festival)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Pabellon)
+        CB_Type_Site.Items.Add(sit.TipoSitio.Sala)
+        CB_Type_Site.SelectedIndex = 0
     End Sub
 
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -62,15 +62,15 @@ Public Class Form1
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
-            Me.TB_Id.Text = pai.IDPais
+            Me.Id_Country.Text = pai.IDPais
             Me.TB_Name.Text = pai.NomPais
         End If
     End Sub
 
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
-            pai = New Pais(Me.TB_Id.Text)
+        If Me.Id_Country.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
+            pai = New Pais(Me.Id_Country.Text)
             pai.NomPais = Me.TB_Name.Text
             Try
                 If pai.InsertarPais() <> 1 Then
@@ -94,10 +94,10 @@ Public Class Form1
 
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id.Text <> String.Empty Then
+        If Me.Id_Country.Text <> String.Empty Then
 
-            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                pai = New Pais(Me.TB_Id.Text, Me.TB_Name.Text)
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                pai = New Pais(Me.Id_Country.Text, Me.TB_Name.Text)
                 Try
                     If pai.BorrarPais() <> 1 Then
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -125,8 +125,8 @@ Public Class Form1
 
     Private Sub ButtonModify_Click(sender As Object, e As EventArgs)
         Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-        If Me.TB_Id.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
-            pai = New Pais(Me.TB_Id.Text)
+        If Me.Id_Country.Text <> String.Empty And Me.TB_Name.Text <> String.Empty Then
+            pai = New Pais(Me.Id_Country.Text)
             pai.NomPais = Me.TB_Name.Text
             Dim item As ListViewItem = lstPaises.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
             If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
@@ -147,7 +147,7 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs)
-        Me.TB_Id.Text = String.Empty
+        Me.Id_Country.Text = String.Empty
         Me.TB_Name.Text = String.Empty
     End Sub
 
@@ -156,6 +156,18 @@ Public Class Form1
     End Sub
 
     Private Sub TB_Name_TextChanged(sender As Object, e As EventArgs) Handles TB_Name.TextChanged
+
+    End Sub
+
+    Private Sub ButtonAdd_Click_1(sender As Object, e As EventArgs) Handles ButtonAdd.Click
+
+    End Sub
+
+    Private Sub ButtonClearAll_Click_1(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
+
+    End Sub
+
+    Private Sub Id_Country_TextChanged(sender As Object, e As EventArgs) Handles Id_Country.TextChanged
 
     End Sub
 End Class
