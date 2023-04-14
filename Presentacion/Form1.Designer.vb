@@ -177,7 +177,7 @@ Partial Class Form1
         ' 
         ButtonClearAll.FlatStyle = FlatStyle.System
         ButtonClearAll.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonClearAll.Location = New Point(32, 268)
+        ButtonClearAll.Location = New Point(32, 227)
         ButtonClearAll.Name = "ButtonClearAll"
         ButtonClearAll.Size = New Size(272, 40)
         ButtonClearAll.TabIndex = 21
@@ -187,7 +187,7 @@ Partial Class Form1
         ' ButtonDelete
         ' 
         ButtonDelete.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonDelete.Location = New Point(235, 226)
+        ButtonDelete.Location = New Point(234, 273)
         ButtonDelete.Name = "ButtonDelete"
         ButtonDelete.Size = New Size(70, 35)
         ButtonDelete.TabIndex = 20
@@ -197,7 +197,7 @@ Partial Class Form1
         ' ButtonModify
         ' 
         ButtonModify.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonModify.Location = New Point(32, 226)
+        ButtonModify.Location = New Point(32, 273)
         ButtonModify.Name = "ButtonModify"
         ButtonModify.Size = New Size(70, 35)
         ButtonModify.TabIndex = 19
@@ -207,9 +207,9 @@ Partial Class Form1
         ' ButtonAdd
         ' 
         ButtonAdd.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonAdd.Location = New Point(108, 226)
+        ButtonAdd.Location = New Point(108, 273)
         ButtonAdd.Name = "ButtonAdd"
-        ButtonAdd.Size = New Size(121, 35)
+        ButtonAdd.Size = New Size(120, 35)
         ButtonAdd.TabIndex = 18
         ButtonAdd.Text = "Add"
         ButtonAdd.UseVisualStyleBackColor = True
