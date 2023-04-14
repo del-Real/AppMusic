@@ -134,4 +134,8 @@ Public Class Form1
     Private Sub lstPaises_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles lstPaises.SelectedIndexChanged
 
     End Sub
+
+    Private Sub TB_Name_TextChanged(sender As Object, e As EventArgs) Handles TB_Name.TextChanged
+
+    End Sub
 End Class
