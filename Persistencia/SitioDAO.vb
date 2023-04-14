@@ -6,11 +6,11 @@
         Me.Sitios = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Sub LeerTodos(ruta As String)
         Dim s As Sitio
         Dim p As Pais
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Personas ORDER BY IDPersona")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM sitio ORDER BY idSitio")
         For Each aux In col
             s = New Sitio(CInt(aux(1)))
             s.NomSitio = aux(2).ToString

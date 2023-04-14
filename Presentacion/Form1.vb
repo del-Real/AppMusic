@@ -11,25 +11,45 @@ Public Class Form1
         'Dim can As Cancion = New Cancion
         'Dim con As Concierto = New Concierto
         Dim pai As Pais = New Pais
-        'Dim sit As Sitio = New Sitio
+        Dim sit As Sitio = New Sitio
         Try
             pai.LeerTodosPaises(ofdRuta.FileName)
+            sit.LeerTodosSitios(ofdRuta.FileName)
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End Try
+
+        'PAISES
         For Each p As Pais In pai.PaiDAO.Paises
             Dim item As New ListViewItem
             item.Text = p.IDPais ' Set the text of the first column to "pai.IDPais"
             item.SubItems.Add(p.NomPais) ' Add the value of "pai.NomPais" to the second column
             lstPaises.Items.Add(item)
         Next
-
         ' Añade columnas al listView
         lstPaises.View = View.Details
         lstPaises.Columns.Add("ID", 50)
         lstPaises.Columns.Add("Name", 100)
 
+        'SITIOS
+        For Each s As Sitio In sit.SitDAO.Sitios
+            Dim item As New ListViewItem
+            item.Text = s.IDSitio ' Set the text of the first column to "pai.IDPais"
+            item.SubItems.Add(s.NomSitio) ' Add the value of "pai.NomPais" to the second column
+            lstSitios.Items.Add(item)
+        Next
+        ' Añade columnas al listView
+        lstSitios.View = View.Details
+        lstSitios.Columns.Add("ID", 50)
+        lstSitios.Columns.Add("Name", 100)
+
+        'Añadir valores del anum al comboBox 
+        comboBoxTipo.Items.Add(sit.TipoSitio.Estadio)
+        comboBoxTipo.Items.Add(sit.TipoSitio.Festival)
+        comboBoxTipo.Items.Add(sit.TipoSitio.Pabellon)
+        comboBoxTipo.Items.Add(sit.TipoSitio.Sala)
+        comboBoxTipo.SelectedIndex = 0
     End Sub
 
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs)

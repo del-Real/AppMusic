@@ -2,7 +2,12 @@
     Public Property IDSitio As Integer
     Public Property NomSitio As String
     Public Property Pais As Pais
-    Public Property tipoen As [Enum]
+    Enum TipoSitio
+        Sala
+        Pabellon
+        Estadio
+        Festival
+    End Enum
     Public Property tipo As String
     Public ReadOnly Property SitDAO As SitioDAO
 
@@ -23,8 +28,8 @@
         Me.SitDAO = New SitioDAO
     End Sub
 
-    Public Sub LeerTodosSitios()
-        Me.SitDAO.LeerTodas()
+    Public Sub LeerTodosSitios(ruta As String)
+        Me.SitDAO.LeerTodos(ruta)
     End Sub
 
     Public Sub LeerSitio()

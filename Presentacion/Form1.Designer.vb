@@ -43,11 +43,25 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TB_Id = New System.Windows.Forms.TextBox()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.comboBoxTipo = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TB_Artist_Sitio = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lstSitios = New System.Windows.Forms.ListView()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TB_Name_Sitio = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TB_ID_Sitio = New System.Windows.Forms.TextBox()
         Me.ofdRuta = New System.Windows.Forms.OpenFileDialog()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage5.SuspendLayout()
+        Me.TabPage6.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -172,7 +186,7 @@ Partial Class Form1
         '
         'lstPaises
         '
-        Me.lstPaises.Location = New System.Drawing.Point(357, 59)
+        Me.lstPaises.Location = New System.Drawing.Point(365, 46)
         Me.lstPaises.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstPaises.MultiSelect = False
         Me.lstPaises.Name = "lstPaises"
@@ -265,6 +279,19 @@ Partial Class Form1
         '
         'TabPage6
         '
+        Me.TabPage6.Controls.Add(Me.comboBoxTipo)
+        Me.TabPage6.Controls.Add(Me.Label8)
+        Me.TabPage6.Controls.Add(Me.TB_Artist_Sitio)
+        Me.TabPage6.Controls.Add(Me.Label5)
+        Me.TabPage6.Controls.Add(Me.lstSitios)
+        Me.TabPage6.Controls.Add(Me.Button1)
+        Me.TabPage6.Controls.Add(Me.Button2)
+        Me.TabPage6.Controls.Add(Me.Button3)
+        Me.TabPage6.Controls.Add(Me.Button4)
+        Me.TabPage6.Controls.Add(Me.Label3)
+        Me.TabPage6.Controls.Add(Me.TB_Name_Sitio)
+        Me.TabPage6.Controls.Add(Me.Label4)
+        Me.TabPage6.Controls.Add(Me.TB_ID_Sitio)
         Me.TabPage6.Location = New System.Drawing.Point(4, 29)
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TabPage6.Name = "TabPage6"
@@ -274,6 +301,136 @@ Partial Class Form1
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "Site"
         Me.TabPage6.UseVisualStyleBackColor = True
+        '
+        'comboBoxTipo
+        '
+        Me.comboBoxTipo.FormattingEnabled = True
+        Me.comboBoxTipo.Location = New System.Drawing.Point(44, 189)
+        Me.comboBoxTipo.Name = "comboBoxTipo"
+        Me.comboBoxTipo.Size = New System.Drawing.Size(151, 28)
+        Me.comboBoxTipo.TabIndex = 36
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label8.Location = New System.Drawing.Point(44, 233)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(55, 23)
+        Me.Label8.TabIndex = 35
+        Me.Label8.Text = "Artist"
+        '
+        'TB_Artist_Sitio
+        '
+        Me.TB_Artist_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Artist_Sitio.Location = New System.Drawing.Point(44, 260)
+        Me.TB_Artist_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Artist_Sitio.Name = "TB_Artist_Sitio"
+        Me.TB_Artist_Sitio.Size = New System.Drawing.Size(282, 27)
+        Me.TB_Artist_Sitio.TabIndex = 34
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label5.Location = New System.Drawing.Point(44, 163)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(48, 23)
+        Me.Label5.TabIndex = 33
+        Me.Label5.Text = "Type"
+        '
+        'lstSitios
+        '
+        Me.lstSitios.Location = New System.Drawing.Point(371, 55)
+        Me.lstSitios.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstSitios.MultiSelect = False
+        Me.lstSitios.Name = "lstSitios"
+        Me.lstSitios.Size = New System.Drawing.Size(219, 351)
+        Me.lstSitios.TabIndex = 31
+        Me.lstSitios.UseCompatibleStateImageBehavior = False
+        '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.Button1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Button1.Location = New System.Drawing.Point(30, 300)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(311, 53)
+        Me.Button1.TabIndex = 30
+        Me.Button1.Text = "Clear all"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Button2.Location = New System.Drawing.Point(233, 370)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(108, 47)
+        Me.Button2.TabIndex = 29
+        Me.Button2.Text = "Delete"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Button3.Location = New System.Drawing.Point(132, 370)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(104, 47)
+        Me.Button3.TabIndex = 28
+        Me.Button3.Text = "Modify"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button4
+        '
+        Me.Button4.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Button4.Location = New System.Drawing.Point(30, 370)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(105, 47)
+        Me.Button4.TabIndex = 27
+        Me.Button4.Text = "Add"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label3.Location = New System.Drawing.Point(44, 96)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(93, 23)
+        Me.Label3.TabIndex = 26
+        Me.Label3.Text = "Site Name"
+        '
+        'TB_Name_Sitio
+        '
+        Me.TB_Name_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Sitio.Location = New System.Drawing.Point(44, 120)
+        Me.TB_Name_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Sitio.Name = "TB_Name_Sitio"
+        Me.TB_Name_Sitio.Size = New System.Drawing.Size(282, 27)
+        Me.TB_Name_Sitio.TabIndex = 25
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label4.Location = New System.Drawing.Point(44, 26)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(64, 23)
+        Me.Label4.TabIndex = 24
+        Me.Label4.Text = "Site ID"
+        '
+        'TB_ID_Sitio
+        '
+        Me.TB_ID_Sitio.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_ID_Sitio.Location = New System.Drawing.Point(44, 53)
+        Me.TB_ID_Sitio.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_ID_Sitio.Name = "TB_ID_Sitio"
+        Me.TB_ID_Sitio.Size = New System.Drawing.Size(282, 27)
+        Me.TB_ID_Sitio.TabIndex = 23
         '
         'ofdRuta
         '
@@ -305,6 +462,8 @@ Partial Class Form1
         Me.TabPage1.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage5.PerformLayout()
+        Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -332,4 +491,17 @@ Partial Class Form1
     Friend WithEvents TB_Id As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lstPaises As ListView
+    Friend WithEvents lstSitios As ListView
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TB_Name_Sitio As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TB_ID_Sitio As TextBox
+    Friend WithEvents comboBoxTipo As ComboBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TB_Artist_Sitio As TextBox
+    Friend WithEvents Label5 As Label
 End Class
