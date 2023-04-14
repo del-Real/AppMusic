@@ -25,8 +25,9 @@ Partial Class Form1
         Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form1))
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        Label3 = New Label()
+        Label4 = New Label()
         DateTimePicker1 = New DateTimePicker()
-        Label7 = New Label()
         TextBox2 = New TextBox()
         Label6 = New Label()
         TabPage2 = New TabPage()
@@ -59,88 +60,103 @@ Partial Class Form1
         TabControl1.Controls.Add(TabPage4)
         TabControl1.Controls.Add(TabPage5)
         TabControl1.Controls.Add(TabPage6)
-        TabControl1.Location = New Point(26, 62)
+        TabControl1.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
+        TabControl1.Location = New Point(26, 70)
         TabControl1.Name = "TabControl1"
+        TabControl1.Padding = New Point(17, 3)
         TabControl1.SelectedIndex = 0
         TabControl1.Size = New Size(548, 370)
         TabControl1.TabIndex = 0
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(Label3)
+        TabPage1.Controls.Add(Label4)
         TabPage1.Controls.Add(DateTimePicker1)
-        TabPage1.Controls.Add(Label7)
         TabPage1.Controls.Add(TextBox2)
         TabPage1.Controls.Add(Label6)
-        TabPage1.Location = New Point(4, 24)
+        TabPage1.Location = New Point(4, 28)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(540, 342)
+        TabPage1.Size = New Size(540, 338)
         TabPage1.TabIndex = 0
         TabPage1.Text = "Album"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' Label3
+        ' 
+        Label3.AutoSize = True
+        Label3.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label3.Location = New Point(46, 170)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(86, 18)
+        Label3.TabIndex = 36
+        Label3.Text = "Artist Name"
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label4.Location = New Point(46, 103)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(35, 18)
+        Label4.TabIndex = 35
+        Label4.Text = "Year"
+        ' 
         ' DateTimePicker1
         ' 
         DateTimePicker1.CustomFormat = "yyyy"
+        DateTimePicker1.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         DateTimePicker1.Format = DateTimePickerFormat.Custom
-        DateTimePicker1.Location = New Point(59, 161)
+        DateTimePicker1.Location = New Point(46, 123)
         DateTimePicker1.Margin = New Padding(3, 2, 3, 2)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.ShowUpDown = True
-        DateTimePicker1.Size = New Size(80, 23)
-        DateTimePicker1.TabIndex = 30
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Location = New Point(61, 195)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(68, 15)
-        Label7.TabIndex = 29
-        Label7.Text = "Artist name"
+        DateTimePicker1.Size = New Size(80, 25)
+        DateTimePicker1.TabIndex = 34
         ' 
         ' TextBox2
         ' 
-        TextBox2.Location = New Point(61, 213)
+        TextBox2.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TextBox2.Location = New Point(46, 191)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(237, 23)
-        TextBox2.TabIndex = 28
+        TextBox2.Size = New Size(237, 25)
+        TextBox2.TabIndex = 32
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(58, 143)
+        Label6.Location = New Point(72, 129)
         Label6.Name = "Label6"
-        Label6.Size = New Size(29, 15)
-        Label6.TabIndex = 27
-        Label6.Text = "Year"
+        Label6.Size = New Size(0, 19)
+        Label6.TabIndex = 31
         ' 
         ' TabPage2
         ' 
-        TabPage2.Location = New Point(4, 24)
+        TabPage2.Location = New Point(4, 28)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(540, 342)
+        TabPage2.Size = New Size(540, 338)
         TabPage2.TabIndex = 1
         TabPage2.Text = "Artist"
         TabPage2.UseVisualStyleBackColor = True
         ' 
         ' TabPage3
         ' 
-        TabPage3.Location = New Point(4, 24)
+        TabPage3.Location = New Point(4, 28)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(540, 342)
+        TabPage3.Size = New Size(540, 338)
         TabPage3.TabIndex = 2
         TabPage3.Text = "Song"
         TabPage3.UseVisualStyleBackColor = True
         ' 
         ' TabPage4
         ' 
-        TabPage4.Location = New Point(4, 24)
+        TabPage4.Location = New Point(4, 28)
         TabPage4.Name = "TabPage4"
         TabPage4.Padding = New Padding(3)
-        TabPage4.Size = New Size(540, 342)
+        TabPage4.Size = New Size(540, 338)
         TabPage4.TabIndex = 3
         TabPage4.Text = "Concert"
         TabPage4.UseVisualStyleBackColor = True
@@ -156,16 +172,17 @@ Partial Class Form1
         TabPage5.Controls.Add(TB_Name)
         TabPage5.Controls.Add(Label1)
         TabPage5.Controls.Add(TB_Id)
-        TabPage5.Location = New Point(4, 24)
+        TabPage5.Location = New Point(4, 28)
         TabPage5.Name = "TabPage5"
         TabPage5.Padding = New Padding(3)
-        TabPage5.Size = New Size(540, 342)
+        TabPage5.Size = New Size(540, 338)
         TabPage5.TabIndex = 4
         TabPage5.Text = "Country"
         TabPage5.UseVisualStyleBackColor = True
         ' 
         ' lstPaises
         ' 
+        lstPaises.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
         lstPaises.Location = New Point(324, 44)
         lstPaises.MultiSelect = False
         lstPaises.Name = "lstPaises"
@@ -226,10 +243,10 @@ Partial Class Form1
         ' 
         ' TB_Name
         ' 
-        TB_Name.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Name.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TB_Name.Location = New Point(32, 126)
         TB_Name.Name = "TB_Name"
-        TB_Name.Size = New Size(272, 23)
+        TB_Name.Size = New Size(272, 25)
         TB_Name.TabIndex = 16
         ' 
         ' Label1
@@ -244,19 +261,19 @@ Partial Class Form1
         ' 
         ' TB_Id
         ' 
-        TB_Id.Font = New Font("Arial Narrow", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Id.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TB_Id.Location = New Point(32, 65)
         TB_Id.Name = "TB_Id"
-        TB_Id.Size = New Size(272, 23)
+        TB_Id.Size = New Size(272, 25)
         TB_Id.TabIndex = 14
         ' 
         ' TabPage6
         ' 
-        TabPage6.Location = New Point(4, 24)
+        TabPage6.Location = New Point(4, 28)
         TabPage6.Name = "TabPage6"
         TabPage6.Padding = New Padding(3)
         TabPage6.RightToLeft = RightToLeft.No
-        TabPage6.Size = New Size(540, 342)
+        TabPage6.Size = New Size(540, 338)
         TabPage6.TabIndex = 5
         TabPage6.Text = "Site"
         TabPage6.UseVisualStyleBackColor = True
@@ -269,7 +286,7 @@ Partial Class Form1
         ' 
         PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), Image)
         PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
-        PictureBox1.Location = New Point(26, 15)
+        PictureBox1.Location = New Point(224, 18)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(130, 35)
         PictureBox1.TabIndex = 1
@@ -301,10 +318,6 @@ Partial Class Form1
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents ofdRuta As OpenFileDialog
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Label6 As Label
     Friend WithEvents ButtonClearAll As Button
     Friend WithEvents ButtonDelete As Button
     Friend WithEvents ButtonModify As Button
@@ -315,4 +328,9 @@ Partial Class Form1
     Friend WithEvents TB_Id As TextBox
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents lstPaises As ListView
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label6 As Label
 End Class
