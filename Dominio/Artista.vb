@@ -20,8 +20,8 @@
         Me.ArtDAO = New ArtistaDAO
     End Sub
 
-    Public Sub LeerTodosArtistas()
-        Me.ArtDAO.LeerTodos()
+    Public Sub LeerTodosArtistas(ruta As String)
+        Me.ArtDAO.LeerTodos(ruta)
     End Sub
 
     Public Sub LeerArtista()

@@ -4,12 +4,11 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Mysqlx.Crud
 
 Public Class Form1
-    Public ReadOnly Property Paises As Collection
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
         'Dim alb As Album = New Album
-        'Dim art As Artista = New Artista
+        Dim art As Artista = New Artista
         'Dim can As Cancion = New Cancion
         'Dim con As Concierto = New Concierto
         Dim pai As Pais = New Pais
@@ -17,10 +16,35 @@ Public Class Form1
         Try
             pai.LeerTodosPaises(ofdRuta.FileName)
             sit.LeerTodosSitios(ofdRuta.FileName)
+            art.LeerTodosArtistas(ofdRuta.FileName)
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End Try
+
+
+
+
+        'ARTISTAS
+        For Each a As Artista In art.ArtDAO.Artistas
+            Dim item As New ListViewItem
+            item.Text = a.IDArtista ' Set the text of the first column to "pai.IDPais"
+            item.SubItems.Add(a.NomArtista) ' Add the value of "pai.NomPais" to the second column
+            item.SubItems.Add("1")
+            lstArtist.Items.Add(item)
+        Next
+        ' Añade columnas al listView
+        lstArtist.View = View.Details
+        lstArtist.Columns.Add("ID", 50)
+        lstArtist.Columns.Add("Name", 100)
+        lstArtist.Columns.Add("IDPais", 50)
+
+        For Each item As ListViewItem In lstContries.Items
+            CB_Country_Artist.Items.Add(item.SubItems(1).Text)
+        Next
+
+
+
 
         'PAISES
         For Each p As Pais In pai.PaiDAO.Paises
@@ -33,6 +57,9 @@ Public Class Form1
         lstContries.View = View.Details
         lstContries.Columns.Add("ID", 50)
         lstContries.Columns.Add("Name", 100)
+
+
+
 
         'SITIOS
         For Each s As Sitio In sit.SitDAO.Sitios
@@ -60,7 +87,19 @@ Public Class Form1
     End Sub
 
     Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
-
+        Dim art As Artista
+        If Not Me.lstArtist.SelectedItems Is Nothing Then
+            Try
+                art = New Artista(lstArtist.SelectedItems.ToString)
+                art.LeerArtista()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+            Me.TB_Id_Artist.Text = art.IDArtista
+            Me.TB_Name_Artist.Text = art.NomArtista
+            Me.CB_Country_Artist.Text = art.Pais.NomPais
+        End If
     End Sub
 
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
@@ -104,10 +143,9 @@ Public Class Form1
             'Aquí va el código para añadir un nuevo país
             Case "TabArtist"
                 Dim art As Artista = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+                If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty Then
                     art = New Artista(Me.TB_Id_Artist.Text)
                     art.NomArtista = Me.TB_Name_Country.Text
-                    'art.Pais = 
                     Try
                         If art.InsertarArtista() <> 1 Then
                             MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -118,7 +156,7 @@ Public Class Form1
                         item.Text = art.IDArtista ' Set the text of the first column to "pai.IDPais"
                         item.SubItems.Add(art.NomArtista) ' Add the value of "pai.NomPais" to the second column
                         lstArtist.Items.Add(item)
-                        CB_Country_Site.Items.Add(item.SubItems(1).Text)
+                        CB_Country_Artist.Items.Add(item.SubItems(1).Text)
                         MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)

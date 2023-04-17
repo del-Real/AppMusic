@@ -6,7 +6,7 @@
         Me.Artistas = New Collection
     End Sub
 
-    Public Sub LeerTodos()
+    Public Sub LeerTodos(ruta As String)
         Dim a As Artista
         Dim p As Pais
         Dim col, aux As Collection
