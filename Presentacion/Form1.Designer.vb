@@ -30,6 +30,13 @@ Partial Class Form1
         Me.TB_Artist_Album = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabArtist = New System.Windows.Forms.TabPage()
+        Me.CB_Country_Artist = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lstArtist = New System.Windows.Forms.ListView()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TB_Name_Artist = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TB_Id_Artist = New System.Windows.Forms.TextBox()
         Me.TabSong = New System.Windows.Forms.TabPage()
         Me.TabConcert = New System.Windows.Forms.TabPage()
         Me.TabCountry = New System.Windows.Forms.TabPage()
@@ -39,6 +46,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TB_Id_Country = New System.Windows.Forms.TextBox()
         Me.TabSite = New System.Windows.Forms.TabPage()
+        Me.CB_Country_Site = New System.Windows.Forms.ComboBox()
         Me.CB_Type_Site = New System.Windows.Forms.ComboBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -53,9 +61,9 @@ Partial Class Form1
         Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonAdd = New System.Windows.Forms.Button()
         Me.ButtonModify = New System.Windows.Forms.Button()
-        Me.CB_Country_Site = New System.Windows.Forms.ComboBox()
         Me.TabControl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.TabArtist.SuspendLayout()
         Me.TabCountry.SuspendLayout()
         Me.TabSite.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,6 +140,13 @@ Partial Class Form1
         '
         'TabArtist
         '
+        Me.TabArtist.Controls.Add(Me.CB_Country_Artist)
+        Me.TabArtist.Controls.Add(Me.Label11)
+        Me.TabArtist.Controls.Add(Me.lstArtist)
+        Me.TabArtist.Controls.Add(Me.Label9)
+        Me.TabArtist.Controls.Add(Me.TB_Name_Artist)
+        Me.TabArtist.Controls.Add(Me.Label10)
+        Me.TabArtist.Controls.Add(Me.TB_Id_Artist)
         Me.TabArtist.Location = New System.Drawing.Point(4, 33)
         Me.TabArtist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TabArtist.Name = "TabArtist"
@@ -140,6 +155,72 @@ Partial Class Form1
         Me.TabArtist.TabIndex = 1
         Me.TabArtist.Text = "Artist"
         Me.TabArtist.UseVisualStyleBackColor = True
+        '
+        'CB_Country_Artist
+        '
+        Me.CB_Country_Artist.FormattingEnabled = True
+        Me.CB_Country_Artist.Location = New System.Drawing.Point(28, 206)
+        Me.CB_Country_Artist.Name = "CB_Country_Artist"
+        Me.CB_Country_Artist.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Country_Artist.TabIndex = 39
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Segoe UI", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.Label11.Location = New System.Drawing.Point(28, 180)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(75, 23)
+        Me.Label11.TabIndex = 38
+        Me.Label11.Text = "Country"
+        '
+        'lstArtist
+        '
+        Me.lstArtist.Location = New System.Drawing.Point(339, 34)
+        Me.lstArtist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstArtist.MultiSelect = False
+        Me.lstArtist.Name = "lstArtist"
+        Me.lstArtist.Size = New System.Drawing.Size(251, 325)
+        Me.lstArtist.TabIndex = 27
+        Me.lstArtist.UseCompatibleStateImageBehavior = False
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label9.Location = New System.Drawing.Point(28, 106)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(106, 24)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "Artist Name"
+        '
+        'TB_Name_Artist
+        '
+        Me.TB_Name_Artist.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Artist.Location = New System.Drawing.Point(28, 130)
+        Me.TB_Name_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Artist.Name = "TB_Name_Artist"
+        Me.TB_Name_Artist.Size = New System.Drawing.Size(282, 27)
+        Me.TB_Name_Artist.TabIndex = 25
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label10.Location = New System.Drawing.Point(28, 34)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(72, 24)
+        Me.Label10.TabIndex = 24
+        Me.Label10.Text = "Artist ID"
+        '
+        'TB_Id_Artist
+        '
+        Me.TB_Id_Artist.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Artist.Location = New System.Drawing.Point(28, 62)
+        Me.TB_Id_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Artist.Name = "TB_Id_Artist"
+        Me.TB_Id_Artist.Size = New System.Drawing.Size(282, 27)
+        Me.TB_Id_Artist.TabIndex = 23
         '
         'TabSong
         '
@@ -249,6 +330,14 @@ Partial Class Form1
         Me.TabSite.Text = "Site"
         Me.TabSite.UseVisualStyleBackColor = True
         '
+        'CB_Country_Site
+        '
+        Me.CB_Country_Site.FormattingEnabled = True
+        Me.CB_Country_Site.Location = New System.Drawing.Point(43, 259)
+        Me.CB_Country_Site.Name = "CB_Country_Site"
+        Me.CB_Country_Site.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Country_Site.TabIndex = 37
+        '
         'CB_Type_Site
         '
         Me.CB_Type_Site.FormattingEnabled = True
@@ -279,11 +368,11 @@ Partial Class Form1
         '
         'lstSites
         '
-        Me.lstSites.Location = New System.Drawing.Point(371, 55)
+        Me.lstSites.Location = New System.Drawing.Point(339, 55)
         Me.lstSites.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstSites.MultiSelect = False
         Me.lstSites.Name = "lstSites"
-        Me.lstSites.Size = New System.Drawing.Size(219, 311)
+        Me.lstSites.Size = New System.Drawing.Size(265, 311)
         Me.lstSites.TabIndex = 31
         Me.lstSites.UseCompatibleStateImageBehavior = False
         '
@@ -385,14 +474,6 @@ Partial Class Form1
         Me.ButtonModify.Text = "Modify"
         Me.ButtonModify.UseVisualStyleBackColor = True
         '
-        'CB_Country_Site
-        '
-        Me.CB_Country_Site.FormattingEnabled = True
-        Me.CB_Country_Site.Location = New System.Drawing.Point(43, 259)
-        Me.CB_Country_Site.Name = "CB_Country_Site"
-        Me.CB_Country_Site.Size = New System.Drawing.Size(151, 32)
-        Me.CB_Country_Site.TabIndex = 37
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -410,6 +491,8 @@ Partial Class Form1
         Me.TabControl.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.TabArtist.ResumeLayout(False)
+        Me.TabArtist.PerformLayout()
         Me.TabCountry.ResumeLayout(False)
         Me.TabCountry.PerformLayout()
         Me.TabSite.ResumeLayout(False)
@@ -450,4 +533,11 @@ Partial Class Form1
     Friend WithEvents ButtonAdd As Button
     Friend WithEvents ButtonModify As Button
     Friend WithEvents CB_Country_Site As ComboBox
+    Friend WithEvents lstArtist As ListView
+    Friend WithEvents Label9 As Label
+    Friend WithEvents TB_Name_Artist As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TB_Id_Artist As TextBox
+    Friend WithEvents CB_Country_Artist As ComboBox
+    Friend WithEvents Label11 As Label
 End Class

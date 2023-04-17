@@ -43,10 +43,10 @@ Public Class Form1
         Next
         ' Añade columnas al listView
         lstSites.View = View.Details
-        lstSites.Columns.Add("ID", 50)
+        lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
-        lstSites.Columns.Add("Type", 150)
-        lstSites.Columns.Add("ArtistID", 210)
+        lstSites.Columns.Add("Type", 80)
+        lstSites.Columns.Add("ArtistID", 40)
         'Añadir valores del anum al comboBox 
         CB_Type_Site.Items.Add(sit.TipoSitio.Festival)
         CB_Type_Site.Items.Add(sit.TipoSitio.Hall)
@@ -57,6 +57,10 @@ Public Class Form1
         For Each item As ListViewItem In lstContries.Items
             CB_Country_Site.Items.Add(item.SubItems(1).Text)
         Next
+    End Sub
+
+    Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
+
     End Sub
 
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
@@ -99,7 +103,28 @@ Public Class Form1
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
             Case "TabArtist"
-            'Aquí va el código para añadir un nuevo sitio
+                Dim art As Artista = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+                    art = New Artista(Me.TB_Id_Artist.Text)
+                    art.NomArtista = Me.TB_Name_Country.Text
+                    'art.Pais = 
+                    Try
+                        If art.InsertarArtista() <> 1 Then
+                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                        'COGIDO AÑADIDO
+                        Dim item As New ListViewItem
+                        item.Text = art.IDArtista ' Set the text of the first column to "pai.IDPais"
+                        item.SubItems.Add(art.NomArtista) ' Add the value of "pai.NomPais" to the second column
+                        lstArtist.Items.Add(item)
+                        CB_Country_Site.Items.Add(item.SubItems(1).Text)
+                        MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End Try
+                End If
             Case "TabSong"
             'Aquí va el código para añadir un nuevo artista
             Case "TabConcert"
@@ -132,8 +157,7 @@ Public Class Form1
                     sit = New Sitio(Me.TB_Id_Site.Text)
                     sit.NomSitio = Me.TB_Name_Site.Text
                     sit.tipo = Me.CB_Type_Site.Text
-                    Dim pais As String = CB_Country_Site.Text
-
+                    'IMPLEMENTAR EL ATRIBUTO DEL TIPO DEL BOJETO
                     Try
                         If sit.InsertarSitio() <> 1 Then
                             MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -143,6 +167,8 @@ Public Class Form1
                         Dim item As New ListViewItem
                         item.Text = sit.IDSitio ' Set the text of the first column to "pai.IDPais"
                         item.SubItems.Add(sit.NomSitio) ' Add the value of "pai.NomPais" to the second column
+                        item.SubItems.Add(sit.tipo)
+                        item.SubItems.Add("eee")
                         lstSites.Items.Add(item)
                         MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
                     Catch ex As Exception
@@ -248,13 +274,14 @@ Public Class Form1
                     pai = New Pais(Me.TB_Id_Country.Text)
                     pai.NomPais = Me.TB_Name_Country.Text
                     Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                        item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
-                        Dim indice As Integer = CB_Country_Site.Items.IndexOf(TB_Id_Country)
-                        If indice >= 0 Then
-                            CB_Country_Site.Items(indice) = "Nuevo nombre del elemento"
-                        End If
+                    Dim nomPais As String = ""
+                    If item IsNot Nothing Then
+                        ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
+                        nomPais = item.SubItems(1).Text
 
+                        item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
+                        CB_Country_Site.Items.Remove(nomPais)
+                        CB_Country_Site.Items.Add(pai.NomPais)
                     End If
                     Try
                         If pai.ActualizarPais() <> 1 Then
