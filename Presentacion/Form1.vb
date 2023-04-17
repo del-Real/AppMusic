@@ -25,27 +25,6 @@ Public Class Form1
 
 
 
-        'ARTISTAS
-        For Each a As Artista In art.ArtDAO.Artistas
-            Dim item As New ListViewItem
-            item.Text = a.IDArtista ' Set the text of the first column to "pai.IDPais"
-            item.SubItems.Add(a.NomArtista) ' Add the value of "pai.NomPais" to the second column
-            item.SubItems.Add("1")
-            lstArtist.Items.Add(item)
-        Next
-        ' Añade columnas al listView
-        lstArtist.View = View.Details
-        lstArtist.Columns.Add("ID", 50)
-        lstArtist.Columns.Add("Name", 100)
-        lstArtist.Columns.Add("IDPais", 50)
-
-        For Each item As ListViewItem In lstContries.Items
-            CB_Country_Artist.Items.Add(item.SubItems(1).Text)
-        Next
-
-
-
-
         'PAISES
         For Each p As Pais In pai.PaiDAO.Paises
             Dim item As New ListViewItem
@@ -83,6 +62,27 @@ Public Class Form1
 
         For Each item As ListViewItem In lstContries.Items
             CB_Country_Site.Items.Add(item.SubItems(1).Text)
+        Next
+
+
+
+
+        'ARTISTAS
+        For Each a As Artista In art.ArtDAO.Artistas
+            Dim item As New ListViewItem
+            item.Text = a.IDArtista ' Set the text of the first column to "pai.IDPais"
+            item.SubItems.Add(a.NomArtista) ' Add the value of "pai.NomPais" to the second column
+            item.SubItems.Add("1")
+            lstArtist.Items.Add(item)
+        Next
+        ' Añade columnas al listView
+        lstArtist.View = View.Details
+        lstArtist.Columns.Add("ID", 50)
+        lstArtist.Columns.Add("Name", 100)
+        lstArtist.Columns.Add("IDPais", 50)
+
+        For Each item As ListViewItem In lstContries.Items
+            CB_Country_Artist.Items.Add(item.SubItems(1).Text)
         Next
     End Sub
 
@@ -195,7 +195,7 @@ Public Class Form1
                     sit = New Sitio(Me.TB_Id_Site.Text)
                     sit.NomSitio = Me.TB_Name_Site.Text
                     sit.tipo = Me.CB_Type_Site.Text
-                    'IMPLEMENTAR EL ATRIBUTO DEL TIPO DEL BOJETO
+                    sit.Pais = New Pais(1, CB_Country_Site.Text)
                     Try
                         If sit.InsertarSitio() <> 1 Then
                             MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -203,11 +203,11 @@ Public Class Form1
                         End If
                         'COGIDO AÑADIDO
                         Dim item As New ListViewItem
-                        item.Text = sit.IDSitio ' Set the text of the first column to "pai.IDPais"
-                        item.SubItems.Add(sit.NomSitio) ' Add the value of "pai.NomPais" to the second column
-                        item.SubItems.Add(sit.tipo)
-                        item.SubItems.Add("eee")
-                        lstSites.Items.Add(item)
+                        'item.SubItems.Add(sit.IDSitio)
+                        'item.SubItems.Add(sit.NomSitio) ' Add the value of "pai.NomPais" to the second column
+                        'item.SubItems.Add(sit.tipo)
+                        'item.SubItems.Add("1")
+                        'lstSites.Items.Add(item)
                         MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
