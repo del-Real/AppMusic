@@ -8,14 +8,12 @@
 
     Public Sub LeerTodos(ruta As String)
         Dim s As Sitio
-        Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM sitio ORDER BY idSitio")
         For Each aux In col
             s = New Sitio(CInt(aux(1)))
             s.NomSitio = aux(2).ToString
-            p = aux(3)
-            s.Pais = p
+            s.Pais = New Pais(aux(3).ToString)
             s.tipo = aux(4).ToString
             Me.Sitios.Add(s)
         Next
@@ -30,7 +28,7 @@
     End Sub
 
     Public Function Insertar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO sitio VALUES ('" & s.IDSitio & "', '" & s.NomSitio & "', '" & s.Pais.NomPais & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO sitio VALUES ('" & s.IDSitio & "', '" & s.NomSitio & "', '" & s.Pais.IDPais & "', '" & s.tipo & "');")
     End Function
 
     Public Function Actualizar(ByVal s As Sitio) As Integer

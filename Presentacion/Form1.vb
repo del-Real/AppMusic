@@ -51,9 +51,9 @@ Public Class Form1
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
-        lstSites.Columns.Add("Type", 80)
-        lstSites.Columns.Add("ArtistID", 40)
-        'Añadir valores del anum al comboBox 
+        lstSites.Columns.Add("CountryID", 40)
+        lstSites.Columns.Add("Type", 150)
+        'Añadir valores del enum al comboBox 
         CB_Type_Site.Items.Add(sit.TipoSitio.Festival)
         CB_Type_Site.Items.Add(sit.TipoSitio.Hall)
         CB_Type_Site.Items.Add(sit.TipoSitio.Pavilion)
@@ -203,11 +203,11 @@ Public Class Form1
                         End If
                         'COGIDO AÑADIDO
                         Dim item As New ListViewItem
-                        'item.SubItems.Add(sit.IDSitio)
-                        'item.SubItems.Add(sit.NomSitio) ' Add the value of "pai.NomPais" to the second column
-                        'item.SubItems.Add(sit.tipo)
-                        'item.SubItems.Add("1")
-                        'lstSites.Items.Add(item)
+                        item.Text = sit.IDSitio
+                        item.SubItems.Add(sit.NomSitio)
+                        item.SubItems.Add("1")
+                        item.SubItems.Add(sit.tipo)
+                        lstSites.Items.Add(item)
                         MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -356,5 +356,4 @@ Public Class Form1
             Case "TabSite"
         End Select
     End Sub
-
 End Class
