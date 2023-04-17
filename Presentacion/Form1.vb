@@ -1,6 +1,7 @@
 ﻿
 Imports System.Security.Policy
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports AppMusic.Sitio
 Imports Mysqlx.Crud
 
 Public Class Form1
@@ -54,15 +55,16 @@ Public Class Form1
         lstSites.Columns.Add("CountryID", 40)
         lstSites.Columns.Add("Type", 150)
         'Añadir valores del enum al comboBox 
-        CB_Type_Site.Items.Add(sit.TipoSitio.Festival)
-        CB_Type_Site.Items.Add(sit.TipoSitio.Hall)
-        CB_Type_Site.Items.Add(sit.TipoSitio.Pavilion)
-        CB_Type_Site.Items.Add(sit.TipoSitio.Stadium)
-        CB_Type_Site.SelectedIndex = 0
+        CB_Type_Site.Items.Add(TipoSitio.Festival)
+        CB_Type_Site.Items.Add(TipoSitio.Hall)
+        CB_Type_Site.Items.Add(TipoSitio.Pavilion)
+        CB_Type_Site.Items.Add(TipoSitio.Stadium)
+        CB_Type_Site.SelectedIndex = -1
 
         For Each item As ListViewItem In lstContries.Items
             CB_Country_Site.Items.Add(item.SubItems(1).Text)
         Next
+        CB_Country_Site.SelectedIndex = -1
 
 
 
@@ -84,6 +86,7 @@ Public Class Form1
         For Each item As ListViewItem In lstContries.Items
             CB_Country_Artist.Items.Add(item.SubItems(1).Text)
         Next
+        CB_Country_Site.SelectedIndex = -1
     End Sub
 
     Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
@@ -194,8 +197,9 @@ Public Class Form1
                 If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
                     sit = New Sitio(Me.TB_Id_Site.Text)
                     sit.NomSitio = Me.TB_Name_Site.Text
-                    sit.tipo = Me.CB_Type_Site.Text
+                    sit.tipo = DirectCast([Enum].Parse(GetType(TipoSitio), CB_Type_Site.SelectedItem.ToString()), TipoSitio)
                     sit.Pais = New Pais(1, CB_Country_Site.Text)
+                    sit.Pais = CB_Country_Site.SelectedItem
                     Try
                         If sit.InsertarSitio() <> 1 Then
                             MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -206,7 +210,7 @@ Public Class Form1
                         item.Text = sit.IDSitio
                         item.SubItems.Add(sit.NomSitio)
                         item.SubItems.Add("1")
-                        item.SubItems.Add(sit.tipo)
+                        item.SubItems.Add(sit.tipo.ToString)
                         lstSites.Items.Add(item)
                         MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
                     Catch ex As Exception
@@ -234,7 +238,6 @@ Public Class Form1
             Case "TabCountry"
                 Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
                 If Me.TB_Id_Country.Text <> String.Empty Then
-
                     If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                         pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
                         Try
@@ -247,7 +250,6 @@ Public Class Form1
                             If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
                                 lstContries.Items.Remove(item)
                                 CB_Country_Site.Items.Remove(item.SubItems(1).Text)
-
                             End If
                             MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                         Catch ex As Exception
@@ -264,18 +266,17 @@ Public Class Form1
             Case "TabSite"
                 Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
                 If Me.TB_Id_Site.Text <> String.Empty Then
-
                     If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                        'sit = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
+                        sit = New Sitio(Me.TB_Id_Site.Text, Me.TB_Name_Site.Text)
                         Try
                             If sit.BorrarSitio() <> 1 Then
                                 MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                             'COGIDO AÑADIDO
-                            Dim item As ListViewItem = lstContries.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+                            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
                             If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                                lstContries.Items.Remove(item)
+                                lstSites.Items.Remove(item)
                             End If
                             MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
                         Catch ex As Exception
@@ -333,6 +334,34 @@ Public Class Form1
                     End Try
                 End If
             Case "TabSite"
+                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+                If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
+                    sit = New Sitio(Me.TB_Id_Site.Text)
+                    sit.NomSitio = Me.TB_Name_Site.Text
+                    sit.Pais = New Pais(1, Me.CB_Country_Site.Text)
+                    sit.tipo = CB_Type_Site.Text
+                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+                    Dim nomSitio As String = ""
+                    If item IsNot Nothing Then
+                        ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
+                        nomSitio = item.SubItems(1).Text
+                        item.SubItems(1).Text = sit.NomSitio ' Modificamos el texto del elemento encontrado
+                        item.SubItems(2).Text = sit.Pais.NomPais
+                        item.SubItems(3).Text = sit.tipo
+                        CB_Country_Site.Items.Remove(nomSitio)
+                        CB_Country_Site.Items.Add(sit.NomSitio)
+                    End If
+                    Try
+                        If sit.ActualizarSitio() <> 1 Then
+                            MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                        MessageBox.Show("Pais con el ID " & sit.IDSitio & " actualizado correctamente a " & sit.NomSitio.ToString)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End Try
+                End If
         End Select
 
     End Sub
@@ -354,6 +383,10 @@ Public Class Form1
                 Me.TB_Id_Country.Text = String.Empty
                 Me.TB_Name_Country.Text = String.Empty
             Case "TabSite"
+                Me.TB_Id_Site.Text = String.Empty
+                Me.TB_Name_Site.Text = String.Empty
+                CB_Country_Site.SelectedIndex = -1
+                CB_Type_Site.SelectedIndex = -1
         End Select
     End Sub
 End Class
