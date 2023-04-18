@@ -37,4 +37,8 @@
     Public Function BorrarPais() As Integer
         Return Me.PaiDAO.Borrar(Me)
     End Function
+
+    Public Overrides Function toString() As String
+        Return Me.IDPais + " " + Me.NomPais
+    End Function
 End Class

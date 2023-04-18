@@ -14,6 +14,7 @@ Public Class Form1
         'Dim con As Concierto = New Concierto
         Dim pai As Pais = New Pais
         Dim sit As Sitio = New Sitio
+
         Try
             pai.LeerTodosPaises(ofdRuta.FileName)
             sit.LeerTodosSitios(ofdRuta.FileName)
@@ -46,26 +47,29 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = s.IDSitio ' Set the text of the first column to "pai.IDPais"
             item.SubItems.Add(s.NomSitio) ' Add the value of "pai.NomPais" to the second column
+            item.SubItems.Add(s.Pais.NomPais)
+            item.SubItems.Add(s.tipo)
             lstSites.Items.Add(item)
         Next
         ' Añade columnas al listView
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
-        lstSites.Columns.Add("CountryID", 40)
-        lstSites.Columns.Add("Type", 150)
+        lstSites.Columns.Add("Country", 120)
+        lstSites.Columns.Add("Type", 120)
         'Añadir valores del enum al comboBox 
-        CB_Type_Site.Items.Add(TipoSitio.Festival)
-        CB_Type_Site.Items.Add(TipoSitio.Hall)
-        CB_Type_Site.Items.Add(TipoSitio.Pavilion)
-        CB_Type_Site.Items.Add(TipoSitio.Stadium)
+        CB_Type_Site.Items.Add(TipoSitio.sala)
+        CB_Type_Site.Items.Add(TipoSitio.pabellón)
+        CB_Type_Site.Items.Add(TipoSitio.estadio)
+        CB_Type_Site.Items.Add(TipoSitio.festival)
         CB_Type_Site.SelectedIndex = -1
 
+
         For Each item As ListViewItem In lstContries.Items
-            CB_Country_Site.Items.Add(item.SubItems(1).Text)
+            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Country_Site.Items.Add(p)
         Next
         CB_Country_Site.SelectedIndex = -1
-
 
 
 
@@ -84,7 +88,8 @@ Public Class Form1
         lstArtist.Columns.Add("IDPais", 50)
 
         For Each item As ListViewItem In lstContries.Items
-            CB_Country_Artist.Items.Add(item.SubItems(1).Text)
+            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Country_Artist.Items.Add(p)
         Next
         CB_Country_Site.SelectedIndex = -1
     End Sub

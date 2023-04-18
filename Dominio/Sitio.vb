@@ -3,10 +3,10 @@
     Public Property NomSitio As String
     Public Property Pais As Pais
     Enum TipoSitio
-        Hall
-        Pavilion
-        Stadium
-        Festival
+        sala
+        pabellón
+        estadio
+        festival
     End Enum
     Public Property tipo As String
     Public ReadOnly Property SitDAO As SitioDAO
@@ -52,5 +52,9 @@
 
     Public Function BorrarSitio() As Integer
         Return Me.SitDAO.Borrar(Me)
+    End Function
+
+    Public Overrides Function ToString() As String
+        Return Me.IDSitio + " " + Me.NomSitio + " " + Me.Pais.NomPais + " " + Me.tipo
     End Function
 End Class
