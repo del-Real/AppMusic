@@ -47,6 +47,7 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = s.IDSitio ' Set the text of the first column to "pai.IDPais"
             item.SubItems.Add(s.NomSitio) ' Add the value of "pai.NomPais" to the second column
+            s.Pais.LeerPais()
             item.SubItems.Add(s.Pais.NomPais)
             item.SubItems.Add(s.tipo)
             lstSites.Items.Add(item)
@@ -56,7 +57,7 @@ Public Class Form1
         lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
         lstSites.Columns.Add("Country", 120)
-        lstSites.Columns.Add("Type", 120)
+        lstSites.Columns.Add("Type", 100)
         'Añadir valores del enum al comboBox 
         CB_Type_Site.Items.Add(TipoSitio.sala)
         CB_Type_Site.Items.Add(TipoSitio.pabellón)
@@ -202,8 +203,7 @@ Public Class Form1
                 If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
                     sit = New Sitio(Me.TB_Id_Site.Text)
                     sit.NomSitio = Me.TB_Name_Site.Text
-                    sit.tipo = DirectCast([Enum].Parse(GetType(TipoSitio), CB_Type_Site.SelectedItem.ToString()), TipoSitio)
-                    sit.Pais = New Pais(1, CB_Country_Site.Text)
+                    sit.tipo = CB_Type_Site.SelectedItem.ToString
                     sit.Pais = CB_Country_Site.SelectedItem
                     Try
                         If sit.InsertarSitio() <> 1 Then
@@ -214,7 +214,7 @@ Public Class Form1
                         Dim item As New ListViewItem
                         item.Text = sit.IDSitio
                         item.SubItems.Add(sit.NomSitio)
-                        item.SubItems.Add("1")
+                        item.SubItems.Add(sit.Pais.NomPais)
                         item.SubItems.Add(sit.tipo.ToString)
                         lstSites.Items.Add(item)
                         MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
