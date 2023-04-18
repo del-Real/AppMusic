@@ -177,52 +177,13 @@ Public Class Form1
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
-                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-                    pai = New Pais(Me.TB_Id_Country.Text)
-                    pai.NomPais = Me.TB_Name_Country.Text
-                    Try
-                        If pai.InsertarPais() <> 1 Then
-                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        'COGIDO AÑADIDO
-                        Dim item As New ListViewItem
-                        item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
-                        item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
-                        lstContries.Items.Add(item)
-                        CB_Country_Site.Items.Add(item.SubItems(1).Text)
-                        MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
-                End If
+
+                CountryAdd()
+
             Case "TabSite"
-                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
-                    sit = New Sitio(Me.TB_Id_Site.Text)
-                    sit.NomSitio = Me.TB_Name_Site.Text
-                    sit.tipo = CB_Type_Site.SelectedItem.ToString
-                    sit.Pais = CB_Country_Site.SelectedItem
-                    Try
-                        If sit.InsertarSitio() <> 1 Then
-                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        'COGIDO AÑADIDO
-                        Dim item As New ListViewItem
-                        item.Text = sit.IDSitio
-                        item.SubItems.Add(sit.NomSitio)
-                        item.SubItems.Add(sit.Pais.NomPais)
-                        item.SubItems.Add(sit.tipo.ToString)
-                        lstSites.Items.Add(item)
-                        MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
-                End If
+
+                SiteAdd()
+
         End Select
 
     End Sub
@@ -394,4 +355,138 @@ Public Class Form1
                 CB_Type_Site.SelectedIndex = -1
         End Select
     End Sub
+
+
+    ' ===============
+    ' COUNTRY METHODS
+    ' ===============
+
+    ' -----------
+    ' COUNTRY ADD
+    ' -----------
+
+    Private Sub CountryAdd()
+
+        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+            pai = New Pais(Me.TB_Id_Country.Text)
+            pai.NomPais = Me.TB_Name_Country.Text
+            Try
+                If pai.InsertarPais() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                'COGIDO AÑADIDO
+                Dim item As New ListViewItem
+                item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
+                item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
+                lstContries.Items.Add(item)
+                CB_Country_Site.Items.Add(item.SubItems(1).Text)
+                MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+    ' --------------
+    ' COUNTRY DELETE
+    ' --------------
+
+
+
+
+
+    ' --------------
+    ' COUNTRY MODIFY
+    ' --------------
+
+
+
+
+
+    ' -----------------
+    ' COUNTRY CLEAR ALL
+    ' -----------------
+
+
+
+
+
+    ' ===========================================
+    ' SITE METHODS
+    ' ===========================================
+
+    ' -----------
+    ' SITE ADD
+    ' -----------
+
+    Private Sub SiteAdd()
+
+        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
+            sit = New Sitio(Me.TB_Id_Site.Text)
+            sit.NomSitio = Me.TB_Name_Site.Text
+            sit.tipo = CB_Type_Site.SelectedItem.ToString
+            sit.Pais = CB_Country_Site.SelectedItem
+            Try
+                If sit.InsertarSitio() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                'COGIDO AÑADIDO
+                Dim item As New ListViewItem
+                item.Text = sit.IDSitio
+                item.SubItems.Add(sit.NomSitio)
+                item.SubItems.Add(sit.Pais.NomPais)
+                item.SubItems.Add(sit.tipo.ToString)
+                lstSites.Items.Add(item)
+                MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+    ' --------------
+    ' SITE DELETE
+    ' --------------
+
+
+
+
+
+    ' --------------
+    ' SITE MODIFY
+    ' --------------
+
+
+
+
+
+    ' -----------------
+    ' SITE CLEAR ALL
+    ' -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 End Class
