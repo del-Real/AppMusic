@@ -46,4 +46,8 @@
         Return Me.ArtDAO.Borrar(Me)
     End Function
 
+    Public Overrides Function ToString() As String
+        Return Me.IDArtista & " " & Me.NomArtista
+    End Function
+
 End Class

@@ -24,10 +24,15 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TabControl = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabAlbum = New System.Windows.Forms.TabPage()
+        Me.lstAlbumes = New System.Windows.Forms.ListView()
+        Me.CB_Artist_Album = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TB_ID_Album = New System.Windows.Forms.TextBox()
+        Me.TB_Name_Album = New System.Windows.Forms.TextBox()
         Me.DTP_Year_Album = New System.Windows.Forms.DateTimePicker()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TB_Artist_Album = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TabArtist = New System.Windows.Forms.TabPage()
         Me.CB_Country_Artist = New System.Windows.Forms.ComboBox()
@@ -62,7 +67,7 @@ Partial Class Form1
         Me.ButtonAdd = New System.Windows.Forms.Button()
         Me.ButtonModify = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.TabAlbum.SuspendLayout()
         Me.TabArtist.SuspendLayout()
         Me.TabCountry.SuspendLayout()
         Me.TabSite.SuspendLayout()
@@ -71,7 +76,7 @@ Partial Class Form1
         '
         'TabControl
         '
-        Me.TabControl.Controls.Add(Me.TabPage1)
+        Me.TabControl.Controls.Add(Me.TabAlbum)
         Me.TabControl.Controls.Add(Me.TabArtist)
         Me.TabControl.Controls.Add(Me.TabSong)
         Me.TabControl.Controls.Add(Me.TabConcert)
@@ -86,27 +91,80 @@ Partial Class Form1
         Me.TabControl.Size = New System.Drawing.Size(626, 429)
         Me.TabControl.TabIndex = 0
         '
-        'TabPage1
+        'TabAlbum
         '
-        Me.TabPage1.Controls.Add(Me.DTP_Year_Album)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.TB_Artist_Album)
-        Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 33)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TabPage1.Size = New System.Drawing.Size(618, 392)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Album"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.TabAlbum.Controls.Add(Me.lstAlbumes)
+        Me.TabAlbum.Controls.Add(Me.CB_Artist_Album)
+        Me.TabAlbum.Controls.Add(Me.Label13)
+        Me.TabAlbum.Controls.Add(Me.Label12)
+        Me.TabAlbum.Controls.Add(Me.TB_ID_Album)
+        Me.TabAlbum.Controls.Add(Me.TB_Name_Album)
+        Me.TabAlbum.Controls.Add(Me.DTP_Year_Album)
+        Me.TabAlbum.Controls.Add(Me.Label7)
+        Me.TabAlbum.Controls.Add(Me.Label6)
+        Me.TabAlbum.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabAlbum.Location = New System.Drawing.Point(4, 33)
+        Me.TabAlbum.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabAlbum.Name = "TabAlbum"
+        Me.TabAlbum.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabAlbum.Size = New System.Drawing.Size(618, 392)
+        Me.TabAlbum.TabIndex = 0
+        Me.TabAlbum.Text = "Album"
+        Me.TabAlbum.UseVisualStyleBackColor = True
+        '
+        'lstAlbumes
+        '
+        Me.lstAlbumes.Location = New System.Drawing.Point(339, 26)
+        Me.lstAlbumes.Name = "lstAlbumes"
+        Me.lstAlbumes.Size = New System.Drawing.Size(249, 334)
+        Me.lstAlbumes.TabIndex = 41
+        Me.lstAlbumes.UseCompatibleStateImageBehavior = False
+        '
+        'CB_Artist_Album
+        '
+        Me.CB_Artist_Album.FormattingEnabled = True
+        Me.CB_Artist_Album.Location = New System.Drawing.Point(33, 279)
+        Me.CB_Artist_Album.Name = "CB_Artist_Album"
+        Me.CB_Artist_Album.Size = New System.Drawing.Size(184, 32)
+        Me.CB_Artist_Album.TabIndex = 40
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(33, 39)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(87, 24)
+        Me.Label13.TabIndex = 34
+        Me.Label13.Text = "Album ID"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(33, 111)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(121, 24)
+        Me.Label12.TabIndex = 33
+        Me.Label12.Text = "Album Name"
+        '
+        'TB_ID_Album
+        '
+        Me.TB_ID_Album.Location = New System.Drawing.Point(33, 66)
+        Me.TB_ID_Album.Name = "TB_ID_Album"
+        Me.TB_ID_Album.Size = New System.Drawing.Size(273, 29)
+        Me.TB_ID_Album.TabIndex = 32
+        '
+        'TB_Name_Album
+        '
+        Me.TB_Name_Album.Location = New System.Drawing.Point(33, 138)
+        Me.TB_Name_Album.Name = "TB_Name_Album"
+        Me.TB_Name_Album.Size = New System.Drawing.Size(273, 29)
+        Me.TB_Name_Album.TabIndex = 31
         '
         'DTP_Year_Album
         '
         Me.DTP_Year_Album.CustomFormat = "yyyy"
         Me.DTP_Year_Album.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DTP_Year_Album.Location = New System.Drawing.Point(67, 109)
+        Me.DTP_Year_Album.Location = New System.Drawing.Point(33, 208)
         Me.DTP_Year_Album.Name = "DTP_Year_Album"
         Me.DTP_Year_Album.ShowUpDown = True
         Me.DTP_Year_Album.Size = New System.Drawing.Size(91, 29)
@@ -115,24 +173,16 @@ Partial Class Form1
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(67, 177)
+        Me.Label7.Location = New System.Drawing.Point(33, 252)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(103, 24)
         Me.Label7.TabIndex = 29
         Me.Label7.Text = "Artist name"
         '
-        'TB_Artist_Album
-        '
-        Me.TB_Artist_Album.Location = New System.Drawing.Point(67, 205)
-        Me.TB_Artist_Album.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TB_Artist_Album.Name = "TB_Artist_Album"
-        Me.TB_Artist_Album.Size = New System.Drawing.Size(270, 29)
-        Me.TB_Artist_Album.TabIndex = 28
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(67, 83)
+        Me.Label6.Location = New System.Drawing.Point(33, 181)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 24)
         Me.Label6.TabIndex = 27
@@ -489,8 +539,8 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.TabControl.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
+        Me.TabAlbum.ResumeLayout(False)
+        Me.TabAlbum.PerformLayout()
         Me.TabArtist.ResumeLayout(False)
         Me.TabArtist.PerformLayout()
         Me.TabCountry.ResumeLayout(False)
@@ -503,7 +553,7 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents TabControl As TabControl
-    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabAlbum As TabPage
     Friend WithEvents TabArtist As TabPage
     Friend WithEvents TabSong As TabPage
     Friend WithEvents TabConcert As TabPage
@@ -512,7 +562,6 @@ Partial Class Form1
     Friend WithEvents ofdRuta As OpenFileDialog
     Friend WithEvents DTP_Year_Album As DateTimePicker
     Friend WithEvents Label7 As Label
-    Friend WithEvents TB_Artist_Album As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TB_Name_Country As TextBox
@@ -540,4 +589,10 @@ Partial Class Form1
     Friend WithEvents TB_Id_Artist As TextBox
     Friend WithEvents CB_Country_Artist As ComboBox
     Friend WithEvents Label11 As Label
+    Friend WithEvents CB_Artist_Album As ComboBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TB_ID_Album As TextBox
+    Friend WithEvents TB_Name_Album As TextBox
+    Friend WithEvents lstAlbumes As ListView
 End Class

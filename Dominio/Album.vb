@@ -5,7 +5,7 @@
     Public Property Artista As Artista
     Public ReadOnly Property AlbDAO As AlbumDAO
 
-    Public Sub New(id As Integer, nombre As String, ano As Integer, artista As Artista)
+    Public Sub New(id As Integer, nombre As String, artista As Artista, ano As Integer)
         Me.IDAlbum = id
         Me.NomAlbum = nombre
         Me.AnoAlbum = ano
@@ -13,12 +13,17 @@
         Me.AlbDAO = New AlbumDAO
     End Sub
 
+    Public Sub New(id As Integer)
+        Me.IDAlbum = id
+    End Sub
+
     Public Sub New()
         Me.AlbDAO = New AlbumDAO
     End Sub
 
-    Public Sub New(id As Integer)
+    Public Sub New(id As Integer, nombre As String)
         Me.IDAlbum = id
+        Me.NomAlbum = nombre
         Me.AlbDAO = New AlbumDAO
     End Sub
     Public Sub LeerTodosAlbums(ruta As String)
@@ -39,6 +44,10 @@
 
     Public Function BorrarAlbum() As Integer
         Return Me.AlbDAO.Borrar(Me)
+    End Function
+
+    Public Overrides Function toString() As String
+        Return Me.IDAlbum + " " + Me.NomAlbum
     End Function
 
 End Class

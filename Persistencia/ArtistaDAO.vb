@@ -31,7 +31,7 @@
     End Function
 
     Public Function Actualizar(ByVal a As Artista) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE artistas SET Nombre='" & a.NomArtista & "' WHERE IDArtista='" & a.IDArtista & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE artistas SET Nombre='" & a.NomArtista & "', País='" & a.Pais.NomPais & "' WHERE IDArtista='" & a.IDArtista & "';")
     End Function
 
     Public Function Borrar(ByVal a As Artista) As Integer

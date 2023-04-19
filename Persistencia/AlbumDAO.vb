@@ -14,9 +14,8 @@
         For Each aux In col
             a = New Album(CInt(aux(1)))
             a.NomAlbum = aux(2).ToString
-            a.AnoAlbum = CInt(aux(3))
-            ar = aux(4)
-            a.Artista = ar
+            a.Artista = New Artista(aux(3).ToString)
+            a.AnoAlbum = CInt(aux(4))
             Me.Albumes.Add(a)
         Next
     End Sub

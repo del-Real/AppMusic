@@ -8,7 +8,7 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
-        'Dim alb As Album = New Album
+        Dim alb As Album = New Album
         Dim art As Artista = New Artista
         'Dim can As Cancion = New Cancion
         'Dim con As Concierto = New Concierto
@@ -19,6 +19,7 @@ Public Class Form1
             pai.LeerTodosPaises(ofdRuta.FileName)
             sit.LeerTodosSitios(ofdRuta.FileName)
             art.LeerTodosArtistas(ofdRuta.FileName)
+            alb.LeerTodosAlbums(ofdRuta.FileName)
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -81,20 +82,46 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = a.IDArtista
             item.SubItems.Add(a.NomArtista)
-            item.SubItems.Add("1")
+            a.Pais.LeerPais()
+            item.SubItems.Add(a.Pais.NomPais)
             lstArtist.Items.Add(item)
         Next
         ' Añade columnas al listView de Artistas
         lstArtist.View = View.Details
         lstArtist.Columns.Add("ID", 50)
         lstArtist.Columns.Add("Name", 100)
-        lstArtist.Columns.Add("IDPais", 50)
+        lstArtist.Columns.Add("Country", 100)
 
         For Each item As ListViewItem In lstContries.Items
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Artist.Items.Add(p)
         Next
         CB_Country_Site.SelectedIndex = -1
+
+        ' --------
+        ' ALBUMES
+        ' --------
+        For Each a As Album In alb.AlbDAO.Albumes
+            Dim item As New ListViewItem
+            item.Text = a.IDAlbum
+            item.SubItems.Add(a.NomAlbum)
+            a.Artista.LeerArtista()
+            item.SubItems.Add(a.Artista.NomArtista)
+            item.SubItems.Add(a.AnoAlbum)
+            lstArtist.Items.Add(item)
+        Next
+        ' Añade columnas al listView de Albumes
+        lstAlbumes.View = View.Details
+        lstAlbumes.Columns.Add("ID", 40)
+        lstAlbumes.Columns.Add("Name", 80)
+        lstAlbumes.Columns.Add("Artist", 90)
+        lstAlbumes.Columns.Add("Year", 60)
+
+        For Each item As ListViewItem In lstArtist.Items
+            Dim p As Pais = CType(item.SubItems(2).Tag, Pais)
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text, p)
+            CB_Artist_Album.Items.Add(a)
+        Next
     End Sub
 
     ' =========================================================================================
@@ -161,6 +188,27 @@ Public Class Form1
         End If
     End Sub
 
+    ' ==============
+    ' PESTAÑA ALBUMES
+    ' ==============
+
+    Private Sub lstAlbumes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAlbumes.SelectedIndexChanged
+        Dim alb As Album
+        If Not Me.lstAlbumes.SelectedItems Is Nothing Then
+            Try
+                alb = New Album(lstAlbumes.SelectedItems.ToString)
+                alb.LeerAlbum()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+            Me.TB_ID_Album.Text = alb.IDAlbum
+            Me.TB_Name_Album.Text = alb.NomAlbum
+            Me.CB_Artist_Album.Text = alb.Artista.NomArtista
+            Me.DTP_Year_Album.Text = alb.AnoAlbum
+        End If
+    End Sub
+
     ' =========================================================================================
     ' BOTONES FUNCIONES
     ' =========================================================================================
@@ -175,7 +223,7 @@ Public Class Form1
         'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
-            'Aquí va el código para añadir un nuevo país
+                AlbumAdd()
             Case "TabArtist"
                 ArtistAdd()
             Case "TabSong"
@@ -184,7 +232,6 @@ Public Class Form1
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
                 CountryAdd()
-
             Case "TabSite"
                 SiteAdd()
         End Select
@@ -201,7 +248,7 @@ Public Class Form1
         'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
-            'Aquí va el código para añadir un nuevo país
+                AlbumDelete()
             Case "TabArtist"
                 ArtistDelete()
             Case "TabSong"
@@ -226,9 +273,9 @@ Public Class Form1
         'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
-            'Aquí va el código para añadir un nuevo país
+                AlbumModify()
             Case "TabArtist"
-            'Aquí va el código para añadir un nuevo sitio
+                ArtistModify()
             Case "TabSong"
             'Aquí va el código para añadir un nuevo artista
             Case "TabConcert"
@@ -251,7 +298,7 @@ Public Class Form1
         'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
-            'Aquí va el código para añadir un nuevo país
+                AlbumClearAll()
             Case "TabArtist"
                 ArtistClearAll()
             Case "TabSong"
@@ -292,8 +339,9 @@ Public Class Form1
                 item.Text = pai.IDPais
                 item.SubItems.Add(pai.NomPais)
                 lstContries.Items.Add(item)
-                CB_Country_Site.Items.Add(item.SubItems(1).Text)
-                MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
+                CB_Country_Site.Items.Add(pai)
+                CB_Country_Artist.Items.Add(pai)
+                MessageBox.Show(pai.NomPais.ToString & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -321,9 +369,19 @@ Public Class Form1
                     Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais)
                     If item IsNot Nothing Then
                         lstContries.Items.Remove(item)
-                        CB_Country_Site.Items.Remove(item.SubItems(1).Text)
+                        For Each a As Object In CB_Country_Artist.Items
+                            If a.Pais.IDPais = pai.IDPais Then
+                                CB_Country_Artist.Items.Remove(item)
+                            End If
+                        Next
+
+                        For Each s As Object In CB_Country_Site.Items
+                            If s.Pais.IDPais = pai.IDPais Then
+                                CB_Country_Site.Items.Remove(item)
+                            End If
+                        Next
                     End If
-                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
+                        MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -352,9 +410,23 @@ Public Class Form1
             If item IsNot Nothing Then
                 nomPais = item.SubItems(1).Text
                 item.SubItems(1).Text = pai.NomPais
-                CB_Country_Site.Items.Remove(nomPais)
-                CB_Country_Site.Items.Add(pai.NomPais)
+                CB_Country_Site.Items.Add(item)
+                CB_Country_Artist.Items.Add(item)
             End If
+            'ACTUALIZA INFORMACION DE LOS COMBOBOX DE PAISES DE LAS DEMAS VENTANAS
+            For Each el1 As Pais In CB_Country_Site.Items
+                Dim pais As Pais = CType(el1, Pais)
+                If pais.IDPais = pai.IDPais Then
+                    pais.NomPais = pai.NomPais
+                    For Each el2 As Pais In CB_Country_Artist.Items
+                        If el2.IDPais = pai.IDPais Then
+                            el2.NomPais = pai.NomPais
+                            Exit For
+                        End If
+                    Next
+                    Exit For
+                End If
+            Next
             Try
                 If pai.ActualizarPais() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -366,7 +438,6 @@ Public Class Form1
                 Exit Sub
             End Try
         End If
-
     End Sub
 
 
@@ -479,7 +550,7 @@ Public Class Form1
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Sitio con el ID " & sit.IDSitio & " actualizado correctamente a " & sit.NomSitio.ToString)
+                MessageBox.Show("Sitio con el ID " & sit.IDSitio & " actualizado correctamente al nombre " & sit.NomSitio.ToString & ", a pais " & sit.Pais.NomPais & " y a tipo " & sit.tipo)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -506,6 +577,8 @@ Public Class Form1
     ' MÉTODOS ARTISTA
     ' ===========================================
 
+
+
     ' -----------
     ' ARTISTA ADD
     ' -----------
@@ -527,6 +600,7 @@ Public Class Form1
                 item.SubItems.Add(art.NomArtista)
                 item.SubItems.Add(art.Pais.NomPais)
                 lstArtist.Items.Add(item)
+                CB_Artist_Album.Items.Add(art)
                 MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -535,7 +609,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
     ' --------------
     ' ARTIST DELETE
@@ -575,6 +648,36 @@ Public Class Form1
     ' --------------
 
 
+    Private Sub ArtistModify()
+
+        Dim art As Artista = Nothing
+        If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty And Me.CB_Country_Artist.Text <> String.Empty Then
+            art = New Artista(Me.TB_Id_Artist.Text)
+            art.NomArtista = Me.TB_Name_Artist.Text
+            art.Pais = CB_Country_Artist.SelectedItem
+            Dim item As ListViewItem = lstSites.FindItemWithText(art.IDArtista)
+            Dim nomArtista As String = ""
+            If item IsNot Nothing Then
+                nomArtista = item.SubItems(1).Text
+                item.SubItems(1).Text = art.NomArtista
+                item.SubItems(2).Text = art.Pais.NomPais
+                CB_Country_Site.Items.Remove(nomArtista)
+                CB_Country_Site.Items.Add(art.NomArtista)
+            End If
+            Try
+                If art.ActualizarArtista() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Artista con el ID " & art.IDArtista & " actualizado correctamente a " & art.NomArtista.ToString)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
 
 
 
@@ -588,5 +691,121 @@ Public Class Form1
         CB_Country_Artist.SelectedIndex = -1
     End Sub
 
+
+
+    ' ===========================================
+    ' MÉTODOS ALBUM
+    ' ===========================================
+
+    ' -----------
+    ' ALBUM ADD
+    ' -----------
+
+    Private Sub AlbumAdd()
+
+        Dim alb As Album = Nothing
+        If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
+            alb = New Album(Me.TB_ID_Album.Text)
+            alb.NomAlbum = TB_Name_Album.Text
+            alb.Artista = CB_Type_Site.SelectedItem
+            alb.AnoAlbum = DTP_Year_Album.Value.Year
+            Try
+                If alb.InsertarAlbum() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                Dim item As New ListViewItem
+                item.Text = alb.IDAlbum
+                item.SubItems.Add(alb.NomAlbum)
+                item.SubItems.Add(alb.Artista.NomArtista)
+                item.SubItems.Add(alb.AnoAlbum)
+                lstAlbumes.Items.Add(item)
+                MessageBox.Show(alb.NomAlbum.ToString & " insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+    ' --------------
+    ' ALBUM DELETE
+    ' --------------
+
+    Private Sub AlbumDelete()
+
+        Dim alb As Album = Nothing
+        If Me.TB_ID_Album.Text <> String.Empty Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                alb = New Album(Me.TB_ID_Album.Text, Me.TB_Name_Album.Text)
+                Try
+                    If alb.BorrarAlbum() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    Dim item As ListViewItem = lstSites.FindItemWithText(alb.IDAlbum)
+                    If item IsNot Nothing Then
+                        lstAlbumes.Items.Remove(item)
+                    End If
+                    MessageBox.Show(alb.NomAlbum.ToString & " eliminado correctamente")
+                Catch ex As Exception
+
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+
+                End Try
+            End If
+        End If
+
+    End Sub
+
+
+
+    ' --------------
+    ' ALBUM MODIFY
+    ' --------------
+
+    Private Sub AlbumModify()
+
+        Dim alb As Album = Nothing
+        If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
+            alb = New Album(Me.TB_Id_Site.Text, Me.TB_Name_Album.Text)
+            alb.Artista = CB_Artist_Album.SelectedItem
+            alb.AnoAlbum = DTP_Year_Album.Value.Year
+            Dim item As ListViewItem = lstAlbumes.FindItemWithText(alb.IDAlbum)
+            Dim nomAlbum As String = ""
+            If item IsNot Nothing Then
+                nomAlbum = item.SubItems(1).Text
+                item.SubItems(1).Text = alb.NomAlbum
+                item.SubItems(2).Text = alb.Artista.NomArtista
+                item.SubItems(3).Text = alb.AnoAlbum
+            End If
+            Try
+                If alb.ActualizarAlbum() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Album con el ID " & alb.IDAlbum & " actualizado correctamente al nombre " & alb.NomAlbum.ToString & ", a artista " & alb.Artista.NomArtista & " y a año " & alb.AnoAlbum)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+
+    ' -----------------
+    ' ALBUM CLEAR ALL
+    ' -----------------
+
+    Private Sub AlbumClearAll()
+        Me.TB_ID_Album.Text = String.Empty
+        Me.TB_Name_Album.Text = String.Empty
+        CB_Artist_Album.SelectedIndex = -1
+    End Sub
 
 End Class
