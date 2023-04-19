@@ -151,39 +151,16 @@ Public Class Form1
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
             Case "TabArtist"
-                Dim art As Artista = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty Then
-                    art = New Artista(Me.TB_Id_Artist.Text)
-                    art.NomArtista = Me.TB_Name_Country.Text
-                    Try
-                        If art.InsertarArtista() <> 1 Then
-                            MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        'COGIDO AÑADIDO
-                        Dim item As New ListViewItem
-                        item.Text = art.IDArtista ' Set the text of the first column to "pai.IDPais"
-                        item.SubItems.Add(art.NomArtista) ' Add the value of "pai.NomPais" to the second column
-                        lstArtist.Items.Add(item)
-                        CB_Country_Artist.Items.Add(item.SubItems(1).Text)
-                        MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
-                End If
+                ArtistAdd()
             Case "TabSong"
             'Aquí va el código para añadir un nuevo artista
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
-
                 CountryAdd()
 
             Case "TabSite"
-
                 SiteAdd()
-
         End Select
 
     End Sub
@@ -202,60 +179,9 @@ Public Class Form1
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
-                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Country.Text <> String.Empty Then
-                    If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                        pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
-                        Try
-                            If pai.BorrarPais() <> 1 Then
-                                MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Exit Sub
-                            End If
-                            'COGIDO AÑADIDO
-                            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-                            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                                lstContries.Items.Remove(item)
-                                CB_Country_Site.Items.Remove(item.SubItems(1).Text)
-                            End If
-                            MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
-                        Catch ex As Exception
-
-                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-
-                        End Try
-                        'CODIGO ERRONEO
-                        'Me.lstPersonas.Items.Remove(pers.IDPersona)
-                        'Me.bntEliminar.PerformClick()
-                    End If
-                End If
+                CountryDelete()
             Case "TabSite"
-                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Site.Text <> String.Empty Then
-                    If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                        sit = New Sitio(Me.TB_Id_Site.Text, Me.TB_Name_Site.Text)
-                        Try
-                            If sit.BorrarSitio() <> 1 Then
-                                MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Exit Sub
-                            End If
-                            'COGIDO AÑADIDO
-                            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
-                            If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
-                                lstSites.Items.Remove(item)
-                            End If
-                            MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
-                        Catch ex As Exception
-
-                            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-
-                        End Try
-                        'CODIGO ERRONEO
-                        'Me.lstPersonas.Items.Remove(pers.IDPersona)
-                        'Me.bntEliminar.PerformClick()
-                    End If
-                End If
+                SiteDelete()
         End Select
 
     End Sub
@@ -274,60 +200,9 @@ Public Class Form1
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
-                Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-                    pai = New Pais(Me.TB_Id_Country.Text)
-                    pai.NomPais = Me.TB_Name_Country.Text
-                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-                    Dim nomPais As String = ""
-                    If item IsNot Nothing Then
-                        ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
-                        nomPais = item.SubItems(1).Text
-
-                        item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
-                        CB_Country_Site.Items.Remove(nomPais)
-                        CB_Country_Site.Items.Add(pai.NomPais)
-                    End If
-                    Try
-                        If pai.ActualizarPais() <> 1 Then
-                            MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
-                End If
+                CountryModify()
             Case "TabSite"
-                Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
-                If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
-                    sit = New Sitio(Me.TB_Id_Site.Text)
-                    sit.NomSitio = Me.TB_Name_Site.Text
-                    sit.Pais = New Pais(1, Me.CB_Country_Site.Text)
-                    sit.tipo = CB_Type_Site.Text
-                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
-                    Dim nomSitio As String = ""
-                    If item IsNot Nothing Then
-                        ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
-                        nomSitio = item.SubItems(1).Text
-                        item.SubItems(1).Text = sit.NomSitio ' Modificamos el texto del elemento encontrado
-                        item.SubItems(2).Text = sit.Pais.NomPais
-                        item.SubItems(3).Text = sit.tipo
-                        CB_Country_Site.Items.Remove(nomSitio)
-                        CB_Country_Site.Items.Add(sit.NomSitio)
-                    End If
-                    Try
-                        If sit.ActualizarSitio() <> 1 Then
-                            MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        MessageBox.Show("Pais con el ID " & sit.IDSitio & " actualizado correctamente a " & sit.NomSitio.ToString)
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End Try
-                End If
+                SiteModify()
         End Select
 
     End Sub
@@ -346,20 +221,16 @@ Public Class Form1
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
-                Me.TB_Id_Country.Text = String.Empty
-                Me.TB_Name_Country.Text = String.Empty
+                CountryClearAll()
             Case "TabSite"
-                Me.TB_Id_Site.Text = String.Empty
-                Me.TB_Name_Site.Text = String.Empty
-                CB_Country_Site.SelectedIndex = -1
-                CB_Type_Site.SelectedIndex = -1
+                SiteClearAll()
         End Select
     End Sub
 
 
-    ' ===============
+    ' ===========================================
     ' COUNTRY METHODS
-    ' ===============
+    ' ===========================================
 
     ' -----------
     ' COUNTRY ADD
@@ -396,7 +267,37 @@ Public Class Form1
     ' COUNTRY DELETE
     ' --------------
 
+    Private Sub CountryDelete()
 
+        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Country.Text <> String.Empty Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
+                Try
+                    If pai.BorrarPais() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    'COGIDO AÑADIDO
+                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                        lstContries.Items.Remove(item)
+                        CB_Country_Site.Items.Remove(item.SubItems(1).Text)
+                    End If
+                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
+                Catch ex As Exception
+
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+
+                End Try
+                'CODIGO ERRONEO
+                'Me.lstPersonas.Items.Remove(pers.IDPersona)
+                'Me.bntEliminar.PerformClick()
+            End If
+        End If
+
+    End Sub
 
 
 
@@ -404,7 +305,35 @@ Public Class Form1
     ' COUNTRY MODIFY
     ' --------------
 
+    Private Sub CountryModify()
 
+        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+            pai = New Pais(Me.TB_Id_Country.Text)
+            pai.NomPais = Me.TB_Name_Country.Text
+            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+            Dim nomPais As String = ""
+            If item IsNot Nothing Then
+                ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
+                nomPais = item.SubItems(1).Text
+
+                item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
+                CB_Country_Site.Items.Remove(nomPais)
+                CB_Country_Site.Items.Add(pai.NomPais)
+            End If
+            Try
+                If pai.ActualizarPais() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
 
 
 
@@ -412,7 +341,10 @@ Public Class Form1
     ' COUNTRY CLEAR ALL
     ' -----------------
 
-
+    Private Sub CountryClearAll()
+        Me.TB_Id_Country.Text = String.Empty
+        Me.TB_Name_Country.Text = String.Empty
+    End Sub
 
 
 
@@ -458,7 +390,36 @@ Public Class Form1
     ' SITE DELETE
     ' --------------
 
+    Private Sub SiteDelete()
 
+        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Site.Text <> String.Empty Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                sit = New Sitio(Me.TB_Id_Site.Text, Me.TB_Name_Site.Text)
+                Try
+                    If sit.BorrarSitio() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    'COGIDO AÑADIDO
+                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                        lstSites.Items.Remove(item)
+                    End If
+                    MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
+                Catch ex As Exception
+
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+
+                End Try
+                'CODIGO ERRONEO
+                'Me.lstPersonas.Items.Remove(pers.IDPersona)
+                'Me.bntEliminar.PerformClick()
+            End If
+        End If
+
+    End Sub
 
 
 
@@ -466,7 +427,38 @@ Public Class Form1
     ' SITE MODIFY
     ' --------------
 
+    Private Sub SiteModify()
 
+        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
+            sit = New Sitio(Me.TB_Id_Site.Text)
+            sit.NomSitio = Me.TB_Name_Site.Text
+            sit.Pais = New Pais(1, Me.CB_Country_Site.Text)
+            sit.tipo = CB_Type_Site.Text
+            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+            Dim nomSitio As String = ""
+            If item IsNot Nothing Then
+                ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
+                nomSitio = item.SubItems(1).Text
+                item.SubItems(1).Text = sit.NomSitio ' Modificamos el texto del elemento encontrado
+                item.SubItems(2).Text = sit.Pais.NomPais
+                item.SubItems(3).Text = sit.tipo
+                CB_Country_Site.Items.Remove(nomSitio)
+                CB_Country_Site.Items.Add(sit.NomSitio)
+            End If
+            Try
+                If sit.ActualizarSitio() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Pais con el ID " & sit.IDSitio & " actualizado correctamente a " & sit.NomSitio.ToString)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
 
 
 
@@ -474,17 +466,68 @@ Public Class Form1
     ' SITE CLEAR ALL
     ' -----------------
 
+    Private Sub SiteClearAll()
+        Me.TB_Id_Site.Text = String.Empty
+        Me.TB_Name_Site.Text = String.Empty
+        CB_Country_Site.SelectedIndex = -1
+        CB_Type_Site.SelectedIndex = -1
+    End Sub
+
+
+    ' ===========================================
+    ' ARTIST METHODS
+    ' ===========================================
+
+    ' -----------
+    ' ARTIST ADD
+    ' -----------
+
+    Private Sub ArtistAdd()
+
+        Dim art As Artista = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty Then
+            art = New Artista(Me.TB_Id_Artist.Text)
+            art.NomArtista = Me.TB_Name_Country.Text
+            Try
+                If art.InsertarArtista() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                'COGIDO AÑADIDO
+                Dim item As New ListViewItem
+                item.Text = art.IDArtista ' Set the text of the first column to "pai.IDPais"
+                item.SubItems.Add(art.NomArtista) ' Add the value of "pai.NomPais" to the second column
+                lstArtist.Items.Add(item)
+                CB_Country_Artist.Items.Add(item.SubItems(1).Text)
+                MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+    ' --------------
+    ' ARTIST DELETE
+    ' --------------
 
 
 
 
 
+    ' --------------
+    ' ARTIST MODIFY
+    ' --------------
 
 
 
 
 
-
+    ' -----------------
+    ' ARTIST CLEAR ALL
+    ' -----------------
 
 
 
