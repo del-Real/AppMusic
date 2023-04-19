@@ -8,14 +8,12 @@
 
     Public Sub LeerTodos(ruta As String)
         Dim a As Artista
-        Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM artistas ORDER BY IdArtista")
         For Each aux In col
             a = New Artista(CInt(aux(1)))
             a.NomArtista = aux(2).ToString
-            p = aux(3)
-            a.Pais = p
+            a.Pais = New Pais(aux(3).ToString)
             Me.Artistas.Add(a)
         Next
     End Sub
@@ -29,7 +27,7 @@
     End Sub
 
     Public Function Insertar(ByVal a As Artista) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO artistas VALUES ('" & a.IDArtista & "', '" & a.NomArtista & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO artistas VALUES ('" & a.IDArtista & "', '" & a.NomArtista & "' , '" & a.Pais.IDPais & "');")
     End Function
 
     Public Function Actualizar(ByVal a As Artista) As Integer

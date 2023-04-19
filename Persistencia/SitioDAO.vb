@@ -32,7 +32,7 @@
     End Function
 
     Public Function Actualizar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE sitio Set NombreSitio='" & s.NomSitio & "' SET País='" & s.Pais.NomPais & "' SET Tipo='" & s.tipo & "' WHERE País='" & s.Pais.NomPais & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE sitio SET NombreSitio='" & s.NomSitio & "', País='" & s.Pais.NomPais & "', Tipo='" & s.tipo & "' WHERE País='" & s.Pais.NomPais & "';")
     End Function
 
     Public Function Borrar(ByVal s As Sitio) As Integer
