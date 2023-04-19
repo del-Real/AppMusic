@@ -24,41 +24,42 @@ Public Class Form1
             Exit Sub
         End Try
 
+        ' ------
+        ' PAISES
+        ' ------
 
-
-
-        'PAISES
         For Each p As Pais In pai.PaiDAO.Paises
             Dim item As New ListViewItem
-            item.Text = p.IDPais ' Set the text of the first column to "pai.IDPais"
-            item.SubItems.Add(p.NomPais) ' Add the value of "pai.NomPais" to the second column
+            item.Text = p.IDPais
+            item.SubItems.Add(p.NomPais)
             lstContries.Items.Add(item)
         Next
-        ' Añade columnas al listView
+        ' Añade columnas al listView de Países
         lstContries.View = View.Details
         lstContries.Columns.Add("ID", 50)
         lstContries.Columns.Add("Name", 100)
 
+        ' ------
+        ' SITIOS
+        ' ------
 
-
-
-        'SITIOS
         For Each s As Sitio In sit.SitDAO.Sitios
             Dim item As New ListViewItem
-            item.Text = s.IDSitio ' Set the text of the first column to "pai.IDPais"
-            item.SubItems.Add(s.NomSitio) ' Add the value of "pai.NomPais" to the second column
+            item.Text = s.IDSitio
+            item.SubItems.Add(s.NomSitio)
             s.Pais.LeerPais()
             item.SubItems.Add(s.Pais.NomPais)
             item.SubItems.Add(s.tipo)
             lstSites.Items.Add(item)
         Next
-        ' Añade columnas al listView
+        ' Añade columnas al listView de Sitios
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
         lstSites.Columns.Add("Country", 120)
         lstSites.Columns.Add("Type", 100)
-        'Añadir valores del enum al comboBox 
+
+        ' Añade valores del enum al comboBox
         CB_Type_Site.Items.Add(TipoSitio.sala)
         CB_Type_Site.Items.Add(TipoSitio.pabellón)
         CB_Type_Site.Items.Add(TipoSitio.estadio)
@@ -72,17 +73,18 @@ Public Class Form1
         Next
         CB_Country_Site.SelectedIndex = -1
 
+        ' --------
+        ' ARTISTAS
+        ' --------
 
-
-        'ARTISTAS
         For Each a As Artista In art.ArtDAO.Artistas
             Dim item As New ListViewItem
-            item.Text = a.IDArtista ' Set the text of the first column to "pai.IDPais"
-            item.SubItems.Add(a.NomArtista) ' Add the value of "pai.NomPais" to the second column
+            item.Text = a.IDArtista
+            item.SubItems.Add(a.NomArtista)
             item.SubItems.Add("1")
             lstArtist.Items.Add(item)
         Next
-        ' Añade columnas al listView
+        ' Añade columnas al listView de Artistas
         lstArtist.View = View.Details
         lstArtist.Columns.Add("ID", 50)
         lstArtist.Columns.Add("Name", 100)
@@ -94,6 +96,14 @@ Public Class Form1
         Next
         CB_Country_Site.SelectedIndex = -1
     End Sub
+
+    ' =========================================================================================
+    ' PESTAÑAS
+    ' =========================================================================================
+
+    ' ===============
+    ' PESTAÑA ARTISTA
+    ' ===============
 
     Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
         Dim art As Artista
@@ -111,6 +121,10 @@ Public Class Form1
         End If
     End Sub
 
+    ' ==============
+    ' PESTAÑA PAÍSES
+    ' ==============
+
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
         Dim pai As Pais
         If Not Me.lstContries.SelectedItems Is Nothing Then
@@ -125,6 +139,10 @@ Public Class Form1
             Me.TB_Name_Country.Text = pai.NomPais
         End If
     End Sub
+
+    ' ==============
+    ' PESTAÑA SITIOS
+    ' ==============
 
     Private Sub lstSites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSites.SelectedIndexChanged
         Dim sit As Sitio
@@ -143,10 +161,18 @@ Public Class Form1
         End If
     End Sub
 
+    ' =========================================================================================
+    ' BOTONES FUNCIONES
+    ' =========================================================================================
+
+    ' ============
+    ' BOTÓN AÑADIR
+    ' ============
+
     Private Sub ButtonAdd_Click(sender As Object, e As EventArgs) Handles ButtonAdd.Click
         Dim tabPage As TabPage = TabControl.SelectedTab
 
-        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
@@ -165,10 +191,14 @@ Public Class Form1
 
     End Sub
 
+    ' ==============
+    ' BOTÓN ELIMINAR
+    ' ==============
+
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
         Dim tabPage As TabPage = TabControl.SelectedTab
 
-        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
@@ -186,10 +216,14 @@ Public Class Form1
 
     End Sub
 
+    ' ===============
+    ' BOTÓN MODIFICAR
+    ' ===============
+
     Private Sub ButtonModify_Click(sender As Object, e As EventArgs) Handles ButtonModify.Click
         Dim tabPage As TabPage = TabControl.SelectedTab
 
-        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
@@ -207,10 +241,14 @@ Public Class Form1
 
     End Sub
 
+    ' =============
+    ' BOTÓN LIMPIAR
+    ' =============
+
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
         Dim tabPage As TabPage = TabControl.SelectedTab
 
-        'Comprobar qué pestaña está activa y realizar la acción correspondiente
+        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
             'Aquí va el código para añadir un nuevo país
@@ -227,6 +265,9 @@ Public Class Form1
         End Select
     End Sub
 
+    ' =========================================================================================
+    ' MÉTODOS
+    ' =========================================================================================
 
     ' ===========================================
     ' COUNTRY METHODS
@@ -238,7 +279,7 @@ Public Class Form1
 
     Private Sub CountryAdd()
 
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
             pai = New Pais(Me.TB_Id_Country.Text)
             pai.NomPais = Me.TB_Name_Country.Text
@@ -247,10 +288,9 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                'COGIDO AÑADIDO
                 Dim item As New ListViewItem
-                item.Text = pai.IDPais ' Set the text of the first column to "pai.IDPais"
-                item.SubItems.Add(pai.NomPais) ' Add the value of "pai.NomPais" to the second column
+                item.Text = pai.IDPais
+                item.SubItems.Add(pai.NomPais)
                 lstContries.Items.Add(item)
                 CB_Country_Site.Items.Add(item.SubItems(1).Text)
                 MessageBox.Show(pai.NomPais.ToString & " Insertado correctamente")
@@ -269,7 +309,7 @@ Public Class Form1
 
     Private Sub CountryDelete()
 
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty Then
             If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
@@ -278,9 +318,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    'COGIDO AÑADIDO
-                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
-                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais)
+                    If item IsNot Nothing Then
                         lstContries.Items.Remove(item)
                         CB_Country_Site.Items.Remove(item.SubItems(1).Text)
                     End If
@@ -291,9 +330,6 @@ Public Class Form1
                     Exit Sub
 
                 End Try
-                'CODIGO ERRONEO
-                'Me.lstPersonas.Items.Remove(pers.IDPersona)
-                'Me.bntEliminar.PerformClick()
             End If
         End If
 
@@ -307,17 +343,15 @@ Public Class Form1
 
     Private Sub CountryModify()
 
-        Dim pai As Pais = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
             pai = New Pais(Me.TB_Id_Country.Text)
             pai.NomPais = Me.TB_Name_Country.Text
-            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais) ' Buscamos el elemento con el texto "Elemento 2"
+            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais)
             Dim nomPais As String = ""
             If item IsNot Nothing Then
-                ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
                 nomPais = item.SubItems(1).Text
-
-                item.SubItems(1).Text = pai.NomPais ' Modificamos el texto del elemento encontrado
+                item.SubItems(1).Text = pai.NomPais
                 CB_Country_Site.Items.Remove(nomPais)
                 CB_Country_Site.Items.Add(pai.NomPais)
             End If
@@ -358,7 +392,7 @@ Public Class Form1
 
     Private Sub SiteAdd()
 
-        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim sit As Sitio = Nothing
         If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
             sit = New Sitio(Me.TB_Id_Site.Text)
             sit.NomSitio = Me.TB_Name_Site.Text
@@ -369,7 +403,6 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                'COGIDO AÑADIDO
                 Dim item As New ListViewItem
                 item.Text = sit.IDSitio
                 item.SubItems.Add(sit.NomSitio)
@@ -392,7 +425,7 @@ Public Class Form1
 
     Private Sub SiteDelete()
 
-        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim sit As Sitio = Nothing
         If Me.TB_Id_Site.Text <> String.Empty Then
             If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 sit = New Sitio(Me.TB_Id_Site.Text, Me.TB_Name_Site.Text)
@@ -401,9 +434,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    'COGIDO AÑADIDO
-                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
-                    If item IsNot Nothing Then ' Comprobamos que se haya encontrado el elemento
+                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio)
+                    If item IsNot Nothing Then
                         lstSites.Items.Remove(item)
                     End If
                     MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
@@ -413,9 +445,6 @@ Public Class Form1
                     Exit Sub
 
                 End Try
-                'CODIGO ERRONEO
-                'Me.lstPersonas.Items.Remove(pers.IDPersona)
-                'Me.bntEliminar.PerformClick()
             End If
         End If
 
@@ -429,18 +458,17 @@ Public Class Form1
 
     Private Sub SiteModify()
 
-        Dim sit As Sitio = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim sit As Sitio = Nothing
         If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
             sit = New Sitio(Me.TB_Id_Site.Text)
             sit.NomSitio = Me.TB_Name_Site.Text
             sit.Pais = New Pais(1, Me.CB_Country_Site.Text)
             sit.tipo = CB_Type_Site.Text
-            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio) ' Buscamos el elemento con el texto "Elemento 2"
+            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio)
             Dim nomSitio As String = ""
             If item IsNot Nothing Then
-                ' Si se encontró el elemento con el ID de país buscado, obtener el nombre del país de la columna 1
                 nomSitio = item.SubItems(1).Text
-                item.SubItems(1).Text = sit.NomSitio ' Modificamos el texto del elemento encontrado
+                item.SubItems(1).Text = sit.NomSitio
                 item.SubItems(2).Text = sit.Pais.NomPais
                 item.SubItems(3).Text = sit.tipo
                 CB_Country_Site.Items.Remove(nomSitio)
@@ -484,7 +512,7 @@ Public Class Form1
 
     Private Sub ArtistAdd()
 
-        Dim art As Artista = Nothing 'INICIALIZADA VARIABLE POR WARNING
+        Dim art As Artista = Nothing
         If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty Then
             art = New Artista(Me.TB_Id_Artist.Text)
             art.NomArtista = Me.TB_Name_Country.Text
@@ -493,10 +521,9 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                'COGIDO AÑADIDO
                 Dim item As New ListViewItem
-                item.Text = art.IDArtista ' Set the text of the first column to "pai.IDPais"
-                item.SubItems.Add(art.NomArtista) ' Add the value of "pai.NomPais" to the second column
+                item.Text = art.IDArtista
+                item.SubItems.Add(art.NomArtista)
                 lstArtist.Items.Add(item)
                 CB_Country_Artist.Items.Add(item.SubItems(1).Text)
                 MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
