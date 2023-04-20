@@ -107,7 +107,7 @@ Public Class Form1
             item.SubItems.Add(a.AnoAlbum)
             a.Artista.LeerArtista()
             item.SubItems.Add(a.Artista.NomArtista)
-            lstArtist.Items.Add(item)
+            lstAlbumes.Items.Add(item)
         Next
         ' Añade columnas al listView de Albumes
         lstAlbumes.View = View.Details
