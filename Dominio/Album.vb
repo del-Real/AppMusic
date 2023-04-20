@@ -12,18 +12,16 @@
         Me.Artista = artista
         Me.AlbDAO = New AlbumDAO
     End Sub
-
-    Public Sub New(id As Integer)
-        Me.IDAlbum = id
-    End Sub
-
-    Public Sub New()
-        Me.AlbDAO = New AlbumDAO
-    End Sub
-
     Public Sub New(id As Integer, nombre As String)
         Me.IDAlbum = id
         Me.NomAlbum = nombre
+        Me.AlbDAO = New AlbumDAO
+    End Sub
+    Public Sub New()
+        Me.AlbDAO = New AlbumDAO
+    End Sub
+    Public Sub New(id As Integer)
+        Me.IDAlbum = id
         Me.AlbDAO = New AlbumDAO
     End Sub
     Public Sub LeerTodosAlbums(ruta As String)

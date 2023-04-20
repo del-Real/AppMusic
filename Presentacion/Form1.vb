@@ -1,5 +1,4 @@
-﻿
-Imports System.Security.Policy
+﻿Imports System.Security.Policy
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
 Imports Mysqlx.Crud
@@ -96,7 +95,7 @@ Public Class Form1
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Artist.Items.Add(p)
         Next
-        CB_Country_Site.SelectedIndex = -1
+        CB_Country_Artist.SelectedIndex = -1
 
         ' --------
         ' ALBUMES
@@ -105,23 +104,23 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = a.IDAlbum
             item.SubItems.Add(a.NomAlbum)
+            item.SubItems.Add(a.AnoAlbum)
             a.Artista.LeerArtista()
             item.SubItems.Add(a.Artista.NomArtista)
-            item.SubItems.Add(a.AnoAlbum)
             lstArtist.Items.Add(item)
         Next
         ' Añade columnas al listView de Albumes
         lstAlbumes.View = View.Details
         lstAlbumes.Columns.Add("ID", 40)
         lstAlbumes.Columns.Add("Name", 80)
-        lstAlbumes.Columns.Add("Artist", 90)
         lstAlbumes.Columns.Add("Year", 60)
+        lstAlbumes.Columns.Add("Artist", 90)
 
         For Each item As ListViewItem In lstArtist.Items
-            Dim p As Pais = CType(item.SubItems(2).Tag, Pais)
-            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text, p)
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Artist_Album.Items.Add(a)
         Next
+        CB_Artist_Album.SelectedIndex = -1
     End Sub
 
     ' =========================================================================================
@@ -600,7 +599,6 @@ Public Class Form1
                 item.SubItems.Add(art.NomArtista)
                 item.SubItems.Add(art.Pais.NomPais)
                 lstArtist.Items.Add(item)
-                CB_Artist_Album.Items.Add(art)
                 MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -707,8 +705,8 @@ Public Class Form1
         If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
             alb = New Album(Me.TB_ID_Album.Text)
             alb.NomAlbum = TB_Name_Album.Text
-            alb.Artista = CB_Type_Site.SelectedItem
             alb.AnoAlbum = DTP_Year_Album.Value.Year
+            alb.Artista = CB_Artist_Album.SelectedItem
             Try
                 If alb.InsertarAlbum() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -807,5 +805,6 @@ Public Class Form1
         Me.TB_Name_Album.Text = String.Empty
         CB_Artist_Album.SelectedIndex = -1
     End Sub
+
 
 End Class

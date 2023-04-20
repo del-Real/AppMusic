@@ -246,7 +246,7 @@ Partial Class Form1
         '
         'TB_Name_Artist
         '
-        Me.TB_Name_Artist.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Artist.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Name_Artist.Location = New System.Drawing.Point(28, 130)
         Me.TB_Name_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Name_Artist.Name = "TB_Name_Artist"
@@ -265,7 +265,7 @@ Partial Class Form1
         '
         'TB_Id_Artist
         '
-        Me.TB_Id_Artist.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Artist.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Id_Artist.Location = New System.Drawing.Point(28, 62)
         Me.TB_Id_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Id_Artist.Name = "TB_Id_Artist"
@@ -333,7 +333,7 @@ Partial Class Form1
         '
         'TB_Name_Country
         '
-        Me.TB_Name_Country.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Country.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Name_Country.Location = New System.Drawing.Point(31, 129)
         Me.TB_Name_Country.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Name_Country.Name = "TB_Name_Country"
@@ -352,7 +352,7 @@ Partial Class Form1
         '
         'TB_Id_Country
         '
-        Me.TB_Id_Country.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Country.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Id_Country.Location = New System.Drawing.Point(31, 61)
         Me.TB_Id_Country.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Id_Country.Name = "TB_Id_Country"
@@ -438,7 +438,7 @@ Partial Class Form1
         '
         'TB_Name_Site
         '
-        Me.TB_Name_Site.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Name_Site.Location = New System.Drawing.Point(43, 120)
         Me.TB_Name_Site.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Name_Site.Name = "TB_Name_Site"
@@ -457,7 +457,7 @@ Partial Class Form1
         '
         'TB_Id_Site
         '
-        Me.TB_Id_Site.Font = New System.Drawing.Font("Arial Narrow", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
         Me.TB_Id_Site.Location = New System.Drawing.Point(43, 53)
         Me.TB_Id_Site.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TB_Id_Site.Name = "TB_Id_Site"
