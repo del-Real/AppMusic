@@ -55,6 +55,6 @@
     End Function
 
     Public Overrides Function ToString() As String
-        Return Me.IDSitio + " " + Me.NomSitio + " " + Me.Pais.NomPais + " " + Me.tipo
+        Return Me.IDSitio & " " & Me.NomSitio & " " & Me.tipo
     End Function
 End Class

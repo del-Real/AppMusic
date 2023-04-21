@@ -58,6 +58,11 @@ Partial Class Form1
         Label16 = New Label()
         TB_Id_Song = New TextBox()
         TabConcert = New TabPage()
+        lstConcert = New ListView()
+        Label22 = New Label()
+        TB_Id_Concert = New TextBox()
+        Label21 = New Label()
+        DateTimePicker1 = New DateTimePicker()
         TabCountry = New TabPage()
         lstContries = New ListView()
         Label2 = New Label()
@@ -80,10 +85,15 @@ Partial Class Form1
         ButtonDelete = New Button()
         ButtonAdd = New Button()
         ButtonModify = New Button()
+        CB_Artist_Concert = New ComboBox()
+        Label23 = New Label()
+        CB_Site_Concert = New ComboBox()
+        Label24 = New Label()
         TabControl.SuspendLayout()
         TabAlbum.SuspendLayout()
         TabArtist.SuspendLayout()
         TabSong.SuspendLayout()
+        TabConcert.SuspendLayout()
         TabCountry.SuspendLayout()
         TabSite.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
@@ -118,7 +128,7 @@ Partial Class Form1
         TabAlbum.Controls.Add(DTP_Year_Album)
         TabAlbum.Controls.Add(Label7)
         TabAlbum.Controls.Add(Label6)
-        TabAlbum.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TabAlbum.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabAlbum.Location = New Point(4, 28)
         TabAlbum.Name = "TabAlbum"
         TabAlbum.Padding = New Padding(3)
@@ -172,7 +182,7 @@ Partial Class Form1
         Label12.AutoSize = True
         Label12.Location = New Point(29, 83)
         Label12.Name = "Label12"
-        Label12.Size = New Size(93, 18)
+        Label12.Size = New Size(92, 18)
         Label12.TabIndex = 33
         Label12.Text = "Album Name"
         ' 
@@ -199,7 +209,7 @@ Partial Class Form1
         TB_Name_Album.Location = New Point(29, 104)
         TB_Name_Album.Margin = New Padding(3, 2, 3, 2)
         TB_Name_Album.Name = "TB_Name_Album"
-        TB_Name_Album.Size = New Size(239, 24)
+        TB_Name_Album.Size = New Size(239, 25)
         TB_Name_Album.TabIndex = 31
         ' 
         ' DTP_Year_Album
@@ -243,6 +253,7 @@ Partial Class Form1
         TabArtist.Controls.Add(TB_Name_Artist)
         TabArtist.Controls.Add(Label10)
         TabArtist.Controls.Add(TB_Id_Artist)
+        TabArtist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabArtist.Location = New Point(4, 28)
         TabArtist.Name = "TabArtist"
         TabArtist.Padding = New Padding(3)
@@ -331,6 +342,7 @@ Partial Class Form1
         TabSong.Controls.Add(TB_Name_Song)
         TabSong.Controls.Add(Label16)
         TabSong.Controls.Add(TB_Id_Song)
+        TabSong.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabSong.Location = New Point(4, 28)
         TabSong.Name = "TabSong"
         TabSong.Padding = New Padding(3)
@@ -453,6 +465,16 @@ Partial Class Form1
         ' 
         ' TabConcert
         ' 
+        TabConcert.Controls.Add(CB_Site_Concert)
+        TabConcert.Controls.Add(Label24)
+        TabConcert.Controls.Add(CB_Artist_Concert)
+        TabConcert.Controls.Add(Label23)
+        TabConcert.Controls.Add(lstConcert)
+        TabConcert.Controls.Add(Label22)
+        TabConcert.Controls.Add(TB_Id_Concert)
+        TabConcert.Controls.Add(Label21)
+        TabConcert.Controls.Add(DateTimePicker1)
+        TabConcert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabConcert.Location = New Point(4, 28)
         TabConcert.Name = "TabConcert"
         TabConcert.Padding = New Padding(3)
@@ -461,6 +483,50 @@ Partial Class Form1
         TabConcert.Text = "Concert"
         TabConcert.UseVisualStyleBackColor = True
         ' 
+        ' lstConcert
+        ' 
+        lstConcert.Location = New Point(296, 22)
+        lstConcert.MultiSelect = False
+        lstConcert.Name = "lstConcert"
+        lstConcert.Size = New Size(220, 245)
+        lstConcert.TabIndex = 23
+        lstConcert.UseCompatibleStateImageBehavior = False
+        ' 
+        ' Label22
+        ' 
+        Label22.AutoSize = True
+        Label22.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label22.Location = New Point(35, 22)
+        Label22.Name = "Label22"
+        Label22.Size = New Size(79, 18)
+        Label22.TabIndex = 20
+        Label22.Text = "Concert ID"
+        ' 
+        ' TB_Id_Concert
+        ' 
+        TB_Id_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TB_Id_Concert.Location = New Point(35, 43)
+        TB_Id_Concert.Name = "TB_Id_Concert"
+        TB_Id_Concert.Size = New Size(247, 25)
+        TB_Id_Concert.TabIndex = 19
+        ' 
+        ' Label21
+        ' 
+        Label21.AutoSize = True
+        Label21.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label21.Location = New Point(35, 198)
+        Label21.Name = "Label21"
+        Label21.Size = New Size(95, 18)
+        Label21.TabIndex = 18
+        Label21.Text = "Concert Date"
+        ' 
+        ' DateTimePicker1
+        ' 
+        DateTimePicker1.Location = New Point(35, 219)
+        DateTimePicker1.Name = "DateTimePicker1"
+        DateTimePicker1.Size = New Size(200, 25)
+        DateTimePicker1.TabIndex = 0
+        ' 
         ' TabCountry
         ' 
         TabCountry.Controls.Add(lstContries)
@@ -468,7 +534,7 @@ Partial Class Form1
         TabCountry.Controls.Add(TB_Name_Country)
         TabCountry.Controls.Add(Label1)
         TabCountry.Controls.Add(TB_Id_Country)
-        TabCountry.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        TabCountry.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabCountry.Location = New Point(4, 28)
         TabCountry.Name = "TabCountry"
         TabCountry.Padding = New Padding(3)
@@ -533,6 +599,7 @@ Partial Class Form1
         TabSite.Controls.Add(TB_Name_Site)
         TabSite.Controls.Add(Label4)
         TabSite.Controls.Add(TB_Id_Site)
+        TabSite.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabSite.Location = New Point(4, 28)
         TabSite.Name = "TabSite"
         TabSite.Padding = New Padding(3)
@@ -683,6 +750,46 @@ Partial Class Form1
         ButtonModify.Text = "Modify"
         ButtonModify.UseVisualStyleBackColor = True
         ' 
+        ' CB_Artist_Concert
+        ' 
+        CB_Artist_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CB_Artist_Concert.FormattingEnabled = True
+        CB_Artist_Concert.Location = New Point(35, 103)
+        CB_Artist_Concert.Margin = New Padding(3, 2, 3, 2)
+        CB_Artist_Concert.Name = "CB_Artist_Concert"
+        CB_Artist_Concert.Size = New Size(162, 26)
+        CB_Artist_Concert.TabIndex = 42
+        ' 
+        ' Label23
+        ' 
+        Label23.AutoSize = True
+        Label23.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label23.Location = New Point(35, 83)
+        Label23.Name = "Label23"
+        Label23.Size = New Size(83, 18)
+        Label23.TabIndex = 41
+        Label23.Text = "Artist name"
+        ' 
+        ' CB_Site_Concert
+        ' 
+        CB_Site_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CB_Site_Concert.FormattingEnabled = True
+        CB_Site_Concert.Location = New Point(35, 161)
+        CB_Site_Concert.Margin = New Padding(3, 2, 3, 2)
+        CB_Site_Concert.Name = "CB_Site_Concert"
+        CB_Site_Concert.Size = New Size(133, 26)
+        CB_Site_Concert.TabIndex = 44
+        ' 
+        ' Label24
+        ' 
+        Label24.AutoSize = True
+        Label24.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label24.Location = New Point(35, 142)
+        Label24.Name = "Label24"
+        Label24.Size = New Size(33, 18)
+        Label24.TabIndex = 43
+        Label24.Text = "Site"
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -703,6 +810,8 @@ Partial Class Form1
         TabArtist.PerformLayout()
         TabSong.ResumeLayout(False)
         TabSong.PerformLayout()
+        TabConcert.ResumeLayout(False)
+        TabConcert.PerformLayout()
         TabCountry.ResumeLayout(False)
         TabCountry.PerformLayout()
         TabSite.ResumeLayout(False)
@@ -768,4 +877,13 @@ Partial Class Form1
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents Label22 As Label
+    Friend WithEvents TB_Id_Concert As TextBox
+    Friend WithEvents Label21 As Label
+    Friend WithEvents lstConcert As ListView
+    Friend WithEvents CB_Artist_Concert As ComboBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents CB_Site_Concert As ComboBox
+    Friend WithEvents Label24 As Label
 End Class

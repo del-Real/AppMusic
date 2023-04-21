@@ -39,6 +39,6 @@
     End Function
 
     Public Overrides Function toString() As String
-        Return Me.IDPais + " " + Me.NomPais
+        Return Me.IDPais & " " & Me.NomPais
     End Function
 End Class

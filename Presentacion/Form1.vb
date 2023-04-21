@@ -11,7 +11,7 @@ Public Class Form1
         Dim art As Artista = New Artista
         Dim alb As Album = New Album
         Dim can As Cancion = New Cancion
-        'Dim con As Concierto = New Concierto
+        Dim con As Concierto = New Concierto
 
         Try
             pai.LeerTodosPaises(ofdRuta.FileName)
@@ -19,6 +19,7 @@ Public Class Form1
             art.LeerTodosArtistas(ofdRuta.FileName)
             alb.LeerTodosAlbums(ofdRuta.FileName)
             can.LeerTodasCanciones(ofdRuta.FileName)
+            con.LeerTodosConciertos(ofdRuta.FileName)
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -150,6 +151,38 @@ Public Class Form1
             CB_Album_Song.Items.Add(a)
         Next
         CB_Album_Song.SelectedIndex = -1
+
+        ' ----------
+        ' CONCIERTOS
+        ' ----------
+
+        For Each c As Concierto In con.ConDAO.Conciertos
+            Dim item As New ListViewItem
+            item.Text = c.IDConcierto
+            c.Artista.LeerArtista()
+            item.SubItems.Add(c.Artista.NomArtista)
+            c.Sitio.LeerSitio()
+            item.SubItems.Add(c.Sitio.NomSitio)
+            item.SubItems.Add(c.FechaConcierto)
+            lstSong.Items.Add(item)
+        Next
+        ' Añade columnas al listView de Canciones
+        lstConcert.View = View.Details
+        lstConcert.Columns.Add("ID", 40)
+        lstConcert.Columns.Add("Artista", 80)
+        lstConcert.Columns.Add("Sitio", 60)
+        lstConcert.Columns.Add("Fecha", 90)
+
+        For Each item As ListViewItem In lstArtist.Items
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Artist_Concert.Items.Add(a)
+        Next
+        CB_Artist_Concert.SelectedIndex = -1
+        For Each item As ListViewItem In lstSites.Items
+            Dim s As Sitio = New Sitio(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Site_Concert.Items.Add(s)
+        Next
+        CB_Site_Concert.SelectedIndex = -1
 
 
     End Sub

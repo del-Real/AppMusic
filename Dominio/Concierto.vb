@@ -15,6 +15,12 @@
         Me.ConDAO = New ConciertoDAO
     End Sub
 
+    Public Sub New(id As Integer, nombre As String)
+        Me.IDConcierto = id
+        'FechaConcierto
+        Me.ConDAO = New ConciertoDAO
+    End Sub
+
     Public Sub New()
         Me.ConDAO = New ConciertoDAO
     End Sub
@@ -24,8 +30,8 @@
         Me.ConDAO = New ConciertoDAO
     End Sub
 
-    Public Sub LeerTodosConciertos()
-        Me.ConDAO.LeerTodas()
+    Public Sub LeerTodosConciertos(ruta As String)
+        Me.ConDAO.LeerTodas(ruta)
     End Sub
 
     Public Sub LeerConcierto()
@@ -43,4 +49,5 @@
     Public Function BorrarConcierto() As Integer
         Return Me.ConDAO.Borrar(Me)
     End Function
+
 End Class

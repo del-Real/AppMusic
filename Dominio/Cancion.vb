@@ -51,6 +51,6 @@
     End Function
 
     Public Overrides Function toString() As String
-        Return Me.IDCancion + " " + Me.NomCancion
+        Return Me.IDCancion & " " & Me.NomCancion
     End Function
 End Class
