@@ -305,7 +305,7 @@ Public Class Form1
             Case "TabArtist"
                 ArtistDelete()
             Case "TabSong"
-            'Aquí va el código para añadir un nuevo artista
+                SongDelete()
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
@@ -355,7 +355,7 @@ Public Class Form1
             Case "TabArtist"
                 ArtistClearAll()
             Case "TabSong"
-            'Aquí va el código para añadir un nuevo artista
+                SongClearAll()
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
@@ -790,14 +790,14 @@ Public Class Form1
 
         Dim alb As Album = Nothing
         If Me.TB_ID_Album.Text <> String.Empty Then
-            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Site.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_ID_Album.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 alb = New Album(Me.TB_ID_Album.Text, Me.TB_Name_Album.Text)
                 Try
                     If alb.BorrarAlbum() <> 1 Then
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    Dim item As ListViewItem = lstSites.FindItemWithText(alb.IDAlbum)
+                    Dim item As ListViewItem = lstAlbumes.FindItemWithText(alb.IDAlbum)
                     If item IsNot Nothing Then
                         lstAlbumes.Items.Remove(item)
                     End If
@@ -898,5 +898,56 @@ Public Class Form1
         End If
 
     End Sub
+
+    ' --------------
+    ' SONG DELETE
+    ' --------------
+
+    Private Sub SongDelete()
+
+        Dim can As Cancion = Nothing
+        If Me.TB_Id_Song.Text <> String.Empty Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Song.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                can = New Cancion(Me.TB_Id_Song.Text, Me.TB_Name_Song.Text)
+                Try
+                    If can.BorrarCancion() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    Dim item As ListViewItem = lstSong.FindItemWithText(can.IDCancion)
+                    If item IsNot Nothing Then
+                        lstSong.Items.Remove(item)
+                    End If
+                    MessageBox.Show(can.NomCancion.ToString & " eliminado correctamente")
+                Catch ex As Exception
+
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+
+                End Try
+            End If
+        End If
+
+    End Sub
+
+    ' -----------------
+    ' SONG MODIFY
+    ' -----------------
+
+
+
+
+    ' -----------------
+    ' SONG CLEAR ALL
+    ' -----------------
+
+    Private Sub SongClearAll()
+        Me.TB_Id_Song.Text = String.Empty
+        Me.TB_Name_Song.Text = String.Empty
+        Me.TB_Duration_Song.Text = String.Empty
+        CB_Album_Song.SelectedIndex = -1
+        Me.TB_Order_Song.Text = String.Empty
+    End Sub
+
 
 End Class

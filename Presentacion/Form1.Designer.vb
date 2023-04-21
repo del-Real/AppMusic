@@ -47,7 +47,6 @@ Partial Class Form1
         TabSong = New TabPage()
         Label19 = New Label()
         Label18 = New Label()
-        TextBox1 = New TextBox()
         Label17 = New Label()
         TB_Order_Song = New TextBox()
         TB_Duration_Song = New TextBox()
@@ -322,7 +321,6 @@ Partial Class Form1
         ' 
         TabSong.Controls.Add(Label19)
         TabSong.Controls.Add(Label18)
-        TabSong.Controls.Add(TextBox1)
         TabSong.Controls.Add(Label17)
         TabSong.Controls.Add(TB_Order_Song)
         TabSong.Controls.Add(TB_Duration_Song)
@@ -360,14 +358,6 @@ Partial Class Form1
         Label18.Size = New Size(46, 18)
         Label18.TabIndex = 50
         Label18.Text = "Order"
-        ' 
-        ' TextBox1
-        ' 
-        TextBox1.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TextBox1.Location = New Point(23, 253)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(247, 25)
-        TextBox1.TabIndex = 48
         ' 
         ' Label17
         ' 
@@ -776,7 +766,6 @@ Partial Class Form1
     Friend WithEvents Label16 As Label
     Friend WithEvents TB_Id_Song As TextBox
     Friend WithEvents Label19 As Label
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label20 As Label
     Friend WithEvents TextBox2 As TextBox
 End Class
