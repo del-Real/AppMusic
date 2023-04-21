@@ -1,5 +1,5 @@
 ﻿Public Class Sitio
-    Public Property IDSitio As String
+    Public Property IDSitio As Integer
     Public Property NomSitio As String
     Public Property Pais As Pais
     Enum TipoSitio
