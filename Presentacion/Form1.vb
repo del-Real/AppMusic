@@ -586,7 +586,7 @@ Public Class Form1
         If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
             sit = New Sitio(Me.TB_Id_Site.Text)
             sit.NomSitio = Me.TB_Name_Site.Text
-            sit.Pais = CB_Country_Site.SelectedItem
+            sit.Pais = New Pais(CType(CB_Country_Site.SelectedItem, Pais).IDPais, CType(CB_Country_Site.SelectedItem, Pais).NomPais)
             sit.tipo = CB_Type_Site.SelectedItem.ToString
             Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio)
             Dim nomSitio As String = ""

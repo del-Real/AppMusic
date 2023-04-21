@@ -29,8 +29,8 @@
         Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO paises VALUES ('" & p.IDPais & "', '" & p.NomPais & "');")
     End Function
 
-    Public Function Actualizar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE paises SET NombrePais='" & p.NomPais & "' WHERE idPais='" & p.IDPais & "';")
+    Public Function Actualizar(ByVal s As Sitio) As Integer
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE sitio SET NombreSitio='" & s.NomSitio & "', País='" & s.Pais.IDPais & "', Tipo='" & s.tipo & "' WHERE idSitio='" & s.IDSitio & "';")
     End Function
 
     Public Function Borrar(ByVal p As Pais) As Integer
