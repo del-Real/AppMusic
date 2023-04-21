@@ -6,17 +6,15 @@
         Me.Canciones = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Sub LeerTodas(ruta As String)
         Dim c As Cancion
-        Dim a As Album
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM canciones ORDER BY idCancion")
         For Each aux In col
             c = New Cancion(CInt(aux(1)))
             c.NomCancion = aux(2).ToString
             c.Duracion = CInt(aux(3))
-            a = aux(4)
-            c.Album = a
+            c.Album = New Album(aux(4).ToString)
             c.OrdenCancion = CInt(aux(5))
             Me.Canciones.Add(c)
         Next
@@ -31,11 +29,11 @@
     End Sub
 
     Public Function Insertar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones VALUES ('" & c.IDCancion & "', '" & c.NomCancion & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones VALUES ('" & c.IDCancion & "', '" & c.NomCancion & "' , '" & c.Duracion & "' , '" & c.Album.IDAlbum & "' , '" & c.OrdenCancion & "');")
     End Function
 
     Public Function Actualizar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE canciones SET NombreCancion='" & c.NomCancion & "' WHERE idCancion='" & c.IDCancion & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE canciones SET NombreCancion='" & c.NomCancion & "', Duración='" & c.Duracion & "', Album ='" & c.Album.NomAlbum & "', OrdenCanción ='" & c.OrdenCancion & "' WHERE idCancion='" & c.IDCancion & "';")
     End Function
 
     Public Function Borrar(ByVal c As Cancion) As Integer

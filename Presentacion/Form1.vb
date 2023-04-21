@@ -7,18 +7,19 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
-        Dim alb As Album = New Album
-        Dim art As Artista = New Artista
-        'Dim can As Cancion = New Cancion
-        'Dim con As Concierto = New Concierto
         Dim pai As Pais = New Pais
         Dim sit As Sitio = New Sitio
+        Dim art As Artista = New Artista
+        Dim alb As Album = New Album
+        Dim can As Cancion = New Cancion
+        'Dim con As Concierto = New Concierto
 
         Try
             pai.LeerTodosPaises(ofdRuta.FileName)
             sit.LeerTodosSitios(ofdRuta.FileName)
             art.LeerTodosArtistas(ofdRuta.FileName)
             alb.LeerTodosAlbums(ofdRuta.FileName)
+            can.LeerTodasCanciones(ofdRuta.FileName)
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -36,8 +37,8 @@ Public Class Form1
         Next
         ' Añade columnas al listView de Países
         lstContries.View = View.Details
-        lstContries.Columns.Add("ID", 50)
-        lstContries.Columns.Add("Name", 100)
+        lstContries.Columns.Add("ID", 40)
+        lstContries.Columns.Add("Name", 60)
 
         ' ------
         ' SITIOS
@@ -56,8 +57,8 @@ Public Class Form1
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
         lstSites.Columns.Add("Name", 80)
-        lstSites.Columns.Add("Country", 120)
-        lstSites.Columns.Add("Type", 100)
+        lstSites.Columns.Add("Country", 90)
+        lstSites.Columns.Add("Type", 80)
 
         ' Añade valores del enum al comboBox
         CB_Type_Site.Items.Add(TipoSitio.sala)
@@ -87,9 +88,9 @@ Public Class Form1
         Next
         ' Añade columnas al listView de Artistas
         lstArtist.View = View.Details
-        lstArtist.Columns.Add("ID", 50)
-        lstArtist.Columns.Add("Name", 100)
-        lstArtist.Columns.Add("Country", 100)
+        lstArtist.Columns.Add("ID", 40)
+        lstArtist.Columns.Add("Name", 80)
+        lstArtist.Columns.Add("Country", 90)
 
         For Each item As ListViewItem In lstContries.Items
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
@@ -100,6 +101,7 @@ Public Class Form1
         ' --------
         ' ALBUMES
         ' --------
+
         For Each a As Album In alb.AlbDAO.Albumes
             Dim item As New ListViewItem
             item.Text = a.IDAlbum
@@ -114,13 +116,43 @@ Public Class Form1
         lstAlbumes.Columns.Add("ID", 40)
         lstAlbumes.Columns.Add("Name", 80)
         lstAlbumes.Columns.Add("Year", 60)
-        lstAlbumes.Columns.Add("Artist", 90)
+        lstAlbumes.Columns.Add("Artist", 80)
 
         For Each item As ListViewItem In lstArtist.Items
             Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Artist_Album.Items.Add(a)
         Next
         CB_Artist_Album.SelectedIndex = -1
+
+        ' ---------
+        ' CANCIONES
+        ' ---------
+
+        For Each c As Cancion In can.CanDAO.Canciones
+            Dim item As New ListViewItem
+            item.Text = c.IDCancion
+            item.SubItems.Add(c.NomCancion)
+            item.SubItems.Add(c.Duracion)
+            c.Album.LeerAlbum()
+            item.SubItems.Add(c.Album.NomAlbum)
+            item.SubItems.Add(c.OrdenCancion)
+            lstSong.Items.Add(item)
+        Next
+        ' Añade columnas al listView de Canciones
+        lstSong.View = View.Details
+        lstSong.Columns.Add("ID", 40)
+        lstSong.Columns.Add("Name", 80)
+        lstSong.Columns.Add("Duration", 60)
+        lstSong.Columns.Add("Album", 90)
+        lstSong.Columns.Add("Orden", 60)
+
+        For Each item As ListViewItem In lstAlbumes.Items
+            Dim a As Album = New Album(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Album_Song.Items.Add(a)
+        Next
+        CB_Album_Song.SelectedIndex = -1
+
+
     End Sub
 
     ' =========================================================================================
@@ -187,9 +219,9 @@ Public Class Form1
         End If
     End Sub
 
-    ' ==============
+    ' ===============
     ' PESTAÑA ALBUMES
-    ' ==============
+    ' ===============
 
     Private Sub lstAlbumes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAlbumes.SelectedIndexChanged
         Dim alb As Album
@@ -205,6 +237,28 @@ Public Class Form1
             Me.TB_Name_Album.Text = alb.NomAlbum
             Me.CB_Artist_Album.Text = alb.Artista.NomArtista
             Me.DTP_Year_Album.Text = alb.AnoAlbum
+        End If
+    End Sub
+
+    ' =================
+    ' PESTAÑA CANCIONES
+    ' =================
+
+    Private Sub lstSong_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSong.SelectedIndexChanged
+        Dim can As Cancion
+        If Not Me.lstSong.SelectedItems Is Nothing Then
+            Try
+                can = New Cancion(lstSong.SelectedItems.ToString)
+                can.LeerCancion()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+            Me.TB_Id_Song.Text = can.IDCancion
+            Me.TB_Name_Song.Text = can.NomCancion
+            Me.TB_Duration_Song.Text = can.Duracion
+            Me.CB_Album_Song.Text = can.Album.NomAlbum
+            Me.TB_Order_Song.Text = can.OrdenCancion
         End If
     End Sub
 
@@ -226,7 +280,7 @@ Public Class Form1
             Case "TabArtist"
                 ArtistAdd()
             Case "TabSong"
-            'Aquí va el código para añadir un nuevo artista
+                SongAdd()
             Case "TabConcert"
             'Aquí va el código para añadir una nueva canción
             Case "TabCountry"
@@ -380,7 +434,7 @@ Public Class Form1
                             End If
                         Next
                     End If
-                        MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
+                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -806,5 +860,43 @@ Public Class Form1
         CB_Artist_Album.SelectedIndex = -1
     End Sub
 
+
+    ' ===========================================
+    ' MÉTODOS CANCIÓN
+    ' ===========================================
+
+    ' -----------
+    ' SONG ADD
+    ' -----------
+
+    Private Sub SongAdd()
+
+        Dim can As Cancion = Nothing
+        If Me.TB_Id_Song.Text <> String.Empty And Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty Then
+            can = New Cancion(Me.TB_Id_Song.Text)
+            can.NomCancion = TB_Name_Song.Text
+            can.Duracion = TB_Duration_Song.Text
+            can.Album = CB_Album_Song.SelectedItem
+            can.OrdenCancion = TB_Order_Song.Text
+            Try
+                If can.InsertarCancion() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                Dim item As New ListViewItem
+                item.Text = can.IDCancion
+                item.SubItems.Add(can.NomCancion)
+                item.SubItems.Add(can.Duracion)
+                item.SubItems.Add(can.Album.NomAlbum)
+                item.SubItems.Add(can.OrdenCancion)
+                lstAlbumes.Items.Add(item)
+                MessageBox.Show(can.NomCancion.ToString & " insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
 
 End Class

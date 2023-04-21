@@ -15,6 +15,12 @@
         Me.CanDAO = New CancionDAO
     End Sub
 
+    Public Sub New(id As Integer, nombre As String)
+        Me.IDCancion = id
+        Me.NomCancion = nombre
+        Me.CanDAO = New CancionDAO
+    End Sub
+
     Public Sub New()
         Me.CanDAO = New CancionDAO
     End Sub
@@ -24,8 +30,8 @@
         Me.CanDAO = New CancionDAO
     End Sub
 
-    Public Sub LeerTodasCanciones()
-        Me.CanDAO.LeerTodas()
+    Public Sub LeerTodasCanciones(ruta As String)
+        Me.CanDAO.LeerTodas(ruta)
     End Sub
 
     Public Sub LeerCancion()
@@ -42,5 +48,9 @@
 
     Public Function BorrarCancion() As Integer
         Return Me.CanDAO.Borrar(Me)
+    End Function
+
+    Public Overrides Function toString() As String
+        Return Me.IDCancion + " " + Me.NomCancion
     End Function
 End Class
