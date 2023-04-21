@@ -58,11 +58,15 @@ Partial Class Form1
         Label16 = New Label()
         TB_Id_Song = New TextBox()
         TabConcert = New TabPage()
+        CB_Site_Concert = New ComboBox()
+        Label24 = New Label()
+        CB_Artist_Concert = New ComboBox()
+        Label23 = New Label()
         lstConcert = New ListView()
         Label22 = New Label()
         TB_Id_Concert = New TextBox()
         Label21 = New Label()
-        DateTimePicker1 = New DateTimePicker()
+        DTP_Date_Concert = New DateTimePicker()
         TabCountry = New TabPage()
         lstContries = New ListView()
         Label2 = New Label()
@@ -85,10 +89,6 @@ Partial Class Form1
         ButtonDelete = New Button()
         ButtonAdd = New Button()
         ButtonModify = New Button()
-        CB_Artist_Concert = New ComboBox()
-        Label23 = New Label()
-        CB_Site_Concert = New ComboBox()
-        Label24 = New Label()
         TabControl.SuspendLayout()
         TabAlbum.SuspendLayout()
         TabArtist.SuspendLayout()
@@ -473,7 +473,7 @@ Partial Class Form1
         TabConcert.Controls.Add(Label22)
         TabConcert.Controls.Add(TB_Id_Concert)
         TabConcert.Controls.Add(Label21)
-        TabConcert.Controls.Add(DateTimePicker1)
+        TabConcert.Controls.Add(DTP_Date_Concert)
         TabConcert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabConcert.Location = New Point(4, 28)
         TabConcert.Name = "TabConcert"
@@ -482,6 +482,46 @@ Partial Class Form1
         TabConcert.TabIndex = 3
         TabConcert.Text = "Concert"
         TabConcert.UseVisualStyleBackColor = True
+        ' 
+        ' CB_Site_Concert
+        ' 
+        CB_Site_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CB_Site_Concert.FormattingEnabled = True
+        CB_Site_Concert.Location = New Point(35, 161)
+        CB_Site_Concert.Margin = New Padding(3, 2, 3, 2)
+        CB_Site_Concert.Name = "CB_Site_Concert"
+        CB_Site_Concert.Size = New Size(133, 26)
+        CB_Site_Concert.TabIndex = 44
+        ' 
+        ' Label24
+        ' 
+        Label24.AutoSize = True
+        Label24.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label24.Location = New Point(35, 142)
+        Label24.Name = "Label24"
+        Label24.Size = New Size(33, 18)
+        Label24.TabIndex = 43
+        Label24.Text = "Site"
+        ' 
+        ' CB_Artist_Concert
+        ' 
+        CB_Artist_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        CB_Artist_Concert.FormattingEnabled = True
+        CB_Artist_Concert.Location = New Point(35, 103)
+        CB_Artist_Concert.Margin = New Padding(3, 2, 3, 2)
+        CB_Artist_Concert.Name = "CB_Artist_Concert"
+        CB_Artist_Concert.Size = New Size(162, 26)
+        CB_Artist_Concert.TabIndex = 42
+        ' 
+        ' Label23
+        ' 
+        Label23.AutoSize = True
+        Label23.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        Label23.Location = New Point(35, 83)
+        Label23.Name = "Label23"
+        Label23.Size = New Size(83, 18)
+        Label23.TabIndex = 41
+        Label23.Text = "Artist name"
         ' 
         ' lstConcert
         ' 
@@ -520,12 +560,12 @@ Partial Class Form1
         Label21.TabIndex = 18
         Label21.Text = "Concert Date"
         ' 
-        ' DateTimePicker1
+        ' DTP_Date_Concert
         ' 
-        DateTimePicker1.Location = New Point(35, 219)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(200, 25)
-        DateTimePicker1.TabIndex = 0
+        DTP_Date_Concert.Location = New Point(35, 219)
+        DTP_Date_Concert.Name = "DTP_Date_Concert"
+        DTP_Date_Concert.Size = New Size(200, 25)
+        DTP_Date_Concert.TabIndex = 0
         ' 
         ' TabCountry
         ' 
@@ -750,46 +790,6 @@ Partial Class Form1
         ButtonModify.Text = "Modify"
         ButtonModify.UseVisualStyleBackColor = True
         ' 
-        ' CB_Artist_Concert
-        ' 
-        CB_Artist_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Artist_Concert.FormattingEnabled = True
-        CB_Artist_Concert.Location = New Point(35, 103)
-        CB_Artist_Concert.Margin = New Padding(3, 2, 3, 2)
-        CB_Artist_Concert.Name = "CB_Artist_Concert"
-        CB_Artist_Concert.Size = New Size(162, 26)
-        CB_Artist_Concert.TabIndex = 42
-        ' 
-        ' Label23
-        ' 
-        Label23.AutoSize = True
-        Label23.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label23.Location = New Point(35, 83)
-        Label23.Name = "Label23"
-        Label23.Size = New Size(83, 18)
-        Label23.TabIndex = 41
-        Label23.Text = "Artist name"
-        ' 
-        ' CB_Site_Concert
-        ' 
-        CB_Site_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Site_Concert.FormattingEnabled = True
-        CB_Site_Concert.Location = New Point(35, 161)
-        CB_Site_Concert.Margin = New Padding(3, 2, 3, 2)
-        CB_Site_Concert.Name = "CB_Site_Concert"
-        CB_Site_Concert.Size = New Size(133, 26)
-        CB_Site_Concert.TabIndex = 44
-        ' 
-        ' Label24
-        ' 
-        Label24.AutoSize = True
-        Label24.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label24.Location = New Point(35, 142)
-        Label24.Name = "Label24"
-        Label24.Size = New Size(33, 18)
-        Label24.TabIndex = 43
-        Label24.Text = "Site"
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -877,7 +877,7 @@ Partial Class Form1
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents DTP_Date_Concert As DateTimePicker
     Friend WithEvents Label22 As Label
     Friend WithEvents TB_Id_Concert As TextBox
     Friend WithEvents Label21 As Label

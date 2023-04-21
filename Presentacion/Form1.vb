@@ -294,6 +294,27 @@ Public Class Form1
         End If
     End Sub
 
+    ' ==================
+    ' PESTAÑA CONCIERTOS
+    ' ==================
+
+    Private Sub lstConcert_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert.SelectedIndexChanged
+        Dim con As Concierto
+        If Not Me.lstConcert.SelectedItems Is Nothing Then
+            Try
+                con = New Concierto(lstConcert.SelectedItems.ToString)
+                con.LeerConcierto()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+            Me.TB_Id_Concert.Text = con.IDConcierto
+            Me.CB_Artist_Concert.Text = con.Artista.NomArtista
+            Me.CB_Site_Concert.Text = con.Sitio.NomSitio
+            Me.DTP_Date_Concert.Text = con.FechaConcierto
+        End If
+    End Sub
+
     ' =========================================================================================
     ' BOTONES FUNCIONES
     ' =========================================================================================
@@ -314,7 +335,7 @@ Public Class Form1
             Case "TabSong"
                 SongAdd()
             Case "TabConcert"
-            'Aquí va el código para añadir una nueva canción
+                ConcertAdd()
             Case "TabCountry"
                 CountryAdd()
             Case "TabSite"
@@ -982,6 +1003,57 @@ Public Class Form1
         CB_Album_Song.SelectedIndex = -1
         Me.TB_Order_Song.Text = String.Empty
     End Sub
+
+    ' ===========================================
+    ' MÉTODOS CONCIERTO
+    ' ===========================================
+
+    ' -----------
+    ' CONCERT ADD
+    ' -----------
+
+    Private Sub ConcertAdd()
+
+        Dim con As Concierto = Nothing
+        If Me.TB_Id_Concert.Text <> String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
+            con = New Concierto(Me.TB_Id_Concert.Text)
+            con.Artista = CB_Artist_Concert.SelectedItem
+            con.Sitio = CB_Site_Concert.SelectedItem
+            con.FechaConcierto = DTP_Date_Concert.Value
+            Try
+                If con.InsertarConcierto() <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                Dim item As New ListViewItem
+                item.Text = con.IDConcierto
+                item.SubItems.Add(con.IDConcierto)
+                item.SubItems.Add(con.Artista.NomArtista)
+                item.SubItems.Add(con.Sitio.NomSitio)
+                item.SubItems.Add(con.FechaConcierto)
+                lstContries.Items.Add(item)
+                MessageBox.Show(con.IDConcierto.ToString & " insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+    ' --------------
+    ' CONCERT DELETE
+    ' --------------
+
+
+    ' --------------
+    ' CONCERT MODIFY
+    ' --------------
+
+
+    ' -----------------
+    ' CONCERT CLEAR ALL
+    ' -----------------
 
 
 End Class
