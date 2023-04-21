@@ -890,7 +890,7 @@ Public Class Form1
                 item.SubItems.Add(can.Duracion)
                 item.SubItems.Add(can.Album.NomAlbum)
                 item.SubItems.Add(can.OrdenCancion)
-                lstAlbumes.Items.Add(item)
+                lstSong.Items.Add(item)
                 MessageBox.Show(can.NomCancion.ToString & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -45,7 +45,7 @@
     End Function
 
     Public Overrides Function toString() As String
-        Return Me.IDAlbum + " " + Me.NomAlbum
+        Return Me.IDAlbum & " " & Me.NomAlbum
     End Function
 
 End Class
