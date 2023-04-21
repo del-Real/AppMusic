@@ -4,6 +4,7 @@ Imports AppMusic.Sitio
 Imports Mysqlx.Crud
 
 Public Class Form1
+    Private lstArtists As Object
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
@@ -637,12 +638,14 @@ Public Class Form1
     ' -----------
 
     Private Sub ArtistAdd()
-
         Dim art As Artista = Nothing
         If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty Then
-            art = New Artista(Me.TB_Id_Artist.Text)
-            art.NomArtista = Me.TB_Name_Artist.Text
-            art.Pais = CB_Country_Artist.SelectedItem
+            If TypeOf CB_Country_Artist.SelectedItem Is Pais Then
+                art = New Artista(Me.TB_Id_Artist.Text, Me.TB_Name_Artist.Text, CType(CB_Country_Artist.SelectedItem, Pais))
+            Else
+                MessageBox.Show("Selecciona un país valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
             Try
                 If art.InsertarArtista() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -659,8 +662,8 @@ Public Class Form1
                 Exit Sub
             End Try
         End If
-
     End Sub
+
 
     ' --------------
     ' ARTIST DELETE
@@ -706,15 +709,20 @@ Public Class Form1
         If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty And Me.CB_Country_Artist.Text <> String.Empty Then
             art = New Artista(Me.TB_Id_Artist.Text)
             art.NomArtista = Me.TB_Name_Artist.Text
-            art.Pais = CB_Country_Artist.SelectedItem
-            Dim item As ListViewItem = lstSites.FindItemWithText(art.IDArtista)
+            If TypeOf CB_Country_Artist.SelectedItem Is Pais Then
+                art.Pais = CType(CB_Country_Artist.SelectedItem, Pais)
+            Else
+                MessageBox.Show("Selecciona un país valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            Dim item As ListViewItem = lstArtists.FindItemWithText(art.IDArtista)
             Dim nomArtista As String = ""
             If item IsNot Nothing Then
                 nomArtista = item.SubItems(1).Text
                 item.SubItems(1).Text = art.NomArtista
                 item.SubItems(2).Text = art.Pais.NomPais
-                CB_Country_Site.Items.Remove(nomArtista)
-                CB_Country_Site.Items.Add(art.NomArtista)
+                CB_Country_Artist.Items.Remove(nomArtista)
+                CB_Country_Artist.Items.Add(art.NomArtista)
             End If
             Try
                 If art.ActualizarArtista() <> 1 Then

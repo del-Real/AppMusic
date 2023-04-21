@@ -17,6 +17,13 @@
         Me.ArtDAO = New ArtistaDAO
     End Sub
 
+    Public Sub New(id As Integer, pais As Pais)
+        Me.IDArtista = id
+        Me.Pais = pais
+        Me.ArtDAO = New ArtistaDAO
+    End Sub
+
+
     Public Sub New()
         Me.ArtDAO = New ArtistaDAO
     End Sub
