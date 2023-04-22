@@ -1,10 +1,12 @@
-﻿Public Class Pais
+﻿Imports Mysqlx.XDevAPI.Common
+
+Public Class Pais
     Public Property IDPais As String
     Public Property NomPais As String
     Public ReadOnly Property PaiDAO As PaisDAO
 
     Public Sub New(id As String, nombre As String)
-        Me.IDPais = id
+        Me.IDPais = id.ToUpper().Substring(0, 3)
         Me.NomPais = nombre
         Me.PaiDAO = New PaisDAO
     End Sub
@@ -14,7 +16,7 @@
     End Sub
 
     Public Sub New(id As String)
-        Me.IDPais = id
+        Me.IDPais = id.ToUpper().Substring(0, 3)
         Me.PaiDAO = New PaisDAO
     End Sub
 
@@ -32,6 +34,13 @@
 
     Public Function ActualizarPais() As Integer
         Return Me.PaiDAO.Actualizar(Me)
+        Dim result As Integer = Me.PaiDAO.Actualizar(Me)
+        If result > 0 Then
+            ' Actualizar la referencia a IDPais en la tabla artistas y sitio
+            AgenteBD.ObtenerAgente.Modificar("UPDATE artistas SET Nacionalidad='" & Me.IDPais & "' WHERE Nacionalidad='" & NomPais & "';")
+            AgenteBD.ObtenerAgente.Modificar("UPDATE sitio SET Pais='" & Me.IDPais & "' WHERE Pais='" & IDPais & "';")
+        End If
+        Return result
     End Function
 
     Public Function BorrarPais() As Integer
