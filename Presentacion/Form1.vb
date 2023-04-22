@@ -517,7 +517,8 @@ Public Class Form1
                 nomPais = item.SubItems(1).Text
                 item.SubItems(1).Text = pai.NomPais
             End If
-            'ACTUALIZA INFORMACION DE LOS COMBOBOX DE PAISES DE LAS DEMAS VENTANAS
+
+            ' actualiza el combo box de las ventanas que usan pais'
             For i As Integer = 0 To CB_Country_Site.Items.Count - 1
                 Dim pais As Pais = CType(CB_Country_Site.Items(i), Pais)
                 If pais.IDPais = pai.IDPais Then
