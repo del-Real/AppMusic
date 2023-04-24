@@ -516,27 +516,23 @@ Public Class Form1
             If item IsNot Nothing Then
                 nomPais = item.SubItems(1).Text
                 item.SubItems(1).Text = pai.NomPais
+                CB_Country_Site.Items.Add(item)
+                CB_Country_Artist.Items.Add(item)
             End If
-
-            ' actualiza el combo box de las ventanas que usan pais'
-            For i As Integer = 0 To CB_Country_Site.Items.Count - 1
-                Dim pais As Pais = CType(CB_Country_Site.Items(i), Pais)
+            'ACTUALIZA INFORMACION DE LOS COMBOBOX DE PAISES DE LAS DEMAS VENTANAS
+            For Each el1 As Pais In CB_Country_Site.Items
+                Dim pais As Pais = CType(el1, Pais)
                 If pais.IDPais = pai.IDPais Then
                     pais.NomPais = pai.NomPais
-                    CB_Country_Site.Items(i) = pais
+                    For Each el2 As Pais In CB_Country_Artist.Items
+                        If el2.IDPais = pai.IDPais Then
+                            el2.NomPais = pai.NomPais
+                            Exit For
+                        End If
+                    Next
                     Exit For
                 End If
             Next
-
-            For i As Integer = 0 To CB_Country_Artist.Items.Count - 1
-                Dim pais As Pais = CType(CB_Country_Artist.Items(i), Pais)
-                If pais.IDPais = pai.IDPais Then
-                    pais.NomPais = pai.NomPais
-                    CB_Country_Artist.Items(i) = pais
-                    Exit For
-                End If
-            Next
-
             Try
                 If pai.ActualizarPais() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -681,6 +677,7 @@ Public Class Form1
         CB_Country_Site.SelectedIndex = -1
         CB_Type_Site.SelectedIndex = -1
     End Sub
+
 
     ' ===========================================
     ' MÉTODOS ARTISTA
