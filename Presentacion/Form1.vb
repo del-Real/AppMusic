@@ -37,8 +37,8 @@ Public Class Form1
         Next
         ' Añade columnas al listView de Países
         lstContries.View = View.Details
-        lstContries.Columns.Add("ID", 40)
-        lstContries.Columns.Add("Name", 60)
+        lstContries.Columns.Add("ID", 75)
+        lstContries.Columns.Add("Name", 150)
 
         ' ------
         ' SITIOS
@@ -465,38 +465,35 @@ Public Class Form1
 
         Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty Then
-            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, "Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, ". Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
                 Try
-                    If pai.BorrarPais() <> 1 Then
-                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Exit Sub
-                    End If
-                    Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais)
+                    Dim item As ListViewItem = lstContries.FindItemWithText(TB_Id_Country.Text, False, 0, True)
                     If item IsNot Nothing Then
-                        lstContries.Items.Remove(item)
                         For Each a As Object In CB_Country_Artist.Items
-                            If a.Pais.IDPais = pai.IDPais Then
+                            If a.IDPais = pai.IDPais Then
                                 CB_Country_Artist.Items.Remove(item)
                             End If
                         Next
-
                         For Each s As Object In CB_Country_Site.Items
-                            If s.Pais.IDPais = pai.IDPais Then
+                            If s.IDPais = pai.IDPais Then
                                 CB_Country_Site.Items.Remove(item)
                             End If
                         Next
                     End If
+                    If pai.BorrarPais() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    lstContries.Items.Remove(item)
                     MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
-
                 End Try
             End If
         End If
-
     End Sub
 
 
@@ -509,28 +506,33 @@ Public Class Form1
 
         Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-            pai = New Pais(Me.TB_Id_Country.Text)
+            CB_Country_Artist.Items.Remove(TB_Id_Country)
+            CB_Country_Site.Items.Remove(TB_Id_Country)
+            pai = New Pais(UCase(TB_Name_Country.Text.Substring(0, 3)))
             pai.NomPais = Me.TB_Name_Country.Text
-            Dim item As ListViewItem = lstContries.FindItemWithText(pai.IDPais)
-            Dim nomPais As String = ""
+            Dim item As ListViewItem = lstContries.FindItemWithText(TB_Id_Country.Text)
             If item IsNot Nothing Then
-                nomPais = item.SubItems(1).Text
+                item.SubItems(0).Text = pai.IDPais
                 item.SubItems(1).Text = pai.NomPais
                 CB_Country_Site.Items.Add(item)
                 CB_Country_Artist.Items.Add(item)
             End If
             'ACTUALIZA INFORMACION DE LOS COMBOBOX DE PAISES DE LAS DEMAS VENTANAS
-            For Each el1 As Pais In CB_Country_Site.Items
-                Dim pais As Pais = CType(el1, Pais)
-                If pais.IDPais = pai.IDPais Then
-                    pais.NomPais = pai.NomPais
-                    For Each el2 As Pais In CB_Country_Artist.Items
-                        If el2.IDPais = pai.IDPais Then
-                            el2.NomPais = pai.NomPais
-                            Exit For
-                        End If
-                    Next
-                    Exit For
+            For Each el1 As Object In CB_Country_Site.Items
+                If TypeOf el1 Is Pais Then
+                    Dim pais As Pais = CType(el1, Pais)
+                    If pais.IDPais = pai.IDPais Then
+                        pais.NomPais = pai.NomPais
+                        For Each el2 As Object In CB_Country_Artist.Items
+                            If TypeOf el2 Is Pais Then
+                                If el2.IDPais = pai.IDPais Then
+                                    el2.NomPais = pai.NomPais
+                                    Exit For
+                                End If
+                            End If
+                        Next
+                        Exit For
+                    End If
                 End If
             Next
             Try

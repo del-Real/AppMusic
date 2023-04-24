@@ -1,5 +1,17 @@
 ﻿Public Class Pais
+    Public Property _idPais As String
     Public Property IDPais As String
+        Get
+            Return _idPais
+        End Get
+        Set(value As String)
+            If value.Length = 3 Then
+                _idPais = value
+            Else
+                Throw New Exception("El ID del país debe tener exactamente 3 caracteres.")
+            End If
+        End Set
+    End Property
     Public Property NomPais As String
     Public ReadOnly Property PaiDAO As PaisDAO
 
