@@ -30,8 +30,8 @@
         Me.CanDAO = New CancionDAO
     End Sub
 
-    Public Sub LeerTodasCanciones(ruta As String)
-        Me.CanDAO.LeerTodas(ruta)
+    Public Sub LeerTodasCanciones()
+        Me.CanDAO.LeerTodas()
     End Sub
 
     Public Sub LeerCancion()

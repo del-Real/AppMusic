@@ -6,7 +6,7 @@
         Me.Paises = New Collection
     End Sub
 
-    Public Sub LeerTodos(ruta As String)
+    Public Sub LeerTodos()
         Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM paises ORDER BY idPais")

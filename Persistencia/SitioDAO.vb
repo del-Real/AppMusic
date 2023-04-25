@@ -6,7 +6,7 @@
         Me.Sitios = New Collection
     End Sub
 
-    Public Sub LeerTodos(ruta As String)
+    Public Sub LeerTodos()
         Dim s As Sitio
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM sitio ORDER BY idSitio")

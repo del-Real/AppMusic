@@ -6,7 +6,7 @@
         Me.Conciertos = New Collection
     End Sub
 
-    Public Sub LeerTodas(ruta As String)
+    Public Sub LeerTodas()
         Dim c As Concierto
         Dim a As Artista
         Dim s As Sitio

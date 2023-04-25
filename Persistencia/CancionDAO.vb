@@ -6,7 +6,7 @@
         Me.Canciones = New Collection
     End Sub
 
-    Public Sub LeerTodas(ruta As String)
+    Public Sub LeerTodas()
         Dim c As Cancion
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM canciones ORDER BY idCancion")

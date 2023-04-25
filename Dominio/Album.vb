@@ -24,8 +24,8 @@
         Me.IDAlbum = id
         Me.AlbDAO = New AlbumDAO
     End Sub
-    Public Sub LeerTodosAlbums(ruta As String)
-        Me.AlbDAO.LeerTodos(ruta)
+    Public Sub LeerTodosAlbums()
+        Me.AlbDAO.LeerTodos()
     End Sub
 
     Public Sub LeerAlbum()

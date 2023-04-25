@@ -30,8 +30,8 @@
         Me.ConDAO = New ConciertoDAO
     End Sub
 
-    Public Sub LeerTodosConciertos(ruta As String)
-        Me.ConDAO.LeerTodas(ruta)
+    Public Sub LeerTodosConciertos()
+        Me.ConDAO.LeerTodas()
     End Sub
 
     Public Sub LeerConcierto()
