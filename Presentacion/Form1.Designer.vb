@@ -22,802 +22,821 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As ComponentModel.ComponentResourceManager = New ComponentModel.ComponentResourceManager(GetType(Form1))
-        TabControl = New TabControl()
-        TabAlbum = New TabPage()
-        lstAlbumes = New ListView()
-        CB_Artist_Album = New ComboBox()
-        Label13 = New Label()
-        Label20 = New Label()
-        Label12 = New Label()
-        TextBox2 = New TextBox()
-        TB_ID_Album = New TextBox()
-        TB_Name_Album = New TextBox()
-        DTP_Year_Album = New DateTimePicker()
-        Label7 = New Label()
-        Label6 = New Label()
-        TabArtist = New TabPage()
-        CB_Country_Artist = New ComboBox()
-        Label11 = New Label()
-        lstArtist = New ListView()
-        Label9 = New Label()
-        TB_Name_Artist = New TextBox()
-        Label10 = New Label()
-        TB_Id_Artist = New TextBox()
-        TabSong = New TabPage()
-        Label19 = New Label()
-        Label18 = New Label()
-        Label17 = New Label()
-        TB_Order_Song = New TextBox()
-        TB_Duration_Song = New TextBox()
-        lstSong = New ListView()
-        CB_Album_Song = New ComboBox()
-        Label14 = New Label()
-        Label15 = New Label()
-        TB_Name_Song = New TextBox()
-        Label16 = New Label()
-        TB_Id_Song = New TextBox()
-        TabConcert = New TabPage()
-        CB_Site_Concert = New ComboBox()
-        Label24 = New Label()
-        CB_Artist_Concert = New ComboBox()
-        Label23 = New Label()
-        lstConcert = New ListView()
-        Label22 = New Label()
-        TB_Id_Concert = New TextBox()
-        Label21 = New Label()
-        DTP_Date_Concert = New DateTimePicker()
-        TabCountry = New TabPage()
-        lstContries = New ListView()
-        Label2 = New Label()
-        TB_Name_Country = New TextBox()
-        Label1 = New Label()
-        TB_Id_Country = New TextBox()
-        TabSite = New TabPage()
-        CB_Country_Site = New ComboBox()
-        CB_Type_Site = New ComboBox()
-        Label8 = New Label()
-        Label5 = New Label()
-        lstSites = New ListView()
-        Label3 = New Label()
-        TB_Name_Site = New TextBox()
-        Label4 = New Label()
-        TB_Id_Site = New TextBox()
-        ofdRuta = New OpenFileDialog()
-        PictureBox1 = New PictureBox()
-        ButtonClearAll = New Button()
-        ButtonDelete = New Button()
-        ButtonAdd = New Button()
-        ButtonModify = New Button()
-        TabControl.SuspendLayout()
-        TabAlbum.SuspendLayout()
-        TabArtist.SuspendLayout()
-        TabSong.SuspendLayout()
-        TabConcert.SuspendLayout()
-        TabCountry.SuspendLayout()
-        TabSite.SuspendLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
-        SuspendLayout()
-        ' 
-        ' TabControl
-        ' 
-        TabControl.Controls.Add(TabAlbum)
-        TabControl.Controls.Add(TabArtist)
-        TabControl.Controls.Add(TabSong)
-        TabControl.Controls.Add(TabConcert)
-        TabControl.Controls.Add(TabCountry)
-        TabControl.Controls.Add(TabSite)
-        TabControl.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
-        TabControl.Location = New Point(36, 71)
-        TabControl.Name = "TabControl"
-        TabControl.Padding = New Point(17, 3)
-        TabControl.SelectedIndex = 0
-        TabControl.Size = New Size(548, 322)
-        TabControl.TabIndex = 0
-        ' 
-        ' TabAlbum
-        ' 
-        TabAlbum.Controls.Add(lstAlbumes)
-        TabAlbum.Controls.Add(CB_Artist_Album)
-        TabAlbum.Controls.Add(Label13)
-        TabAlbum.Controls.Add(Label20)
-        TabAlbum.Controls.Add(Label12)
-        TabAlbum.Controls.Add(TextBox2)
-        TabAlbum.Controls.Add(TB_ID_Album)
-        TabAlbum.Controls.Add(TB_Name_Album)
-        TabAlbum.Controls.Add(DTP_Year_Album)
-        TabAlbum.Controls.Add(Label7)
-        TabAlbum.Controls.Add(Label6)
-        TabAlbum.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabAlbum.Location = New Point(4, 28)
-        TabAlbum.Name = "TabAlbum"
-        TabAlbum.Padding = New Padding(3)
-        TabAlbum.Size = New Size(540, 290)
-        TabAlbum.TabIndex = 0
-        TabAlbum.Text = "Album"
-        TabAlbum.UseVisualStyleBackColor = True
-        ' 
-        ' lstAlbumes
-        ' 
-        lstAlbumes.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        lstAlbumes.Location = New Point(297, 20)
-        lstAlbumes.Margin = New Padding(3, 2, 3, 2)
-        lstAlbumes.Name = "lstAlbumes"
-        lstAlbumes.Size = New Size(218, 252)
-        lstAlbumes.TabIndex = 41
-        lstAlbumes.UseCompatibleStateImageBehavior = False
-        ' 
-        ' CB_Artist_Album
-        ' 
-        CB_Artist_Album.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Artist_Album.FormattingEnabled = True
-        CB_Artist_Album.Location = New Point(26, 209)
-        CB_Artist_Album.Margin = New Padding(3, 2, 3, 2)
-        CB_Artist_Album.Name = "CB_Artist_Album"
-        CB_Artist_Album.Size = New Size(162, 26)
-        CB_Artist_Album.TabIndex = 40
-        ' 
-        ' Label13
-        ' 
-        Label13.AutoSize = True
-        Label13.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label13.Location = New Point(26, 20)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(69, 18)
-        Label13.TabIndex = 34
-        Label13.Text = "Album ID"
-        ' 
-        ' Label20
-        ' 
-        Label20.AutoSize = True
-        Label20.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label20.Location = New Point(26, 83)
-        Label20.Name = "Label20"
-        Label20.Size = New Size(92, 18)
-        Label20.TabIndex = 33
-        Label20.Text = "Album Name"
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Location = New Point(29, 83)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(92, 18)
-        Label12.TabIndex = 33
-        Label12.Text = "Album Name"
-        ' 
-        ' TextBox2
-        ' 
-        TextBox2.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TextBox2.Location = New Point(26, 104)
-        TextBox2.Margin = New Padding(3, 2, 3, 2)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(239, 25)
-        TextBox2.TabIndex = 31
-        ' 
-        ' TB_ID_Album
-        ' 
-        TB_ID_Album.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_ID_Album.Location = New Point(26, 40)
-        TB_ID_Album.Margin = New Padding(3, 2, 3, 2)
-        TB_ID_Album.Name = "TB_ID_Album"
-        TB_ID_Album.Size = New Size(239, 25)
-        TB_ID_Album.TabIndex = 32
-        ' 
-        ' TB_Name_Album
-        ' 
-        TB_Name_Album.Location = New Point(29, 104)
-        TB_Name_Album.Margin = New Padding(3, 2, 3, 2)
-        TB_Name_Album.Name = "TB_Name_Album"
-        TB_Name_Album.Size = New Size(239, 25)
-        TB_Name_Album.TabIndex = 31
-        ' 
-        ' DTP_Year_Album
-        ' 
-        DTP_Year_Album.CustomFormat = "yyyy"
-        DTP_Year_Album.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        DTP_Year_Album.Format = DateTimePickerFormat.Custom
-        DTP_Year_Album.Location = New Point(26, 156)
-        DTP_Year_Album.Margin = New Padding(3, 2, 3, 2)
-        DTP_Year_Album.Name = "DTP_Year_Album"
-        DTP_Year_Album.ShowUpDown = True
-        DTP_Year_Album.Size = New Size(80, 25)
-        DTP_Year_Album.TabIndex = 30
-        ' 
-        ' Label7
-        ' 
-        Label7.AutoSize = True
-        Label7.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label7.Location = New Point(26, 189)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(83, 18)
-        Label7.TabIndex = 29
-        Label7.Text = "Artist name"
-        ' 
-        ' Label6
-        ' 
-        Label6.AutoSize = True
-        Label6.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label6.Location = New Point(26, 136)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(35, 18)
-        Label6.TabIndex = 27
-        Label6.Text = "Year"
-        ' 
-        ' TabArtist
-        ' 
-        TabArtist.Controls.Add(CB_Country_Artist)
-        TabArtist.Controls.Add(Label11)
-        TabArtist.Controls.Add(lstArtist)
-        TabArtist.Controls.Add(Label9)
-        TabArtist.Controls.Add(TB_Name_Artist)
-        TabArtist.Controls.Add(Label10)
-        TabArtist.Controls.Add(TB_Id_Artist)
-        TabArtist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabArtist.Location = New Point(4, 28)
-        TabArtist.Name = "TabArtist"
-        TabArtist.Padding = New Padding(3)
-        TabArtist.Size = New Size(540, 290)
-        TabArtist.TabIndex = 1
-        TabArtist.Text = "Artist"
-        TabArtist.UseVisualStyleBackColor = True
-        ' 
-        ' CB_Country_Artist
-        ' 
-        CB_Country_Artist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Country_Artist.FormattingEnabled = True
-        CB_Country_Artist.Location = New Point(24, 154)
-        CB_Country_Artist.Margin = New Padding(3, 2, 3, 2)
-        CB_Country_Artist.Name = "CB_Country_Artist"
-        CB_Country_Artist.Size = New Size(133, 26)
-        CB_Country_Artist.TabIndex = 39
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label11.Location = New Point(24, 135)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(61, 18)
-        Label11.TabIndex = 38
-        Label11.Text = "Country"
-        ' 
-        ' lstArtist
-        ' 
-        lstArtist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        lstArtist.Location = New Point(297, 26)
-        lstArtist.MultiSelect = False
-        lstArtist.Name = "lstArtist"
-        lstArtist.Size = New Size(220, 245)
-        lstArtist.TabIndex = 27
-        lstArtist.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Label9
-        ' 
-        Label9.AutoSize = True
-        Label9.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label9.Location = New Point(24, 80)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(85, 18)
-        Label9.TabIndex = 26
-        Label9.Text = "Artist Name"
-        ' 
-        ' TB_Name_Artist
-        ' 
-        TB_Name_Artist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Name_Artist.Location = New Point(24, 98)
-        TB_Name_Artist.Name = "TB_Name_Artist"
-        TB_Name_Artist.Size = New Size(247, 25)
-        TB_Name_Artist.TabIndex = 25
-        ' 
-        ' Label10
-        ' 
-        Label10.AutoSize = True
-        Label10.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label10.Location = New Point(24, 26)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(59, 18)
-        Label10.TabIndex = 24
-        Label10.Text = "Artist ID"
-        ' 
-        ' TB_Id_Artist
-        ' 
-        TB_Id_Artist.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Id_Artist.Location = New Point(24, 46)
-        TB_Id_Artist.Name = "TB_Id_Artist"
-        TB_Id_Artist.Size = New Size(247, 25)
-        TB_Id_Artist.TabIndex = 23
-        ' 
-        ' TabSong
-        ' 
-        TabSong.Controls.Add(Label19)
-        TabSong.Controls.Add(Label18)
-        TabSong.Controls.Add(Label17)
-        TabSong.Controls.Add(TB_Order_Song)
-        TabSong.Controls.Add(TB_Duration_Song)
-        TabSong.Controls.Add(lstSong)
-        TabSong.Controls.Add(CB_Album_Song)
-        TabSong.Controls.Add(Label14)
-        TabSong.Controls.Add(Label15)
-        TabSong.Controls.Add(TB_Name_Song)
-        TabSong.Controls.Add(Label16)
-        TabSong.Controls.Add(TB_Id_Song)
-        TabSong.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabSong.Location = New Point(4, 28)
-        TabSong.Name = "TabSong"
-        TabSong.Padding = New Padding(3)
-        TabSong.Size = New Size(540, 290)
-        TabSong.TabIndex = 2
-        TabSong.Text = "Song"
-        TabSong.UseVisualStyleBackColor = True
-        ' 
-        ' Label19
-        ' 
-        Label19.AutoSize = True
-        Label19.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label19.Location = New Point(23, 232)
-        Label19.Name = "Label19"
-        Label19.Size = New Size(46, 18)
-        Label19.TabIndex = 50
-        Label19.Text = "Order"
-        ' 
-        ' Label18
-        ' 
-        Label18.AutoSize = True
-        Label18.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label18.Location = New Point(23, 234)
-        Label18.Name = "Label18"
-        Label18.Size = New Size(46, 18)
-        Label18.TabIndex = 50
-        Label18.Text = "Order"
-        ' 
-        ' Label17
-        ' 
-        Label17.AutoSize = True
-        Label17.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label17.Location = New Point(23, 130)
-        Label17.Name = "Label17"
-        Label17.Size = New Size(65, 18)
-        Label17.TabIndex = 49
-        Label17.Text = "Duration"
-        ' 
-        ' TB_Order_Song
-        ' 
-        TB_Order_Song.Font = New Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Order_Song.Location = New Point(23, 255)
-        TB_Order_Song.Name = "TB_Order_Song"
-        TB_Order_Song.Size = New Size(247, 23)
-        TB_Order_Song.TabIndex = 48
-        ' 
-        ' TB_Duration_Song
-        ' 
-        TB_Duration_Song.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Duration_Song.Location = New Point(23, 147)
-        TB_Duration_Song.Name = "TB_Duration_Song"
-        TB_Duration_Song.Size = New Size(247, 25)
-        TB_Duration_Song.TabIndex = 47
-        ' 
-        ' lstSong
-        ' 
-        lstSong.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        lstSong.Location = New Point(296, 21)
-        lstSong.MultiSelect = False
-        lstSong.Name = "lstSong"
-        lstSong.Size = New Size(223, 257)
-        lstSong.TabIndex = 46
-        lstSong.UseCompatibleStateImageBehavior = False
-        ' 
-        ' CB_Album_Song
-        ' 
-        CB_Album_Song.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Album_Song.FormattingEnabled = True
-        CB_Album_Song.Location = New Point(23, 200)
-        CB_Album_Song.Margin = New Padding(3, 2, 3, 2)
-        CB_Album_Song.Name = "CB_Album_Song"
-        CB_Album_Song.Size = New Size(133, 26)
-        CB_Album_Song.TabIndex = 45
-        ' 
-        ' Label14
-        ' 
-        Label14.AutoSize = True
-        Label14.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label14.Location = New Point(23, 181)
-        Label14.Name = "Label14"
-        Label14.Size = New Size(50, 18)
-        Label14.TabIndex = 44
-        Label14.Text = "Album"
-        ' 
-        ' Label15
-        ' 
-        Label15.AutoSize = True
-        Label15.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label15.Location = New Point(23, 78)
-        Label15.Name = "Label15"
-        Label15.Size = New Size(83, 18)
-        Label15.TabIndex = 43
-        Label15.Text = "Song Name"
-        ' 
-        ' TB_Name_Song
-        ' 
-        TB_Name_Song.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Name_Song.Location = New Point(23, 96)
-        TB_Name_Song.Name = "TB_Name_Song"
-        TB_Name_Song.Size = New Size(247, 25)
-        TB_Name_Song.TabIndex = 42
-        ' 
-        ' Label16
-        ' 
-        Label16.AutoSize = True
-        Label16.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label16.Location = New Point(23, 21)
-        Label16.Name = "Label16"
-        Label16.Size = New Size(60, 18)
-        Label16.TabIndex = 41
-        Label16.Text = "Song ID"
-        ' 
-        ' TB_Id_Song
-        ' 
-        TB_Id_Song.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Id_Song.Location = New Point(23, 41)
-        TB_Id_Song.Name = "TB_Id_Song"
-        TB_Id_Song.Size = New Size(247, 25)
-        TB_Id_Song.TabIndex = 40
-        ' 
-        ' TabConcert
-        ' 
-        TabConcert.Controls.Add(CB_Site_Concert)
-        TabConcert.Controls.Add(Label24)
-        TabConcert.Controls.Add(CB_Artist_Concert)
-        TabConcert.Controls.Add(Label23)
-        TabConcert.Controls.Add(lstConcert)
-        TabConcert.Controls.Add(Label22)
-        TabConcert.Controls.Add(TB_Id_Concert)
-        TabConcert.Controls.Add(Label21)
-        TabConcert.Controls.Add(DTP_Date_Concert)
-        TabConcert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabConcert.Location = New Point(4, 28)
-        TabConcert.Name = "TabConcert"
-        TabConcert.Padding = New Padding(3)
-        TabConcert.Size = New Size(540, 290)
-        TabConcert.TabIndex = 3
-        TabConcert.Text = "Concert"
-        TabConcert.UseVisualStyleBackColor = True
-        ' 
-        ' CB_Site_Concert
-        ' 
-        CB_Site_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Site_Concert.FormattingEnabled = True
-        CB_Site_Concert.Location = New Point(35, 161)
-        CB_Site_Concert.Margin = New Padding(3, 2, 3, 2)
-        CB_Site_Concert.Name = "CB_Site_Concert"
-        CB_Site_Concert.Size = New Size(133, 26)
-        CB_Site_Concert.TabIndex = 44
-        ' 
-        ' Label24
-        ' 
-        Label24.AutoSize = True
-        Label24.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label24.Location = New Point(35, 142)
-        Label24.Name = "Label24"
-        Label24.Size = New Size(33, 18)
-        Label24.TabIndex = 43
-        Label24.Text = "Site"
-        ' 
-        ' CB_Artist_Concert
-        ' 
-        CB_Artist_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Artist_Concert.FormattingEnabled = True
-        CB_Artist_Concert.Location = New Point(35, 103)
-        CB_Artist_Concert.Margin = New Padding(3, 2, 3, 2)
-        CB_Artist_Concert.Name = "CB_Artist_Concert"
-        CB_Artist_Concert.Size = New Size(162, 26)
-        CB_Artist_Concert.TabIndex = 42
-        ' 
-        ' Label23
-        ' 
-        Label23.AutoSize = True
-        Label23.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label23.Location = New Point(35, 83)
-        Label23.Name = "Label23"
-        Label23.Size = New Size(83, 18)
-        Label23.TabIndex = 41
-        Label23.Text = "Artist name"
-        ' 
-        ' lstConcert
-        ' 
-        lstConcert.Location = New Point(296, 22)
-        lstConcert.MultiSelect = False
-        lstConcert.Name = "lstConcert"
-        lstConcert.Size = New Size(220, 245)
-        lstConcert.TabIndex = 23
-        lstConcert.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Label22
-        ' 
-        Label22.AutoSize = True
-        Label22.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label22.Location = New Point(35, 22)
-        Label22.Name = "Label22"
-        Label22.Size = New Size(79, 18)
-        Label22.TabIndex = 20
-        Label22.Text = "Concert ID"
-        ' 
-        ' TB_Id_Concert
-        ' 
-        TB_Id_Concert.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Id_Concert.Location = New Point(35, 43)
-        TB_Id_Concert.Name = "TB_Id_Concert"
-        TB_Id_Concert.Size = New Size(247, 25)
-        TB_Id_Concert.TabIndex = 19
-        ' 
-        ' Label21
-        ' 
-        Label21.AutoSize = True
-        Label21.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label21.Location = New Point(35, 198)
-        Label21.Name = "Label21"
-        Label21.Size = New Size(95, 18)
-        Label21.TabIndex = 18
-        Label21.Text = "Concert Date"
-        ' 
-        ' DTP_Date_Concert
-        ' 
-        DTP_Date_Concert.Location = New Point(35, 219)
-        DTP_Date_Concert.Name = "DTP_Date_Concert"
-        DTP_Date_Concert.Size = New Size(200, 25)
-        DTP_Date_Concert.TabIndex = 0
-        ' 
-        ' TabCountry
-        ' 
-        TabCountry.Controls.Add(lstContries)
-        TabCountry.Controls.Add(Label2)
-        TabCountry.Controls.Add(TB_Name_Country)
-        TabCountry.Controls.Add(Label1)
-        TabCountry.Controls.Add(TB_Id_Country)
-        TabCountry.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabCountry.Location = New Point(4, 28)
-        TabCountry.Name = "TabCountry"
-        TabCountry.Padding = New Padding(3)
-        TabCountry.Size = New Size(540, 290)
-        TabCountry.TabIndex = 4
-        TabCountry.Text = "Country"
-        TabCountry.UseVisualStyleBackColor = True
-        ' 
-        ' lstContries
-        ' 
-        lstContries.Location = New Point(299, 25)
-        lstContries.MultiSelect = False
-        lstContries.Name = "lstContries"
-        lstContries.Size = New Size(220, 245)
-        lstContries.TabIndex = 22
-        lstContries.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label2.Location = New Point(24, 79)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(103, 18)
-        Label2.TabIndex = 17
-        Label2.Text = "Country Name"
-        ' 
-        ' TB_Name_Country
-        ' 
-        TB_Name_Country.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Name_Country.Location = New Point(24, 97)
-        TB_Name_Country.Name = "TB_Name_Country"
-        TB_Name_Country.Size = New Size(247, 25)
-        TB_Name_Country.TabIndex = 16
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label1.Location = New Point(24, 25)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(80, 18)
-        Label1.TabIndex = 15
-        Label1.Text = "Country ID"
-        ' 
-        ' TB_Id_Country
-        ' 
-        TB_Id_Country.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Id_Country.Location = New Point(24, 46)
-        TB_Id_Country.Name = "TB_Id_Country"
-        TB_Id_Country.Size = New Size(247, 25)
-        TB_Id_Country.TabIndex = 14
-        ' 
-        ' TabSite
-        ' 
-        TabSite.Controls.Add(CB_Country_Site)
-        TabSite.Controls.Add(CB_Type_Site)
-        TabSite.Controls.Add(Label8)
-        TabSite.Controls.Add(Label5)
-        TabSite.Controls.Add(lstSites)
-        TabSite.Controls.Add(Label3)
-        TabSite.Controls.Add(TB_Name_Site)
-        TabSite.Controls.Add(Label4)
-        TabSite.Controls.Add(TB_Id_Site)
-        TabSite.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabSite.Location = New Point(4, 28)
-        TabSite.Name = "TabSite"
-        TabSite.Padding = New Padding(3)
-        TabSite.RightToLeft = RightToLeft.No
-        TabSite.Size = New Size(540, 290)
-        TabSite.TabIndex = 5
-        TabSite.Text = "Site"
-        TabSite.UseVisualStyleBackColor = True
-        ' 
-        ' CB_Country_Site
-        ' 
-        CB_Country_Site.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Country_Site.FormattingEnabled = True
-        CB_Country_Site.Location = New Point(28, 206)
-        CB_Country_Site.Margin = New Padding(3, 2, 3, 2)
-        CB_Country_Site.Name = "CB_Country_Site"
-        CB_Country_Site.Size = New Size(133, 26)
-        CB_Country_Site.TabIndex = 37
-        ' 
-        ' CB_Type_Site
-        ' 
-        CB_Type_Site.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        CB_Type_Site.FormattingEnabled = True
-        CB_Type_Site.Location = New Point(28, 151)
-        CB_Type_Site.Margin = New Padding(3, 2, 3, 2)
-        CB_Type_Site.Name = "CB_Type_Site"
-        CB_Type_Site.Size = New Size(133, 26)
-        CB_Type_Site.TabIndex = 36
-        ' 
-        ' Label8
-        ' 
-        Label8.AutoSize = True
-        Label8.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label8.Location = New Point(28, 187)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(61, 18)
-        Label8.TabIndex = 35
-        Label8.Text = "Country"
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label5.Location = New Point(28, 131)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(40, 18)
-        Label5.TabIndex = 33
-        Label5.Text = "Type"
-        ' 
-        ' lstSites
-        ' 
-        lstSites.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        lstSites.Location = New Point(297, 20)
-        lstSites.MultiSelect = False
-        lstSites.Name = "lstSites"
-        lstSites.Size = New Size(232, 255)
-        lstSites.TabIndex = 31
-        lstSites.UseCompatibleStateImageBehavior = False
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label3.Location = New Point(28, 77)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(75, 18)
-        Label3.TabIndex = 26
-        Label3.Text = "Site Name"
-        ' 
-        ' TB_Name_Site
-        ' 
-        TB_Name_Site.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Name_Site.Location = New Point(28, 95)
-        TB_Name_Site.Name = "TB_Name_Site"
-        TB_Name_Site.Size = New Size(247, 25)
-        TB_Name_Site.TabIndex = 25
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        Label4.Location = New Point(28, 20)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(52, 18)
-        Label4.TabIndex = 24
-        Label4.Text = "Site ID"
-        ' 
-        ' TB_Id_Site
-        ' 
-        TB_Id_Site.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TB_Id_Site.Location = New Point(28, 40)
-        TB_Id_Site.Name = "TB_Id_Site"
-        TB_Id_Site.Size = New Size(247, 25)
-        TB_Id_Site.TabIndex = 23
-        ' 
-        ' ofdRuta
-        ' 
-        ofdRuta.FileName = "OpenFileDialog1"
-        ' 
-        ' PictureBox1
-        ' 
-        PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), Image)
-        PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
-        PictureBox1.Location = New Point(241, 18)
-        PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(130, 35)
-        PictureBox1.TabIndex = 1
-        PictureBox1.TabStop = False
-        ' 
-        ' ButtonClearAll
-        ' 
-        ButtonClearAll.FlatStyle = FlatStyle.System
-        ButtonClearAll.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonClearAll.Location = New Point(36, 406)
-        ButtonClearAll.Name = "ButtonClearAll"
-        ButtonClearAll.Size = New Size(94, 35)
-        ButtonClearAll.TabIndex = 25
-        ButtonClearAll.Text = "Clear all"
-        ButtonClearAll.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonDelete
-        ' 
-        ButtonDelete.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonDelete.Location = New Point(136, 406)
-        ButtonDelete.Name = "ButtonDelete"
-        ButtonDelete.Size = New Size(94, 35)
-        ButtonDelete.TabIndex = 24
-        ButtonDelete.Text = "Delete"
-        ButtonDelete.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonAdd
-        ' 
-        ButtonAdd.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonAdd.Location = New Point(336, 406)
-        ButtonAdd.Name = "ButtonAdd"
-        ButtonAdd.Size = New Size(248, 35)
-        ButtonAdd.TabIndex = 22
-        ButtonAdd.Text = "Add"
-        ButtonAdd.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonModify
-        ' 
-        ButtonModify.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
-        ButtonModify.Location = New Point(236, 406)
-        ButtonModify.Name = "ButtonModify"
-        ButtonModify.Size = New Size(94, 35)
-        ButtonModify.TabIndex = 23
-        ButtonModify.Text = "Modify"
-        ButtonModify.UseVisualStyleBackColor = True
-        ' 
-        ' Form1
-        ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
-        AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(613, 457)
-        Controls.Add(ButtonClearAll)
-        Controls.Add(ButtonDelete)
-        Controls.Add(ButtonAdd)
-        Controls.Add(ButtonModify)
-        Controls.Add(PictureBox1)
-        Controls.Add(TabControl)
-        Name = "Form1"
-        Text = "Form1"
-        TabControl.ResumeLayout(False)
-        TabAlbum.ResumeLayout(False)
-        TabAlbum.PerformLayout()
-        TabArtist.ResumeLayout(False)
-        TabArtist.PerformLayout()
-        TabSong.ResumeLayout(False)
-        TabSong.PerformLayout()
-        TabConcert.ResumeLayout(False)
-        TabConcert.PerformLayout()
-        TabCountry.ResumeLayout(False)
-        TabCountry.PerformLayout()
-        TabSite.ResumeLayout(False)
-        TabSite.PerformLayout()
-        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
-        ResumeLayout(False)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Me.TabControl = New System.Windows.Forms.TabControl()
+        Me.TabAlbum = New System.Windows.Forms.TabPage()
+        Me.lstAlbumes = New System.Windows.Forms.ListView()
+        Me.CB_Artist_Album = New System.Windows.Forms.ComboBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TB_ID_Album = New System.Windows.Forms.TextBox()
+        Me.TB_Name_Album = New System.Windows.Forms.TextBox()
+        Me.DTP_Year_Album = New System.Windows.Forms.DateTimePicker()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TabArtist = New System.Windows.Forms.TabPage()
+        Me.CB_Country_Artist = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lstArtist = New System.Windows.Forms.ListView()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.TB_Name_Artist = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TB_Id_Artist = New System.Windows.Forms.TextBox()
+        Me.TabSong = New System.Windows.Forms.TabPage()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.TB_Order_Song = New System.Windows.Forms.TextBox()
+        Me.TB_Duration_Song = New System.Windows.Forms.TextBox()
+        Me.lstSong = New System.Windows.Forms.ListView()
+        Me.CB_Album_Song = New System.Windows.Forms.ComboBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.TB_Name_Song = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TB_Id_Song = New System.Windows.Forms.TextBox()
+        Me.TabConcert = New System.Windows.Forms.TabPage()
+        Me.CB_Site_Concert = New System.Windows.Forms.ComboBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.CB_Artist_Concert = New System.Windows.Forms.ComboBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.lstConcert = New System.Windows.Forms.ListView()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TB_Id_Concert = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.DTP_Date_Concert = New System.Windows.Forms.DateTimePicker()
+        Me.TabCountry = New System.Windows.Forms.TabPage()
+        Me.lstContries = New System.Windows.Forms.ListView()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TB_Name_Country = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TB_Id_Country = New System.Windows.Forms.TextBox()
+        Me.TabSite = New System.Windows.Forms.TabPage()
+        Me.CB_Country_Site = New System.Windows.Forms.ComboBox()
+        Me.CB_Type_Site = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lstSites = New System.Windows.Forms.ListView()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TB_Name_Site = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TB_Id_Site = New System.Windows.Forms.TextBox()
+        Me.ofdRuta = New System.Windows.Forms.OpenFileDialog()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ButtonClearAll = New System.Windows.Forms.Button()
+        Me.ButtonDelete = New System.Windows.Forms.Button()
+        Me.ButtonAdd = New System.Windows.Forms.Button()
+        Me.ButtonModify = New System.Windows.Forms.Button()
+        Me.TabControl.SuspendLayout()
+        Me.TabAlbum.SuspendLayout()
+        Me.TabArtist.SuspendLayout()
+        Me.TabSong.SuspendLayout()
+        Me.TabConcert.SuspendLayout()
+        Me.TabCountry.SuspendLayout()
+        Me.TabSite.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'TabControl
+        '
+        Me.TabControl.Controls.Add(Me.TabAlbum)
+        Me.TabControl.Controls.Add(Me.TabArtist)
+        Me.TabControl.Controls.Add(Me.TabSong)
+        Me.TabControl.Controls.Add(Me.TabConcert)
+        Me.TabControl.Controls.Add(Me.TabCountry)
+        Me.TabControl.Controls.Add(Me.TabSite)
+        Me.TabControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.TabControl.Location = New System.Drawing.Point(41, 95)
+        Me.TabControl.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabControl.Name = "TabControl"
+        Me.TabControl.Padding = New System.Drawing.Point(17, 3)
+        Me.TabControl.SelectedIndex = 0
+        Me.TabControl.Size = New System.Drawing.Size(626, 429)
+        Me.TabControl.TabIndex = 0
+        '
+        'TabAlbum
+        '
+        Me.TabAlbum.Controls.Add(Me.lstAlbumes)
+        Me.TabAlbum.Controls.Add(Me.CB_Artist_Album)
+        Me.TabAlbum.Controls.Add(Me.Label13)
+        Me.TabAlbum.Controls.Add(Me.Label20)
+        Me.TabAlbum.Controls.Add(Me.Label12)
+        Me.TabAlbum.Controls.Add(Me.TextBox2)
+        Me.TabAlbum.Controls.Add(Me.TB_ID_Album)
+        Me.TabAlbum.Controls.Add(Me.TB_Name_Album)
+        Me.TabAlbum.Controls.Add(Me.DTP_Year_Album)
+        Me.TabAlbum.Controls.Add(Me.Label7)
+        Me.TabAlbum.Controls.Add(Me.Label6)
+        Me.TabAlbum.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabAlbum.Location = New System.Drawing.Point(4, 34)
+        Me.TabAlbum.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabAlbum.Name = "TabAlbum"
+        Me.TabAlbum.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabAlbum.Size = New System.Drawing.Size(618, 391)
+        Me.TabAlbum.TabIndex = 0
+        Me.TabAlbum.Text = "Album"
+        Me.TabAlbum.UseVisualStyleBackColor = True
+        '
+        'lstAlbumes
+        '
+        Me.lstAlbumes.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lstAlbumes.Location = New System.Drawing.Point(339, 27)
+        Me.lstAlbumes.Name = "lstAlbumes"
+        Me.lstAlbumes.Size = New System.Drawing.Size(249, 335)
+        Me.lstAlbumes.TabIndex = 41
+        Me.lstAlbumes.UseCompatibleStateImageBehavior = False
+        '
+        'CB_Artist_Album
+        '
+        Me.CB_Artist_Album.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Artist_Album.FormattingEnabled = True
+        Me.CB_Artist_Album.Location = New System.Drawing.Point(30, 279)
+        Me.CB_Artist_Album.Name = "CB_Artist_Album"
+        Me.CB_Artist_Album.Size = New System.Drawing.Size(185, 32)
+        Me.CB_Artist_Album.TabIndex = 40
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label13.Location = New System.Drawing.Point(30, 27)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(87, 24)
+        Me.Label13.TabIndex = 34
+        Me.Label13.Text = "Album ID"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label20.Location = New System.Drawing.Point(30, 111)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(121, 24)
+        Me.Label20.TabIndex = 33
+        Me.Label20.Text = "Album Name"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(33, 111)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(121, 24)
+        Me.Label12.TabIndex = 33
+        Me.Label12.Text = "Album Name"
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TextBox2.Location = New System.Drawing.Point(30, 139)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(273, 29)
+        Me.TextBox2.TabIndex = 31
+        '
+        'TB_ID_Album
+        '
+        Me.TB_ID_Album.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_ID_Album.Location = New System.Drawing.Point(30, 53)
+        Me.TB_ID_Album.Name = "TB_ID_Album"
+        Me.TB_ID_Album.Size = New System.Drawing.Size(273, 29)
+        Me.TB_ID_Album.TabIndex = 32
+        '
+        'TB_Name_Album
+        '
+        Me.TB_Name_Album.Location = New System.Drawing.Point(33, 139)
+        Me.TB_Name_Album.Name = "TB_Name_Album"
+        Me.TB_Name_Album.Size = New System.Drawing.Size(273, 29)
+        Me.TB_Name_Album.TabIndex = 31
+        '
+        'DTP_Year_Album
+        '
+        Me.DTP_Year_Album.CustomFormat = "yyyy"
+        Me.DTP_Year_Album.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.DTP_Year_Album.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DTP_Year_Album.Location = New System.Drawing.Point(30, 208)
+        Me.DTP_Year_Album.Name = "DTP_Year_Album"
+        Me.DTP_Year_Album.ShowUpDown = True
+        Me.DTP_Year_Album.Size = New System.Drawing.Size(91, 29)
+        Me.DTP_Year_Album.TabIndex = 30
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label7.Location = New System.Drawing.Point(30, 252)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(103, 24)
+        Me.Label7.TabIndex = 29
+        Me.Label7.Text = "Artist name"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label6.Location = New System.Drawing.Point(30, 181)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(49, 24)
+        Me.Label6.TabIndex = 27
+        Me.Label6.Text = "Year"
+        '
+        'TabArtist
+        '
+        Me.TabArtist.Controls.Add(Me.CB_Country_Artist)
+        Me.TabArtist.Controls.Add(Me.Label11)
+        Me.TabArtist.Controls.Add(Me.lstArtist)
+        Me.TabArtist.Controls.Add(Me.Label9)
+        Me.TabArtist.Controls.Add(Me.TB_Name_Artist)
+        Me.TabArtist.Controls.Add(Me.Label10)
+        Me.TabArtist.Controls.Add(Me.TB_Id_Artist)
+        Me.TabArtist.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabArtist.Location = New System.Drawing.Point(4, 34)
+        Me.TabArtist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabArtist.Name = "TabArtist"
+        Me.TabArtist.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabArtist.Size = New System.Drawing.Size(618, 391)
+        Me.TabArtist.TabIndex = 1
+        Me.TabArtist.Text = "Artist"
+        Me.TabArtist.UseVisualStyleBackColor = True
+        '
+        'CB_Country_Artist
+        '
+        Me.CB_Country_Artist.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Country_Artist.FormattingEnabled = True
+        Me.CB_Country_Artist.Location = New System.Drawing.Point(27, 205)
+        Me.CB_Country_Artist.Name = "CB_Country_Artist"
+        Me.CB_Country_Artist.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Country_Artist.TabIndex = 39
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label11.Location = New System.Drawing.Point(27, 180)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(75, 24)
+        Me.Label11.TabIndex = 38
+        Me.Label11.Text = "Country"
+        '
+        'lstArtist
+        '
+        Me.lstArtist.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lstArtist.Location = New System.Drawing.Point(339, 35)
+        Me.lstArtist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstArtist.MultiSelect = False
+        Me.lstArtist.Name = "lstArtist"
+        Me.lstArtist.Size = New System.Drawing.Size(251, 325)
+        Me.lstArtist.TabIndex = 27
+        Me.lstArtist.UseCompatibleStateImageBehavior = False
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label9.Location = New System.Drawing.Point(27, 107)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(106, 24)
+        Me.Label9.TabIndex = 26
+        Me.Label9.Text = "Artist Name"
+        '
+        'TB_Name_Artist
+        '
+        Me.TB_Name_Artist.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Artist.Location = New System.Drawing.Point(27, 131)
+        Me.TB_Name_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Artist.Name = "TB_Name_Artist"
+        Me.TB_Name_Artist.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Name_Artist.TabIndex = 25
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label10.Location = New System.Drawing.Point(27, 35)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(72, 24)
+        Me.Label10.TabIndex = 24
+        Me.Label10.Text = "Artist ID"
+        '
+        'TB_Id_Artist
+        '
+        Me.TB_Id_Artist.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Artist.Location = New System.Drawing.Point(27, 61)
+        Me.TB_Id_Artist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Artist.Name = "TB_Id_Artist"
+        Me.TB_Id_Artist.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Id_Artist.TabIndex = 23
+        '
+        'TabSong
+        '
+        Me.TabSong.Controls.Add(Me.Label19)
+        Me.TabSong.Controls.Add(Me.Label18)
+        Me.TabSong.Controls.Add(Me.Label17)
+        Me.TabSong.Controls.Add(Me.TB_Order_Song)
+        Me.TabSong.Controls.Add(Me.TB_Duration_Song)
+        Me.TabSong.Controls.Add(Me.lstSong)
+        Me.TabSong.Controls.Add(Me.CB_Album_Song)
+        Me.TabSong.Controls.Add(Me.Label14)
+        Me.TabSong.Controls.Add(Me.Label15)
+        Me.TabSong.Controls.Add(Me.TB_Name_Song)
+        Me.TabSong.Controls.Add(Me.Label16)
+        Me.TabSong.Controls.Add(Me.TB_Id_Song)
+        Me.TabSong.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabSong.Location = New System.Drawing.Point(4, 34)
+        Me.TabSong.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabSong.Name = "TabSong"
+        Me.TabSong.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabSong.Size = New System.Drawing.Size(618, 391)
+        Me.TabSong.TabIndex = 2
+        Me.TabSong.Text = "Song"
+        Me.TabSong.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label19.Location = New System.Drawing.Point(26, 309)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(59, 24)
+        Me.Label19.TabIndex = 50
+        Me.Label19.Text = "Order"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label18.Location = New System.Drawing.Point(26, 312)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(59, 24)
+        Me.Label18.TabIndex = 50
+        Me.Label18.Text = "Order"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label17.Location = New System.Drawing.Point(26, 173)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(80, 24)
+        Me.Label17.TabIndex = 49
+        Me.Label17.Text = "Duration"
+        '
+        'TB_Order_Song
+        '
+        Me.TB_Order_Song.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Order_Song.Location = New System.Drawing.Point(26, 340)
+        Me.TB_Order_Song.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Order_Song.Name = "TB_Order_Song"
+        Me.TB_Order_Song.Size = New System.Drawing.Size(282, 27)
+        Me.TB_Order_Song.TabIndex = 48
+        '
+        'TB_Duration_Song
+        '
+        Me.TB_Duration_Song.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Duration_Song.Location = New System.Drawing.Point(26, 196)
+        Me.TB_Duration_Song.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Duration_Song.Name = "TB_Duration_Song"
+        Me.TB_Duration_Song.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Duration_Song.TabIndex = 47
+        '
+        'lstSong
+        '
+        Me.lstSong.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lstSong.Location = New System.Drawing.Point(338, 28)
+        Me.lstSong.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstSong.MultiSelect = False
+        Me.lstSong.Name = "lstSong"
+        Me.lstSong.Size = New System.Drawing.Size(254, 341)
+        Me.lstSong.TabIndex = 46
+        Me.lstSong.UseCompatibleStateImageBehavior = False
+        '
+        'CB_Album_Song
+        '
+        Me.CB_Album_Song.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Album_Song.FormattingEnabled = True
+        Me.CB_Album_Song.Location = New System.Drawing.Point(26, 267)
+        Me.CB_Album_Song.Name = "CB_Album_Song"
+        Me.CB_Album_Song.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Album_Song.TabIndex = 45
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label14.Location = New System.Drawing.Point(26, 241)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(65, 24)
+        Me.Label14.TabIndex = 44
+        Me.Label14.Text = "Album"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label15.Location = New System.Drawing.Point(26, 104)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(111, 24)
+        Me.Label15.TabIndex = 43
+        Me.Label15.Text = "Song Name"
+        '
+        'TB_Name_Song
+        '
+        Me.TB_Name_Song.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Song.Location = New System.Drawing.Point(26, 128)
+        Me.TB_Name_Song.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Song.Name = "TB_Name_Song"
+        Me.TB_Name_Song.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Name_Song.TabIndex = 42
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label16.Location = New System.Drawing.Point(26, 28)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(77, 24)
+        Me.Label16.TabIndex = 41
+        Me.Label16.Text = "Song ID"
+        '
+        'TB_Id_Song
+        '
+        Me.TB_Id_Song.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Song.Location = New System.Drawing.Point(26, 55)
+        Me.TB_Id_Song.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Song.Name = "TB_Id_Song"
+        Me.TB_Id_Song.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Id_Song.TabIndex = 40
+        '
+        'TabConcert
+        '
+        Me.TabConcert.Controls.Add(Me.CB_Site_Concert)
+        Me.TabConcert.Controls.Add(Me.Label24)
+        Me.TabConcert.Controls.Add(Me.CB_Artist_Concert)
+        Me.TabConcert.Controls.Add(Me.Label23)
+        Me.TabConcert.Controls.Add(Me.lstConcert)
+        Me.TabConcert.Controls.Add(Me.Label22)
+        Me.TabConcert.Controls.Add(Me.TB_Id_Concert)
+        Me.TabConcert.Controls.Add(Me.Label21)
+        Me.TabConcert.Controls.Add(Me.DTP_Date_Concert)
+        Me.TabConcert.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabConcert.Location = New System.Drawing.Point(4, 34)
+        Me.TabConcert.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabConcert.Name = "TabConcert"
+        Me.TabConcert.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabConcert.Size = New System.Drawing.Size(618, 391)
+        Me.TabConcert.TabIndex = 3
+        Me.TabConcert.Text = "Concert"
+        Me.TabConcert.UseVisualStyleBackColor = True
+        '
+        'CB_Site_Concert
+        '
+        Me.CB_Site_Concert.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Site_Concert.FormattingEnabled = True
+        Me.CB_Site_Concert.Location = New System.Drawing.Point(40, 215)
+        Me.CB_Site_Concert.Name = "CB_Site_Concert"
+        Me.CB_Site_Concert.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Site_Concert.TabIndex = 44
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label24.Location = New System.Drawing.Point(40, 189)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(41, 24)
+        Me.Label24.TabIndex = 43
+        Me.Label24.Text = "Site"
+        '
+        'CB_Artist_Concert
+        '
+        Me.CB_Artist_Concert.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Artist_Concert.FormattingEnabled = True
+        Me.CB_Artist_Concert.Location = New System.Drawing.Point(40, 137)
+        Me.CB_Artist_Concert.Name = "CB_Artist_Concert"
+        Me.CB_Artist_Concert.Size = New System.Drawing.Size(185, 32)
+        Me.CB_Artist_Concert.TabIndex = 42
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label23.Location = New System.Drawing.Point(40, 111)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(103, 24)
+        Me.Label23.TabIndex = 41
+        Me.Label23.Text = "Artist name"
+        '
+        'lstConcert
+        '
+        Me.lstConcert.Location = New System.Drawing.Point(338, 29)
+        Me.lstConcert.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstConcert.MultiSelect = False
+        Me.lstConcert.Name = "lstConcert"
+        Me.lstConcert.Size = New System.Drawing.Size(251, 325)
+        Me.lstConcert.TabIndex = 23
+        Me.lstConcert.UseCompatibleStateImageBehavior = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label22.Location = New System.Drawing.Point(40, 29)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(98, 24)
+        Me.Label22.TabIndex = 20
+        Me.Label22.Text = "Concert ID"
+        '
+        'TB_Id_Concert
+        '
+        Me.TB_Id_Concert.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Concert.Location = New System.Drawing.Point(40, 57)
+        Me.TB_Id_Concert.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Concert.Name = "TB_Id_Concert"
+        Me.TB_Id_Concert.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Id_Concert.TabIndex = 19
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label21.Location = New System.Drawing.Point(40, 264)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(119, 24)
+        Me.Label21.TabIndex = 18
+        Me.Label21.Text = "Concert Date"
+        '
+        'DTP_Date_Concert
+        '
+        Me.DTP_Date_Concert.Location = New System.Drawing.Point(40, 292)
+        Me.DTP_Date_Concert.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.DTP_Date_Concert.Name = "DTP_Date_Concert"
+        Me.DTP_Date_Concert.Size = New System.Drawing.Size(228, 29)
+        Me.DTP_Date_Concert.TabIndex = 0
+        '
+        'TabCountry
+        '
+        Me.TabCountry.Controls.Add(Me.lstContries)
+        Me.TabCountry.Controls.Add(Me.Label2)
+        Me.TabCountry.Controls.Add(Me.TB_Name_Country)
+        Me.TabCountry.Controls.Add(Me.Label1)
+        Me.TabCountry.Controls.Add(Me.TB_Id_Country)
+        Me.TabCountry.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabCountry.Location = New System.Drawing.Point(4, 34)
+        Me.TabCountry.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabCountry.Name = "TabCountry"
+        Me.TabCountry.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabCountry.Size = New System.Drawing.Size(618, 391)
+        Me.TabCountry.TabIndex = 4
+        Me.TabCountry.Text = "Country"
+        Me.TabCountry.UseVisualStyleBackColor = True
+        '
+        'lstContries
+        '
+        Me.lstContries.Location = New System.Drawing.Point(342, 33)
+        Me.lstContries.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstContries.MultiSelect = False
+        Me.lstContries.Name = "lstContries"
+        Me.lstContries.Size = New System.Drawing.Size(251, 325)
+        Me.lstContries.TabIndex = 22
+        Me.lstContries.UseCompatibleStateImageBehavior = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label2.Location = New System.Drawing.Point(27, 105)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(131, 24)
+        Me.Label2.TabIndex = 17
+        Me.Label2.Text = "Country Name"
+        '
+        'TB_Name_Country
+        '
+        Me.TB_Name_Country.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Country.Location = New System.Drawing.Point(27, 129)
+        Me.TB_Name_Country.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Country.Name = "TB_Name_Country"
+        Me.TB_Name_Country.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Name_Country.TabIndex = 16
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label1.Location = New System.Drawing.Point(27, 33)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(97, 24)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "Country ID"
+        '
+        'TB_Id_Country
+        '
+        Me.TB_Id_Country.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Country.Location = New System.Drawing.Point(27, 61)
+        Me.TB_Id_Country.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Country.Name = "TB_Id_Country"
+        Me.TB_Id_Country.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Id_Country.TabIndex = 14
+        '
+        'TabSite
+        '
+        Me.TabSite.Controls.Add(Me.CB_Country_Site)
+        Me.TabSite.Controls.Add(Me.CB_Type_Site)
+        Me.TabSite.Controls.Add(Me.Label8)
+        Me.TabSite.Controls.Add(Me.Label5)
+        Me.TabSite.Controls.Add(Me.lstSites)
+        Me.TabSite.Controls.Add(Me.Label3)
+        Me.TabSite.Controls.Add(Me.TB_Name_Site)
+        Me.TabSite.Controls.Add(Me.Label4)
+        Me.TabSite.Controls.Add(Me.TB_Id_Site)
+        Me.TabSite.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TabSite.Location = New System.Drawing.Point(4, 34)
+        Me.TabSite.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabSite.Name = "TabSite"
+        Me.TabSite.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TabSite.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.TabSite.Size = New System.Drawing.Size(618, 391)
+        Me.TabSite.TabIndex = 5
+        Me.TabSite.Text = "Site"
+        Me.TabSite.UseVisualStyleBackColor = True
+        '
+        'CB_Country_Site
+        '
+        Me.CB_Country_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Country_Site.FormattingEnabled = True
+        Me.CB_Country_Site.Location = New System.Drawing.Point(32, 275)
+        Me.CB_Country_Site.Name = "CB_Country_Site"
+        Me.CB_Country_Site.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Country_Site.TabIndex = 37
+        '
+        'CB_Type_Site
+        '
+        Me.CB_Type_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.CB_Type_Site.FormattingEnabled = True
+        Me.CB_Type_Site.Location = New System.Drawing.Point(32, 201)
+        Me.CB_Type_Site.Name = "CB_Type_Site"
+        Me.CB_Type_Site.Size = New System.Drawing.Size(151, 32)
+        Me.CB_Type_Site.TabIndex = 36
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label8.Location = New System.Drawing.Point(32, 249)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(75, 24)
+        Me.Label8.TabIndex = 35
+        Me.Label8.Text = "Country"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label5.Location = New System.Drawing.Point(32, 175)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(53, 24)
+        Me.Label5.TabIndex = 33
+        Me.Label5.Text = "Type"
+        '
+        'lstSites
+        '
+        Me.lstSites.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lstSites.Location = New System.Drawing.Point(339, 27)
+        Me.lstSites.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstSites.MultiSelect = False
+        Me.lstSites.Name = "lstSites"
+        Me.lstSites.Size = New System.Drawing.Size(265, 339)
+        Me.lstSites.TabIndex = 31
+        Me.lstSites.UseCompatibleStateImageBehavior = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label3.Location = New System.Drawing.Point(32, 103)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(97, 24)
+        Me.Label3.TabIndex = 26
+        Me.Label3.Text = "Site Name"
+        '
+        'TB_Name_Site
+        '
+        Me.TB_Name_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Name_Site.Location = New System.Drawing.Point(32, 127)
+        Me.TB_Name_Site.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Name_Site.Name = "TB_Name_Site"
+        Me.TB_Name_Site.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Name_Site.TabIndex = 25
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.Label4.Location = New System.Drawing.Point(32, 27)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(63, 24)
+        Me.Label4.TabIndex = 24
+        Me.Label4.Text = "Site ID"
+        '
+        'TB_Id_Site
+        '
+        Me.TB_Id_Site.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.TB_Id_Site.Location = New System.Drawing.Point(32, 53)
+        Me.TB_Id_Site.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TB_Id_Site.Name = "TB_Id_Site"
+        Me.TB_Id_Site.Size = New System.Drawing.Size(282, 29)
+        Me.TB_Id_Site.TabIndex = 23
+        '
+        'ofdRuta
+        '
+        Me.ofdRuta.FileName = "OpenFileDialog1"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.ErrorImage = CType(resources.GetObject("PictureBox1.ErrorImage"), System.Drawing.Image)
+        Me.PictureBox1.ImageLocation = "AppMusic/Spotifake_logo.png"
+        Me.PictureBox1.Location = New System.Drawing.Point(275, 24)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(149, 47)
+        Me.PictureBox1.TabIndex = 1
+        Me.PictureBox1.TabStop = False
+        '
+        'ButtonClearAll
+        '
+        Me.ButtonClearAll.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.ButtonClearAll.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonClearAll.Location = New System.Drawing.Point(41, 541)
+        Me.ButtonClearAll.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonClearAll.Name = "ButtonClearAll"
+        Me.ButtonClearAll.Size = New System.Drawing.Size(107, 47)
+        Me.ButtonClearAll.TabIndex = 25
+        Me.ButtonClearAll.Text = "Clear all"
+        Me.ButtonClearAll.UseVisualStyleBackColor = True
+        '
+        'ButtonDelete
+        '
+        Me.ButtonDelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonDelete.Location = New System.Drawing.Point(155, 541)
+        Me.ButtonDelete.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonDelete.Name = "ButtonDelete"
+        Me.ButtonDelete.Size = New System.Drawing.Size(107, 47)
+        Me.ButtonDelete.TabIndex = 24
+        Me.ButtonDelete.Text = "Delete"
+        Me.ButtonDelete.UseVisualStyleBackColor = True
+        '
+        'ButtonAdd
+        '
+        Me.ButtonAdd.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonAdd.Location = New System.Drawing.Point(384, 541)
+        Me.ButtonAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonAdd.Name = "ButtonAdd"
+        Me.ButtonAdd.Size = New System.Drawing.Size(283, 47)
+        Me.ButtonAdd.TabIndex = 22
+        Me.ButtonAdd.Text = "Add"
+        Me.ButtonAdd.UseVisualStyleBackColor = True
+        '
+        'ButtonModify
+        '
+        Me.ButtonModify.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point)
+        Me.ButtonModify.Location = New System.Drawing.Point(270, 541)
+        Me.ButtonModify.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonModify.Name = "ButtonModify"
+        Me.ButtonModify.Size = New System.Drawing.Size(107, 47)
+        Me.ButtonModify.TabIndex = 23
+        Me.ButtonModify.Text = "Modify"
+        Me.ButtonModify.UseVisualStyleBackColor = True
+        '
+        'Form1
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(701, 609)
+        Me.Controls.Add(Me.ButtonClearAll)
+        Me.Controls.Add(Me.ButtonDelete)
+        Me.Controls.Add(Me.ButtonAdd)
+        Me.Controls.Add(Me.ButtonModify)
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.TabControl)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Name = "Form1"
+        Me.Text = "Form1"
+        Me.TabControl.ResumeLayout(False)
+        Me.TabAlbum.ResumeLayout(False)
+        Me.TabAlbum.PerformLayout()
+        Me.TabArtist.ResumeLayout(False)
+        Me.TabArtist.PerformLayout()
+        Me.TabSong.ResumeLayout(False)
+        Me.TabSong.PerformLayout()
+        Me.TabConcert.ResumeLayout(False)
+        Me.TabConcert.PerformLayout()
+        Me.TabCountry.ResumeLayout(False)
+        Me.TabCountry.PerformLayout()
+        Me.TabSite.ResumeLayout(False)
+        Me.TabSite.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
     End Sub
 
     Friend WithEvents TabControl As TabControl
