@@ -6,7 +6,7 @@
         Me.Artistas = New Collection
     End Sub
 
-    Public Sub LeerTodos(ruta As String)
+    Public Sub LeerTodos()
         Dim a As Artista
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM artistas ORDER BY IdArtista")

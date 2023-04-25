@@ -34,8 +34,8 @@
         Me.SitDAO = New SitioDAO
     End Sub
 
-    Public Sub LeerTodosSitios(ruta As String)
-        Me.SitDAO.LeerTodos(ruta)
+    Public Sub LeerTodosSitios()
+        Me.SitDAO.LeerTodos()
     End Sub
 
     Public Sub LeerSitio()
