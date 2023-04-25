@@ -9,7 +9,58 @@ Imports Org.BouncyCastle.Bcpg
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
+
+        lstContries.Columns.Add("ID", 75)
+        lstContries.Columns.Add("Name", 150)
+
+
+        lstSites.View = View.Details
+        lstSites.Columns.Add("ID", 40)
+        lstSites.Columns.Add("Name", 80)
+        lstSites.Columns.Add("Country", 90)
+        lstSites.Columns.Add("Type", 80)
+
+        CB_Type_Site.Items.Add(TipoSitio.sala)
+        CB_Type_Site.Items.Add(TipoSitio.pabellón)
+        CB_Type_Site.Items.Add(TipoSitio.estadio)
+        CB_Type_Site.Items.Add(TipoSitio.festival)
+        CB_Type_Site.SelectedIndex = -1
+
+
+        lstArtist.View = View.Details
+        lstArtist.Columns.Add("ID", 40)
+        lstArtist.Columns.Add("Name", 80)
+        lstArtist.Columns.Add("Country", 90)
+
+
+        lstAlbumes.View = View.Details
+        lstAlbumes.Columns.Add("ID", 40)
+        lstAlbumes.Columns.Add("Name", 80)
+        lstAlbumes.Columns.Add("Year", 60)
+        lstAlbumes.Columns.Add("Artist", 80)
+
+
+        lstSong.View = View.Details
+        lstSong.Columns.Add("ID", 40)
+        lstSong.Columns.Add("Name", 80)
+        lstSong.Columns.Add("Duration", 40)
+        lstSong.Columns.Add("Album", 60)
+        lstSong.Columns.Add("Orden", 40)
+
+
+        lstConcert.View = View.Details
+        lstConcert.Columns.Add("ID", 40)
+        lstConcert.Columns.Add("Artista", 80)
+        lstConcert.Columns.Add("Sitio", 60)
+        lstConcert.Columns.Add("Fecha", 90)
+
+
+        Update_Country()
+        Update_Site()
+        Update_Artist()
         Update_Album()
+        Update_Song()
+        Update_Concert()
     End Sub
 
     ' =========================================================================================
@@ -43,7 +94,7 @@ Public Class Form1
         Dim art As Artista
         If Not Me.lstArtist.SelectedItems Is Nothing Then
             Try
-                art = New Artista(lstArtist.SelectedItems.ToString)
+                art = New Artista(lstArtist.SelectedItems(0).SubItems(0).Text, lstArtist.SelectedItems(0).SubItems(1).Text)
                 art.LeerArtista()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -51,7 +102,6 @@ Public Class Form1
             End Try
             Me.TB_Id_Artist.Text = art.IDArtista
             Me.TB_Name_Artist.Text = art.NomArtista
-            Me.CB_Country_Artist.Text = art.Pais.NomPais
         End If
     End Sub
 
@@ -82,16 +132,14 @@ Public Class Form1
         Dim sit As Sitio
         If Not Me.lstSites.SelectedItems Is Nothing Then
             Try
-                sit = New Sitio(lstSites.SelectedItems.ToString)
+                sit = New Sitio(lstSites.SelectedItems(0).SubItems(0).Text, lstSites.SelectedItems(0).SubItems(1).Text)
                 sit.LeerSitio()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
-            Me.TB_Id_Country.Text = sit.IDSitio
+            Me.TB_Id_Site.Text = sit.IDSitio
             Me.TB_Name_Country.Text = sit.NomSitio
-            Me.CB_Type_Site.Text = sit.tipo
-            Me.CB_Country_Site.Text = sit.Pais.NomPais
         End If
     End Sub
 
@@ -103,7 +151,7 @@ Public Class Form1
         Dim alb As Album
         If Not Me.lstAlbumes.SelectedItems Is Nothing Then
             Try
-                alb = New Album(lstAlbumes.SelectedItems.ToString)
+                alb = New Album(lstAlbumes.SelectedItems(0).SubItems(0).Text, lstAlbumes.SelectedItems(0).SubItems(1).Text)
                 alb.LeerAlbum()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -111,8 +159,6 @@ Public Class Form1
             End Try
             Me.TB_ID_Album.Text = alb.IDAlbum
             Me.TB_Name_Album.Text = alb.NomAlbum
-            Me.CB_Artist_Album.Text = alb.Artista.NomArtista
-            Me.DTP_Year_Album.Text = alb.AnoAlbum
         End If
     End Sub
 
@@ -124,7 +170,7 @@ Public Class Form1
         Dim can As Cancion
         If Not Me.lstSong.SelectedItems Is Nothing Then
             Try
-                can = New Cancion(lstSong.SelectedItems.ToString)
+                can = New Cancion(lstSong.SelectedItems(0).SubItems(0).Text, lstSong.SelectedItems(0).SubItems(1).Text, lstSong.SelectedItems(0).SubItems(2).Text, lstSong.SelectedItems(0).SubItems(4).Text)
                 can.LeerCancion()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -133,7 +179,6 @@ Public Class Form1
             Me.TB_Id_Song.Text = can.IDCancion
             Me.TB_Name_Song.Text = can.NomCancion
             Me.TB_Duration_Song.Text = can.Duracion
-            Me.CB_Album_Song.Text = can.Album.NomAlbum
             Me.TB_Order_Song.Text = can.OrdenCancion
         End If
     End Sub
@@ -146,15 +191,13 @@ Public Class Form1
         Dim con As Concierto
         If Not Me.lstConcert.SelectedItems Is Nothing Then
             Try
-                con = New Concierto(lstConcert.SelectedItems.ToString)
+                con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
             Me.TB_Id_Concert.Text = con.IDConcierto
-            Me.CB_Artist_Concert.Text = con.Artista.NomArtista
-            Me.CB_Site_Concert.Text = con.Sitio.NomSitio
             Me.DTP_Date_Concert.Text = con.FechaConcierto
         End If
     End Sub
@@ -403,6 +446,7 @@ Public Class Form1
     ' --------------------
 
     Private Sub Update_Country()
+        lstContries.Items.Clear()
         Dim pai As Pais = New Pais
         Try
             pai.LeerTodosPaises()
@@ -418,16 +462,6 @@ Public Class Form1
         Next
         ' Añade columnas al listView de Países
         lstContries.View = View.Details
-        lstContries.Columns.Add("ID", 75)
-        lstContries.Columns.Add("Name", 150)
-
-        For Each item As ListViewItem In lstContries.Items
-            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
-            CB_Country_Site.Items.Add(p)
-            CB_Country_Artist.Items.Add(p)
-        Next
-        CB_Country_Site.SelectedIndex = -1
-        CB_Country_Artist.SelectedIndex = -1
     End Sub
 
 
@@ -538,7 +572,6 @@ Public Class Form1
     End Sub
 
 
-
     ' -----------------
     ' SITE CLEAR ALL
     ' -----------------
@@ -555,6 +588,8 @@ Public Class Form1
     ' ---------------------
 
     Private Sub Update_Site()
+        lstSites.Items.Clear()
+        CB_Country_Site.Items.Clear()
         Dim sit As Sitio = New Sitio
         Try
             sit.LeerTodosSitios()
@@ -571,19 +606,11 @@ Public Class Form1
             item.SubItems.Add(s.tipo)
             lstSites.Items.Add(item)
         Next
-        ' Añade columnas al listView de Sitios
-        lstSites.View = View.Details
-        lstSites.Columns.Add("ID", 40)
-        lstSites.Columns.Add("Name", 80)
-        lstSites.Columns.Add("Country", 90)
-        lstSites.Columns.Add("Type", 80)
-
-        ' Añade valores del enum al comboBox
-        CB_Type_Site.Items.Add(TipoSitio.sala)
-        CB_Type_Site.Items.Add(TipoSitio.pabellón)
-        CB_Type_Site.Items.Add(TipoSitio.estadio)
-        CB_Type_Site.Items.Add(TipoSitio.festival)
-        CB_Type_Site.SelectedIndex = -1
+        For Each item As ListViewItem In lstContries.Items
+            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Country_Site.Items.Add(p)
+        Next
+        CB_Country_Site.SelectedIndex = -1
     End Sub
 
     ' ===========================================
@@ -698,6 +725,8 @@ Public Class Form1
     ' ---------------------
 
     Private Sub Update_Artist()
+        lstArtist.Items.Clear()
+        CB_Country_Artist.Items.Clear()
         Dim art As Artista = New Artista
         Try
             art.LeerTodosArtistas()
@@ -705,7 +734,6 @@ Public Class Form1
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End Try
-
         For Each a As Artista In art.ArtDAO.Artistas
             Dim item As New ListViewItem
             item.Text = a.IDArtista
@@ -714,12 +742,11 @@ Public Class Form1
             item.SubItems.Add(a.Pais.NomPais)
             lstArtist.Items.Add(item)
         Next
-        ' Añade columnas al listView de Artistas
-        lstArtist.View = View.Details
-        lstArtist.Columns.Add("ID", 40)
-        lstArtist.Columns.Add("Name", 80)
-        lstArtist.Columns.Add("Country", 90)
-
+        For Each item As ListViewItem In lstContries.Items
+            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Country_Artist.Items.Add(p)
+        Next
+        CB_Country_Artist.SelectedIndex = -1
     End Sub
 
     ' ===========================================
@@ -842,6 +869,8 @@ Public Class Form1
     ' --------------------
 
     Private Sub Update_Album()
+        lstAlbumes.Items.Clear()
+        CB_Artist_Album.Items.Clear()
         Dim alb As Album = New Album
         Try
             alb.LeerTodosAlbums()
@@ -859,12 +888,6 @@ Public Class Form1
             item.SubItems.Add(a.Artista.NomArtista)
             lstAlbumes.Items.Add(item)
         Next
-        ' Añade columnas al listView de Albumes
-        lstAlbumes.View = View.Details
-        lstAlbumes.Columns.Add("ID", 40)
-        lstAlbumes.Columns.Add("Name", 80)
-        lstAlbumes.Columns.Add("Year", 60)
-        lstAlbumes.Columns.Add("Artist", 80)
 
         For Each item As ListViewItem In lstArtist.Items
             Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
@@ -966,7 +989,8 @@ Public Class Form1
     ' --------------------
 
     Private Sub Update_Song()
-
+        CB_Album_Song.Items.Clear()
+        lstSong.Items.Clear()
         Dim can As Cancion = New Cancion
         Try
             can.LeerTodasCanciones()
@@ -984,13 +1008,6 @@ Public Class Form1
             item.SubItems.Add(c.OrdenCancion)
             lstSong.Items.Add(item)
         Next
-        ' Añade columnas al listView de Canciones
-        lstSong.View = View.Details
-        lstSong.Columns.Add("ID", 40)
-        lstSong.Columns.Add("Name", 80)
-        lstSong.Columns.Add("Duration", 60)
-        lstSong.Columns.Add("Album", 90)
-        lstSong.Columns.Add("Orden", 60)
 
         For Each item As ListViewItem In lstAlbumes.Items
             Dim a As Album = New Album(item.SubItems(0).Text, item.SubItems(1).Text)
@@ -1052,10 +1069,13 @@ Public Class Form1
     ' -----------------
 
     ' --------------------
-    ' SONG UPDATE CONTROL
+    ' CONCERT UPDATE CONTROL
     ' --------------------
 
     Private Sub Update_Concert()
+        lstConcert.Items.Clear()
+        CB_Artist_Concert.Items.Clear()
+        CB_Site_Concert.Items.Clear()
         Dim con As Concierto = New Concierto
         Try
             con.LeerTodosConciertos()
@@ -1073,12 +1093,6 @@ Public Class Form1
             item.SubItems.Add(c.FechaConcierto)
             lstSong.Items.Add(item)
         Next
-        ' Añade columnas al listView de Canciones
-        lstConcert.View = View.Details
-        lstConcert.Columns.Add("ID", 40)
-        lstConcert.Columns.Add("Artista", 80)
-        lstConcert.Columns.Add("Sitio", 60)
-        lstConcert.Columns.Add("Fecha", 90)
 
         For Each item As ListViewItem In lstArtist.Items
             Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)

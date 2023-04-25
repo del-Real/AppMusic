@@ -15,6 +15,14 @@
         Me.CanDAO = New CancionDAO
     End Sub
 
+    Public Sub New(id As Integer, nombre As String, duracion As Integer, orden As Integer)
+        Me.IDCancion = id
+        Me.NomCancion = nombre
+        Me.Duracion = duracion
+        Me.OrdenCancion = orden
+        Me.CanDAO = New CancionDAO
+    End Sub
+
     Public Sub New(id As Integer, nombre As String)
         Me.IDCancion = id
         Me.NomCancion = nombre
