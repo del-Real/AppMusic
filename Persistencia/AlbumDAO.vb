@@ -28,7 +28,15 @@
     End Sub
 
     Public Function Insertar(ByVal a As Album) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO albumes VALUES ('" & a.IDAlbum & "', '" & a.NomAlbum & "', '" & a.AnoAlbum & "', '" & a.Artista.IDArtista & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO albumes(NombreAlbum,AñoAlbum,Artista) VALUES ('" & a.NomAlbum & "', '" & a.AnoAlbum & "', '" & a.Artista.IDArtista & "');")
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
+        For Each aux In col
+            a.IDAlbum = CInt(aux(1))
+        Next
+        Return cadena
+
+
     End Function
 
     Public Function Actualizar(ByVal a As Album) As Integer

@@ -29,7 +29,13 @@
     End Sub
 
     Public Function Insertar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones VALUES ('" & c.IDCancion & "', '" & c.NomCancion & "' , '" & c.Duracion & "' , '" & c.Album.IDAlbum & "' , '" & c.OrdenCancion & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones(NombreCancion,Duración,Albu,OrdenCanción) VALUES ('" & c.NomCancion & "' , '" & c.Duracion & "' , '" & c.Album.IDAlbum & "' , '" & c.OrdenCancion & "');")
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
+        For Each aux In col
+            c.IDCancion = CInt(aux(1))
+        Next
+        Return cadena
     End Function
 
     Public Function Actualizar(ByVal c As Cancion) As Integer

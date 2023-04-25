@@ -26,7 +26,13 @@
     End Sub
 
     Public Function Insertar(ByVal p As Pais) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO paises VALUES ('" & p.IDPais & "', '" & p.NomPais & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO paises(NombrePais) VALUES ('" & p.NomPais & "');")
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
+        For Each aux In col
+            p.IDPais = CInt(aux(1))
+        Next
+        Return cadena
     End Function
 
     Public Function Actualizar(ByVal p As Pais) As Integer

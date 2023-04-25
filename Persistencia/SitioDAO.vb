@@ -28,7 +28,13 @@
     End Sub
 
     Public Function Insertar(ByVal s As Sitio) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO sitio VALUES ('" & s.IDSitio & "', '" & s.NomSitio & "', '" & s.Pais.IDPais & "', '" & s.tipo & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO sitio(NombreSitio,País,Tipo) VALUES ('" & s.NomSitio & "', '" & s.Pais.IDPais & "', '" & s.tipo & "');")
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
+        For Each aux In col
+            s.IDSitio = CInt(aux(1))
+        Next
+        Return cadena
     End Function
 
     Public Function Actualizar(ByVal s As Sitio) As Integer

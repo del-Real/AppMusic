@@ -32,7 +32,13 @@
     End Sub
 
     Public Function Insertar(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO personas VALUES ('" & c.IDConcierto & "', '" & c.Artista.NomArtista & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO conciertos(Artista) VALUES ('" & c.Artista.NomArtista & "');")
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
+        For Each aux In col
+            c.IDConcierto = CInt(aux(1))
+        Next
+        Return cadena
     End Function
 
     Public Function Actualizar(ByVal c As Concierto) As Integer
@@ -40,6 +46,6 @@
     End Function
 
     Public Function Borrar(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Personas WHERE IDConcierto='" & c.IDConcierto & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Conciertos WHERE IDConcierto='" & c.IDConcierto & "';")
     End Function
 End Class
