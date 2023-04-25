@@ -431,9 +431,8 @@ Public Class Form1
     ' -----------
 
     Private Sub CountryAdd()
-
         Dim pai As Pais = Nothing
-        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
+        If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty And Me.TB_Id_Country.Text.Length = 3 Then
             pai = New Pais(Me.TB_Id_Country.Text)
             pai.NomPais = Me.TB_Name_Country.Text
             Try
@@ -452,8 +451,9 @@ Public Class Form1
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
+        Else
+            MessageBox.Show("El Id del país debe tener exactamente 3 letras", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-
     End Sub
 
 
