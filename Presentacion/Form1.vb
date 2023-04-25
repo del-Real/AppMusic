@@ -9,45 +9,31 @@ Imports Org.BouncyCastle.Bcpg
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
-
-
-        ' ------
-        ' PAISES
-        ' ------
-
-        ' ------
-        ' SITIOS
-        ' ------
-
-
-
-        ' --------
-        ' ARTISTAS
-        ' --------
-
-        ' --------
-        ' ALBUMES
-        ' --------
-
-
-        ' ---------
-        ' CANCIONES
-        ' ---------
-
-
-        ' ----------
-        ' CONCIERTOS
-        ' ----------
-
-
-
+        Update_Album()
     End Sub
-
-
 
     ' =========================================================================================
     ' PESTAÑAS
     ' =========================================================================================
+
+    Private Sub TabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl.SelectedIndexChanged
+        Dim tabPage As TabPage = TabControl.SelectedTab
+        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
+        Select Case tabPage.Name
+            Case "TabAlbum"
+                Update_Album()
+            Case "TabArtist"
+                Update_Artist()
+            Case "TabSong"
+                Update_Song()
+            Case "TabConcert"
+                Update_Concert()
+            Case "TabCountry"
+                Update_Country()
+            Case "TabSite"
+                Update_Site()
+        End Select
+    End Sub
 
     ' ===============
     ' PESTAÑA ARTISTA
@@ -419,7 +405,7 @@ Public Class Form1
     Private Sub Update_Country()
         Dim pai As Pais = New Pais
         Try
-            pai.LeerTodosPaises(ofdRuta.FileName)
+            pai.LeerTodosPaises()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -571,7 +557,7 @@ Public Class Form1
     Private Sub Update_Site()
         Dim sit As Sitio = New Sitio
         Try
-            sit.LeerTodosSitios(ofdRuta.FileName)
+            sit.LeerTodosSitios()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -714,7 +700,7 @@ Public Class Form1
     Private Sub Update_Artist()
         Dim art As Artista = New Artista
         Try
-            art.LeerTodosArtistas(ofdRuta.FileName)
+            art.LeerTodosArtistas()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -858,7 +844,7 @@ Public Class Form1
     Private Sub Update_Album()
         Dim alb As Album = New Album
         Try
-            alb.LeerTodosAlbums(ofdRuta.FileName)
+            alb.LeerTodosAlbums()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -980,9 +966,10 @@ Public Class Form1
     ' --------------------
 
     Private Sub Update_Song()
+
         Dim can As Cancion = New Cancion
         Try
-            can.LeerTodasCanciones(ofdRuta.FileName)
+            can.LeerTodasCanciones()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -1071,7 +1058,7 @@ Public Class Form1
     Private Sub Update_Concert()
         Dim con As Concierto = New Concierto
         Try
-            con.LeerTodosConciertos(ofdRuta.FileName)
+            con.LeerTodosConciertos()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -1105,24 +1092,4 @@ Public Class Form1
         CB_Site_Concert.SelectedIndex = -1
 
     End Sub
-
-    Private Sub TabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl.SelectedIndexChanged
-        Dim tabPage As TabPage = TabControl.SelectedTab
-        'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
-        Select Case tabPage.Name
-            Case "TabAlbum"
-                Update_Album()
-            Case "TabArtist"
-                Update_Artist()
-            Case "TabSong"
-                Update_Song()
-            Case "TabConcert"
-                Update_Concert()
-            Case "TabCountry"
-                Update_Country()
-            Case "TabSite"
-                Update_Site()
-        End Select
-    End Sub
-
 End Class
