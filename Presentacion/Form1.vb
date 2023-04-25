@@ -327,12 +327,7 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = pai.IDPais
-                item.SubItems.Add(pai.NomPais)
-                lstContries.Items.Add(item)
-                CB_Country_Site.Items.Add(pai)
-                CB_Country_Artist.Items.Add(pai)
+                Update_Country()
                 MessageBox.Show(pai.NomPais.ToString & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -354,24 +349,11 @@ Public Class Form1
             If MessageBox.Show("Estas seguro de que quieres eliminar " & Me.TB_Id_Country.Text, ". Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
                 Try
-                    Dim item As ListViewItem = lstContries.FindItemWithText(TB_Id_Country.Text, False, 0, True)
-                    If item IsNot Nothing Then
-                        For Each a As Object In CB_Country_Artist.Items
-                            If a.IDPais = pai.IDPais Then
-                                CB_Country_Artist.Items.Remove(item)
-                            End If
-                        Next
-                        For Each s As Object In CB_Country_Site.Items
-                            If s.IDPais = pai.IDPais Then
-                                CB_Country_Site.Items.Remove(item)
-                            End If
-                        Next
-                    End If
                     If pai.BorrarPais() <> 1 Then
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    lstContries.Items.Remove(item)
+                    Update_Country()
                     MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
                 Catch ex As Exception
 
@@ -390,40 +372,14 @@ Public Class Form1
 
         Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty Then
-            CB_Country_Artist.Items.Remove(TB_Id_Country)
-            CB_Country_Site.Items.Remove(TB_Id_Country)
             pai = New Pais(TB_Id_Country.Text)
             pai.NomPais = Me.TB_Name_Country.Text
-            Dim item As ListViewItem = lstContries.FindItemWithText(TB_Id_Country.Text)
-            If item IsNot Nothing Then
-                item.SubItems(0).Text = pai.IDPais
-                item.SubItems(1).Text = pai.NomPais
-                CB_Country_Site.Items.Add(item)
-                CB_Country_Artist.Items.Add(item)
-            End If
-            'ACTUALIZA INFORMACION DE LOS COMBOBOX DE PAISES DE LAS DEMAS VENTANAS
-            For Each el1 As Object In CB_Country_Site.Items
-                If TypeOf el1 Is Pais Then
-                    Dim pais As Pais = CType(el1, Pais)
-                    If pais.IDPais = pai.IDPais Then
-                        pais.NomPais = pai.NomPais
-                        For Each el2 As Object In CB_Country_Artist.Items
-                            If TypeOf el2 Is Pais Then
-                                If el2.IDPais = pai.IDPais Then
-                                    el2.NomPais = pai.NomPais
-                                    Exit For
-                                End If
-                            End If
-                        Next
-                        Exit For
-                    End If
-                End If
-            Next
             Try
                 If pai.ActualizarPais() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
+                Update_Country()
                 MessageBox.Show("Pais con el ID " & pai.IDPais & " actualizado correctamente a " & pai.NomPais.ToString)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -475,9 +431,8 @@ Public Class Form1
 
     Private Sub SiteAdd()
 
-        Dim sit As Sitio = Nothing
-        If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty Then
-            sit = New Sitio(Me.TB_Id_Site.Text)
+        Dim sit As Sitio = New Sitio
+        If Me.TB_Name_Site.Text <> String.Empty Then
             sit.NomSitio = Me.TB_Name_Site.Text
             sit.tipo = CB_Type_Site.SelectedItem.ToString
             sit.Pais = CB_Country_Site.SelectedItem
@@ -486,19 +441,13 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = sit.IDSitio
-                item.SubItems.Add(sit.NomSitio)
-                item.SubItems.Add(sit.Pais.NomPais)
-                item.SubItems.Add(sit.tipo.ToString)
-                lstSites.Items.Add(item)
+                Update_Site()
                 MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         End If
-
     End Sub
 
 
