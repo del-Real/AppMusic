@@ -22,102 +22,109 @@ Partial Class Form2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lstSong2 = New ListView()
-        lstSetlist = New ListView()
-        ComboBox1 = New ComboBox()
-        Label1 = New Label()
-        Label2 = New Label()
-        Label3 = New Label()
-        ButtonAddSong = New Button()
-        ButtonRemoveSong = New Button()
-        SuspendLayout()
-        ' 
-        ' lstSong2
-        ' 
-        lstSong2.Location = New Point(457, 57)
-        lstSong2.Name = "lstSong2"
-        lstSong2.Size = New Size(249, 295)
-        lstSong2.TabIndex = 0
-        lstSong2.UseCompatibleStateImageBehavior = False
-        ' 
-        ' lstSetlist
-        ' 
-        lstSetlist.Location = New Point(101, 57)
-        lstSetlist.Name = "lstSetlist"
-        lstSetlist.Size = New Size(249, 295)
-        lstSetlist.TabIndex = 1
-        lstSetlist.UseCompatibleStateImageBehavior = False
-        ' 
-        ' ComboBox1
-        ' 
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(101, 396)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(121, 23)
-        ComboBox1.TabIndex = 2
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(101, 39)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(84, 15)
-        Label1.TabIndex = 3
-        Label1.Text = "Concert Songs"
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(457, 39)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(55, 15)
-        Label2.TabIndex = 4
-        Label2.Text = "Song List"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(101, 378)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(83, 15)
-        Label3.TabIndex = 5
-        Label3.Text = "Select Concert"
-        ' 
-        ' ButtonAddSong
-        ' 
-        ButtonAddSong.Location = New Point(366, 164)
-        ButtonAddSong.Name = "ButtonAddSong"
-        ButtonAddSong.Size = New Size(75, 23)
-        ButtonAddSong.TabIndex = 6
-        ButtonAddSong.Text = "<"
-        ButtonAddSong.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonRemoveSong
-        ' 
-        ButtonRemoveSong.Location = New Point(366, 217)
-        ButtonRemoveSong.Name = "ButtonRemoveSong"
-        ButtonRemoveSong.Size = New Size(75, 23)
-        ButtonRemoveSong.TabIndex = 9
-        ButtonRemoveSong.Text = "Remove"
-        ButtonRemoveSong.UseVisualStyleBackColor = True
-        ' 
-        ' Form2
-        ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
-        AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
-        Controls.Add(ButtonRemoveSong)
-        Controls.Add(ButtonAddSong)
-        Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
-        Controls.Add(ComboBox1)
-        Controls.Add(lstSetlist)
-        Controls.Add(lstSong2)
-        Name = "Form2"
-        Text = "Form2"
-        ResumeLayout(False)
-        PerformLayout()
+        Me.lstSong2 = New System.Windows.Forms.ListView()
+        Me.lstSetlist = New System.Windows.Forms.ListView()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ButtonAddSong = New System.Windows.Forms.Button()
+        Me.ButtonRemoveSong = New System.Windows.Forms.Button()
+        Me.SuspendLayout()
+        '
+        'lstSong2
+        '
+        Me.lstSong2.Location = New System.Drawing.Point(522, 76)
+        Me.lstSong2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstSong2.Name = "lstSong2"
+        Me.lstSong2.Size = New System.Drawing.Size(284, 392)
+        Me.lstSong2.TabIndex = 0
+        Me.lstSong2.UseCompatibleStateImageBehavior = False
+        '
+        'lstSetlist
+        '
+        Me.lstSetlist.Location = New System.Drawing.Point(115, 76)
+        Me.lstSetlist.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.lstSetlist.Name = "lstSetlist"
+        Me.lstSetlist.Size = New System.Drawing.Size(284, 392)
+        Me.lstSetlist.TabIndex = 1
+        Me.lstSetlist.UseCompatibleStateImageBehavior = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(115, 528)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(138, 28)
+        Me.ComboBox1.TabIndex = 2
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(115, 52)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(104, 20)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Concert Songs"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(522, 52)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 20)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Song List"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(115, 504)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(104, 20)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Select Concert"
+        '
+        'ButtonAddSong
+        '
+        Me.ButtonAddSong.Location = New System.Drawing.Point(418, 219)
+        Me.ButtonAddSong.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonAddSong.Name = "ButtonAddSong"
+        Me.ButtonAddSong.Size = New System.Drawing.Size(86, 31)
+        Me.ButtonAddSong.TabIndex = 6
+        Me.ButtonAddSong.Text = "<"
+        Me.ButtonAddSong.UseVisualStyleBackColor = True
+        '
+        'ButtonRemoveSong
+        '
+        Me.ButtonRemoveSong.Location = New System.Drawing.Point(418, 289)
+        Me.ButtonRemoveSong.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ButtonRemoveSong.Name = "ButtonRemoveSong"
+        Me.ButtonRemoveSong.Size = New System.Drawing.Size(86, 31)
+        Me.ButtonRemoveSong.TabIndex = 9
+        Me.ButtonRemoveSong.Text = "Remove"
+        Me.ButtonRemoveSong.UseVisualStyleBackColor = True
+        '
+        'Form2
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(914, 600)
+        Me.Controls.Add(Me.ButtonRemoveSong)
+        Me.Controls.Add(Me.ButtonAddSong)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.lstSetlist)
+        Me.Controls.Add(Me.lstSong2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Name = "Form2"
+        Me.Text = "Form2"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
     End Sub
 
     Friend WithEvents lstSong2 As ListView
