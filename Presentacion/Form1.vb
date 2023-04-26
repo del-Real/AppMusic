@@ -1015,6 +1015,17 @@ Public Class Form1
             con.Artista = CB_Artist_Concert.SelectedItem
             con.Sitio = CB_Site_Concert.SelectedItem
             con.FechaConcierto = DTP_Date_Concert.Value.Date
+            For Each item As ListViewItem In lstAllSongs.Items
+                Try
+                    Dim can = New Cancion(item.SubItems(0).Text, item.SubItems(1).Text, item.SubItems(2).Text, item.SubItems(4).Text)
+                    con.Canciones.Add(can)
+                    can.LeerCancion()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+
+            Next
             Try
                 If con.InsertarConcierto() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)

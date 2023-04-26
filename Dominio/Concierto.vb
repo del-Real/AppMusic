@@ -49,4 +49,12 @@
         Return Me.ConDAO.Borrar(Me)
     End Function
 
+    'Public Function InsertarSetlist() As Integer
+    'Return Me.ConDAO.InsertarSetlist(Me)
+    'End Function
+
+    'Public Function BorrarSetlist() As Integer
+    'Return Me.ConDAO.BorrarSetlist(Me)
+    'End Function
+
 End Class
