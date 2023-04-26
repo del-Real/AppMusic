@@ -11,11 +11,11 @@
         Dim a As Artista
         Dim s As Sitio
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM Conciertos ORDER BY IDConcierto")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos ORDER BY idConcierto")
         For Each aux In col
             c = New Concierto(CInt(aux(1)))
-            a = aux(2)
-            s = aux(3)
+            a = New Artista(aux(2).ToString)
+            s = New Sitio(aux(3).ToString)
             c.Artista = a
             c.Sitio = s
             c.FechaConcierto = CDate(aux(4).ToString)
@@ -25,14 +25,14 @@
 
     Public Sub Leer(ByRef c As Concierto)
         Dim col As Collection : Dim aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM Conciertos WHERE IDConcierto = '" & c.IDConcierto & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM conciertos WHERE idConcierto = '" & c.IDConcierto & "';")
         For Each aux In col
             c.IDConcierto = CInt(aux(1))
         Next
     End Sub
 
     Public Function Insertar(ByVal c As Concierto) As Integer
-        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO conciertos(Artista) VALUES ('" & c.Artista.NomArtista & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO conciertos(Artista,Sitio,FechaConcierto) VALUES ('" & c.Artista.IDArtista & "', '" & c.Sitio.IDSitio & "' , '" & c.FechaConcierto.ToString("yyyy-MM-dd") & "');")
         Dim col As Collection : Dim aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
         For Each aux In col
@@ -42,10 +42,10 @@
     End Function
 
     Public Function Actualizar(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE Conciertos SET Artista='" & c.Artista.NomArtista & "' WHERE IDConcierto='" & c.IDConcierto & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE conciertos SET Artista='" & c.Artista.IDArtista & "', Sitio='" & c.Sitio.IDSitio & "', FechaConcierto='" & c.FechaConcierto.ToString("yyyy-MM-dd") & "' WHERE idConcierto='" & c.IDConcierto & "';")
     End Function
 
     Public Function Borrar(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM Conciertos WHERE IDConcierto='" & c.IDConcierto & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM conciertos WHERE idConcierto='" & c.IDConcierto & "';")
     End Function
 End Class

@@ -29,7 +29,7 @@
     End Sub
 
     Public Function Insertar(ByVal c As Cancion) As Integer
-        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones(NombreCancion,Duración,Albu,OrdenCanción) VALUES ('" & c.NomCancion & "' , '" & c.Duracion & "' , '" & c.Album.IDAlbum & "' , '" & c.OrdenCancion & "');")
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO canciones(NombreCancion,Duración,Album,OrdenCanción) VALUES ('" & c.NomCancion & "' , '" & c.Duracion & "' , '" & c.Album.IDAlbum & "' , '" & c.OrdenCancion & "');")
         Dim col As Collection : Dim aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT LAST_INSERT_ID();")
         For Each aux In col
@@ -39,7 +39,7 @@
     End Function
 
     Public Function Actualizar(ByVal c As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE canciones SET NombreCancion='" & c.NomCancion & "', Duración='" & c.Duracion & "', Album ='" & c.Album.NomAlbum & "', OrdenCanción ='" & c.OrdenCancion & "' WHERE idCancion='" & c.IDCancion & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE canciones SET NombreCancion='" & c.NomCancion & "', Duración='" & c.Duracion & "', Album ='" & c.Album.IDAlbum & "', OrdenCanción ='" & c.OrdenCancion & "' WHERE idCancion='" & c.IDCancion & "';")
     End Function
 
     Public Function Borrar(ByVal c As Cancion) As Integer

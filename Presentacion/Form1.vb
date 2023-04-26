@@ -1,10 +1,18 @@
-﻿Imports System.Runtime.Intrinsics
+﻿Imports System.Collections.Concurrent
+Imports System.ComponentModel.DataAnnotations
+Imports System.Configuration
+Imports System.Linq.Expressions
+Imports System.Runtime.CompilerServices
+Imports System.Runtime.Intrinsics
 Imports System.Security.Policy
+Imports System.Timers
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
 Imports Google.Protobuf.WellKnownTypes
 Imports Mysqlx.Crud
 Imports Org.BouncyCastle.Bcpg
+Imports Org.BouncyCastle.Crypto.Agreement.Kdf
+Imports Org.BouncyCastle.Crypto.Engines
 
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -247,7 +255,7 @@ Public Class Form1
             Case "TabSong"
                 SongDelete()
             Case "TabConcert"
-            'Aquí va el código para añadir una nueva canción
+                ConcertDelete()
             Case "TabCountry"
                 CountryDelete()
             Case "TabSite"
@@ -270,9 +278,9 @@ Public Class Form1
             Case "TabArtist"
                 ArtistModify()
             Case "TabSong"
-            'Aquí va el código para añadir un nuevo artista
+                SongModify()
             Case "TabConcert"
-            'Aquí va el código para añadir una nueva canción
+                ConcertModify()
             Case "TabCountry"
                 CountryModify()
             Case "TabSite"
@@ -297,7 +305,7 @@ Public Class Form1
             Case "TabSong"
                 SongClearAll()
             Case "TabConcert"
-            'Aquí va el código para añadir una nueva canción
+                ConcertClearAll()
             Case "TabCountry"
                 CountryClearAll()
             Case "TabSite"
@@ -320,21 +328,20 @@ Public Class Form1
     Private Sub CountryAdd()
         Dim pai As Pais = Nothing
         If Me.TB_Id_Country.Text <> String.Empty And Me.TB_Name_Country.Text <> String.Empty And Me.TB_Id_Country.Text.Length = 3 Then
-            pai = New Pais(Me.TB_Id_Country.Text)
-            pai.NomPais = Me.TB_Name_Country.Text
+            pai = New Pais(Me.TB_Id_Country.Text, Me.TB_Name_Country.Text)
             Try
                 If pai.InsertarPais() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 Update_Country()
-                MessageBox.Show(pai.NomPais.ToString & " insertado correctamente")
+                MessageBox.Show("Pais con el ID " & pai.IDPais & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Else
-            MessageBox.Show("El Id del país debe tener exactamente 3 letras", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("El ID del país debe tener exactamente 3 letras", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 
@@ -354,7 +361,7 @@ Public Class Form1
                         Exit Sub
                     End If
                     Update_Country()
-                    MessageBox.Show(pai.NomPais.ToString & " eliminado correctamente")
+                    MessageBox.Show("Pais con el ID " & pai.IDPais & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -420,7 +427,6 @@ Public Class Form1
         lstContries.View = View.Details
     End Sub
 
-
     ' ===========================================
     ' MÉTODOS SITIO
     ' ===========================================
@@ -442,14 +448,13 @@ Public Class Form1
                     Exit Sub
                 End If
                 Update_Site()
-                MessageBox.Show(sit.NomSitio.ToString & " Insertado correctamente")
+                MessageBox.Show("Sitio con el ID " & sit.IDSitio & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         End If
     End Sub
-
 
     ' --------------
     ' SITE DELETE
@@ -466,11 +471,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio)
-                    If item IsNot Nothing Then
-                        lstSites.Items.Remove(item)
-                    End If
-                    MessageBox.Show(sit.NomSitio.ToString & " eliminado correctamente")
+                    Update_Site()
+                    MessageBox.Show("Sitio con el ID " & sit.IDSitio & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -482,36 +484,25 @@ Public Class Form1
 
     End Sub
 
-
-
     ' --------------
     ' SITE MODIFY
     ' --------------
 
     Private Sub SiteModify()
 
-        Dim sit As Sitio = Nothing
+        Dim sit As Sitio = New Sitio
         If Me.TB_Id_Site.Text <> String.Empty And Me.TB_Name_Site.Text <> String.Empty And Me.CB_Country_Site.Text <> String.Empty And Me.CB_Type_Site.Text <> String.Empty Then
             sit = New Sitio(Me.TB_Id_Site.Text)
             sit.NomSitio = Me.TB_Name_Site.Text
             sit.Pais = CB_Country_Site.SelectedItem
             sit.tipo = CB_Type_Site.SelectedItem.ToString
-            Dim item As ListViewItem = lstSites.FindItemWithText(sit.IDSitio)
-            Dim nomSitio As String = ""
-            If item IsNot Nothing Then
-                nomSitio = item.SubItems(1).Text
-                item.SubItems(1).Text = sit.NomSitio
-                item.SubItems(2).Text = sit.Pais.NomPais
-                item.SubItems(3).Text = sit.tipo
-                CB_Country_Site.Items.Remove(nomSitio)
-                CB_Country_Site.Items.Add(sit.NomSitio)
-            End If
             Try
                 If sit.ActualizarSitio() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Sitio con el ID " & sit.IDSitio & " actualizado correctamente al nombre " & sit.NomSitio.ToString & ", a pais " & sit.Pais.NomPais & " y a tipo " & sit.tipo)
+                Update_Site()
+                MessageBox.Show("Sitio con el ID " & sit.IDSitio & " actualizado correctamente al nombre " & sit.NomSitio.ToString & ", pais " & sit.Pais.NomPais & " y tipo " & sit.tipo)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -519,7 +510,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
     ' -----------------
     ' SITE CLEAR ALL
@@ -580,12 +570,8 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = art.IDArtista
-                item.SubItems.Add(art.NomArtista)
-                item.SubItems.Add(art.Pais.NomPais)
-                lstArtist.Items.Add(item)
-                MessageBox.Show(art.NomArtista.ToString & " Insertado correctamente")
+                Update_Artist()
+                MessageBox.Show("Artista con el ID " & art.IDArtista & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -609,11 +595,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    Dim item As ListViewItem = lstArtist.FindItemWithText(art.IDArtista)
-                    If item IsNot Nothing Then
-                        lstArtist.Items.Remove(item)
-                    End If
-                    MessageBox.Show(art.NomArtista.ToString & " eliminado correctamente")
+                    Update_Artist()
+                    MessageBox.Show("Artista con el ID " & art.IDArtista & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -631,26 +614,18 @@ Public Class Form1
 
     Private Sub ArtistModify()
 
-        Dim art As Artista = Nothing
+        Dim art As Artista = New Artista
         If Me.TB_Id_Artist.Text <> String.Empty And Me.TB_Name_Artist.Text <> String.Empty And Me.CB_Country_Artist.Text <> String.Empty Then
             art = New Artista(Me.TB_Id_Artist.Text)
             art.NomArtista = Me.TB_Name_Artist.Text
             art.Pais = CB_Country_Artist.SelectedItem
-            Dim item As ListViewItem = lstSites.FindItemWithText(art.IDArtista)
-            Dim nomArtista As String = ""
-            If item IsNot Nothing Then
-                nomArtista = item.SubItems(1).Text
-                item.SubItems(1).Text = art.NomArtista
-                item.SubItems(2).Text = art.Pais.NomPais
-                CB_Country_Site.Items.Remove(nomArtista)
-                CB_Country_Site.Items.Add(art.NomArtista)
-            End If
             Try
                 If art.ActualizarArtista() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Artista con el ID " & art.IDArtista & " actualizado correctamente a " & art.NomArtista.ToString)
+                Update_Artist()
+                MessageBox.Show("Artista con el ID " & art.IDArtista & " actualizado correctamente al nombre " & art.NomArtista.ToString & " y pais " & art.Pais.NomPais)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -695,7 +670,6 @@ Public Class Form1
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Artist.Items.Add(p)
         Next
-        CB_Country_Artist.SelectedIndex = -1
     End Sub
 
     ' ===========================================
@@ -708,9 +682,8 @@ Public Class Form1
 
     Private Sub AlbumAdd()
 
-        Dim alb As Album = Nothing
-        If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
-            alb = New Album(Me.TB_ID_Album.Text)
+        Dim alb As Album = New Album
+        If Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
             alb.NomAlbum = TB_Name_Album.Text
             alb.AnoAlbum = DTP_Year_Album.Value.Year
             alb.Artista = CB_Artist_Album.SelectedItem
@@ -719,13 +692,8 @@ Public Class Form1
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = alb.IDAlbum
-                item.SubItems.Add(alb.NomAlbum)
-                item.SubItems.Add(alb.Artista.NomArtista)
-                item.SubItems.Add(alb.AnoAlbum)
-                lstAlbumes.Items.Add(item)
-                MessageBox.Show(alb.NomAlbum.ToString & " insertado correctamente")
+                Update_Album()
+                MessageBox.Show("Album con ID " & alb.IDAlbum & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -733,7 +701,6 @@ Public Class Form1
         End If
 
     End Sub
-
 
     ' --------------
     ' ALBUM DELETE
@@ -750,11 +717,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    Dim item As ListViewItem = lstAlbumes.FindItemWithText(alb.IDAlbum)
-                    If item IsNot Nothing Then
-                        lstAlbumes.Items.Remove(item)
-                    End If
-                    MessageBox.Show(alb.NomAlbum.ToString & " eliminado correctamente")
+                    Update_Album()
+                    MessageBox.Show("Album con ID " & alb.IDAlbum & " eliminado correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -766,8 +730,6 @@ Public Class Form1
 
     End Sub
 
-
-
     ' --------------
     ' ALBUM MODIFY
     ' --------------
@@ -775,24 +737,17 @@ Public Class Form1
     Private Sub AlbumModify()
 
         Dim alb As Album = Nothing
-        If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty And Me.DTP_Year_Album.Text <> String.Empty Then
-            alb = New Album(Me.TB_Id_Site.Text, Me.TB_Name_Album.Text)
+        If Me.TB_ID_Album.Text <> String.Empty And Me.TB_Name_Album.Text <> String.Empty And Me.CB_Artist_Album.Text <> String.Empty Then
+            alb = New Album(CInt(Me.TB_ID_Album.Text), Me.TB_Name_Album.Text)
             alb.Artista = CB_Artist_Album.SelectedItem
             alb.AnoAlbum = DTP_Year_Album.Value.Year
-            Dim item As ListViewItem = lstAlbumes.FindItemWithText(alb.IDAlbum)
-            Dim nomAlbum As String = ""
-            If item IsNot Nothing Then
-                nomAlbum = item.SubItems(1).Text
-                item.SubItems(1).Text = alb.NomAlbum
-                item.SubItems(2).Text = alb.Artista.NomArtista
-                item.SubItems(3).Text = alb.AnoAlbum
-            End If
             Try
                 If alb.ActualizarAlbum() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Album con el ID " & alb.IDAlbum & " actualizado correctamente al nombre " & alb.NomAlbum.ToString & ", a artista " & alb.Artista.NomArtista & " y a año " & alb.AnoAlbum)
+                Update_Album()
+                MessageBox.Show("Album con el ID " & alb.IDAlbum & " actualizado correctamente al nombre " & alb.NomAlbum.ToString & ", artista " & alb.Artista.NomArtista & " y año " & alb.AnoAlbum)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -800,8 +755,6 @@ Public Class Form1
         End If
 
     End Sub
-
-
 
     ' -----------------
     ' ALBUM CLEAR ALL
@@ -834,7 +787,7 @@ Public Class Form1
             item.SubItems.Add(a.NomAlbum)
             item.SubItems.Add(a.AnoAlbum)
             a.Artista.LeerArtista()
-            item.SubItems.Add(a.Artista.NomArtista)
+            item.SubItems.Add(a.Artista.IDArtista)
             lstAlbumes.Items.Add(item)
         Next
 
@@ -855,26 +808,19 @@ Public Class Form1
 
     Private Sub SongAdd()
 
-        Dim can As Cancion = Nothing
-        If Me.TB_Id_Song.Text <> String.Empty And Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty Then
-            can = New Cancion(Me.TB_Id_Song.Text)
+        Dim can As Cancion = New Cancion
+        If Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty Then
             can.NomCancion = TB_Name_Song.Text
-            can.Duracion = TB_Duration_Song.Text
+            can.Duracion = CInt(TB_Duration_Song.Text)
             can.Album = CB_Album_Song.SelectedItem
-            can.OrdenCancion = TB_Order_Song.Text
+            can.OrdenCancion = CInt(TB_Order_Song.Text)
             Try
                 If can.InsertarCancion() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = can.IDCancion
-                item.SubItems.Add(can.NomCancion)
-                item.SubItems.Add(can.Duracion)
-                item.SubItems.Add(can.Album.NomAlbum)
-                item.SubItems.Add(can.OrdenCancion)
-                lstSong.Items.Add(item)
-                MessageBox.Show(can.NomCancion.ToString & " insertado correctamente")
+                Update_Song()
+                MessageBox.Show("Canción con el ID " & can.IDCancion & " insertada correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -898,11 +844,8 @@ Public Class Form1
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     End If
-                    Dim item As ListViewItem = lstSong.FindItemWithText(can.IDCancion)
-                    If item IsNot Nothing Then
-                        lstSong.Items.Remove(item)
-                    End If
-                    MessageBox.Show(can.NomCancion.ToString & " eliminado correctamente")
+                    Update_Song()
+                    MessageBox.Show("Canción con el ID " & can.IDCancion & " eliminada correctamente")
                 Catch ex As Exception
 
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -918,8 +861,28 @@ Public Class Form1
     ' SONG MODIFY
     ' -----------------
 
+    Private Sub SongModify()
 
+        Dim can As Cancion = Nothing
+        If Me.TB_Id_Song.Text <> String.Empty And Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty Then
+            can = New Cancion(CInt(Me.TB_Id_Song.Text), Me.TB_Name_Song.Text)
+            can.Album = CB_Album_Song.SelectedItem
+            can.Duracion = CInt(TB_Duration_Song.Text)
+            can.OrdenCancion = CInt(TB_Order_Song.Text)
+            Try
+                If can.ActualizarCancion() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                Update_Song()
+                MessageBox.Show("Cancion con el ID " & can.IDCancion & " actualizado correctamente al nombre " & can.NomCancion & ", album " & can.Album.NomAlbum & ", duración " & can.Duracion & " y orden " & can.OrdenCancion)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
 
+    End Sub
 
     ' -----------------
     ' SONG CLEAR ALL
@@ -965,7 +928,6 @@ Public Class Form1
         CB_Album_Song.SelectedIndex = -1
     End Sub
 
-
     ' ===========================================
     ' MÉTODOS CONCIERTO
     ' ===========================================
@@ -976,25 +938,18 @@ Public Class Form1
 
     Private Sub ConcertAdd()
 
-        Dim con As Concierto = Nothing
-        If Me.TB_Id_Concert.Text <> String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
-            con = New Concierto(Me.TB_Id_Concert.Text)
+        Dim con As Concierto = New Concierto
+        If Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
             con.Artista = CB_Artist_Concert.SelectedItem
             con.Sitio = CB_Site_Concert.SelectedItem
-            con.FechaConcierto = DTP_Date_Concert.Value
+            con.FechaConcierto = DTP_Date_Concert.Value.Date
             Try
                 If con.InsertarConcierto() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                Dim item As New ListViewItem
-                item.Text = con.IDConcierto
-                item.SubItems.Add(con.IDConcierto)
-                item.SubItems.Add(con.Artista.NomArtista)
-                item.SubItems.Add(con.Sitio.NomSitio)
-                item.SubItems.Add(con.FechaConcierto)
-                lstContries.Items.Add(item)
-                MessageBox.Show(con.IDConcierto.ToString & " insertado correctamente")
+                Update_Concert()
+                MessageBox.Show("Concierto con el ID " & con.IDConcierto.ToString & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -1007,15 +962,65 @@ Public Class Form1
     ' CONCERT DELETE
     ' --------------
 
+    Private Sub ConcertDelete()
+
+        Dim con As Concierto = Nothing
+        If Me.TB_Id_Concert.Text <> String.Empty Then
+            If MessageBox.Show("Estas seguro de que quieres eliminar el concierto con el ID " & Me.TB_Id_Concert.Text, "?. Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                con = New Concierto(Me.TB_Id_Concert.Text)
+                Try
+                    If con.BorrarConcierto() <> 1 Then
+                        MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Exit Sub
+                    End If
+                    Update_Concert()
+                    MessageBox.Show("Concierto con el ID " & con.IDConcierto & " eliminado correctamente")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+            End If
+        End If
+
+    End Sub
 
     ' --------------
     ' CONCERT MODIFY
     ' --------------
 
+    Private Sub ConcertModify()
+
+        Dim con As Concierto = Nothing
+        If Me.TB_Id_Concert.Text <> String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
+            con = New Concierto(CInt(Me.TB_Id_Concert.Text))
+            con.Artista = CB_Artist_Concert.SelectedItem
+            con.Sitio = CB_Site_Concert.SelectedItem
+            con.FechaConcierto = DTP_Date_Concert.Value.Date
+            Try
+                If con.ActualizarConcierto() <> 1 Then
+                    MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                Update_Concert()
+                MessageBox.Show("Concierto con el ID " & con.IDConcierto & " actualizado correctamente al artista " & con.Artista.NomArtista & ", sitio " & con.Sitio.NomSitio & " y fecha " & con.FechaConcierto)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
 
     ' -----------------
     ' CONCERT CLEAR ALL
     ' -----------------
+
+    Private Sub ConcertClearAll()
+        Me.TB_Id_Concert.Text = String.Empty
+        Me.DTP_Date_Concert.Text = String.Empty
+        CB_Artist_Concert.SelectedIndex = -1
+        CB_Site_Concert.SelectedIndex = -1
+    End Sub
 
     ' --------------------
     ' CONCERT UPDATE CONTROL
@@ -1040,7 +1045,7 @@ Public Class Form1
             c.Sitio.LeerSitio()
             item.SubItems.Add(c.Sitio.NomSitio)
             item.SubItems.Add(c.FechaConcierto)
-            lstSong.Items.Add(item)
+            lstConcert.Items.Add(item)
         Next
 
         For Each item As ListViewItem In lstArtist.Items

@@ -17,7 +17,6 @@
 
     Public Sub New(id As Integer, nombre As String)
         Me.IDConcierto = id
-        'FechaConcierto
         Me.ConDAO = New ConciertoDAO
     End Sub
 

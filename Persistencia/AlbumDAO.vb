@@ -40,7 +40,7 @@
     End Function
 
     Public Function Actualizar(ByVal a As Album) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE albumes SET NombreAlbum='" & a.NomAlbum & "', AñoAlbum='" & a.AnoAlbum & "', Artista ='" & a.Artista.NomArtista & "' WHERE idAlbum='" & a.IDAlbum & "';")
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE albumes SET NombreAlbum='" & a.NomAlbum & "', AñoAlbum='" & a.AnoAlbum & "', Artista ='" & a.Artista.IDArtista & "' WHERE idAlbum='" & a.IDAlbum & "';")
     End Function
 
     Public Function Borrar(ByVal a As Album) As Integer

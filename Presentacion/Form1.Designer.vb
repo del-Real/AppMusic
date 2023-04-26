@@ -30,7 +30,6 @@ Partial Class Form1
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TB_ID_Album = New System.Windows.Forms.TextBox()
         Me.TB_Name_Album = New System.Windows.Forms.TextBox()
         Me.DTP_Year_Album = New System.Windows.Forms.DateTimePicker()
@@ -89,6 +88,7 @@ Partial Class Form1
         Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonAdd = New System.Windows.Forms.Button()
         Me.ButtonModify = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabAlbum.SuspendLayout()
         Me.TabArtist.SuspendLayout()
@@ -123,7 +123,6 @@ Partial Class Form1
         Me.TabAlbum.Controls.Add(Me.Label13)
         Me.TabAlbum.Controls.Add(Me.Label20)
         Me.TabAlbum.Controls.Add(Me.Label12)
-        Me.TabAlbum.Controls.Add(Me.TextBox2)
         Me.TabAlbum.Controls.Add(Me.TB_ID_Album)
         Me.TabAlbum.Controls.Add(Me.TB_Name_Album)
         Me.TabAlbum.Controls.Add(Me.DTP_Year_Album)
@@ -186,14 +185,6 @@ Partial Class Form1
         Me.Label12.TabIndex = 33
         Me.Label12.Text = "Album Name"
         '
-        'TextBox2
-        '
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.TextBox2.Location = New System.Drawing.Point(30, 139)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(273, 29)
-        Me.TextBox2.TabIndex = 31
-        '
         'TB_ID_Album
         '
         Me.TB_ID_Album.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
@@ -204,7 +195,7 @@ Partial Class Form1
         '
         'TB_Name_Album
         '
-        Me.TB_Name_Album.Location = New System.Drawing.Point(33, 139)
+        Me.TB_Name_Album.Location = New System.Drawing.Point(33, 138)
         Me.TB_Name_Album.Name = "TB_Name_Album"
         Me.TB_Name_Album.Size = New System.Drawing.Size(273, 29)
         Me.TB_Name_Album.TabIndex = 31
@@ -469,6 +460,7 @@ Partial Class Form1
         '
         'TabConcert
         '
+        Me.TabConcert.Controls.Add(Me.Button1)
         Me.TabConcert.Controls.Add(Me.CB_Site_Concert)
         Me.TabConcert.Controls.Add(Me.Label24)
         Me.TabConcert.Controls.Add(Me.CB_Artist_Concert)
@@ -567,11 +559,14 @@ Partial Class Form1
         '
         'DTP_Date_Concert
         '
+        Me.DTP_Date_Concert.CustomFormat = "yyyy/MM/dd"
+        Me.DTP_Date_Concert.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DTP_Date_Concert.Location = New System.Drawing.Point(40, 292)
         Me.DTP_Date_Concert.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.DTP_Date_Concert.Name = "DTP_Date_Concert"
         Me.DTP_Date_Concert.Size = New System.Drawing.Size(228, 29)
         Me.DTP_Date_Concert.TabIndex = 0
+        Me.DTP_Date_Concert.Value = New Date(2023, 4, 26, 0, 0, 0, 0)
         '
         'TabCountry
         '
@@ -807,6 +802,15 @@ Partial Class Form1
         Me.ButtonModify.Text = "Modify"
         Me.ButtonModify.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(40, 344)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(94, 29)
+        Me.Button1.TabIndex = 45
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -895,7 +899,6 @@ Partial Class Form1
     Friend WithEvents TB_Id_Song As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
-    Friend WithEvents TextBox2 As TextBox
     Friend WithEvents DTP_Date_Concert As DateTimePicker
     Friend WithEvents Label22 As Label
     Friend WithEvents TB_Id_Concert As TextBox
@@ -905,4 +908,5 @@ Partial Class Form1
     Friend WithEvents Label23 As Label
     Friend WithEvents CB_Site_Concert As ComboBox
     Friend WithEvents Label24 As Label
+    Friend WithEvents Button1 As Button
 End Class
