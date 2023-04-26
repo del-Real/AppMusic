@@ -6,6 +6,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Runtime.Intrinsics
 Imports System.Security.Policy
 Imports System.Timers
+Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
 Imports Google.Protobuf.WellKnownTypes
@@ -92,6 +93,13 @@ Public Class Form1
             Case "TabSite"
                 Update_Site()
         End Select
+    End Sub
+
+    Private Sub ButtonSetlist_Click(sender As Object, e As EventArgs) Handles ButtonSetlist.Click
+
+        Form2.Show()
+
+
     End Sub
 
     ' ===============
@@ -1060,4 +1068,5 @@ Public Class Form1
         CB_Site_Concert.SelectedIndex = -1
 
     End Sub
+
 End Class
