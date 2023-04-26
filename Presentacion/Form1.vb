@@ -433,7 +433,6 @@ Public Class Form1
         lstContries.View = View.Details
     End Sub
 
-
     Private Sub ButtonSetlist_Click(sender As Object, e As EventArgs) Handles ButtonSetlist.Click
 
         If Me.TB_Id_Concert.Text = String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
@@ -443,11 +442,8 @@ Public Class Form1
             con.FechaConcierto = DTP_Date_Concert.Value.Date
             Form2.Show()
         ElseIf Me.TB_Id_Concert.Text <> String.Empty Then
-            Dim con = New Concierto(Me.TB_Id_Concert.Text)
-            Dim Item As ListViewItem = lstConcert.FindItemWithText(con.IDConcierto)
-            For Each c As Cancion In 
-
-            Next
+            Form2.Show()
+            Dim con As Concierto
 
         End If
 

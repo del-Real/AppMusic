@@ -30,6 +30,8 @@ Public Class Form2
                 Dim selectedItem As ListViewItem = lstSong2.SelectedItems(0)
                 lstSong2.Items.Remove(selectedItem)
                 lstSetlist.Items.Add(selectedItem)
+                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
+
             Next
         Else
             ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
