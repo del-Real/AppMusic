@@ -6,10 +6,8 @@ Imports System.Runtime.CompilerServices
 Imports System.Runtime.Intrinsics
 Imports System.Security.Policy
 Imports System.Timers
-Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
-Imports Google.Protobuf.Collections
 Imports Google.Protobuf.WellKnownTypes
 Imports Mysqlx.Crud
 Imports Org.BouncyCastle.Bcpg
@@ -22,7 +20,6 @@ Public Class Form1
 
         lstContries.Columns.Add("ID", 75)
         lstContries.Columns.Add("Name", 150)
-
 
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
@@ -65,6 +62,20 @@ Public Class Form1
         lstConcert.Columns.Add("Fecha", 90)
 
 
+        lstAllSongs.View = View.Details
+        lstAllSongs.Columns.Add("ID", 40)
+        lstAllSongs.Columns.Add("Name", 80)
+        lstAllSongs.Columns.Add("Duration", 40)
+        lstAllSongs.Columns.Add("Album", 60)
+        lstAllSongs.Columns.Add("Orden", 40)
+
+        lstConcertSongs.View = View.Details
+        lstConcertSongs.Columns.Add("ID", 40)
+        lstConcertSongs.Columns.Add("Name", 80)
+        lstConcertSongs.Columns.Add("Duration", 40)
+        lstConcertSongs.Columns.Add("Album", 60)
+        lstConcertSongs.Columns.Add("Orden", 40)
+
         Update_Country()
         Update_Site()
         Update_Artist()
@@ -95,10 +106,6 @@ Public Class Form1
                 Update_Site()
         End Select
     End Sub
-
-    ' =========================================================================================
-    ' SETLIST
-    ' =========================================================================================
 
     ' ===============
     ' PESTAÑA ARTISTA
@@ -216,6 +223,16 @@ Public Class Form1
         End If
     End Sub
 
+
+    Private Sub lstAllSongs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAllSongs.SelectedIndexChanged
+
+
+
+
+    End Sub
+
+
+
     ' =========================================================================================
     ' BOTONES FUNCIONES
     ' =========================================================================================
@@ -318,6 +335,26 @@ Public Class Form1
                 SiteClearAll()
         End Select
     End Sub
+
+    ' ====================
+    ' BOTÓN AÑADIR CANCIÓN
+    ' ====================
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If lstAllSongs.SelectedItems.Count > 0 Then
+            For Each item As ListViewItem In lstAllSongs.SelectedItems
+                Dim selectedItem As ListViewItem = lstAllSongs.SelectedItems(0)
+                lstAllSongs.Items.Remove(selectedItem)
+                lstConcertSongs.Items.Add(selectedItem)
+                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
+
+            Next
+        Else
+            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
+            MessageBox.Show("Debe seleccionar un elemento primero.")
+        End If
+    End Sub
+
 
     ' =========================================================================================
     ' MÉTODOS
@@ -432,27 +469,6 @@ Public Class Form1
         ' Añade columnas al listView de Países
         lstContries.View = View.Details
     End Sub
-
-
-    Private Sub ButtonSetlist_Click(sender As Object, e As EventArgs) Handles ButtonSetlist.Click
-
-        If Me.TB_Id_Concert.Text = String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
-            Dim con As Concierto = New Concierto
-            con.Artista = CB_Artist_Concert.SelectedItem
-            con.Sitio = CB_Site_Concert.SelectedItem
-            con.FechaConcierto = DTP_Date_Concert.Value.Date
-            Form2.Show()
-        ElseIf Me.TB_Id_Concert.Text <> String.Empty Then
-            Dim con = New Concierto(Me.TB_Id_Concert.Text)
-            Dim Item As ListViewItem = lstConcert.FindItemWithText(con.IDConcierto)
-            For Each c As Cancion In 
-
-            Next
-
-        End If
-
-    End Sub
-
 
     ' ===========================================
     ' MÉTODOS SITIO
@@ -1086,6 +1102,27 @@ Public Class Form1
         Next
         CB_Site_Concert.SelectedIndex = -1
 
+        ' Update AllSongs listview
+        lstAllSongs.Items.Clear()
+        Dim can As Cancion = New Cancion
+        Try
+            can.LeerTodasCanciones()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+        For Each c As Cancion In can.CanDAO.Canciones
+            Dim item As New ListViewItem
+            item.Text = c.IDCancion
+            item.SubItems.Add(c.NomCancion)
+            item.SubItems.Add(c.Duracion)
+            c.Album.LeerAlbum()
+            item.SubItems.Add(c.Album.NomAlbum)
+            item.SubItems.Add(c.OrdenCancion)
+            lstAllSongs.Items.Add(item)
+        Next
+
     End Sub
+
 
 End Class
