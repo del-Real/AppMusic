@@ -9,6 +9,7 @@ Imports System.Timers
 Imports System.Windows
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
+Imports Google.Protobuf.Collections
 Imports Google.Protobuf.WellKnownTypes
 Imports Mysqlx.Crud
 Imports Org.BouncyCastle.Bcpg
@@ -95,12 +96,9 @@ Public Class Form1
         End Select
     End Sub
 
-    Private Sub ButtonSetlist_Click(sender As Object, e As EventArgs) Handles ButtonSetlist.Click
-
-        Form2.Show()
-
-
-    End Sub
+    ' =========================================================================================
+    ' SETLIST
+    ' =========================================================================================
 
     ' ===============
     ' PESTAÑA ARTISTA
@@ -434,6 +432,27 @@ Public Class Form1
         ' Añade columnas al listView de Países
         lstContries.View = View.Details
     End Sub
+
+
+    Private Sub ButtonSetlist_Click(sender As Object, e As EventArgs) Handles ButtonSetlist.Click
+
+        If Me.TB_Id_Concert.Text = String.Empty And Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
+            Dim con As Concierto = New Concierto
+            con.Artista = CB_Artist_Concert.SelectedItem
+            con.Sitio = CB_Site_Concert.SelectedItem
+            con.FechaConcierto = DTP_Date_Concert.Value.Date
+            Form2.Show()
+        ElseIf Me.TB_Id_Concert.Text <> String.Empty Then
+            Dim con = New Concierto(Me.TB_Id_Concert.Text)
+            Dim Item As ListViewItem = lstConcert.FindItemWithText(con.IDConcierto)
+            For Each c As Cancion In 
+
+            Next
+
+        End If
+
+    End Sub
+
 
     ' ===========================================
     ' MÉTODOS SITIO

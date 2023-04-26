@@ -24,10 +24,8 @@ Partial Class Form2
     Private Sub InitializeComponent()
         Me.lstSong2 = New System.Windows.Forms.ListView()
         Me.lstSetlist = New System.Windows.Forms.ListView()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.ButtonAddSong = New System.Windows.Forms.Button()
         Me.ButtonRemoveSong = New System.Windows.Forms.Button()
         Me.SuspendLayout()
@@ -50,15 +48,6 @@ Partial Class Form2
         Me.lstSetlist.TabIndex = 1
         Me.lstSetlist.UseCompatibleStateImageBehavior = False
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(115, 528)
-        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(138, 28)
-        Me.ComboBox1.TabIndex = 2
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -76,15 +65,6 @@ Partial Class Form2
         Me.Label2.Size = New System.Drawing.Size(69, 20)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Song List"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(115, 504)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(104, 20)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Select Concert"
         '
         'ButtonAddSong
         '
@@ -113,10 +93,8 @@ Partial Class Form2
         Me.ClientSize = New System.Drawing.Size(914, 600)
         Me.Controls.Add(Me.ButtonRemoveSong)
         Me.Controls.Add(Me.ButtonAddSong)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.lstSetlist)
         Me.Controls.Add(Me.lstSong2)
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -129,10 +107,8 @@ Partial Class Form2
 
     Friend WithEvents lstSong2 As ListView
     Friend WithEvents lstSetlist As ListView
-    Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents ButtonAddSong As Button
     Friend WithEvents ButtonRemoveSong As Button
 End Class

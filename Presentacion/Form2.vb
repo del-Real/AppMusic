@@ -1,4 +1,5 @@
 ﻿
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Form1
 Public Class Form2
 
@@ -9,6 +10,7 @@ Public Class Form2
         lstSetlist.Columns.Add("Duration", 40)
         lstSetlist.Columns.Add("Album", 60)
         lstSetlist.Columns.Add("Orden", 40)
+
 
         lstSong2.View = View.Details
         lstSong2.Columns.Add("ID", 40)
@@ -22,25 +24,16 @@ Public Class Form2
 
 
     Private Sub ButtonAddSong_Click(sender As Object, e As EventArgs) Handles ButtonAddSong.Click
-        Dim can As Cancion
-        If Not Me.lstSong2.SelectedItems Is Nothing Then
-            Try
-                can = New Cancion(lstSong2.SelectedItems(0).SubItems(0).Text, lstSong2.SelectedItems(0).SubItems(1).Text, lstSong2.SelectedItems(0).SubItems(2).Text, lstSong2.SelectedItems(0).SubItems(4).Text)
-                can.LeerCancion()
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End Try
-            Dim item As ListViewItem = New ListViewItem
-            item.Text = can.IDCancion
-            item.SubItems.Add(can.NomCancion)
-            item.SubItems.Add(can.Duracion)
-            'can.Album.LeerAlbum()
-            item.SubItems.Add(can.Album.NomAlbum)
-            item.SubItems.Add(can.OrdenCancion)
-            lstSong2.Items.Add(item)
-            lstSetlist.Items.Add(item)
-            lstSong2.Items.Remove(item)
+
+        If lstSong2.SelectedItems.Count > 0 Then
+            For Each item As ListViewItem In lstSong2.SelectedItems
+                Dim selectedItem As ListViewItem = lstSong2.SelectedItems(0)
+                lstSong2.Items.Remove(selectedItem)
+                lstSetlist.Items.Add(selectedItem)
+            Next
+        Else
+            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
+            MessageBox.Show("Debe seleccionar un elemento primero.")
         End If
     End Sub
 
