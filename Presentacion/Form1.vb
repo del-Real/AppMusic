@@ -105,6 +105,24 @@ Public Class Form1
             Case "TabSite"
                 Update_Site()
         End Select
+
+        ' Las opciones del setlist estarán deshabilitadas a menos que se esté en la pestaña Concierto
+        OrderUp.Enabled = False
+        OrderDown.Enabled = False
+        AddSong.Enabled = False
+        RemoveSong.Enabled = False
+        lstConcertSongs.Enabled = False
+        lstAllSongs.Enabled = False
+
+        If TabControl.SelectedTab.Name = "TabConcert" Then
+            OrderUp.Enabled = True
+            OrderDown.Enabled = True
+            AddSong.Enabled = True
+            RemoveSong.Enabled = True
+            lstConcertSongs.Enabled = True
+            lstAllSongs.Enabled = True
+        End If
+
     End Sub
 
     ' ===============
@@ -224,15 +242,6 @@ Public Class Form1
     End Sub
 
 
-    Private Sub lstAllSongs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAllSongs.SelectedIndexChanged
-
-
-
-
-    End Sub
-
-
-
     ' =========================================================================================
     ' BOTONES FUNCIONES
     ' =========================================================================================
@@ -336,11 +345,11 @@ Public Class Form1
         End Select
     End Sub
 
-    ' ====================
-    ' BOTÓN AÑADIR CANCIÓN
-    ' ====================
+    ' ==============================
+    ' BOTÓN AÑADIR CANCIÓN (SETLIST)
+    ' ==============================
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub AddSong_Click(sender As Object, e As EventArgs) Handles AddSong.Click
         If lstAllSongs.SelectedItems.Count > 0 Then
             For Each item As ListViewItem In lstAllSongs.SelectedItems
                 Dim selectedItem As ListViewItem = lstAllSongs.SelectedItems(0)
@@ -354,6 +363,26 @@ Public Class Form1
             MessageBox.Show("Debe seleccionar un elemento primero.")
         End If
     End Sub
+
+    ' ================================
+    ' BOTÓN ELIMINAR CANCIÓN (SETLIST)
+    ' ================================
+
+    Private Sub RemoveSong_Click(sender As Object, e As EventArgs) Handles RemoveSong.Click
+
+        If lstConcertSongs.SelectedItems.Count > 0 Then
+            For Each item As ListViewItem In lstConcertSongs.SelectedItems
+                Dim selectedItem As ListViewItem = lstConcertSongs.SelectedItems(0)
+                lstConcertSongs.Items.Remove(selectedItem)
+                lstAllSongs.Items.Add(selectedItem)
+            Next
+        Else
+            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
+            MessageBox.Show("Debe seleccionar un elemento primero.")
+        End If
+
+    End Sub
+
 
 
     ' =========================================================================================
@@ -1102,7 +1131,10 @@ Public Class Form1
         Next
         CB_Site_Concert.SelectedIndex = -1
 
+        ' -------------------------
         ' Update AllSongs listview
+        ' -------------------------
+
         lstAllSongs.Items.Clear()
         Dim can As Cancion = New Cancion
         Try
@@ -1112,16 +1144,28 @@ Public Class Form1
             Exit Sub
         End Try
         For Each c As Cancion In can.CanDAO.Canciones
-            Dim item As New ListViewItem
-            item.Text = c.IDCancion
-            item.SubItems.Add(c.NomCancion)
-            item.SubItems.Add(c.Duracion)
-            c.Album.LeerAlbum()
-            item.SubItems.Add(c.Album.NomAlbum)
-            item.SubItems.Add(c.OrdenCancion)
-            lstAllSongs.Items.Add(item)
-        Next
 
+            ' Check if the song is already in lstConcertSongs
+            Dim songFound As Boolean = False
+            For Each item As ListViewItem In lstConcertSongs.Items
+                If item.SubItems(0).Text = c.IDCancion Then
+                    songFound = True
+                    Exit For
+                End If
+            Next
+
+            ' If the song is not already in lstConcertSongs, add it to lstAllSongs
+            If Not songFound Then
+                Dim item As New ListViewItem
+                item.Text = c.IDCancion
+                item.SubItems.Add(c.NomCancion)
+                item.SubItems.Add(c.Duracion)
+                c.Album.LeerAlbum()
+                item.SubItems.Add(c.Album.NomAlbum)
+                item.SubItems.Add(c.OrdenCancion)
+                lstAllSongs.Items.Add(item)
+            End If
+        Next
     End Sub
 
 

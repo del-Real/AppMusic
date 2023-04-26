@@ -90,10 +90,10 @@ Partial Class Form1
         ButtonModify = New Button()
         lstConcertSongs = New ListView()
         lstAllSongs = New ListView()
-        Button1 = New Button()
-        Button2 = New Button()
-        Button3 = New Button()
-        Button4 = New Button()
+        AddSong = New Button()
+        RemoveSong = New Button()
+        OrderUp = New Button()
+        OrderDown = New Button()
         Label25 = New Label()
         Label26 = New Label()
         TabControl.SuspendLayout()
@@ -798,6 +798,7 @@ Partial Class Form1
         ' 
         ' lstConcertSongs
         ' 
+        lstConcertSongs.Enabled = False
         lstConcertSongs.Location = New Point(75, 483)
         lstConcertSongs.Name = "lstConcertSongs"
         lstConcertSongs.Size = New Size(186, 201)
@@ -806,49 +807,54 @@ Partial Class Form1
         ' 
         ' lstAllSongs
         ' 
+        lstAllSongs.Enabled = False
         lstAllSongs.Location = New Point(378, 483)
         lstAllSongs.Name = "lstAllSongs"
         lstAllSongs.Size = New Size(202, 201)
         lstAllSongs.TabIndex = 27
         lstAllSongs.UseCompatibleStateImageBehavior = False
         ' 
-        ' Button1
+        ' AddSong
         ' 
-        Button1.Location = New Point(281, 559)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 23)
-        Button1.TabIndex = 28
-        Button1.Text = "Add"
-        Button1.UseVisualStyleBackColor = True
+        AddSong.Enabled = False
+        AddSong.Location = New Point(281, 559)
+        AddSong.Name = "AddSong"
+        AddSong.Size = New Size(75, 23)
+        AddSong.TabIndex = 28
+        AddSong.Text = "Add"
+        AddSong.UseVisualStyleBackColor = True
         ' 
-        ' Button2
+        ' RemoveSong
         ' 
-        Button2.Location = New Point(281, 588)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(75, 23)
-        Button2.TabIndex = 29
-        Button2.Text = "Remove"
-        Button2.UseVisualStyleBackColor = True
+        RemoveSong.Enabled = False
+        RemoveSong.Location = New Point(281, 588)
+        RemoveSong.Name = "RemoveSong"
+        RemoveSong.Size = New Size(75, 23)
+        RemoveSong.TabIndex = 29
+        RemoveSong.Text = "Remove"
+        RemoveSong.UseVisualStyleBackColor = True
         ' 
-        ' Button3
+        ' OrderUp
         ' 
-        Button3.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Button3.Location = New Point(40, 483)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(29, 42)
-        Button3.TabIndex = 30
-        Button3.Text = "↑"
-        Button3.UseVisualStyleBackColor = True
+        OrderUp.Enabled = False
+        OrderUp.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        OrderUp.Location = New Point(40, 483)
+        OrderUp.Name = "OrderUp"
+        OrderUp.Size = New Size(29, 42)
+        OrderUp.TabIndex = 30
+        OrderUp.Text = "↑"
+        OrderUp.UseVisualStyleBackColor = True
         ' 
-        ' Button4
+        ' OrderDown
         ' 
-        Button4.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
-        Button4.Location = New Point(40, 529)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(29, 42)
-        Button4.TabIndex = 31
-        Button4.Text = "↓"
-        Button4.UseVisualStyleBackColor = True
+        OrderDown.Enabled = False
+        OrderDown.Font = New Font("Lato", 11.25F, FontStyle.Bold, GraphicsUnit.Point)
+        OrderDown.Location = New Point(40, 529)
+        OrderDown.Name = "OrderDown"
+        OrderDown.Size = New Size(29, 42)
+        OrderDown.TabIndex = 31
+        OrderDown.Text = "↓"
+        OrderDown.UseVisualStyleBackColor = True
         ' 
         ' Label25
         ' 
@@ -875,10 +881,10 @@ Partial Class Form1
         ClientSize = New Size(613, 707)
         Controls.Add(Label26)
         Controls.Add(Label25)
-        Controls.Add(Button4)
-        Controls.Add(Button3)
-        Controls.Add(Button2)
-        Controls.Add(Button1)
+        Controls.Add(OrderDown)
+        Controls.Add(OrderUp)
+        Controls.Add(RemoveSong)
+        Controls.Add(AddSong)
         Controls.Add(lstAllSongs)
         Controls.Add(lstConcertSongs)
         Controls.Add(ButtonClearAll)
@@ -974,10 +980,10 @@ Partial Class Form1
     Friend WithEvents Label24 As Label
     Friend WithEvents lstConcertSongs As ListView
     Friend WithEvents lstAllSongs As ListView
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents AddSong As Button
+    Friend WithEvents RemoveSong As Button
+    Friend WithEvents OrderUp As Button
+    Friend WithEvents OrderDown As Button
     Friend WithEvents Label25 As Label
     Friend WithEvents Label26 As Label
 End Class
