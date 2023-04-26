@@ -48,4 +48,18 @@
     Public Function Borrar(ByVal c As Concierto) As Integer
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM conciertos WHERE idConcierto='" & c.IDConcierto & "';")
     End Function
+
+    ' SETLIST QUERYS
+
+    Public Function InsertarSetlist(ByVal c As Concierto) As Integer
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists VALUES ('" & c.IDConcierto & "', '" & c.Canciones. & "', '" & c.Canciones.Cancion.OrdenCancion & "');")
+    End Function
+
+
+    Public Function BorrarSetlist(ByVal c As Concierto) As Integer
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto='" & c.IDConcierto & "';")
+    End Function
+
+
+
 End Class
