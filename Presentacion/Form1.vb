@@ -232,6 +232,16 @@ Public Class Form1
             Try
                 con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
+                For Each c As Cancion In con.Canciones
+                    Dim item As New ListViewItem
+                    item.Text = c.IDCancion
+                    item.SubItems.Add(c.NomCancion)
+                    item.SubItems.Add(c.Duracion)
+                    c.Album.LeerAlbum()
+                    item.SubItems.Add(c.Album.IDAlbum)
+                    item.SubItems.Add(c.OrdenCancion)
+                    lstConcertSongs.Items.Add(item)
+                Next
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -988,7 +998,7 @@ Public Class Form1
             item.SubItems.Add(c.NomCancion)
             item.SubItems.Add(c.Duracion)
             c.Album.LeerAlbum()
-            item.SubItems.Add(c.Album.NomAlbum)
+            item.SubItems.Add(c.Album.IDAlbum)
             item.SubItems.Add(c.OrdenCancion)
             lstSong.Items.Add(item)
         Next
@@ -1004,6 +1014,10 @@ Public Class Form1
     ' MÉTODOS CONCIERTO
     ' ===========================================
 
+    Public Sub Update_Setlist(con As Concierto)
+
+    End Sub
+
     ' -----------
     ' CONCERT ADD
     ' -----------
@@ -1015,28 +1029,28 @@ Public Class Form1
             con.Artista = CB_Artist_Concert.SelectedItem
             con.Sitio = CB_Site_Concert.SelectedItem
             con.FechaConcierto = DTP_Date_Concert.Value.Date
-            For Each item As ListViewItem In lstAllSongs.Items
-                Try
-                    Dim can = New Cancion(item.SubItems(0).Text, item.SubItems(1).Text, item.SubItems(2).Text, item.SubItems(4).Text)
-                    con.Canciones.Add(can)
-                    can.LeerCancion()
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End Try
-
-            Next
             Try
                 If con.InsertarConcierto() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
+                For Each item As ListViewItem In lstConcertSongs.Items
+                    Dim can = New Cancion(item.SubItems(0).Text, item.SubItems(1).Text, item.SubItems(2).Text, item.SubItems(4).Text)
+                    can.Album = New Album(item.SubItems(3).Text)
+                    can.Album.LeerAlbum()
+                    con.LeerConcierto()
+                    If con IsNot Nothing Then
+                        con.Canciones.Add(can)
+                    End If
+                Next
                 Update_Concert()
                 MessageBox.Show("Concierto con el ID " & con.IDConcierto.ToString & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
+
+
         End If
 
     End Sub
@@ -1172,7 +1186,7 @@ Public Class Form1
                 item.SubItems.Add(c.NomCancion)
                 item.SubItems.Add(c.Duracion)
                 c.Album.LeerAlbum()
-                item.SubItems.Add(c.Album.NomAlbum)
+                item.SubItems.Add(c.Album.IDAlbum)
                 item.SubItems.Add(c.OrdenCancion)
                 lstAllSongs.Items.Add(item)
             End If

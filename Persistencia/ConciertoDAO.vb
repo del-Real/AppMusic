@@ -52,7 +52,9 @@
     ' SETLIST QUERYS
 
     'Public Function InsertarSetlist(ByVal c As Concierto) As Integer
-    'Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists VALUES ('" & c.IDConcierto & "', '" & c.Canciones. & "', '" & ca.OrdenCancion & "');")
+    '    For Each can As Cancion In c.Canciones
+    '        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', '" & can.OrdenCancion & "');")
+    '   Next
     'End Function
 
     'Public Function BorrarSetlist(ByVal c As Concierto) As Integer

@@ -22,6 +22,7 @@
 
     Public Sub New()
         Me.ConDAO = New ConciertoDAO
+        Canciones = New List(Of Cancion)
     End Sub
 
     Public Sub New(id As Integer)
