@@ -228,20 +228,23 @@ Public Class Form1
 
     Private Sub lstConcert_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert.SelectedIndexChanged
         Dim con As Concierto
-        If Not Me.lstConcert.SelectedItems Is Nothing Then
+        If Me.lstConcert.SelectedItems.Count > 0 Then
             Try
                 con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
-                For Each c As Cancion In con.Canciones
-                    Dim item As New ListViewItem
-                    item.Text = c.IDCancion
-                    item.SubItems.Add(c.NomCancion)
-                    item.SubItems.Add(c.Duracion)
-                    c.Album.LeerAlbum()
-                    item.SubItems.Add(c.Album.IDAlbum)
-                    item.SubItems.Add(c.OrdenCancion)
-                    lstConcertSongs.Items.Add(item)
-                Next
+                If con.Canciones IsNot Nothing Then
+                    For Each c As Cancion In con.Canciones
+                        Dim item As New ListViewItem
+                        item.Text = c.IDCancion
+                        item.SubItems.Add(c.NomCancion)
+                        item.SubItems.Add(c.Duracion)
+                        c.Album.LeerAlbum()
+                        item.SubItems.Add(c.Album.IDAlbum)
+                        item.SubItems.Add(c.OrdenCancion)
+                        lstConcertSongs.Items.Add(item)
+                        Debug.Print("Cancion encontrada")
+                    Next
+                End If
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -1024,6 +1027,7 @@ Public Class Form1
 
     Private Sub ConcertAdd()
 
+
         Dim con As Concierto = New Concierto
         If Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
             con.Artista = CB_Artist_Concert.SelectedItem
@@ -1042,7 +1046,9 @@ Public Class Form1
                     If con IsNot Nothing Then
                         con.Canciones.Add(can)
                     End If
+
                 Next
+
                 Update_Concert()
                 MessageBox.Show("Concierto con el ID " & con.IDConcierto.ToString & " insertado correctamente")
             Catch ex As Exception
