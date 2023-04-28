@@ -90,8 +90,9 @@
         Return AgenteBD.ObtenerAgente.Modificar(sql)
     End Function
 
-    Public Function ActualizarSSetlistRemove(ByVal c As Concierto, ByVal csn As Cancion) As Integer
-
+    Public Function ActualizarSetlistRemove(ByVal c As Concierto, ByVal can As Cancion) As Integer
+        Dim sql As String = "DELETE FROM setlists WHERE Concierto = " & c.IDConcierto & " AND Canción = " & can.IDCancion & ";"
+        Return AgenteBD.ObtenerAgente.Modificar(sql)
     End Function
 
 
