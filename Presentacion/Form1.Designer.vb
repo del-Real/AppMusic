@@ -95,6 +95,7 @@ Partial Class Form1
         Me.OrderDown = New System.Windows.Forms.Button()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabAlbum.SuspendLayout()
         Me.TabArtist.SuspendLayout()
@@ -893,11 +894,21 @@ Partial Class Form1
         Me.Label26.TabIndex = 33
         Me.Label26.Text = "All Songs"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(321, 882)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(86, 29)
+        Me.Button1.TabIndex = 34
+        Me.Button1.Text = "Modify Setlist"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(701, 943)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label26)
         Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.OrderDown)
@@ -1006,4 +1017,5 @@ Partial Class Form1
     Friend WithEvents OrderDown As Button
     Friend WithEvents Label25 As Label
     Friend WithEvents Label26 As Label
+    Friend WithEvents Button1 As Button
 End Class

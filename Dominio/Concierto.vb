@@ -18,11 +18,12 @@
     Public Sub New(id As Integer, nombre As String)
         Me.IDConcierto = id
         Me.ConDAO = New ConciertoDAO
+        Me.Canciones = New List(Of Cancion)
     End Sub
 
     Public Sub New()
         Me.ConDAO = New ConciertoDAO
-        Canciones = New List(Of Cancion)
+        Me.Canciones = New List(Of Cancion)
     End Sub
 
     Public Sub New(id As Integer)
@@ -50,12 +51,24 @@
         Return Me.ConDAO.Borrar(Me)
     End Function
 
-    'Public Function InsertarSetlist() As Integer
-    'Return Me.ConDAO.InsertarSetlist(Me)
-    'End Function
+    Public Sub LeerSetlist()
+        Me.ConDAO.LeerSetlist(Me)
+    End Sub
 
-    'Public Function BorrarSetlist() As Integer
-    'Return Me.ConDAO.BorrarSetlist(Me)
-    'End Function
+    Public Function InsertarSetlist(c As Cancion) As Integer
+        Return Me.ConDAO.InsertarSetlist(Me, c)
+    End Function
+
+    Public Function BorrarSetlist() As Integer
+        Return Me.ConDAO.BorrarSetlist(Me)
+    End Function
+
+    Public Function ActualizarSetlistAdd(c As Cancion) As Integer
+        Return Me.ConDAO.ActualizarSetlistAdd(Me, c)
+    End Function
+
+    Public Function ActualizarSetlistRemove(c As Cancion) As Integer
+        Return Me.ConDAO.ActualizarSetlistRemove(Me, c)
+    End Function
 
 End Class

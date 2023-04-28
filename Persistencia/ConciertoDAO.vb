@@ -2,6 +2,8 @@
 
     Public ReadOnly Property Conciertos As Collection
 
+    Private contadorCanciones As Integer = 0
+
     Public Sub New()
         Me.Conciertos = New Collection
     End Sub
@@ -14,8 +16,8 @@
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos ORDER BY idConcierto")
         For Each aux In col
             c = New Concierto(CInt(aux(1)))
-            a = New Artista(aux(2).ToString)
-            s = New Sitio(aux(3).ToString)
+            a = New Artista(CInt(aux(2)))
+            s = New Sitio(CInt(aux(3)))
             c.Artista = a
             c.Sitio = s
             c.FechaConcierto = CDate(aux(4).ToString)
@@ -27,7 +29,29 @@
         Dim col As Collection : Dim aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM conciertos WHERE idConcierto = '" & c.IDConcierto & "';")
         For Each aux In col
-            c.IDConcierto = CInt(aux(1))
+            c.Artista = New Artista(CInt(aux(2)))
+            c.Sitio = New Sitio(CInt(aux(3)))
+            c.FechaConcierto = aux(4)
+            c.Canciones = New List(Of Cancion)
+        Next
+    End Sub
+
+    Public Sub LeerSetlist(ByRef c As Concierto)
+        Dim col As Collection : Dim aux As Collection
+        Dim col2 As Collection : Dim aux2 As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM setlists WHERE Concierto = '" & c.IDConcierto & "';")
+        For Each aux In col
+            Dim can As Cancion = New Cancion ' Nueva instancia de objeto Cancion
+            can.IDCancion = CInt(aux(2))
+            col2 = AgenteBD.ObtenerAgente.Leer("SELECT * FROM canciones WHERE idCancion = '" & can.IDCancion & "';")
+            For Each aux2 In col2
+                can.NomCancion = aux2(2).ToString
+                can.Duracion = CInt(aux2(3))
+                can.Album = New Album(CInt(aux2(4)))
+                can.Album.LeerAlbum()
+                can.OrdenCancion = CInt(aux2(5))
+                c.Canciones.Add(can)
+            Next
         Next
     End Sub
 
@@ -51,14 +75,24 @@
 
     ' SETLIST QUERYS
 
-    Public Function InsertarSetlist(ByVal c As Concierto) As Integer
-        For Each can As Cancion In c.Canciones
-            Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', '" & can.OrdenCancion & "');")
-        Next
+    Public Function InsertarSetlist(ByVal c As Concierto, ByVal ca As Cancion) As Integer
+        contadorCanciones += 1
+        Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists VALUES ('" & c.IDConcierto & "', '" & ca.IDCancion & "', '" & contadorCanciones & "');")
+        Return cadena
     End Function
 
     Public Function BorrarSetlist(ByVal c As Concierto) As Integer
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto='" & c.IDConcierto & "');")
     End Function
+
+    Public Function ActualizarSetlistAdd(ByVal c As Concierto, ByVal can As Cancion) As Integer
+        Dim sql As String = "INSERT INTO setlists (Concierto, Canción, OrdenSetlist) VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', 0) ON DUPLICATE KEY UPDATE OrdenSetlist = OrdenSetlist"
+        Return AgenteBD.ObtenerAgente.Modificar(sql)
+    End Function
+
+    Public Function ActualizarSSetlistRemove(ByVal c As Concierto, ByVal csn As Cancion) As Integer
+
+    End Function
+
 
 End Class

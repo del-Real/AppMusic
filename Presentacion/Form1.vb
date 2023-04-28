@@ -227,11 +227,14 @@ Public Class Form1
     ' ==================
 
     Private Sub lstConcert_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert.SelectedIndexChanged
+        Me.TB_Id_Concert.Clear()
+        lstConcertSongs.Items.Clear()
         Dim con As Concierto
-        If Me.lstConcert.SelectedItems.Count > 0 Then
+        If Not Me.lstConcert.SelectedItems Is Nothing Then
             Try
                 con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
+                con.LeerSetlist()
                 If con.Canciones IsNot Nothing Then
                     For Each c As Cancion In con.Canciones
                         Dim item As New ListViewItem
@@ -242,9 +245,17 @@ Public Class Form1
                         item.SubItems.Add(c.Album.IDAlbum)
                         item.SubItems.Add(c.OrdenCancion)
                         lstConcertSongs.Items.Add(item)
-                        Debug.Print("Cancion encontrada")
+
+                        Dim matchingItem As ListViewItem = lstAllSongs.FindItemWithText(c.IDCancion, False, 0, True)
+                        If matchingItem IsNot Nothing Then
+                            lstAllSongs.Items.Remove(matchingItem)
+                        End If
+
+                        lstAllSongs.Refresh()
+                        lstConcertSongs.Refresh()
                     Next
                 End If
+
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -253,7 +264,6 @@ Public Class Form1
             Me.DTP_Date_Concert.Text = con.FechaConcierto
         End If
     End Sub
-
 
     ' =========================================================================================
     ' BOTONES FUNCIONES
@@ -369,7 +379,6 @@ Public Class Form1
                 lstAllSongs.Items.Remove(selectedItem)
                 lstConcertSongs.Items.Add(selectedItem)
                 Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
-
             Next
         Else
             ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
@@ -388,6 +397,7 @@ Public Class Form1
                 Dim selectedItem As ListViewItem = lstConcertSongs.SelectedItems(0)
                 lstConcertSongs.Items.Remove(selectedItem)
                 lstAllSongs.Items.Add(selectedItem)
+                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
             Next
         Else
             ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
@@ -1017,16 +1027,11 @@ Public Class Form1
     ' MÉTODOS CONCIERTO
     ' ===========================================
 
-    Public Sub Update_Setlist(con As Concierto)
-
-    End Sub
-
     ' -----------
     ' CONCERT ADD
     ' -----------
 
     Private Sub ConcertAdd()
-
 
         Dim con As Concierto = New Concierto
         If Me.CB_Artist_Concert.Text <> String.Empty And Me.CB_Site_Concert.Text <> String.Empty And Me.DTP_Date_Concert.Text <> String.Empty Then
@@ -1045,10 +1050,9 @@ Public Class Form1
                     con.LeerConcierto()
                     If con IsNot Nothing Then
                         con.Canciones.Add(can)
+                        con.InsertarSetlist(can)
                     End If
-
                 Next
-
                 Update_Concert()
                 MessageBox.Show("Concierto con el ID " & con.IDConcierto.ToString & " insertado correctamente")
             Catch ex As Exception
@@ -1077,6 +1081,7 @@ Public Class Form1
                         Exit Sub
                     End If
                     Update_Concert()
+                    con.BorrarSetlist()
                     MessageBox.Show("Concierto con el ID " & con.IDConcierto & " eliminado correctamente")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1104,7 +1109,11 @@ Public Class Form1
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
+
                 Update_Concert()
+                For Each item As ListViewItem In lstConcertSongs.Items
+
+                Next
                 MessageBox.Show("Concierto con el ID " & con.IDConcierto & " actualizado correctamente al artista " & con.Artista.NomArtista & ", sitio " & con.Sitio.NomSitio & " y fecha " & con.FechaConcierto)
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1121,8 +1130,9 @@ Public Class Form1
     Private Sub ConcertClearAll()
         Me.TB_Id_Concert.Text = String.Empty
         Me.DTP_Date_Concert.Text = String.Empty
-        CB_Artist_Concert.SelectedIndex = -1
-        CB_Site_Concert.SelectedIndex = -1
+        CB_Artist_Concert.SelectedIndex = 0
+        CB_Site_Concert.SelectedIndex = 0
+        lstConcertSongs.Items.Clear()
     End Sub
 
     ' --------------------
@@ -1199,5 +1209,40 @@ Public Class Form1
         Next
     End Sub
 
-
+    Private Sub ModifySetlist_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim c As Concierto = New Concierto
+        c.IDConcierto = CInt(TB_Id_Concert.Text)
+        c.LeerConcierto()
+        c.LeerSetlist()
+        For Each item As ListViewItem In lstConcertSongs.Items
+            Dim can As Cancion = New Cancion
+            can.IDCancion = item.SubItems(0).Text
+            can.LeerCancion()
+            Try
+                If c.ActualizarSetlistAdd(can) <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        Next
+        For Each item As ListViewItem In lstAllSongs.Items
+            Dim can As Cancion = New Cancion
+            can.IDCancion = item.SubItems(0).Text
+            can.LeerCancion()
+            Try
+                If c.ActualizarSetlistRemove(can) <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        Next
+    End Sub
 End Class
