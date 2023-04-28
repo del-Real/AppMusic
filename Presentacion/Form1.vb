@@ -174,6 +174,7 @@ Public Class Form1
     ' ===============
 
     Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
+        Me.TB_Id_Artist.Text = String.Empty
         Dim art As Artista
         If Not Me.lstArtist.SelectedItems Is Nothing Then
             Try
@@ -193,6 +194,7 @@ Public Class Form1
     ' ==============
 
     Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
+        Me.TB_Id_Country.Text = String.Empty
         Dim pai As Pais
         If Not Me.lstContries.SelectedItems Is Nothing Then
             Try
@@ -212,6 +214,7 @@ Public Class Form1
     ' ==============
 
     Private Sub lstSites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSites.SelectedIndexChanged
+        Me.TB_Id_Site.Text = String.Empty
         Dim sit As Sitio
         If Not Me.lstSites.SelectedItems Is Nothing Then
             Try
@@ -231,6 +234,7 @@ Public Class Form1
     ' ===============
 
     Private Sub lstAlbumes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAlbumes.SelectedIndexChanged
+        Me.TB_ID_Album.Text = String.Empty
         Dim alb As Album
         If Not Me.lstAlbumes.SelectedItems Is Nothing Then
             Try
@@ -250,6 +254,7 @@ Public Class Form1
     ' =================
 
     Private Sub lstSong_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSong.SelectedIndexChanged
+        Me.TB_Id_Song.Text = String.Empty
         Dim can As Cancion
         If Not Me.lstSong.SelectedItems Is Nothing Then
             Try
@@ -271,14 +276,33 @@ Public Class Form1
     ' ==================
 
     Private Sub lstConcert_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert.SelectedIndexChanged
-        Me.TB_Id_Concert.Clear()
+        Me.TB_Id_Concert.Text = String.Empty
         lstConcertSongs.Items.Clear()
+        lstAllSongs.Items.Clear()
         Dim con As Concierto
+        Dim can As Cancion = New Cancion
+
         If Me.lstConcert.SelectedItems.Count > 0 Then
             Try
                 con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
                 con.LeerSetlist()
+                Try
+                    can.LeerTodasCanciones()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+                For Each c As Cancion In can.CanDAO.Canciones
+                    Dim item As New ListViewItem
+                    item.Text = c.IDCancion
+                    item.SubItems.Add(c.NomCancion)
+                    item.SubItems.Add(c.Duracion)
+                    c.Album.LeerAlbum()
+                    item.SubItems.Add(c.Album.IDAlbum)
+                    item.SubItems.Add(c.OrdenCancion)
+                    lstAllSongs.Items.Add(item)
+                Next
                 If con.Canciones IsNot Nothing Then
                     For Each c As Cancion In con.Canciones
                         Dim item As New ListViewItem
@@ -289,12 +313,10 @@ Public Class Form1
                         item.SubItems.Add(c.Album.IDAlbum)
                         item.SubItems.Add(c.OrdenCancion)
                         lstConcertSongs.Items.Add(item)
-
                         Dim matchingItem As ListViewItem = lstAllSongs.FindItemWithText(c.IDCancion, False, 0, True)
                         If matchingItem IsNot Nothing Then
                             lstAllSongs.Items.Remove(matchingItem)
                         End If
-
                         lstAllSongs.Refresh()
                         lstConcertSongs.Refresh()
                     Next
@@ -334,8 +356,6 @@ Public Class Form1
             item.SubItems.Add(c.FechaConcierto)
             lstConcert_Artist.Items.Add(item)
         Next
-
-
 
     End Sub
 
@@ -442,46 +462,6 @@ Public Class Form1
                 SiteClearAll()
         End Select
     End Sub
-
-    ' ==============================
-    ' BOTÓN AÑADIR CANCIÓN (SETLIST)
-    ' ==============================
-
-    Private Sub AddSong_Click(sender As Object, e As EventArgs) Handles AddSong.Click
-        If lstAllSongs.SelectedItems.Count > 0 Then
-            For Each item As ListViewItem In lstAllSongs.SelectedItems
-                Dim selectedItem As ListViewItem = lstAllSongs.SelectedItems(0)
-                lstAllSongs.Items.Remove(selectedItem)
-                lstConcertSongs.Items.Add(selectedItem)
-                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
-            Next
-        Else
-            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
-            MessageBox.Show("Debe seleccionar un elemento primero.")
-        End If
-    End Sub
-
-    ' ================================
-    ' BOTÓN ELIMINAR CANCIÓN (SETLIST)
-    ' ================================
-
-    Private Sub RemoveSong_Click(sender As Object, e As EventArgs) Handles RemoveSong.Click
-
-        If lstConcertSongs.SelectedItems.Count > 0 Then
-            For Each item As ListViewItem In lstConcertSongs.SelectedItems
-                Dim selectedItem As ListViewItem = lstConcertSongs.SelectedItems(0)
-                lstConcertSongs.Items.Remove(selectedItem)
-                lstAllSongs.Items.Add(selectedItem)
-                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
-            Next
-        Else
-            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
-            MessageBox.Show("Debe seleccionar un elemento primero.")
-        End If
-
-    End Sub
-
-
 
     ' =========================================================================================
     ' MÉTODOS
@@ -1150,6 +1130,11 @@ Public Class Form1
         If Me.TB_Id_Concert.Text <> String.Empty Then
             If MessageBox.Show("Estas seguro de que quieres eliminar el concierto con el ID " & Me.TB_Id_Concert.Text, "?. Por favor, confirme", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 con = New Concierto(Me.TB_Id_Concert.Text)
+                con.LeerConcierto()
+                con.LeerSetlist()
+                For Each c As Cancion In con.Canciones
+                    con.BorrarSetlist()
+                Next
                 Try
                     If con.BorrarConcierto() <> 1 Then
                         MessageBox.Show("Error al eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1157,6 +1142,7 @@ Public Class Form1
                     End If
                     Update_Concert()
                     con.BorrarSetlist()
+                    lstConcertSongs.Clear()
                     MessageBox.Show("Concierto con el ID " & con.IDConcierto & " eliminado correctamente")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1284,6 +1270,10 @@ Public Class Form1
         Next
     End Sub
 
+    ' ===========================================
+    ' MÉTODOS SETLIST
+    ' ===========================================
+
     Private Sub ModifySetlist_Click(sender As Object, e As EventArgs) Handles ModifySong.Click
         Dim c As Concierto = New Concierto
         c.IDConcierto = CInt(TB_Id_Concert.Text)
@@ -1309,10 +1299,10 @@ Public Class Form1
             can.IDCancion = item.SubItems(0).Text
             can.LeerCancion()
             Try
-                'If c.ActualizarSetlistRemove(can) <> 1 Then
-                '    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                '    Exit Sub
-                'End If
+                If c.ActualizarSetlistRemove(can) <> 1 Then
+                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1321,6 +1311,43 @@ Public Class Form1
         Next
     End Sub
 
+    ' ==============================
+    ' BOTÓN AÑADIR CANCIÓN (SETLIST)
+    ' ==============================
+
+    Private Sub AddSong_Click(sender As Object, e As EventArgs) Handles AddSong.Click
+        If lstAllSongs.SelectedItems.Count > 0 Then
+            For Each item As ListViewItem In lstAllSongs.SelectedItems
+                Dim selectedItem As ListViewItem = lstAllSongs.SelectedItems(0)
+                lstAllSongs.Items.Remove(selectedItem)
+                lstConcertSongs.Items.Add(selectedItem)
+                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
+            Next
+        Else
+            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
+            MessageBox.Show("Debe seleccionar un elemento primero.")
+        End If
+    End Sub
+
+    ' ================================
+    ' BOTÓN ELIMINAR CANCIÓN (SETLIST)
+    ' ================================
+
+    Private Sub RemoveSong_Click(sender As Object, e As EventArgs) Handles RemoveSong.Click
+
+        If lstConcertSongs.SelectedItems.Count > 0 Then
+            For Each item As ListViewItem In lstConcertSongs.SelectedItems
+                Dim selectedItem As ListViewItem = lstConcertSongs.SelectedItems(0)
+                lstConcertSongs.Items.Remove(selectedItem)
+                lstAllSongs.Items.Add(selectedItem)
+                Dim c As Cancion = New Cancion(selectedItem.SubItems(0).Text, selectedItem.SubItems(1).Text, selectedItem.SubItems(2).Text, selectedItem.SubItems(4).Text)
+            Next
+        Else
+            ' Si no se ha seleccionado ningún elemento, mostrar un mensaje de error
+            MessageBox.Show("Debe seleccionar un elemento primero.")
+        End If
+
+    End Sub
 
     ' ===========================================
     ' MÉTODOS NAVEGACIÓN

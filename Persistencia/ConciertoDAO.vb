@@ -99,7 +99,7 @@
     End Function
 
     Public Function BorrarSetlist(ByVal c As Concierto) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto='" & c.IDConcierto & "');")
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto='" & c.IDConcierto & "';")
     End Function
 
     Public Function ActualizarSetlistAdd(ByVal c As Concierto, ByVal can As Cancion) As Integer
