@@ -55,12 +55,26 @@
         Next
     End Sub
 
-    Public Sub LeerPorArtista(ByRef id_Artista As Integer)
+    Public Sub LeerPorArtista(ByRef a As Artista)
         Dim c As Concierto
-        Dim a As Artista
         Dim s As Sitio
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos WHERE idConcierto = '" & id_Artista & "' ORDER BY idConcierto")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos WHERE Artista = '" & a.IDArtista & "' ORDER BY idConcierto")
+        For Each aux In col
+            c = New Concierto(CInt(aux(1)))
+            a = New Artista(CInt(aux(2)))
+            s = New Sitio(CInt(aux(3)))
+            c.Artista = a
+            c.Sitio = s
+            c.FechaConcierto = CDate(aux(4).ToString)
+            Me.Conciertos.Add(c)
+        Next
+    End Sub
+
+    Public Sub LeerPorArtistaFiltrado(ByRef a As Artista, ByRef s As Sitio)
+        Dim c As Concierto
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos WHERE Artista = '" & a.IDArtista & "' AND Sitio = '" & s.Pais.IDPais & "' ORDER BY idConcierto")
         For Each aux In col
             c = New Concierto(CInt(aux(1)))
             a = New Artista(CInt(aux(2)))

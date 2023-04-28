@@ -342,9 +342,8 @@ Public Class Form1
         Dim art As Artista = CB_Artist_Navegation.SelectedItem
         art.LeerArtista()
         Dim con As Concierto = New Concierto
-        con.LeerTodosConciertos()
         Dim conDAO As ConciertoDAO = New ConciertoDAO
-        conDAO.LeerPorArtista(art.IDArtista)
+        con.ConDAO.LeerPorArtista(art)
 
         For Each c As Concierto In con.ConDAO.Conciertos
             Dim item As New ListViewItem
@@ -356,6 +355,40 @@ Public Class Form1
             item.SubItems.Add(c.FechaConcierto)
             lstConcert_Artist.Items.Add(item)
         Next
+
+        'COUNTRY Filter
+
+        'If CB_Country_Navegation.SelectedItem IsNot Nothing Then
+        '    lstConcert_Artist.Items.Clear()
+
+
+        '    art.LeerArtista()
+
+        '    Dim pai As Pais = CB_Country_Navegation.SelectedItem
+        '    pai.LeerPais()
+
+        '    Dim sit As Sitio = New Sitio
+        '    sit.Pais = pai
+
+
+        '    con.LeerTodosConciertos()
+
+
+        '    conDAO.LeerPorArtistaFiltrado(art, sit)
+
+        '    For Each c As Concierto In con.ConDAO.Conciertos
+        '        Dim item As New ListViewItem
+        '        item.Text = c.IDConcierto
+        '        c.Artista.LeerArtista()
+        '        item.SubItems.Add(c.Artista.NomArtista)
+        '        c.Sitio.LeerSitio()
+        '        item.SubItems.Add(c.Sitio.NomSitio)
+        '        item.SubItems.Add(c.FechaConcierto)
+        '        lstConcert_Artist.Items.Add(item)
+        '    Next
+        'End If
+
+
 
     End Sub
 

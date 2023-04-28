@@ -94,6 +94,13 @@ Partial Class Form1
         lstSetlist_Artist = New ListView()
         lstConcert_Artist = New ListView()
         TabReport = New TabPage()
+        TabControl1 = New TabControl()
+        TabPage1 = New TabPage()
+        TabPage2 = New TabPage()
+        TabPage3 = New TabPage()
+        TabPage4 = New TabPage()
+        TabPage5 = New TabPage()
+        TabPage6 = New TabPage()
         PictureBox1 = New PictureBox()
         ButtonClearAll = New Button()
         ButtonDelete = New Button()
@@ -116,6 +123,8 @@ Partial Class Form1
         TabCountry.SuspendLayout()
         TabSite.SuspendLayout()
         TabNavegation.SuspendLayout()
+        TabReport.SuspendLayout()
+        TabControl1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -129,8 +138,8 @@ Partial Class Form1
         TabControl.Controls.Add(TabSite)
         TabControl.Controls.Add(TabNavegation)
         TabControl.Controls.Add(TabReport)
-        TabControl.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point)
-        TabControl.Location = New Point(36, 71)
+        TabControl.Font = New Font("Lato", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point)
+        TabControl.Location = New Point(36, 78)
         TabControl.Name = "TabControl"
         TabControl.Padding = New Point(17, 3)
         TabControl.SelectedIndex = 0
@@ -150,10 +159,10 @@ Partial Class Form1
         TabAlbum.Controls.Add(Label7)
         TabAlbum.Controls.Add(Label6)
         TabAlbum.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabAlbum.Location = New Point(4, 29)
+        TabAlbum.Location = New Point(4, 28)
         TabAlbum.Name = "TabAlbum"
         TabAlbum.Padding = New Padding(3)
-        TabAlbum.Size = New Size(540, 289)
+        TabAlbum.Size = New Size(540, 290)
         TabAlbum.TabIndex = 0
         TabAlbum.Text = "Album"
         TabAlbum.UseVisualStyleBackColor = True
@@ -268,10 +277,10 @@ Partial Class Form1
         TabArtist.Controls.Add(Label10)
         TabArtist.Controls.Add(TB_Id_Artist)
         TabArtist.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabArtist.Location = New Point(4, 29)
+        TabArtist.Location = New Point(4, 28)
         TabArtist.Name = "TabArtist"
         TabArtist.Padding = New Padding(3)
-        TabArtist.Size = New Size(540, 289)
+        TabArtist.Size = New Size(540, 290)
         TabArtist.TabIndex = 1
         TabArtist.Text = "Artist"
         TabArtist.UseVisualStyleBackColor = True
@@ -358,10 +367,10 @@ Partial Class Form1
         TabSong.Controls.Add(Label16)
         TabSong.Controls.Add(TB_Id_Song)
         TabSong.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabSong.Location = New Point(4, 29)
+        TabSong.Location = New Point(4, 28)
         TabSong.Name = "TabSong"
         TabSong.Padding = New Padding(3)
-        TabSong.Size = New Size(540, 289)
+        TabSong.Size = New Size(540, 290)
         TabSong.TabIndex = 2
         TabSong.Text = "Song"
         TabSong.UseVisualStyleBackColor = True
@@ -491,10 +500,10 @@ Partial Class Form1
         TabConcert.Controls.Add(Label21)
         TabConcert.Controls.Add(DTP_Date_Concert)
         TabConcert.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabConcert.Location = New Point(4, 29)
+        TabConcert.Location = New Point(4, 28)
         TabConcert.Name = "TabConcert"
         TabConcert.Padding = New Padding(3)
-        TabConcert.Size = New Size(540, 289)
+        TabConcert.Size = New Size(540, 290)
         TabConcert.TabIndex = 3
         TabConcert.Text = "Concert"
         TabConcert.UseVisualStyleBackColor = True
@@ -596,10 +605,10 @@ Partial Class Form1
         TabCountry.Controls.Add(Label1)
         TabCountry.Controls.Add(TB_Id_Country)
         TabCountry.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabCountry.Location = New Point(4, 29)
+        TabCountry.Location = New Point(4, 28)
         TabCountry.Name = "TabCountry"
         TabCountry.Padding = New Padding(3)
-        TabCountry.Size = New Size(540, 289)
+        TabCountry.Size = New Size(540, 290)
         TabCountry.TabIndex = 4
         TabCountry.Text = "Country"
         TabCountry.UseVisualStyleBackColor = True
@@ -662,11 +671,11 @@ Partial Class Form1
         TabSite.Controls.Add(Label4)
         TabSite.Controls.Add(TB_Id_Site)
         TabSite.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        TabSite.Location = New Point(4, 29)
+        TabSite.Location = New Point(4, 28)
         TabSite.Name = "TabSite"
         TabSite.Padding = New Padding(3)
         TabSite.RightToLeft = RightToLeft.No
-        TabSite.Size = New Size(540, 289)
+        TabSite.Size = New Size(540, 290)
         TabSite.TabIndex = 5
         TabSite.Text = "Site"
         TabSite.UseVisualStyleBackColor = True
@@ -770,10 +779,10 @@ Partial Class Form1
         TabNavegation.Controls.Add(CB_Artist_Navegation)
         TabNavegation.Controls.Add(lstSetlist_Artist)
         TabNavegation.Controls.Add(lstConcert_Artist)
-        TabNavegation.Location = New Point(4, 29)
+        TabNavegation.Location = New Point(4, 28)
         TabNavegation.Name = "TabNavegation"
         TabNavegation.Padding = New Padding(3)
-        TabNavegation.Size = New Size(540, 289)
+        TabNavegation.Size = New Size(540, 290)
         TabNavegation.TabIndex = 6
         TabNavegation.Text = "Navegation"
         TabNavegation.UseVisualStyleBackColor = True
@@ -879,13 +888,90 @@ Partial Class Form1
         ' 
         ' TabReport
         ' 
-        TabReport.Location = New Point(4, 29)
+        TabReport.Controls.Add(TabControl1)
+        TabReport.Location = New Point(4, 28)
         TabReport.Name = "TabReport"
         TabReport.Padding = New Padding(3)
-        TabReport.Size = New Size(540, 289)
+        TabReport.Size = New Size(540, 290)
         TabReport.TabIndex = 7
         TabReport.Text = "Reports"
         TabReport.UseVisualStyleBackColor = True
+        ' 
+        ' TabControl1
+        ' 
+        TabControl1.Controls.Add(TabPage1)
+        TabControl1.Controls.Add(TabPage2)
+        TabControl1.Controls.Add(TabPage3)
+        TabControl1.Controls.Add(TabPage4)
+        TabControl1.Controls.Add(TabPage5)
+        TabControl1.Controls.Add(TabPage6)
+        TabControl1.Font = New Font("Lato", 9.749999F, FontStyle.Bold, GraphicsUnit.Point)
+        TabControl1.Location = New Point(12, 12)
+        TabControl1.Name = "TabControl1"
+        TabControl1.Padding = New Point(18, 3)
+        TabControl1.SelectedIndex = 0
+        TabControl1.Size = New Size(522, 272)
+        TabControl1.TabIndex = 0
+        ' 
+        ' TabPage1
+        ' 
+        TabPage1.Location = New Point(4, 25)
+        TabPage1.Name = "TabPage1"
+        TabPage1.Padding = New Padding(3)
+        TabPage1.Size = New Size(514, 243)
+        TabPage1.TabIndex = 0
+        TabPage1.Text = "Report 1"
+        TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage2
+        ' 
+        TabPage2.Location = New Point(4, 25)
+        TabPage2.Name = "TabPage2"
+        TabPage2.Padding = New Padding(3)
+        TabPage2.Size = New Size(514, 243)
+        TabPage2.TabIndex = 1
+        TabPage2.Text = "Report 2"
+        TabPage2.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage3
+        ' 
+        TabPage3.Location = New Point(4, 25)
+        TabPage3.Name = "TabPage3"
+        TabPage3.Padding = New Padding(3)
+        TabPage3.Size = New Size(514, 243)
+        TabPage3.TabIndex = 2
+        TabPage3.Text = "Report 3"
+        TabPage3.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage4
+        ' 
+        TabPage4.Location = New Point(4, 25)
+        TabPage4.Name = "TabPage4"
+        TabPage4.Padding = New Padding(3)
+        TabPage4.Size = New Size(514, 243)
+        TabPage4.TabIndex = 3
+        TabPage4.Text = "Report 4"
+        TabPage4.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage5
+        ' 
+        TabPage5.Location = New Point(4, 25)
+        TabPage5.Name = "TabPage5"
+        TabPage5.Padding = New Padding(3)
+        TabPage5.Size = New Size(514, 243)
+        TabPage5.TabIndex = 4
+        TabPage5.Text = "Report 5"
+        TabPage5.UseVisualStyleBackColor = True
+        ' 
+        ' TabPage6
+        ' 
+        TabPage6.Location = New Point(4, 25)
+        TabPage6.Name = "TabPage6"
+        TabPage6.Padding = New Padding(3)
+        TabPage6.Size = New Size(514, 243)
+        TabPage6.TabIndex = 5
+        TabPage6.Text = "Report 6"
+        TabPage6.UseVisualStyleBackColor = True
         ' 
         ' PictureBox1
         ' 
@@ -900,7 +986,7 @@ Partial Class Form1
         ' ButtonClearAll
         ' 
         ButtonClearAll.FlatStyle = FlatStyle.System
-        ButtonClearAll.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonClearAll.Font = New Font("Lato", 12.75F, FontStyle.Bold, GraphicsUnit.Point)
         ButtonClearAll.Location = New Point(36, 406)
         ButtonClearAll.Name = "ButtonClearAll"
         ButtonClearAll.Size = New Size(94, 35)
@@ -910,7 +996,7 @@ Partial Class Form1
         ' 
         ' ButtonDelete
         ' 
-        ButtonDelete.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonDelete.Font = New Font("Lato", 12.75F, FontStyle.Bold, GraphicsUnit.Point)
         ButtonDelete.Location = New Point(136, 406)
         ButtonDelete.Name = "ButtonDelete"
         ButtonDelete.Size = New Size(94, 35)
@@ -920,7 +1006,7 @@ Partial Class Form1
         ' 
         ' ButtonAdd
         ' 
-        ButtonAdd.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonAdd.Font = New Font("Lato", 12.75F, FontStyle.Bold, GraphicsUnit.Point)
         ButtonAdd.Location = New Point(336, 406)
         ButtonAdd.Name = "ButtonAdd"
         ButtonAdd.Size = New Size(248, 35)
@@ -930,7 +1016,7 @@ Partial Class Form1
         ' 
         ' ButtonModify
         ' 
-        ButtonModify.Font = New Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point)
+        ButtonModify.Font = New Font("Lato", 12.75F, FontStyle.Bold, GraphicsUnit.Point)
         ButtonModify.Location = New Point(236, 406)
         ButtonModify.Name = "ButtonModify"
         ButtonModify.Size = New Size(94, 35)
@@ -973,7 +1059,7 @@ Partial Class Form1
         ' 
         RemoveSong.Enabled = False
         RemoveSong.Font = New Font("Lato Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        RemoveSong.Location = New Point(281, 565)
+        RemoveSong.Location = New Point(281, 610)
         RemoveSong.Name = "RemoveSong"
         RemoveSong.Size = New Size(75, 23)
         RemoveSong.TabIndex = 29
@@ -1026,7 +1112,7 @@ Partial Class Form1
         ' 
         ModifySong.Enabled = False
         ModifySong.Font = New Font("Lato Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ModifySong.Location = New Point(281, 619)
+        ModifySong.Location = New Point(281, 574)
         ModifySong.Margin = New Padding(3, 2, 3, 2)
         ModifySong.Name = "ModifySong"
         ModifySong.Size = New Size(75, 22)
@@ -1071,6 +1157,8 @@ Partial Class Form1
         TabSite.PerformLayout()
         TabNavegation.ResumeLayout(False)
         TabNavegation.PerformLayout()
+        TabReport.ResumeLayout(False)
+        TabControl1.ResumeLayout(False)
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -1161,4 +1249,11 @@ Partial Class Form1
     Friend WithEvents CB_Artist_Navegation As ComboBox
     Friend WithEvents lstSetlist_Artist As ListView
     Friend WithEvents lstConcert_Artist As ListView
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents TabPage5 As TabPage
+    Friend WithEvents TabPage6 As TabPage
 End Class
