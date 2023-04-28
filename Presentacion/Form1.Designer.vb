@@ -96,10 +96,26 @@ Partial Class Form1
         TabReport = New TabPage()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        Label30 = New Label()
+        Label31 = New Label()
+        CB_Artist_Report1 = New ComboBox()
         TabPage2 = New TabPage()
+        Label32 = New Label()
+        Label33 = New Label()
+        CB_Artist_Report2 = New ComboBox()
+        lstReport2 = New ListView()
         TabPage3 = New TabPage()
+        ButtonFind_Report3 = New Button()
+        Label35 = New Label()
+        lstReport3 = New ListView()
         TabPage4 = New TabPage()
+        ButtonFind_Report4 = New Button()
+        Label34 = New Label()
+        lstReport4 = New ListView()
         TabPage5 = New TabPage()
+        ButtonFind_Report5 = New Button()
+        Label36 = New Label()
+        lstReport5 = New ListView()
         TabPage6 = New TabPage()
         PictureBox1 = New PictureBox()
         ButtonClearAll = New Button()
@@ -115,6 +131,18 @@ Partial Class Form1
         Label25 = New Label()
         Label26 = New Label()
         ModifySong = New Button()
+        lstReport1 = New ListView()
+        DTP_End_R5 = New DateTimePicker()
+        DTP_Start_R5 = New DateTimePicker()
+        Label37 = New Label()
+        Label38 = New Label()
+        Label39 = New Label()
+        Label40 = New Label()
+        DTP_Start_R6 = New DateTimePicker()
+        DTP_End_R6 = New DateTimePicker()
+        ButtonFind_Report6 = New Button()
+        Label41 = New Label()
+        lstReport6 = New ListView()
         TabControl.SuspendLayout()
         TabAlbum.SuspendLayout()
         TabArtist.SuspendLayout()
@@ -125,6 +153,12 @@ Partial Class Form1
         TabNavegation.SuspendLayout()
         TabReport.SuspendLayout()
         TabControl1.SuspendLayout()
+        TabPage1.SuspendLayout()
+        TabPage2.SuspendLayout()
+        TabPage3.SuspendLayout()
+        TabPage4.SuspendLayout()
+        TabPage5.SuspendLayout()
+        TabPage6.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -915,6 +949,10 @@ Partial Class Form1
         ' 
         ' TabPage1
         ' 
+        TabPage1.Controls.Add(lstReport1)
+        TabPage1.Controls.Add(Label30)
+        TabPage1.Controls.Add(Label31)
+        TabPage1.Controls.Add(CB_Artist_Report1)
         TabPage1.Location = New Point(4, 25)
         TabPage1.Name = "TabPage1"
         TabPage1.Padding = New Padding(3)
@@ -923,8 +961,38 @@ Partial Class Form1
         TabPage1.Text = "Report 1"
         TabPage1.UseVisualStyleBackColor = True
         ' 
+        ' Label30
+        ' 
+        Label30.AutoSize = True
+        Label30.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label30.Location = New Point(15, 75)
+        Label30.Name = "Label30"
+        Label30.Size = New Size(46, 16)
+        Label30.TabIndex = 4
+        Label30.Text = "Artista"
+        ' 
+        ' Label31
+        ' 
+        Label31.Location = New Point(15, 12)
+        Label31.Name = "Label31"
+        Label31.Size = New Size(220, 63)
+        Label31.TabIndex = 3
+        Label31.Text = "Ordered list of the most performed live songs by an artist throughout all his concerts."
+        ' 
+        ' CB_Artist_Report1
+        ' 
+        CB_Artist_Report1.FormattingEnabled = True
+        CB_Artist_Report1.Location = New Point(15, 94)
+        CB_Artist_Report1.Name = "CB_Artist_Report1"
+        CB_Artist_Report1.Size = New Size(121, 24)
+        CB_Artist_Report1.TabIndex = 1
+        ' 
         ' TabPage2
         ' 
+        TabPage2.Controls.Add(Label32)
+        TabPage2.Controls.Add(Label33)
+        TabPage2.Controls.Add(CB_Artist_Report2)
+        TabPage2.Controls.Add(lstReport2)
         TabPage2.Location = New Point(4, 25)
         TabPage2.Name = "TabPage2"
         TabPage2.Padding = New Padding(3)
@@ -933,8 +1001,45 @@ Partial Class Form1
         TabPage2.Text = "Report 2"
         TabPage2.UseVisualStyleBackColor = True
         ' 
+        ' Label32
+        ' 
+        Label32.AutoSize = True
+        Label32.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label32.Location = New Point(14, 58)
+        Label32.Name = "Label32"
+        Label32.Size = New Size(46, 16)
+        Label32.TabIndex = 8
+        Label32.Text = "Artista"
+        ' 
+        ' Label33
+        ' 
+        Label33.Location = New Point(14, 11)
+        Label33.Name = "Label33"
+        Label33.Size = New Size(220, 63)
+        Label33.TabIndex = 7
+        Label33.Text = "Ordered list of the most performed live albums by an artist."
+        ' 
+        ' CB_Artist_Report2
+        ' 
+        CB_Artist_Report2.FormattingEnabled = True
+        CB_Artist_Report2.Location = New Point(14, 77)
+        CB_Artist_Report2.Name = "CB_Artist_Report2"
+        CB_Artist_Report2.Size = New Size(121, 24)
+        CB_Artist_Report2.TabIndex = 6
+        ' 
+        ' lstReport2
+        ' 
+        lstReport2.Location = New Point(259, 11)
+        lstReport2.Name = "lstReport2"
+        lstReport2.Size = New Size(241, 220)
+        lstReport2.TabIndex = 5
+        lstReport2.UseCompatibleStateImageBehavior = False
+        ' 
         ' TabPage3
         ' 
+        TabPage3.Controls.Add(ButtonFind_Report3)
+        TabPage3.Controls.Add(Label35)
+        TabPage3.Controls.Add(lstReport3)
         TabPage3.Location = New Point(4, 25)
         TabPage3.Name = "TabPage3"
         TabPage3.Padding = New Padding(3)
@@ -943,8 +1048,36 @@ Partial Class Form1
         TabPage3.Text = "Report 3"
         TabPage3.UseVisualStyleBackColor = True
         ' 
+        ' ButtonFind_Report3
+        ' 
+        ButtonFind_Report3.Location = New Point(14, 58)
+        ButtonFind_Report3.Name = "ButtonFind_Report3"
+        ButtonFind_Report3.Size = New Size(75, 23)
+        ButtonFind_Report3.TabIndex = 12
+        ButtonFind_Report3.Text = "Find"
+        ButtonFind_Report3.UseVisualStyleBackColor = True
+        ' 
+        ' Label35
+        ' 
+        Label35.Location = New Point(14, 11)
+        Label35.Name = "Label35"
+        Label35.Size = New Size(220, 63)
+        Label35.TabIndex = 11
+        Label35.Text = "List of artists who have performed a complete album live."
+        ' 
+        ' lstReport3
+        ' 
+        lstReport3.Location = New Point(259, 11)
+        lstReport3.Name = "lstReport3"
+        lstReport3.Size = New Size(241, 220)
+        lstReport3.TabIndex = 9
+        lstReport3.UseCompatibleStateImageBehavior = False
+        ' 
         ' TabPage4
         ' 
+        TabPage4.Controls.Add(ButtonFind_Report4)
+        TabPage4.Controls.Add(Label34)
+        TabPage4.Controls.Add(lstReport4)
         TabPage4.Location = New Point(4, 25)
         TabPage4.Name = "TabPage4"
         TabPage4.Padding = New Padding(3)
@@ -953,8 +1086,40 @@ Partial Class Form1
         TabPage4.Text = "Report 4"
         TabPage4.UseVisualStyleBackColor = True
         ' 
+        ' ButtonFind_Report4
+        ' 
+        ButtonFind_Report4.Location = New Point(14, 77)
+        ButtonFind_Report4.Name = "ButtonFind_Report4"
+        ButtonFind_Report4.Size = New Size(75, 23)
+        ButtonFind_Report4.TabIndex = 15
+        ButtonFind_Report4.Text = "Find"
+        ButtonFind_Report4.UseVisualStyleBackColor = True
+        ' 
+        ' Label34
+        ' 
+        Label34.Location = New Point(14, 11)
+        Label34.Name = "Label34"
+        Label34.Size = New Size(220, 63)
+        Label34.TabIndex = 14
+        Label34.Text = "List with complete information on songs that have been performed live the most times."
+        ' 
+        ' lstReport4
+        ' 
+        lstReport4.Location = New Point(259, 11)
+        lstReport4.Name = "lstReport4"
+        lstReport4.Size = New Size(241, 220)
+        lstReport4.TabIndex = 13
+        lstReport4.UseCompatibleStateImageBehavior = False
+        ' 
         ' TabPage5
         ' 
+        TabPage5.Controls.Add(Label38)
+        TabPage5.Controls.Add(Label37)
+        TabPage5.Controls.Add(DTP_Start_R5)
+        TabPage5.Controls.Add(DTP_End_R5)
+        TabPage5.Controls.Add(ButtonFind_Report5)
+        TabPage5.Controls.Add(Label36)
+        TabPage5.Controls.Add(lstReport5)
         TabPage5.Location = New Point(4, 25)
         TabPage5.Name = "TabPage5"
         TabPage5.Padding = New Padding(3)
@@ -963,8 +1128,40 @@ Partial Class Form1
         TabPage5.Text = "Report 5"
         TabPage5.UseVisualStyleBackColor = True
         ' 
+        ' ButtonFind_Report5
+        ' 
+        ButtonFind_Report5.Location = New Point(14, 189)
+        ButtonFind_Report5.Name = "ButtonFind_Report5"
+        ButtonFind_Report5.Size = New Size(75, 23)
+        ButtonFind_Report5.TabIndex = 18
+        ButtonFind_Report5.Text = "Find"
+        ButtonFind_Report5.UseVisualStyleBackColor = True
+        ' 
+        ' Label36
+        ' 
+        Label36.Location = New Point(14, 11)
+        Label36.Name = "Label36"
+        Label36.Size = New Size(220, 63)
+        Label36.TabIndex = 17
+        Label36.Text = "List with complete information on songs that have been performed live the most times."
+        ' 
+        ' lstReport5
+        ' 
+        lstReport5.Location = New Point(259, 11)
+        lstReport5.Name = "lstReport5"
+        lstReport5.Size = New Size(241, 220)
+        lstReport5.TabIndex = 16
+        lstReport5.UseCompatibleStateImageBehavior = False
+        ' 
         ' TabPage6
         ' 
+        TabPage6.Controls.Add(Label39)
+        TabPage6.Controls.Add(Label40)
+        TabPage6.Controls.Add(DTP_Start_R6)
+        TabPage6.Controls.Add(DTP_End_R6)
+        TabPage6.Controls.Add(ButtonFind_Report6)
+        TabPage6.Controls.Add(Label41)
+        TabPage6.Controls.Add(lstReport6)
         TabPage6.Location = New Point(4, 25)
         TabPage6.Name = "TabPage6"
         TabPage6.Padding = New Padding(3)
@@ -1120,6 +1317,123 @@ Partial Class Form1
         ModifySong.Text = "Modify Setlist"
         ModifySong.UseVisualStyleBackColor = True
         ' 
+        ' lstReport1
+        ' 
+        lstReport1.Location = New Point(241, 12)
+        lstReport1.Name = "lstReport1"
+        lstReport1.Size = New Size(261, 225)
+        lstReport1.TabIndex = 5
+        lstReport1.UseCompatibleStateImageBehavior = False
+        ' 
+        ' DTP_End_R5
+        ' 
+        DTP_End_R5.CustomFormat = "yyyy/MM/dd"
+        DTP_End_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_End_R5.Format = DateTimePickerFormat.Custom
+        DTP_End_R5.Location = New Point(14, 146)
+        DTP_End_R5.Name = "DTP_End_R5"
+        DTP_End_R5.Size = New Size(200, 23)
+        DTP_End_R5.TabIndex = 19
+        DTP_End_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' DTP_Start_R5
+        ' 
+        DTP_Start_R5.CustomFormat = "yyyy/MM/dd"
+        DTP_Start_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_Start_R5.Format = DateTimePickerFormat.Custom
+        DTP_Start_R5.Location = New Point(14, 92)
+        DTP_Start_R5.Name = "DTP_Start_R5"
+        DTP_Start_R5.Size = New Size(200, 23)
+        DTP_Start_R5.TabIndex = 20
+        DTP_Start_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' Label37
+        ' 
+        Label37.AutoSize = True
+        Label37.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label37.Location = New Point(14, 73)
+        Label37.Name = "Label37"
+        Label37.Size = New Size(66, 16)
+        Label37.TabIndex = 21
+        Label37.Text = "Start Date"
+        ' 
+        ' Label38
+        ' 
+        Label38.AutoSize = True
+        Label38.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label38.Location = New Point(14, 127)
+        Label38.Name = "Label38"
+        Label38.Size = New Size(60, 16)
+        Label38.TabIndex = 22
+        Label38.Text = "End Date"
+        ' 
+        ' Label39
+        ' 
+        Label39.AutoSize = True
+        Label39.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label39.Location = New Point(14, 127)
+        Label39.Name = "Label39"
+        Label39.Size = New Size(60, 16)
+        Label39.TabIndex = 29
+        Label39.Text = "End Date"
+        ' 
+        ' Label40
+        ' 
+        Label40.AutoSize = True
+        Label40.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label40.Location = New Point(14, 73)
+        Label40.Name = "Label40"
+        Label40.Size = New Size(66, 16)
+        Label40.TabIndex = 28
+        Label40.Text = "Start Date"
+        ' 
+        ' DTP_Start_R6
+        ' 
+        DTP_Start_R6.CustomFormat = "yyyy/MM/dd"
+        DTP_Start_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_Start_R6.Format = DateTimePickerFormat.Custom
+        DTP_Start_R6.Location = New Point(14, 92)
+        DTP_Start_R6.Name = "DTP_Start_R6"
+        DTP_Start_R6.Size = New Size(200, 23)
+        DTP_Start_R6.TabIndex = 27
+        DTP_Start_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' DTP_End_R6
+        ' 
+        DTP_End_R6.CustomFormat = "yyyy/MM/dd"
+        DTP_End_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_End_R6.Format = DateTimePickerFormat.Custom
+        DTP_End_R6.Location = New Point(14, 146)
+        DTP_End_R6.Name = "DTP_End_R6"
+        DTP_End_R6.Size = New Size(200, 23)
+        DTP_End_R6.TabIndex = 26
+        DTP_End_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' ButtonFind_Report6
+        ' 
+        ButtonFind_Report6.Location = New Point(14, 189)
+        ButtonFind_Report6.Name = "ButtonFind_Report6"
+        ButtonFind_Report6.Size = New Size(75, 23)
+        ButtonFind_Report6.TabIndex = 25
+        ButtonFind_Report6.Text = "Find"
+        ButtonFind_Report6.UseVisualStyleBackColor = True
+        ' 
+        ' Label41
+        ' 
+        Label41.Location = New Point(14, 11)
+        Label41.Name = "Label41"
+        Label41.Size = New Size(220, 63)
+        Label41.TabIndex = 24
+        Label41.Text = "Ordered list of countries in which there have been more concerts between 2 specific dates."
+        ' 
+        ' lstReport6
+        ' 
+        lstReport6.Location = New Point(259, 11)
+        lstReport6.Name = "lstReport6"
+        lstReport6.Size = New Size(241, 220)
+        lstReport6.TabIndex = 23
+        lstReport6.UseCompatibleStateImageBehavior = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1159,6 +1473,16 @@ Partial Class Form1
         TabNavegation.PerformLayout()
         TabReport.ResumeLayout(False)
         TabControl1.ResumeLayout(False)
+        TabPage1.ResumeLayout(False)
+        TabPage1.PerformLayout()
+        TabPage2.ResumeLayout(False)
+        TabPage2.PerformLayout()
+        TabPage3.ResumeLayout(False)
+        TabPage4.ResumeLayout(False)
+        TabPage5.ResumeLayout(False)
+        TabPage5.PerformLayout()
+        TabPage6.ResumeLayout(False)
+        TabPage6.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -1256,4 +1580,32 @@ Partial Class Form1
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents lstReport3 As ListView
+    Friend WithEvents Label31 As Label
+    Friend WithEvents CB_Artist_Report1 As ComboBox
+    Friend WithEvents Label30 As Label
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents CB_Artist_Report2 As ComboBox
+    Friend WithEvents lstReport2 As ListView
+    Friend WithEvents ButtonFind_Report3 As Button
+    Friend WithEvents Label35 As Label
+    Friend WithEvents ButtonFind_Report4 As Button
+    Friend WithEvents Label34 As Label
+    Friend WithEvents lstReport4 As ListView
+    Friend WithEvents ButtonFind_Report5 As Button
+    Friend WithEvents Label36 As Label
+    Friend WithEvents lstReport5 As ListView
+    Friend WithEvents lstReport1 As ListView
+    Friend WithEvents Label38 As Label
+    Friend WithEvents Label37 As Label
+    Friend WithEvents DTP_Start_R5 As DateTimePicker
+    Friend WithEvents DTP_End_R5 As DateTimePicker
+    Friend WithEvents Label39 As Label
+    Friend WithEvents Label40 As Label
+    Friend WithEvents DTP_Start_R6 As DateTimePicker
+    Friend WithEvents DTP_End_R6 As DateTimePicker
+    Friend WithEvents ButtonFind_Report6 As Button
+    Friend WithEvents Label41 As Label
+    Friend WithEvents lstReport6 As ListView
 End Class
