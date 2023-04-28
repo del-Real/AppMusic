@@ -55,6 +55,23 @@
         Next
     End Sub
 
+    Public Sub LeerPorArtista(ByRef id_Artista As Integer)
+        Dim c As Concierto
+        Dim a As Artista
+        Dim s As Sitio
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos WHERE idConcierto = '" & id_Artista & "' ORDER BY idConcierto")
+        For Each aux In col
+            c = New Concierto(CInt(aux(1)))
+            a = New Artista(CInt(aux(2)))
+            s = New Sitio(CInt(aux(3)))
+            c.Artista = a
+            c.Sitio = s
+            c.FechaConcierto = CDate(aux(4).ToString)
+            Me.Conciertos.Add(c)
+        Next
+    End Sub
+
     Public Function Insertar(ByVal c As Concierto) As Integer
         Dim cadena As String = AgenteBD.ObtenerAgente.Modificar("INSERT INTO conciertos(Artista,Sitio,FechaConcierto) VALUES ('" & c.Artista.IDArtista & "', '" & c.Sitio.IDSitio & "' , '" & c.FechaConcierto.ToString("yyyy-MM-dd") & "');")
         Dim col As Collection : Dim aux As Collection

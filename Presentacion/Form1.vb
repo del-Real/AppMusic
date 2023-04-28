@@ -18,8 +18,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Spotifake"
 
+        'Country Controls
+
         lstContries.Columns.Add("ID", 75)
         lstContries.Columns.Add("Name", 150)
+
+        'Site Controls
 
         lstSites.View = View.Details
         lstSites.Columns.Add("ID", 40)
@@ -33,12 +37,14 @@ Public Class Form1
         CB_Type_Site.Items.Add(TipoSitio.festival)
         CB_Type_Site.SelectedIndex = -1
 
+        'Artist Controls
 
         lstArtist.View = View.Details
         lstArtist.Columns.Add("ID", 40)
         lstArtist.Columns.Add("Name", 80)
         lstArtist.Columns.Add("Country", 90)
 
+        'Album Controls
 
         lstAlbumes.View = View.Details
         lstAlbumes.Columns.Add("ID", 40)
@@ -46,6 +52,7 @@ Public Class Form1
         lstAlbumes.Columns.Add("Year", 60)
         lstAlbumes.Columns.Add("Artist", 80)
 
+        'Song Controls
 
         lstSong.View = View.Details
         lstSong.Columns.Add("ID", 40)
@@ -54,13 +61,13 @@ Public Class Form1
         lstSong.Columns.Add("Album", 60)
         lstSong.Columns.Add("Orden", 40)
 
+        'Concert Controls
 
         lstConcert.View = View.Details
         lstConcert.Columns.Add("ID", 40)
         lstConcert.Columns.Add("Artista", 80)
         lstConcert.Columns.Add("Sitio", 60)
         lstConcert.Columns.Add("Fecha", 90)
-
 
         lstAllSongs.View = View.Details
         lstAllSongs.Columns.Add("ID", 40)
@@ -76,12 +83,44 @@ Public Class Form1
         lstConcertSongs.Columns.Add("Album", 60)
         lstConcertSongs.Columns.Add("Orden", 40)
 
+        'Artist Navegation 
+
+        lstConcert_Artist.View = View.Details
+        lstConcert_Artist.Columns.Add("ID", 40)
+        lstConcert_Artist.Columns.Add("Artista", 80)
+        lstConcert_Artist.Columns.Add("Sitio", 60)
+        lstConcert_Artist.Columns.Add("Fecha", 90)
+
+        lstSetlist_Artist.View = View.Details
+        lstSetlist_Artist.Columns.Add("ID", 40)
+        lstSetlist_Artist.Columns.Add("Name", 80)
+        lstSetlist_Artist.Columns.Add("Duration", 40)
+        lstSetlist_Artist.Columns.Add("Album", 60)
+        lstSetlist_Artist.Columns.Add("Orden", 40)
+
+        'Site Navegation 
+
+        lstConcert_Site.View = View.Details
+        lstConcert_Site.Columns.Add("ID", 40)
+        lstConcert_Site.Columns.Add("Artista", 80)
+        lstConcert_Site.Columns.Add("Sitio", 60)
+        lstConcert_Site.Columns.Add("Fecha", 90)
+
+        lstSetlist_Site.View = View.Details
+        lstSetlist_Site.Columns.Add("ID", 40)
+        lstSetlist_Site.Columns.Add("Name", 80)
+        lstSetlist_Site.Columns.Add("Duration", 40)
+        lstSetlist_Site.Columns.Add("Album", 60)
+        lstSetlist_Site.Columns.Add("Orden", 40)
+
         Update_Country()
         Update_Site()
         Update_Artist()
         Update_Album()
         Update_Song()
         Update_Concert()
+        Update_Artist_Navegation()
+        Update_Site_Navegation()
     End Sub
 
     ' =========================================================================================
@@ -104,6 +143,9 @@ Public Class Form1
                 Update_Country()
             Case "TabSite"
                 Update_Site()
+            Case "TabNavegation"
+                Update_Artist_Navegation()
+                Update_Site_Navegation()
         End Select
 
         ' Las opciones del setlist estarán deshabilitadas a menos que se esté en la pestaña Concierto
@@ -111,6 +153,7 @@ Public Class Form1
         OrderDown.Enabled = False
         AddSong.Enabled = False
         RemoveSong.Enabled = False
+        ModifySong.Enabled = False
         lstConcertSongs.Enabled = False
         lstAllSongs.Enabled = False
 
@@ -119,6 +162,7 @@ Public Class Form1
             OrderDown.Enabled = True
             AddSong.Enabled = True
             RemoveSong.Enabled = True
+            ModifySong.Enabled = True
             lstConcertSongs.Enabled = True
             lstAllSongs.Enabled = True
         End If
@@ -230,7 +274,7 @@ Public Class Form1
         Me.TB_Id_Concert.Clear()
         lstConcertSongs.Items.Clear()
         Dim con As Concierto
-        If Not Me.lstConcert.SelectedItems Is Nothing Then
+        If Me.lstConcert.SelectedItems.Count > 0 Then
             Try
                 con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
                 con.LeerConcierto()
@@ -264,6 +308,37 @@ Public Class Form1
             Me.DTP_Date_Concert.Text = con.FechaConcierto
         End If
     End Sub
+
+
+    ' ==================
+    ' PESTAÑA NAVEGACIÓN
+    ' ==================
+
+    Private Sub CB_Artist_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Navegation.SelectedIndexChanged
+
+        lstConcert_Artist.Items.Clear()
+        Dim art As Artista = CB_Artist_Navegation.SelectedItem
+        art.LeerArtista()
+        Dim con As Concierto = New Concierto
+        con.LeerTodosConciertos()
+        Dim conDAO As ConciertoDAO = New ConciertoDAO
+        conDAO.LeerPorArtista(art.IDArtista)
+
+        For Each c As Concierto In con.ConDAO.Conciertos
+            Dim item As New ListViewItem
+            item.Text = c.IDConcierto
+            c.Artista.LeerArtista()
+            item.SubItems.Add(c.Artista.NomArtista)
+            c.Sitio.LeerSitio()
+            item.SubItems.Add(c.Sitio.NomSitio)
+            item.SubItems.Add(c.FechaConcierto)
+            lstConcert_Artist.Items.Add(item)
+        Next
+
+
+
+    End Sub
+
 
     ' =========================================================================================
     ' BOTONES FUNCIONES
@@ -1209,7 +1284,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub ModifySetlist_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ModifySetlist_Click(sender As Object, e As EventArgs) Handles ModifySong.Click
         Dim c As Concierto = New Concierto
         c.IDConcierto = CInt(TB_Id_Concert.Text)
         c.LeerConcierto()
@@ -1234,10 +1309,10 @@ Public Class Form1
             can.IDCancion = item.SubItems(0).Text
             can.LeerCancion()
             Try
-                If c.ActualizarSetlistRemove(can) <> 1 Then
-                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
+                'If c.ActualizarSetlistRemove(can) <> 1 Then
+                '    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '    Exit Sub
+                'End If
                 MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1245,4 +1320,46 @@ Public Class Form1
             End Try
         Next
     End Sub
+
+
+    ' ===========================================
+    ' MÉTODOS NAVEGACIÓN
+    ' ===========================================
+
+    ' -------------------------
+    ' Update Artist Navegation
+    ' -------------------------
+
+    Private Sub Update_Artist_Navegation()
+        lstConcert_Artist.Items.Clear()
+        CB_Artist_Navegation.Items.Clear()
+        CB_Country_Navegation.Items.Clear()
+
+        For Each item As ListViewItem In lstArtist.Items
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Artist_Navegation.Items.Add(a)
+        Next
+
+        For Each item As ListViewItem In lstContries.Items
+            Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Country_Navegation.Items.Add(p)
+        Next
+
+    End Sub
+
+    ' ----------------------
+    ' Update Site Navegation
+    ' ----------------------
+
+    Private Sub Update_Site_Navegation()
+        lstConcert_Site.Items.Clear()
+        CB_Site_Navegation.Items.Clear()
+
+        For Each item As ListViewItem In lstSites.Items
+            Dim s As Sitio = New Sitio(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Site_Navegation.Items.Add(s)
+        Next
+
+    End Sub
+
 End Class
