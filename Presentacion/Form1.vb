@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Concurrent
+Imports System.Collections.ObjectModel
 Imports System.ComponentModel.DataAnnotations
 Imports System.Configuration
 Imports System.Linq.Expressions
@@ -10,6 +11,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports AppMusic.Sitio
 Imports Google.Protobuf.WellKnownTypes
 Imports Mysqlx.Crud
+Imports Mysqlx.XDevAPI
 Imports Org.BouncyCastle.Bcpg
 Imports Org.BouncyCastle.Crypto.Agreement.Kdf
 Imports Org.BouncyCastle.Crypto.Engines
@@ -330,20 +332,22 @@ Public Class Form1
         End Try
         c.Informe4()
         For Each can As Cancion In c.CanDAO.CancionesInforme4
+            Dim item As New ListViewItem
             can.LeerCancion()
-            Dim item As ListViewItem = lstSong.FindItemWithText(can.IDCancion)
-            If item IsNot Nothing Then
-                Dim cancion As ListViewItem = CType(item.Clone(), ListViewItem)
-                lstReport4.Items.Add(cancion)
-
-            End If
-            'item.Text = can.IDCancion
-            'item.SubItems.Add(can.NomCancion)
-            'item.SubItems.Add(can.Duracion)
-            'c.Album.LeerAlbum()
-            'item.SubItems.Add(can.Album.IDAlbum)
-            'item.SubItems.Add(can.OrdenCancion)
+            For Each can1 As Cancion In c.CanDAO.Canciones
+                If can1.IDCancion = can.IDCancion Then
+                    item.Text = can1.IDCancion
+                    item.SubItems.Add(can1.NomCancion)
+                    item.SubItems.Add(can1.Duracion)
+                    can1.Album.LeerAlbum()
+                    item.SubItems.Add(can1.Album.IDAlbum)
+                    item.SubItems.Add(can1.OrdenCancion)
+                    lstReport4.Items.Add(item)
+                    lstReport4.Refresh()
+                End If
+            Next
         Next
+
     End Sub
 
     ' ===============

@@ -52,6 +52,7 @@
     Public Sub Informe4()
         Dim c As Cancion = New Cancion
         Dim col, aux As Collection
+        c.LeerTodasCanciones()
         col = AgenteBD.ObtenerAgente.Leer("SELECT canciones.NombreCancion, canciones.idCancion, canciones.Duración, albumes.NombreAlbum, COUNT(*) AS VecesInterpretado " &
                                                 "FROM setlists " &
                                                 "JOIN setlist.conciertos ON setlists.Concierto = conciertos.idConcierto " &
