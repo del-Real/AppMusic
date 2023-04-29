@@ -52,6 +52,15 @@
     Public Function BorrarArtista() As Integer
         Return Me.ArtDAO.Borrar(Me)
     End Function
+
+    Public Sub Informe1()
+        Me.ArtDAO.Informe1(Me)
+    End Sub
+
+    Public Sub Informe2()
+        Me.ArtDAO.Informe2(Me)
+    End Sub
+
     Public Sub Informe3()
         Me.ArtDAO.Informe3()
     End Sub

@@ -250,34 +250,6 @@ Public Class Form1
 
     End Sub
 
-    'Private Sub Update_Album()
-    '    lstAlbumes.Items.Clear()
-    '    CB_Artist_Album.Items.Clear()
-    '    Dim alb As Album = New Album
-    '    Try
-    '        alb.LeerTodosAlbums()
-    '    Catch ex As Exception
-    '        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '        Exit Sub
-    '    End Try
-
-    '    For Each a As Album In alb.AlbDAO.Albumes
-    '        Dim item As New ListViewItem
-    '        item.Text = a.IDAlbum
-    '        item.SubItems.Add(a.NomAlbum)
-    '        item.SubItems.Add(a.AnoAlbum)
-    '        a.Artista.LeerArtista()
-    '        item.SubItems.Add(a.Artista.IDArtista)
-    '        lstAlbumes.Items.Add(item)
-    '    Next
-
-    '    For Each item As ListViewItem In lstArtist.Items
-    '        Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
-    '        CB_Artist_Album.Items.Add(a)
-    '    Next
-    '    CB_Artist_Album.SelectedIndex = -1
-    'End Sub
-
     ' ===============
     ' INFORME 1
     ' ===============
@@ -290,10 +262,53 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub Update_Report1()
+        lstReport1.Items.Clear()
+        CB_Artist_Report1.Items.Clear()
+        For Each item As ListViewItem In lstArtist.Items
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Artist_Report1.Items.Add(a)
+        Next
+    End Sub
+
     Private Sub CB_Artist_Report1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Report1.SelectedIndexChanged
         Dim a As Artista = New Artista
+        Dim c As Cancion = New Cancion
         a = CB_Artist_Report1.SelectedItem
         a.LeerArtista()
+        a.Informe1()
+        Try
+            c.LeerTodasCanciones()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        Dim cancionesActualizadas As New List(Of Cancion)
+        For Each can As Cancion In a.ArtDAO.ArtistasInforme1
+            can.LeerCancion()
+            For Each can1 As Cancion In c.CanDAO.Canciones
+                If can1.IDCancion = can.IDCancion Then
+                    can.NomCancion = can1.NomCancion
+                    can.Duracion = can1.Duracion
+                    can.Album = can1.Album
+                    can.OrdenCancion = can1.OrdenCancion
+                    cancionesActualizadas.Add(can)
+                    Exit For
+                End If
+            Next
+        Next
+
+        For Each can As Cancion In cancionesActualizadas
+            Dim item As New ListViewItem
+            item.Text = can.IDCancion
+            item.SubItems.Add(can.NomCancion)
+            item.SubItems.Add(can.Duracion)
+            can.Album.LeerAlbum()
+            item.SubItems.Add(can.Album.IDAlbum)
+            item.SubItems.Add(can.OrdenCancion)
+            lstReport4.Items.Add(item)
+        Next
 
     End Sub
 
@@ -303,7 +318,47 @@ Public Class Form1
 
     Private Sub Update_Report2()
         lstReport2.Items.Clear()
+        CB_Artist_Report2.Items.Clear()
+
+        For Each item As ListViewItem In lstArtist.Items
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Artist_Report2.Items.Add(a)
+        Next
     End Sub
+
+    Private Sub CB_Artist_Report2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Report2.SelectedIndexChanged
+
+        lstReport2.Items.Clear()
+
+        Dim a As Artista = CB_Artist_Report2.SelectedItem
+        a.LeerArtista()
+        a.ArtDAO.Informe2(a)
+        Dim albumActualizados As New List(Of Album)
+
+        For Each art As Artista In a.ArtDAO.ArtistasInforme2
+            art.LeerArtista()
+            For Each art1 As Artista In a.ArtDAO.Artistas
+                If art1.IDArtista = art.IDArtista Then
+                    art.NomArtista = art1.NomArtista
+                    art.Pais = art1.Pais
+                    'albumActualizados.Add(art)
+                    Exit For
+                End If
+            Next
+        Next
+
+        For Each alb As Album In albumActualizados
+            Dim item As New ListViewItem
+            item.Text = alb.IDAlbum
+            item.SubItems.Add(alb.NomAlbum)
+            item.SubItems.Add(alb.AnoAlbum)
+            alb.Artista.LeerArtista()
+            item.SubItems.Add(alb.Artista.IDArtista)
+            lstReport2.Items.Add(item)
+        Next
+
+    End Sub
+
 
     ' ===============
     ' INFORME 3
@@ -1843,6 +1898,5 @@ Public Class Form1
         Next
 
     End Sub
-
 
 End Class

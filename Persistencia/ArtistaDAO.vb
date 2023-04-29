@@ -1,10 +1,14 @@
 ﻿Public Class ArtistaDAO
 
     Public ReadOnly Property Artistas As Collection
+    Public ReadOnly Property ArtistasInforme1 As Collection
+    Public ReadOnly Property ArtistasInforme2 As Collection
     Public ReadOnly Property ArtistasInforme3 As Collection
     Public ReadOnly Property ArtistasInforme5 As Collection
     Public Sub New()
         Me.Artistas = New Collection
+        Me.ArtistasInforme1 = New Collection
+        Me.ArtistasInforme2 = New Collection
         Me.ArtistasInforme3 = New Collection
         Me.ArtistasInforme5 = New Collection
     End Sub
@@ -46,6 +50,40 @@
     Public Function Borrar(ByVal a As Artista) As Integer
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM artistas WHERE IdArtista='" & a.IDArtista & "';")
     End Function
+
+    Public Sub Informe1(ByVal a As Artista)
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("Select setlist.canciones.NombreCancion, COUNT(*) AS VecesInterpretada " &
+                                          "FROM setlist.setlists " &
+                                          "JOIN setlist.conciertos ON setlist.setlists.Concierto=setlist.conciertos.IDConcierto " &
+                                          "JOIN setlist.canciones ON setlist.setlists.Canción = setlist.canciones.idCancion " &
+                                          "JOIN setlist.artistas ON setlist.conciertos.Artista = setlist.artistas.IDArtista " &
+                                          "WHERE setlist.artistas.Nombre = '" & a.NomArtista & "' " &
+                                          "GROUP BY setlist.canciones.NombreCancion " &
+                                          "ORDER BY VecesInterpretada DESC;")
+        For Each aux In col
+            Dim c As Cancion = New Cancion
+            c.IDCancion = CInt(aux(2))
+            Me.ArtistasInforme1.Add(c)
+        Next
+    End Sub
+
+    Public Sub Informe2(ByRef a As Artista)
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT albumes.NombreAlbum, COUNT(*) AS VecesInterpretado " &
+                                        "FROM setlists " &
+                                        "JOIN setlist.conciertos ON setlists.Concierto = conciertos.idConcierto " &
+                                        "JOIN setlist.artistas ON conciertos.Artista = artistas.IDArtista " &
+                                        "JOIN setlist.canciones ON setlists.Canción = canciones.idCancion " &
+                                        "JOIN setlist.albumes ON canciones.Album = albumes.idAlbum " &
+                                        "WHERE artistas.Nombre = 'Bad Bunny' " &
+                                        "GROUP BY albumes.NombreAlbum " &
+                                        "ORDER BY VecesInterpretado DESC")
+        For Each aux In col
+            a.IDArtista = CInt(aux(2))
+            Me.ArtistasInforme3.Add(a)
+        Next
+    End Sub
 
     Public Sub Informe3()
         Dim col, aux As Collection
