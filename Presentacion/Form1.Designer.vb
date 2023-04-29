@@ -96,6 +96,7 @@ Partial Class Form1
         TabReport = New TabPage()
         TabControl1 = New TabControl()
         TabPage1 = New TabPage()
+        lstReport1 = New ListView()
         Label30 = New Label()
         Label31 = New Label()
         CB_Artist_Report1 = New ComboBox()
@@ -113,10 +114,21 @@ Partial Class Form1
         Label34 = New Label()
         lstReport4 = New ListView()
         TabPage5 = New TabPage()
+        Label38 = New Label()
+        Label37 = New Label()
+        DTP_Start_R5 = New DateTimePicker()
+        DTP_End_R5 = New DateTimePicker()
         ButtonFind_Report5 = New Button()
         Label36 = New Label()
         lstReport5 = New ListView()
         TabPage6 = New TabPage()
+        Label39 = New Label()
+        Label40 = New Label()
+        DTP_Start_R6 = New DateTimePicker()
+        DTP_End_R6 = New DateTimePicker()
+        ButtonFind_Report6 = New Button()
+        Label41 = New Label()
+        lstReport6 = New ListView()
         PictureBox1 = New PictureBox()
         ButtonClearAll = New Button()
         ButtonDelete = New Button()
@@ -131,18 +143,6 @@ Partial Class Form1
         Label25 = New Label()
         Label26 = New Label()
         ModifySong = New Button()
-        lstReport1 = New ListView()
-        DTP_End_R5 = New DateTimePicker()
-        DTP_Start_R5 = New DateTimePicker()
-        Label37 = New Label()
-        Label38 = New Label()
-        Label39 = New Label()
-        Label40 = New Label()
-        DTP_Start_R6 = New DateTimePicker()
-        DTP_End_R6 = New DateTimePicker()
-        ButtonFind_Report6 = New Button()
-        Label41 = New Label()
-        lstReport6 = New ListView()
         TabControl.SuspendLayout()
         TabAlbum.SuspendLayout()
         TabArtist.SuspendLayout()
@@ -881,6 +881,7 @@ Partial Class Form1
         ' 
         ' CB_Country_Navegation
         ' 
+        CB_Country_Navegation.Enabled = False
         CB_Country_Navegation.Font = New Font("Lato", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         CB_Country_Navegation.ForeColor = SystemColors.MenuText
         CB_Country_Navegation.FormattingEnabled = True
@@ -960,6 +961,14 @@ Partial Class Form1
         TabPage1.TabIndex = 0
         TabPage1.Text = "Report 1"
         TabPage1.UseVisualStyleBackColor = True
+        ' 
+        ' lstReport1
+        ' 
+        lstReport1.Location = New Point(241, 12)
+        lstReport1.Name = "lstReport1"
+        lstReport1.Size = New Size(261, 225)
+        lstReport1.TabIndex = 5
+        lstReport1.UseCompatibleStateImageBehavior = False
         ' 
         ' Label30
         ' 
@@ -1128,6 +1137,48 @@ Partial Class Form1
         TabPage5.Text = "Report 5"
         TabPage5.UseVisualStyleBackColor = True
         ' 
+        ' Label38
+        ' 
+        Label38.AutoSize = True
+        Label38.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label38.Location = New Point(14, 127)
+        Label38.Name = "Label38"
+        Label38.Size = New Size(60, 16)
+        Label38.TabIndex = 22
+        Label38.Text = "End Date"
+        ' 
+        ' Label37
+        ' 
+        Label37.AutoSize = True
+        Label37.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label37.Location = New Point(14, 73)
+        Label37.Name = "Label37"
+        Label37.Size = New Size(66, 16)
+        Label37.TabIndex = 21
+        Label37.Text = "Start Date"
+        ' 
+        ' DTP_Start_R5
+        ' 
+        DTP_Start_R5.CustomFormat = "yyyy/MM/dd"
+        DTP_Start_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_Start_R5.Format = DateTimePickerFormat.Custom
+        DTP_Start_R5.Location = New Point(14, 92)
+        DTP_Start_R5.Name = "DTP_Start_R5"
+        DTP_Start_R5.Size = New Size(200, 23)
+        DTP_Start_R5.TabIndex = 20
+        DTP_Start_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' DTP_End_R5
+        ' 
+        DTP_End_R5.CustomFormat = "yyyy/MM/dd"
+        DTP_End_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_End_R5.Format = DateTimePickerFormat.Custom
+        DTP_End_R5.Location = New Point(14, 146)
+        DTP_End_R5.Name = "DTP_End_R5"
+        DTP_End_R5.Size = New Size(200, 23)
+        DTP_End_R5.TabIndex = 19
+        DTP_End_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
         ' ButtonFind_Report5
         ' 
         ButtonFind_Report5.Location = New Point(14, 189)
@@ -1169,6 +1220,73 @@ Partial Class Form1
         TabPage6.TabIndex = 5
         TabPage6.Text = "Report 6"
         TabPage6.UseVisualStyleBackColor = True
+        ' 
+        ' Label39
+        ' 
+        Label39.AutoSize = True
+        Label39.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label39.Location = New Point(14, 127)
+        Label39.Name = "Label39"
+        Label39.Size = New Size(60, 16)
+        Label39.TabIndex = 29
+        Label39.Text = "End Date"
+        ' 
+        ' Label40
+        ' 
+        Label40.AutoSize = True
+        Label40.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        Label40.Location = New Point(14, 73)
+        Label40.Name = "Label40"
+        Label40.Size = New Size(66, 16)
+        Label40.TabIndex = 28
+        Label40.Text = "Start Date"
+        ' 
+        ' DTP_Start_R6
+        ' 
+        DTP_Start_R6.CustomFormat = "yyyy/MM/dd"
+        DTP_Start_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_Start_R6.Format = DateTimePickerFormat.Custom
+        DTP_Start_R6.Location = New Point(14, 92)
+        DTP_Start_R6.Name = "DTP_Start_R6"
+        DTP_Start_R6.Size = New Size(200, 23)
+        DTP_Start_R6.TabIndex = 27
+        DTP_Start_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' DTP_End_R6
+        ' 
+        DTP_End_R6.CustomFormat = "yyyy/MM/dd"
+        DTP_End_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
+        DTP_End_R6.Format = DateTimePickerFormat.Custom
+        DTP_End_R6.Location = New Point(14, 146)
+        DTP_End_R6.Name = "DTP_End_R6"
+        DTP_End_R6.Size = New Size(200, 23)
+        DTP_End_R6.TabIndex = 26
+        DTP_End_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
+        ' 
+        ' ButtonFind_Report6
+        ' 
+        ButtonFind_Report6.Location = New Point(14, 189)
+        ButtonFind_Report6.Name = "ButtonFind_Report6"
+        ButtonFind_Report6.Size = New Size(75, 23)
+        ButtonFind_Report6.TabIndex = 25
+        ButtonFind_Report6.Text = "Find"
+        ButtonFind_Report6.UseVisualStyleBackColor = True
+        ' 
+        ' Label41
+        ' 
+        Label41.Location = New Point(14, 11)
+        Label41.Name = "Label41"
+        Label41.Size = New Size(220, 63)
+        Label41.TabIndex = 24
+        Label41.Text = "Ordered list of countries in which there have been more concerts between 2 specific dates."
+        ' 
+        ' lstReport6
+        ' 
+        lstReport6.Location = New Point(259, 11)
+        lstReport6.Name = "lstReport6"
+        lstReport6.Size = New Size(241, 220)
+        lstReport6.TabIndex = 23
+        lstReport6.UseCompatibleStateImageBehavior = False
         ' 
         ' PictureBox1
         ' 
@@ -1316,123 +1434,6 @@ Partial Class Form1
         ModifySong.TabIndex = 34
         ModifySong.Text = "Modify Setlist"
         ModifySong.UseVisualStyleBackColor = True
-        ' 
-        ' lstReport1
-        ' 
-        lstReport1.Location = New Point(241, 12)
-        lstReport1.Name = "lstReport1"
-        lstReport1.Size = New Size(261, 225)
-        lstReport1.TabIndex = 5
-        lstReport1.UseCompatibleStateImageBehavior = False
-        ' 
-        ' DTP_End_R5
-        ' 
-        DTP_End_R5.CustomFormat = "yyyy/MM/dd"
-        DTP_End_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        DTP_End_R5.Format = DateTimePickerFormat.Custom
-        DTP_End_R5.Location = New Point(14, 146)
-        DTP_End_R5.Name = "DTP_End_R5"
-        DTP_End_R5.Size = New Size(200, 23)
-        DTP_End_R5.TabIndex = 19
-        DTP_End_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
-        ' 
-        ' DTP_Start_R5
-        ' 
-        DTP_Start_R5.CustomFormat = "yyyy/MM/dd"
-        DTP_Start_R5.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        DTP_Start_R5.Format = DateTimePickerFormat.Custom
-        DTP_Start_R5.Location = New Point(14, 92)
-        DTP_Start_R5.Name = "DTP_Start_R5"
-        DTP_Start_R5.Size = New Size(200, 23)
-        DTP_Start_R5.TabIndex = 20
-        DTP_Start_R5.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
-        ' 
-        ' Label37
-        ' 
-        Label37.AutoSize = True
-        Label37.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        Label37.Location = New Point(14, 73)
-        Label37.Name = "Label37"
-        Label37.Size = New Size(66, 16)
-        Label37.TabIndex = 21
-        Label37.Text = "Start Date"
-        ' 
-        ' Label38
-        ' 
-        Label38.AutoSize = True
-        Label38.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        Label38.Location = New Point(14, 127)
-        Label38.Name = "Label38"
-        Label38.Size = New Size(60, 16)
-        Label38.TabIndex = 22
-        Label38.Text = "End Date"
-        ' 
-        ' Label39
-        ' 
-        Label39.AutoSize = True
-        Label39.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        Label39.Location = New Point(14, 127)
-        Label39.Name = "Label39"
-        Label39.Size = New Size(60, 16)
-        Label39.TabIndex = 29
-        Label39.Text = "End Date"
-        ' 
-        ' Label40
-        ' 
-        Label40.AutoSize = True
-        Label40.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        Label40.Location = New Point(14, 73)
-        Label40.Name = "Label40"
-        Label40.Size = New Size(66, 16)
-        Label40.TabIndex = 28
-        Label40.Text = "Start Date"
-        ' 
-        ' DTP_Start_R6
-        ' 
-        DTP_Start_R6.CustomFormat = "yyyy/MM/dd"
-        DTP_Start_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        DTP_Start_R6.Format = DateTimePickerFormat.Custom
-        DTP_Start_R6.Location = New Point(14, 92)
-        DTP_Start_R6.Name = "DTP_Start_R6"
-        DTP_Start_R6.Size = New Size(200, 23)
-        DTP_Start_R6.TabIndex = 27
-        DTP_Start_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
-        ' 
-        ' DTP_End_R6
-        ' 
-        DTP_End_R6.CustomFormat = "yyyy/MM/dd"
-        DTP_End_R6.Font = New Font("Lato", 9.749999F, FontStyle.Regular, GraphicsUnit.Point)
-        DTP_End_R6.Format = DateTimePickerFormat.Custom
-        DTP_End_R6.Location = New Point(14, 146)
-        DTP_End_R6.Name = "DTP_End_R6"
-        DTP_End_R6.Size = New Size(200, 23)
-        DTP_End_R6.TabIndex = 26
-        DTP_End_R6.Value = New DateTime(2023, 4, 26, 0, 0, 0, 0)
-        ' 
-        ' ButtonFind_Report6
-        ' 
-        ButtonFind_Report6.Location = New Point(14, 189)
-        ButtonFind_Report6.Name = "ButtonFind_Report6"
-        ButtonFind_Report6.Size = New Size(75, 23)
-        ButtonFind_Report6.TabIndex = 25
-        ButtonFind_Report6.Text = "Find"
-        ButtonFind_Report6.UseVisualStyleBackColor = True
-        ' 
-        ' Label41
-        ' 
-        Label41.Location = New Point(14, 11)
-        Label41.Name = "Label41"
-        Label41.Size = New Size(220, 63)
-        Label41.TabIndex = 24
-        Label41.Text = "Ordered list of countries in which there have been more concerts between 2 specific dates."
-        ' 
-        ' lstReport6
-        ' 
-        lstReport6.Location = New Point(259, 11)
-        lstReport6.Name = "lstReport6"
-        lstReport6.Size = New Size(241, 220)
-        lstReport6.TabIndex = 23
-        lstReport6.UseCompatibleStateImageBehavior = False
         ' 
         ' Form1
         ' 

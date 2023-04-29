@@ -332,17 +332,22 @@ Public Class Form1
     End Sub
 
 
-    ' ==================
-    ' PESTAÑA NAVEGACIÓN
-    ' ==================
+    ' ===================
+    ' PESTAÑAS NAVEGACIÓN
+    ' ===================
+
+    '------------------
+    'NAVEGACIÓN ARTISTA
+    '------------------
 
     Private Sub CB_Artist_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Navegation.SelectedIndexChanged
 
         lstConcert_Artist.Items.Clear()
+
         Dim art As Artista = CB_Artist_Navegation.SelectedItem
         art.LeerArtista()
+
         Dim con As Concierto = New Concierto
-        Dim conDAO As ConciertoDAO = New ConciertoDAO
         con.ConDAO.LeerPorArtista(art)
 
         For Each c As Concierto In con.ConDAO.Conciertos
@@ -356,41 +361,151 @@ Public Class Form1
             lstConcert_Artist.Items.Add(item)
         Next
 
-        'COUNTRY Filter
+        'Filtro Pais Enabled
 
-        'If CB_Country_Navegation.SelectedItem IsNot Nothing Then
-        '    lstConcert_Artist.Items.Clear()
-
-
-        '    art.LeerArtista()
-
-        '    Dim pai As Pais = CB_Country_Navegation.SelectedItem
-        '    pai.LeerPais()
-
-        '    Dim sit As Sitio = New Sitio
-        '    sit.Pais = pai
-
-
-        '    con.LeerTodosConciertos()
-
-
-        '    conDAO.LeerPorArtistaFiltrado(art, sit)
-
-        '    For Each c As Concierto In con.ConDAO.Conciertos
-        '        Dim item As New ListViewItem
-        '        item.Text = c.IDConcierto
-        '        c.Artista.LeerArtista()
-        '        item.SubItems.Add(c.Artista.NomArtista)
-        '        c.Sitio.LeerSitio()
-        '        item.SubItems.Add(c.Sitio.NomSitio)
-        '        item.SubItems.Add(c.FechaConcierto)
-        '        lstConcert_Artist.Items.Add(item)
-        '    Next
-        'End If
-
-
+        If CB_Artist_Navegation.SelectedItem IsNot Nothing Then
+            CB_Country_Navegation.Enabled = True
+        End If
 
     End Sub
+
+    'FILTRO PAIS
+
+    Private Sub CB_Country_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Country_Navegation.SelectedIndexChanged
+
+        lstConcert_Artist.Items.Clear()
+
+        Dim pai As Pais = CB_Country_Navegation.SelectedItem
+        pai.LeerPais()
+
+        Dim sit As Sitio = New Sitio
+        sit.Pais = pai
+
+        Dim art As Artista = CB_Artist_Navegation.SelectedItem
+        art.LeerArtista()
+
+        Dim con As Concierto = New Concierto
+        con.ConDAO.LeerPorArtistaFiltrado(art, sit)
+
+        For Each c As Concierto In con.ConDAO.Conciertos
+            Dim item As New ListViewItem
+            item.Text = c.IDConcierto
+            c.Artista.LeerArtista()
+            item.SubItems.Add(c.Artista.NomArtista)
+            c.Sitio.LeerSitio()
+            item.SubItems.Add(c.Sitio.NomSitio)
+            item.SubItems.Add(c.FechaConcierto)
+            lstConcert_Artist.Items.Add(item)
+        Next
+    End Sub
+
+
+    Private Sub lstConcert_Artist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert_Artist.SelectedIndexChanged
+
+        lstSetlist_Artist.Items.Clear()
+
+        Dim con As Concierto
+        Dim can As Cancion = New Cancion
+
+        If Me.lstConcert_Artist.SelectedItems.Count > 0 Then
+            Try
+                con = New Concierto(lstConcert_Artist.SelectedItems(0).SubItems(0).Text)
+                con.LeerConcierto()
+                con.LeerSetlist()
+                Try
+                    can.LeerTodasCanciones()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+                If con.Canciones IsNot Nothing Then
+                    For Each c As Cancion In con.Canciones
+                        Dim item As New ListViewItem
+                        item.Text = c.IDCancion
+                        item.SubItems.Add(c.NomCancion)
+                        item.SubItems.Add(c.Duracion)
+                        c.Album.LeerAlbum()
+                        item.SubItems.Add(c.Album.IDAlbum)
+                        item.SubItems.Add(c.OrdenCancion)
+                        lstSetlist_Artist.Items.Add(item)
+                        lstSetlist_Artist.Refresh()
+                    Next
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
+
+    '----------------
+    'NAVEGACIÓN SITIO
+    '----------------
+
+    Private Sub CB_Site_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Site_Navegation.SelectedIndexChanged
+
+        lstConcert_Site.Items.Clear()
+
+        Dim sit As Sitio = CB_Site_Navegation.SelectedItem
+        sit.LeerSitio()
+
+        Dim con As Concierto = New Concierto
+        con.ConDAO.LeerPorSitio(sit)
+
+        For Each c As Concierto In con.ConDAO.Conciertos
+            Dim item As New ListViewItem
+            item.Text = c.IDConcierto
+            c.Artista.LeerArtista()
+            item.SubItems.Add(c.Artista.NomArtista)
+            c.Sitio.LeerSitio()
+            item.SubItems.Add(c.Sitio.NomSitio)
+            item.SubItems.Add(c.FechaConcierto)
+            lstConcert_Site.Items.Add(item)
+        Next
+
+    End Sub
+
+    Private Sub lstConcert_Site_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert_Site.SelectedIndexChanged
+
+        lstSetlist_Site.Items.Clear()
+
+        Dim con As Concierto
+        Dim can As Cancion = New Cancion
+
+        If Me.lstConcert_Site.SelectedItems.Count > 0 Then
+            Try
+                con = New Concierto(lstConcert_Site.SelectedItems(0).SubItems(0).Text)
+                con.LeerConcierto()
+                con.LeerSetlist()
+                Try
+                    can.LeerTodasCanciones()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+                If con.Canciones IsNot Nothing Then
+                    For Each c As Cancion In con.Canciones
+                        Dim item As New ListViewItem
+                        item.Text = c.IDCancion
+                        item.SubItems.Add(c.NomCancion)
+                        item.SubItems.Add(c.Duracion)
+                        c.Album.LeerAlbum()
+                        item.SubItems.Add(c.Album.IDAlbum)
+                        item.SubItems.Add(c.OrdenCancion)
+                        lstSetlist_Site.Items.Add(item)
+                        lstSetlist_Site.Refresh()
+                    Next
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+
+    End Sub
+
 
 
     ' =========================================================================================
@@ -1421,6 +1536,4 @@ Public Class Form1
         Next
 
     End Sub
-
-
 End Class
