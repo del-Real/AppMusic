@@ -47,14 +47,14 @@
 
     Public Function Informe3()
         Dim col, aux As Collection
-        'c.LeerTodasCanciones()
-        col = AgenteBD.ObtenerAgente.Leer("      ")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT artistas.Nombre FROM artistas JOIN albumes ON artistas.IdArtista=albumes.Artista JOIN canciones ON albumes.idAlbum=canciones.Album JOIN (SELECT Concierto, COUNT(DISTINCT Canción) as numCanciones FROM setlists GROUP BY Concierto) setlists_concierto ON setlists_concierto.Concierto=canciones.idCancion WHERE numCanciones = (SELECT COUNT(*) FROM canciones WHERE canciones.Album=albumes.idAlbum)")
         For Each aux In col
             Dim a As Artista = New Artista
             a.IDArtista = CInt(aux(2))
             Me.ArtistasInforme3.Add(a)
         Next
     End Function
+
 
 
 End Class
