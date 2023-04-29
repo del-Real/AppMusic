@@ -143,8 +143,6 @@ Partial Class Form1
         Label25 = New Label()
         Label26 = New Label()
         ModifySong = New Button()
-        ButtonFind_Report1 = New Button()
-        ButtonFind_Report2 = New Button()
         TabControl.SuspendLayout()
         TabAlbum.SuspendLayout()
         TabArtist.SuspendLayout()
@@ -952,7 +950,6 @@ Partial Class Form1
         ' 
         ' TabReport1
         ' 
-        TabReport1.Controls.Add(ButtonFind_Report1)
         TabReport1.Controls.Add(lstReport1)
         TabReport1.Controls.Add(Label30)
         TabReport1.Controls.Add(Label31)
@@ -1001,7 +998,6 @@ Partial Class Form1
         ' 
         ' TabReport2
         ' 
-        TabReport2.Controls.Add(ButtonFind_Report2)
         TabReport2.Controls.Add(Label32)
         TabReport2.Controls.Add(Label33)
         TabReport2.Controls.Add(CB_Artist_Report2)
@@ -1439,24 +1435,6 @@ Partial Class Form1
         ModifySong.Text = "Modify Setlist"
         ModifySong.UseVisualStyleBackColor = True
         ' 
-        ' ButtonFind_Report1
-        ' 
-        ButtonFind_Report1.Location = New Point(15, 136)
-        ButtonFind_Report1.Name = "ButtonFind_Report1"
-        ButtonFind_Report1.Size = New Size(75, 23)
-        ButtonFind_Report1.TabIndex = 16
-        ButtonFind_Report1.Text = "Find"
-        ButtonFind_Report1.UseVisualStyleBackColor = True
-        ' 
-        ' ButtonFind_Report2
-        ' 
-        ButtonFind_Report2.Location = New Point(14, 133)
-        ButtonFind_Report2.Name = "ButtonFind_Report2"
-        ButtonFind_Report2.Size = New Size(75, 23)
-        ButtonFind_Report2.TabIndex = 16
-        ButtonFind_Report2.Text = "Find"
-        ButtonFind_Report2.UseVisualStyleBackColor = True
-        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1631,6 +1609,4 @@ Partial Class Form1
     Friend WithEvents ButtonFind_Report6 As Button
     Friend WithEvents Label41 As Label
     Friend WithEvents lstReport6 As ListView
-    Friend WithEvents ButtonFind_Report1 As Button
-    Friend WithEvents ButtonFind_Report2 As Button
 End Class

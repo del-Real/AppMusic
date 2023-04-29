@@ -256,14 +256,6 @@ Public Class Form1
 
     Private Sub Update_Report1()
         lstReport1.Items.Clear()
-        For Each item As ListViewItem In lstArtist.Items
-            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
-            CB_Artist_Report1.Items.Add(a)
-        Next
-    End Sub
-
-    Private Sub Update_Report1()
-        lstReport1.Items.Clear()
         CB_Artist_Report1.Items.Clear()
         For Each item As ListViewItem In lstArtist.Items
             Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
@@ -275,8 +267,7 @@ Public Class Form1
         Dim a As Artista = New Artista
         Dim c As Cancion = New Cancion
         a = CB_Artist_Report1.SelectedItem
-        a.LeerArtista()
-        a.Informe1()
+        a.ArtDAO.CancionesInforme1.Clear()
         Try
             c.LeerTodasCanciones()
         Catch ex As Exception
@@ -284,16 +275,20 @@ Public Class Form1
             Exit Sub
         End Try
 
+        a.Informe1()
         Dim cancionesActualizadas As New List(Of Cancion)
-        For Each can As Cancion In a.ArtDAO.ArtistasInforme1
+        For Each can As Cancion In a.ArtDAO.CancionesInforme1
             can.LeerCancion()
+            Dim canActualizada As Cancion = Nothing
             For Each can1 As Cancion In c.CanDAO.Canciones
                 If can1.IDCancion = can.IDCancion Then
-                    can.NomCancion = can1.NomCancion
-                    can.Duracion = can1.Duracion
-                    can.Album = can1.Album
-                    can.OrdenCancion = can1.OrdenCancion
-                    cancionesActualizadas.Add(can)
+                    canActualizada = New Cancion()
+                    canActualizada.IDCancion = can1.IDCancion
+                    canActualizada.NomCancion = can1.NomCancion
+                    canActualizada.Duracion = can1.Duracion
+                    canActualizada.Album = can1.Album
+                    canActualizada.OrdenCancion = can1.OrdenCancion
+                    cancionesActualizadas.Add(canActualizada)
                     Exit For
                 End If
             Next
@@ -307,9 +302,8 @@ Public Class Form1
             can.Album.LeerAlbum()
             item.SubItems.Add(can.Album.IDAlbum)
             item.SubItems.Add(can.OrdenCancion)
-            lstReport4.Items.Add(item)
+            lstReport1.Items.Add(item)
         Next
-
     End Sub
 
     ' ===============
@@ -329,19 +323,26 @@ Public Class Form1
     Private Sub CB_Artist_Report2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Report2.SelectedIndexChanged
 
         lstReport2.Items.Clear()
-
         Dim a As Artista = CB_Artist_Report2.SelectedItem
-        a.LeerArtista()
-        a.ArtDAO.Informe2(a)
+        Dim al As Album = New Album
+        a.ArtDAO.AlbumesInforme2.Clear()
+        Try
+            al.LeerTodosAlbums()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+        a.Informe2()
         Dim albumActualizados As New List(Of Album)
 
-        For Each art As Artista In a.ArtDAO.ArtistasInforme2
-            art.LeerArtista()
-            For Each art1 As Artista In a.ArtDAO.Artistas
-                If art1.IDArtista = art.IDArtista Then
-                    art.NomArtista = art1.NomArtista
-                    art.Pais = art1.Pais
-                    'albumActualizados.Add(art)
+        For Each alb As Album In a.ArtDAO.AlbumesInforme2
+            alb.LeerAlbum()
+            For Each alb1 As Album In al.AlbDAO.Albumes
+                If alb1.IDAlbum = alb.IDAlbum Then
+                    alb.NomAlbum = alb1.NomAlbum
+                    alb.AnoAlbum = alb1.AnoAlbum
+                    alb.Artista = alb1.Artista
+                    albumActualizados.Add(alb)
                     Exit For
                 End If
             Next
@@ -370,6 +371,8 @@ Public Class Form1
 
 
     Private Sub ButtonFind_Report3_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report3.Click
+
+        lstReport3.Items.Clear()
         Dim a As Artista = New Artista
         Try
             a.LeerTodosArtistas()
@@ -413,6 +416,7 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonFind_Report4_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report4.Click
+        lstReport4.Items.Clear()
         Dim c As Cancion = New Cancion
         Try
             c.LeerTodasCanciones()
@@ -460,7 +464,7 @@ Public Class Form1
 
 
     Private Sub ButtonFind_Report5_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report5.Click
-
+        lstReport5.Items.Clear()
         Dim fechainicio As Date = DTP_Start_R5.Text
         Dim fechafinal As Date = DTP_End_R5.Text
         Dim a As Artista = New Artista
@@ -506,7 +510,7 @@ Public Class Form1
     End Sub
 
     Private Sub ButtonFind_Report6_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report6.Click
-
+        lstReport6.Items.Clear()
         Dim fechainicio As Date = Me.DTP_Start_R6.Text
         Dim fechafinal As Date = Me.DTP_End_R6.Text
         Dim p As Pais = New Pais
@@ -696,22 +700,27 @@ Public Class Form1
 
         lstConcert_Artist.Items.Clear()
 
+
         Dim art As Artista = CB_Artist_Navegation.SelectedItem
-        art.LeerArtista()
 
-        Dim con As Concierto = New Concierto
-        con.ConDAO.LeerPorArtista(art)
+        If art IsNot Nothing Then
+            art.LeerArtista()
 
-        For Each c As Concierto In con.ConDAO.Conciertos
-            Dim item As New ListViewItem
-            item.Text = c.IDConcierto
-            c.Artista.LeerArtista()
-            item.SubItems.Add(c.Artista.NomArtista)
-            c.Sitio.LeerSitio()
-            item.SubItems.Add(c.Sitio.NomSitio)
-            item.SubItems.Add(c.FechaConcierto)
-            lstConcert_Artist.Items.Add(item)
-        Next
+            Dim con As Concierto = New Concierto
+            con.ConDAO.LeerPorArtista(art)
+
+            For Each c As Concierto In con.ConDAO.Conciertos
+                Dim item As New ListViewItem
+                item.Text = c.IDConcierto
+                c.Artista.LeerArtista()
+                item.SubItems.Add(c.Artista.NomArtista)
+                c.Sitio.LeerSitio()
+                item.SubItems.Add(c.Sitio.NomSitio)
+                item.SubItems.Add(c.FechaConcierto)
+                lstConcert_Artist.Items.Add(item)
+            Next
+
+        End If
 
         'Filtro Pais Enabled
 
@@ -728,28 +737,31 @@ Public Class Form1
         lstConcert_Artist.Items.Clear()
 
         Dim pai As Pais = CB_Country_Navegation.SelectedItem
-        pai.LeerPais()
+        If pai IsNot Nothing Then
+            pai.LeerPais()
 
-        Dim sit As Sitio = New Sitio
-        sit.Pais = pai
+            Dim sit As Sitio = New Sitio
+            sit.Pais = pai
 
-        Dim art As Artista = New Artista
-        art = CB_Artist_Navegation.SelectedItem
-        art.LeerArtista()
+            Dim art As Artista = New Artista
+            art = CB_Artist_Navegation.SelectedItem
+            art.LeerArtista()
 
-        Dim con As Concierto = New Concierto
-        con.ConDAO.LeerPorArtistaFiltrado(art, sit)
+            Dim con As Concierto = New Concierto
+            con.ConDAO.LeerPorArtistaFiltrado(art, sit)
 
-        For Each c As Concierto In con.ConDAO.Conciertos
-            Dim item As New ListViewItem
-            item.Text = c.IDConcierto
-            c.Artista.LeerArtista()
-            item.SubItems.Add(c.Artista.NomArtista)
-            c.Sitio.LeerSitio()
-            item.SubItems.Add(c.Sitio.NomSitio)
-            item.SubItems.Add(c.FechaConcierto)
-            lstConcert_Artist.Items.Add(item)
-        Next
+            For Each c As Concierto In con.ConDAO.Conciertos
+                Dim item As New ListViewItem
+                item.Text = c.IDConcierto
+                c.Artista.LeerArtista()
+                item.SubItems.Add(c.Artista.NomArtista)
+                c.Sitio.LeerSitio()
+                item.SubItems.Add(c.Sitio.NomSitio)
+                item.SubItems.Add(c.FechaConcierto)
+                lstConcert_Artist.Items.Add(item)
+            Next
+
+        End If
     End Sub
 
 
@@ -802,22 +814,23 @@ Public Class Form1
         lstConcert_Site.Items.Clear()
 
         Dim sit As Sitio = CB_Site_Navegation.SelectedItem
-        sit.LeerSitio()
+        If sit IsNot Nothing Then
+            sit.LeerSitio()
 
-        Dim con As Concierto = New Concierto
-        con.ConDAO.LeerPorSitio(sit)
+            Dim con As Concierto = New Concierto
+            con.ConDAO.LeerPorSitio(sit)
 
-        For Each c As Concierto In con.ConDAO.Conciertos
-            Dim item As New ListViewItem
-            item.Text = c.IDConcierto
-            c.Artista.LeerArtista()
-            item.SubItems.Add(c.Artista.NomArtista)
-            c.Sitio.LeerSitio()
-            item.SubItems.Add(c.Sitio.NomSitio)
-            item.SubItems.Add(c.FechaConcierto)
-            lstConcert_Site.Items.Add(item)
-        Next
-
+            For Each c As Concierto In con.ConDAO.Conciertos
+                Dim item As New ListViewItem
+                item.Text = c.IDConcierto
+                c.Artista.LeerArtista()
+                item.SubItems.Add(c.Artista.NomArtista)
+                c.Sitio.LeerSitio()
+                item.SubItems.Add(c.Sitio.NomSitio)
+                item.SubItems.Add(c.FechaConcierto)
+                lstConcert_Site.Items.Add(item)
+            Next
+        End If
     End Sub
 
     Private Sub lstConcert_Site_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcert_Site.SelectedIndexChanged
@@ -961,6 +974,8 @@ Public Class Form1
                 CountryClearAll()
             Case "TabSite"
                 SiteClearAll()
+            Case "TabNavegation"
+                NavegationClearAll()
         End Select
     End Sub
 
@@ -1701,14 +1716,14 @@ Public Class Form1
     Private Sub ConcertClearAll()
         Me.TB_Id_Concert.Text = String.Empty
         Me.DTP_Date_Concert.Text = String.Empty
-        CB_Artist_Concert.SelectedIndex = 0
-        CB_Site_Concert.SelectedIndex = 0
+        CB_Artist_Concert.SelectedIndex = -1
+        CB_Site_Concert.SelectedIndex = -1
         lstConcertSongs.Items.Clear()
     End Sub
 
-    ' --------------------
+    ' ---------------------
     ' CONCERT UPDATE CONTROL
-    ' --------------------
+    ' ----------------------
 
     Private Sub Update_Concert()
         lstConcert.Items.Clear()
@@ -1795,12 +1810,12 @@ Public Class Form1
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistAdd(can) <> 1 Then
-                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    'MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+                'MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
             Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Next
@@ -1810,12 +1825,12 @@ Public Class Form1
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistRemove(can) <> 1 Then
-                    MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    'MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+                'MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
             Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Next
@@ -1896,6 +1911,21 @@ Public Class Form1
             Dim s As Sitio = New Sitio(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Site_Navegation.Items.Add(s)
         Next
+
+    End Sub
+
+    ' --------------------
+    ' NAVEGATION CLEAR ALL
+    ' --------------------
+
+    Private Sub NavegationClearAll()
+
+        lstConcert_Artist.Items.Clear()
+        lstConcert_Site.Items.Clear()
+
+        CB_Artist_Navegation.SelectedIndex = -1
+        CB_Country_Navegation.SelectedIndex = -1
+        CB_Site_Navegation.SelectedIndex = -1
 
     End Sub
 

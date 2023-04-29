@@ -1,14 +1,14 @@
 ﻿Public Class ArtistaDAO
 
     Public ReadOnly Property Artistas As Collection
-    Public ReadOnly Property ArtistasInforme1 As Collection
-    Public ReadOnly Property ArtistasInforme2 As Collection
+    Public ReadOnly Property CancionesInforme1 As Collection
+    Public ReadOnly Property AlbumesInforme2 As Collection
     Public ReadOnly Property ArtistasInforme3 As Collection
     Public ReadOnly Property ArtistasInforme5 As Collection
     Public Sub New()
         Me.Artistas = New Collection
-        Me.ArtistasInforme1 = New Collection
-        Me.ArtistasInforme2 = New Collection
+        Me.CancionesInforme1 = New Collection
+        Me.AlbumesInforme2 = New Collection
         Me.ArtistasInforme3 = New Collection
         Me.ArtistasInforme5 = New Collection
     End Sub
@@ -53,44 +53,66 @@
 
     Public Sub Informe1(ByVal a As Artista)
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("Select setlist.canciones.NombreCancion, COUNT(*) AS VecesInterpretada " &
+        col = AgenteBD.ObtenerAgente.Leer("SELECT setlist.canciones.idCancion, setlist.canciones.NombreCancion, COUNT(*) AS VecesInterpretada " &
                                           "FROM setlist.setlists " &
                                           "JOIN setlist.conciertos ON setlist.setlists.Concierto=setlist.conciertos.IDConcierto " &
                                           "JOIN setlist.canciones ON setlist.setlists.Canción = setlist.canciones.idCancion " &
                                           "JOIN setlist.artistas ON setlist.conciertos.Artista = setlist.artistas.IDArtista " &
                                           "WHERE setlist.artistas.Nombre = '" & a.NomArtista & "' " &
-                                          "GROUP BY setlist.canciones.NombreCancion " &
+                                          "GROUP BY setlist.canciones.idCancion, setlist.canciones.NombreCancion " &
                                           "ORDER BY VecesInterpretada DESC;")
         For Each aux In col
             Dim c As Cancion = New Cancion
-            c.IDCancion = CInt(aux(2))
-            Me.ArtistasInforme1.Add(c)
+            c.IDCancion = CInt(aux(1))
+            Me.CancionesInforme1.Add(c)
         Next
     End Sub
 
     Public Sub Informe2(ByRef a As Artista)
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT albumes.NombreAlbum, COUNT(*) AS VecesInterpretado " &
-                                        "FROM setlists " &
-                                        "JOIN setlist.conciertos ON setlists.Concierto = conciertos.idConcierto " &
-                                        "JOIN setlist.artistas ON conciertos.Artista = artistas.IDArtista " &
-                                        "JOIN setlist.canciones ON setlists.Canción = canciones.idCancion " &
-                                        "JOIN setlist.albumes ON canciones.Album = albumes.idAlbum " &
-                                        "WHERE artistas.Nombre = 'Bad Bunny' " &
-                                        "GROUP BY albumes.NombreAlbum " &
-                                        "ORDER BY VecesInterpretado DESC")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT albumes.idAlbum, COUNT(*) AS VecesInterpretado " &
+                                  "FROM setlists " &
+                                  "JOIN setlist.conciertos ON setlists.Concierto = conciertos.idConcierto " &
+                                  "JOIN setlist.artistas ON conciertos.Artista = artistas.IDArtista " &
+                                  "JOIN setlist.canciones ON setlists.Canción = canciones.idCancion " &
+                                  "JOIN setlist.albumes ON canciones.Album = albumes.idAlbum " &
+                                  "WHERE artistas.Nombre = '" & a.NomArtista & "' " &
+                                  "GROUP BY albumes.idAlbum " &
+                                  "ORDER BY VecesInterpretado DESC")
         For Each aux In col
-            a.IDArtista = CInt(aux(2))
-            Me.ArtistasInforme3.Add(a)
+            Dim al As Album = New Album
+            al.IDAlbum = CInt(aux(1))
+            Me.AlbumesInforme2.Add(al)
         Next
     End Sub
 
     Public Sub Informe3()
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT artistas.Nombre FROM artistas JOIN albumes ON artistas.IdArtista=albumes.Artista JOIN canciones ON albumes.idAlbum=canciones.Album JOIN (SELECT Concierto, COUNT(DISTINCT Canción) as numCanciones FROM setlists GROUP BY Concierto) setlists_concierto ON setlists_concierto.Concierto=canciones.idCancion WHERE numCanciones = (SELECT COUNT(*) FROM canciones WHERE canciones.Album=albumes.idAlbum)")
+        col = AgenteBD.ObtenerAgente.Leer("
+                                    SELECT DISTINCT artistas.Nombre
+                                    FROM artistas
+                                    JOIN albumes ON artistas.IdArtista = albumes.Artista
+                                    WHERE EXISTS (
+                                        SELECT 1
+                                        FROM canciones
+                                        WHERE canciones.Album = albumes.idAlbum
+                                        AND NOT EXISTS (
+                                            SELECT 1
+                                            FROM canciones c2
+                                            WHERE c2.Album = albumes.idAlbum
+                                            AND NOT EXISTS (
+                                                SELECT 1
+                                                FROM setlists
+                                                JOIN conciertos ON setlists.Concierto = conciertos.idConcierto
+                                                WHERE setlists.Canción = c2.idCancion
+                                                AND conciertos.Artista = artistas.IdArtista
+                                            )
+                                        )
+                                    )")
         For Each aux In col
             Dim a As Artista = New Artista
             a.IDArtista = CInt(aux(2))
+            a.LeerArtista()
             Me.ArtistasInforme3.Add(a)
         Next
     End Sub
