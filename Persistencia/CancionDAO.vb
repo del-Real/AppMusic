@@ -1,7 +1,6 @@
 ﻿Public Class CancionDAO
 
     Public ReadOnly Property Canciones As Collection
-
     Public ReadOnly Property CancionesInforme4 As Collection
 
     Public Sub New()
@@ -65,4 +64,5 @@
             Me.CancionesInforme4.Add(c)
         Next
     End Sub
+
 End Class

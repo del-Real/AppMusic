@@ -1,9 +1,10 @@
 ﻿Public Class ArtistaDAO
 
     Public ReadOnly Property Artistas As Collection
-
+    Public ReadOnly Property ArtistasInforme3 As Collection
     Public Sub New()
         Me.Artistas = New Collection
+        Me.ArtistasInforme3 = New Collection
     End Sub
 
     Public Sub LeerTodos()
@@ -44,7 +45,16 @@
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM artistas WHERE IdArtista='" & a.IDArtista & "';")
     End Function
 
-    Public Function Informe1(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
+    Public Function Informe3()
+        Dim col, aux As Collection
+        'c.LeerTodasCanciones()
+        col = AgenteBD.ObtenerAgente.Leer("      ")
+        For Each aux In col
+            Dim a As Artista = New Artista
+            a.IDArtista = CInt(aux(2))
+            Me.ArtistasInforme3.Add(a)
+        Next
     End Function
+
+
 End Class

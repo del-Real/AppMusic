@@ -52,9 +52,9 @@
     Public Function BorrarArtista() As Integer
         Return Me.ArtDAO.Borrar(Me)
     End Function
-    Public Function Informe1(a As Artista) As Integer
-        Return Me.ArtDAO.Informe1(Me)
-    End Function
+    Public Sub Informe3()
+        Me.ArtDAO.Informe3()
+    End Sub
 
     Public Overrides Function ToString() As String
         Return Me.IDArtista & " " & Me.NomArtista

@@ -314,6 +314,42 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub ButtonFind_Report3_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report3.Click
+        Dim a As Artista = New Artista
+        Try
+            a.LeerTodosArtistas()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+        a.Informe3()
+        Dim artistasActualizados As New List(Of Artista)
+
+        For Each art As Artista In a.ArtDAO.ArtistasInforme3
+            art.LeerArtista()
+            For Each art1 As Artista In a.ArtDAO.Artistas
+                If art1.IDArtista = art.IDArtista Then
+                    art.NomArtista = art1.NomArtista
+                    art.Pais = art1.Pais
+                    artistasActualizados.Add(art)
+                    Exit For
+                End If
+            Next
+        Next
+
+        For Each art As Artista In artistasActualizados
+            Dim item As New ListViewItem
+            item.Text = a.IDArtista
+            item.SubItems.Add(a.NomArtista)
+            a.Pais.LeerPais()
+            item.SubItems.Add(a.Pais.NomPais)
+            lstReport3.Items.Add(item)
+        Next
+
+    End Sub
+
+
     ' ===============
     ' INFORME 4
     ' ===============
@@ -1750,4 +1786,5 @@ Public Class Form1
         Next
 
     End Sub
+
 End Class

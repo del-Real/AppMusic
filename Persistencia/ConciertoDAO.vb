@@ -142,24 +142,4 @@
         Return AgenteBD.ObtenerAgente.Modificar(sql)
     End Function
 
-    Public Function Informe2(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
-    End Function
-
-    Public Function Informe3(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
-    End Function
-
-    Public Function Informe4(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
-    End Function
-
-    Public Function Informe5(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
-    End Function
-
-    Public Function Informe6(ByVal a As Artista)
-        Return AgenteBD.ObtenerAgente.Modificar("")
-    End Function
-
 End Class
