@@ -74,7 +74,7 @@
     Public Sub LeerPorArtistaFiltrado(ByRef a As Artista, ByRef s As Sitio)
         Dim c As Concierto
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos WHERE Artista = '" & a.IDArtista & "' AND Sitio = '" & s.Pais.IDPais & "' ORDER BY idConcierto")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM conciertos JOIN sitio ON conciertos.Sitio = sitio.idSitio WHERE Artista = '" & a.IDArtista & "' AND sitio.País = '" & s.Pais.IDPais & "' ORDER BY idConcierto")
         For Each aux In col
             c = New Concierto(CInt(aux(1)))
             a = New Artista(CInt(aux(2)))

@@ -181,6 +181,7 @@ Public Class Form1
 
     Private Sub TabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl.SelectedIndexChanged
         Dim tabPage As TabPage = TabControl.SelectedTab
+        Dim subTabPage As TabPage = TabControl.SelectedTab
         'Switch-case para comprobar qué pestaña está activa y realizar la acción correspondiente
         Select Case tabPage.Name
             Case "TabAlbum"
@@ -199,7 +200,12 @@ Public Class Form1
                 Update_Artist_Navegation()
                 Update_Site_Navegation()
             Case "TabReport"
-
+                Update_Report1()
+                Update_Report2()
+                Update_Report3()
+                Update_Report4()
+                Update_Report5()
+                Update_Report6()
         End Select
 
         ' Las opciones del setlist estarán deshabilitadas a menos que se esté en la pestaña Concierto
@@ -239,6 +245,87 @@ Public Class Form1
             ButtonAdd.Enabled = False
         End If
 
+
+    End Sub
+
+    'Private Sub Update_Album()
+    '    lstAlbumes.Items.Clear()
+    '    CB_Artist_Album.Items.Clear()
+    '    Dim alb As Album = New Album
+    '    Try
+    '        alb.LeerTodosAlbums()
+    '    Catch ex As Exception
+    '        MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '        Exit Sub
+    '    End Try
+
+    '    For Each a As Album In alb.AlbDAO.Albumes
+    '        Dim item As New ListViewItem
+    '        item.Text = a.IDAlbum
+    '        item.SubItems.Add(a.NomAlbum)
+    '        item.SubItems.Add(a.AnoAlbum)
+    '        a.Artista.LeerArtista()
+    '        item.SubItems.Add(a.Artista.IDArtista)
+    '        lstAlbumes.Items.Add(item)
+    '    Next
+
+    '    For Each item As ListViewItem In lstArtist.Items
+    '        Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+    '        CB_Artist_Album.Items.Add(a)
+    '    Next
+    '    CB_Artist_Album.SelectedIndex = -1
+    'End Sub
+
+    ' ===============
+    ' INFORME 1
+    ' ===============
+
+    Private Sub Update_Report1()
+
+
+        For Each item As ListViewItem In lstArtist.Items
+            Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
+            CB_Artist_Report1.Items.Add(a)
+        Next
+    End Sub
+
+    ' ===============
+    ' INFORME 2
+    ' ===============
+
+    Private Sub Update_Report2()
+
+    End Sub
+
+    ' ===============
+    ' INFORME 3
+    ' ===============
+
+    Private Sub Update_Report3()
+
+    End Sub
+
+    ' ===============
+    ' INFORME 4
+    ' ===============
+
+    Private Sub Update_Report4()
+
+    End Sub
+
+    ' ===============
+    ' INFORME 5
+    ' ===============
+
+    Private Sub Update_Report5()
+
+    End Sub
+
+    ' ===============
+    ' INFORME 6
+    ' ===============
+
+    Private Sub Update_Report6()
 
     End Sub
 
@@ -450,7 +537,8 @@ Public Class Form1
         Dim sit As Sitio = New Sitio
         sit.Pais = pai
 
-        Dim art As Artista = CB_Artist_Navegation.SelectedItem
+        Dim art As Artista = New Artista
+        art = CB_Artist_Navegation.SelectedItem
         art.LeerArtista()
 
         Dim con As Concierto = New Concierto
