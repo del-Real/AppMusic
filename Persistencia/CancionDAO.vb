@@ -50,9 +50,8 @@
     End Function
 
     Public Sub Informe4()
-        Dim c As Cancion = New Cancion
         Dim col, aux As Collection
-        c.LeerTodasCanciones()
+        'c.LeerTodasCanciones()
         col = AgenteBD.ObtenerAgente.Leer("SELECT canciones.NombreCancion, canciones.idCancion, canciones.Duración, albumes.NombreAlbum, COUNT(*) AS VecesInterpretado " &
                                                 "FROM setlists " &
                                                 "JOIN setlist.conciertos ON setlists.Concierto = conciertos.idConcierto " &
@@ -61,6 +60,7 @@
                                                 "GROUP BY canciones.NombreCancion, canciones.idCancion, canciones.Duración, albumes.NombreAlbum " &
                                                 "ORDER BY VecesInterpretado DESC")
         For Each aux In col
+            Dim c As Cancion = New Cancion
             c.IDCancion = CInt(aux(2))
             Me.CancionesInforme4.Add(c)
         Next

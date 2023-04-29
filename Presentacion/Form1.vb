@@ -331,21 +331,32 @@ Public Class Form1
             Exit Sub
         End Try
         c.Informe4()
+        Dim cancionesActualizadas As New List(Of Cancion)
+
         For Each can As Cancion In c.CanDAO.CancionesInforme4
-            Dim item As New ListViewItem
             can.LeerCancion()
             For Each can1 As Cancion In c.CanDAO.Canciones
                 If can1.IDCancion = can.IDCancion Then
-                    item.Text = can1.IDCancion
-                    item.SubItems.Add(can1.NomCancion)
-                    item.SubItems.Add(can1.Duracion)
-                    can1.Album.LeerAlbum()
-                    item.SubItems.Add(can1.Album.IDAlbum)
-                    item.SubItems.Add(can1.OrdenCancion)
-                    lstReport4.Items.Add(item)
-                    lstReport4.Refresh()
+                    can.NomCancion = can1.NomCancion
+                    can.Duracion = can1.Duracion
+                    can.Album = can1.Album
+                    can.OrdenCancion = can1.OrdenCancion
+                    ' Actualiza todos los campos relevantes de la canción
+                    cancionesActualizadas.Add(can)
+                    Exit For
                 End If
             Next
+        Next
+
+        For Each can As Cancion In cancionesActualizadas
+            Dim item As New ListViewItem
+            item.Text = can.IDCancion
+            item.SubItems.Add(can.NomCancion)
+            item.SubItems.Add(can.Duracion)
+            can.Album.LeerAlbum()
+            item.SubItems.Add(can.Album.IDAlbum)
+            item.SubItems.Add(can.OrdenCancion)
+            lstReport4.Items.Add(item)
         Next
 
     End Sub
