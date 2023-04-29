@@ -43,4 +43,8 @@
     Public Function Borrar(ByVal a As Artista) As Integer
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM artistas WHERE IdArtista='" & a.IDArtista & "';")
     End Function
+
+    Public Function Informe1(ByVal a As Artista)
+        Return AgenteBD.ObtenerAgente.Modificar("")
+    End Function
 End Class

@@ -988,7 +988,7 @@ Partial Class Form1
         '
         'lstReport1
         '
-        Me.lstReport1.Location = New System.Drawing.Point(275, 16)
+        Me.lstReport1.Location = New System.Drawing.Point(274, 16)
         Me.lstReport1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstReport1.Name = "lstReport1"
         Me.lstReport1.Size = New System.Drawing.Size(298, 299)
@@ -1150,7 +1150,7 @@ Partial Class Form1
         '
         'lstReport4
         '
-        Me.lstReport4.Location = New System.Drawing.Point(296, 15)
+        Me.lstReport4.Location = New System.Drawing.Point(294, 15)
         Me.lstReport4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.lstReport4.Name = "lstReport4"
         Me.lstReport4.Size = New System.Drawing.Size(275, 292)

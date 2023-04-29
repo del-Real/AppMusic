@@ -58,6 +58,10 @@
         Return Me.CanDAO.Borrar(Me)
     End Function
 
+    Public Sub Informe4()
+        Me.CanDAO.Informe4()
+    End Sub
+
     Public Overrides Function toString() As String
         Return Me.IDCancion & " " & Me.NomCancion
     End Function

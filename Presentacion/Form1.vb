@@ -289,6 +289,13 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub CB_Artist_Report1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Report1.SelectedIndexChanged
+        Dim a As Artista = New Artista
+        a = CB_Artist_Report1.SelectedItem
+        a.LeerArtista()
+
+    End Sub
+
     ' ===============
     ' INFORME 2
     ' ===============
@@ -311,6 +318,32 @@ Public Class Form1
 
     Private Sub Update_Report4()
 
+    End Sub
+
+    Private Sub ButtonFind_Report4_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report4.Click
+        Dim c As Cancion = New Cancion
+        Try
+            c.LeerTodasCanciones()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+        c.Informe4()
+        For Each can As Cancion In c.CanDAO.CancionesInforme4
+            can.LeerCancion()
+            Dim item As ListViewItem = lstSong.FindItemWithText(can.IDCancion)
+            If item IsNot Nothing Then
+                Dim cancion As ListViewItem = CType(item.Clone(), ListViewItem)
+                lstReport4.Items.Add(cancion)
+
+            End If
+            'item.Text = can.IDCancion
+            'item.SubItems.Add(can.NomCancion)
+            'item.SubItems.Add(can.Duracion)
+            'c.Album.LeerAlbum()
+            'item.SubItems.Add(can.Album.IDAlbum)
+            'item.SubItems.Add(can.OrdenCancion)
+        Next
     End Sub
 
     ' ===============
@@ -776,14 +809,6 @@ Public Class Form1
     ' =====================
     ' BOTÓN BUSCAR REPORT 4
     ' =====================
-
-    Private Sub ButtonFind_Report4_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report4.Click
-
-    End Sub
-
-
-
-
 
     ' =========================================================================================================
     ' MÉTODOS
@@ -1710,5 +1735,4 @@ Public Class Form1
         Next
 
     End Sub
-
 End Class
