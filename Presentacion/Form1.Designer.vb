@@ -67,7 +67,7 @@ Partial Class Form1
         Label21 = New Label()
         DTP_Date_Concert = New DateTimePicker()
         TabCountry = New TabPage()
-        lstContries = New ListView()
+        lstCountries = New ListView()
         Label2 = New Label()
         TB_Name_Country = New TextBox()
         Label1 = New Label()
@@ -633,7 +633,7 @@ Partial Class Form1
         ' 
         ' TabCountry
         ' 
-        TabCountry.Controls.Add(lstContries)
+        TabCountry.Controls.Add(lstCountries)
         TabCountry.Controls.Add(Label2)
         TabCountry.Controls.Add(TB_Name_Country)
         TabCountry.Controls.Add(Label1)
@@ -647,15 +647,15 @@ Partial Class Form1
         TabCountry.Text = "Country"
         TabCountry.UseVisualStyleBackColor = True
         ' 
-        ' lstContries
+        ' lstCountries
         ' 
-        lstContries.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
-        lstContries.Location = New Point(299, 25)
-        lstContries.MultiSelect = False
-        lstContries.Name = "lstContries"
-        lstContries.Size = New Size(220, 245)
-        lstContries.TabIndex = 22
-        lstContries.UseCompatibleStateImageBehavior = False
+        lstCountries.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
+        lstCountries.Location = New Point(299, 25)
+        lstCountries.MultiSelect = False
+        lstCountries.Name = "lstCountries"
+        lstCountries.Size = New Size(220, 245)
+        lstCountries.TabIndex = 22
+        lstCountries.UseCompatibleStateImageBehavior = False
         ' 
         ' Label2
         ' 
@@ -1504,7 +1504,7 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents TB_Id_Country As TextBox
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents lstContries As ListView
+    Friend WithEvents lstCountries As ListView
     Friend WithEvents lstSites As ListView
     Friend WithEvents Label3 As Label
     Friend WithEvents TB_Name_Site As TextBox

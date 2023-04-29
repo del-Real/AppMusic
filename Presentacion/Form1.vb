@@ -22,8 +22,8 @@ Public Class Form1
 
         'Country Controls
 
-        lstContries.Columns.Add("ID", 75)
-        lstContries.Columns.Add("Name", 150)
+        lstCountries.Columns.Add("ID", 75)
+        lstCountries.Columns.Add("Name", 150)
 
         'Site Controls
 
@@ -373,14 +373,19 @@ Public Class Form1
     Private Sub ButtonFind_Report3_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report3.Click
 
         lstReport3.Items.Clear()
+        Dim al As Album = New Album
         Dim a As Artista = New Artista
         Try
             a.LeerTodosArtistas()
+            al.LeerTodosAlbums()
         Catch ex As Exception
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End Try
-        a.Informe3()
+        For Each artista As Artista In a.ArtDAO.Artistas
+            a.Informe3()
+        Next
+
         Dim artistasActualizados As New List(Of Artista)
 
         For Each art As Artista In a.ArtDAO.ArtistasInforme3
@@ -536,7 +541,7 @@ Public Class Form1
     Private Sub lstArtist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstArtist.SelectedIndexChanged
         Me.TB_Id_Artist.Text = String.Empty
         Dim art As Artista
-        If Not Me.lstArtist.SelectedItems Is Nothing Then
+        If Not Me.lstArtist.SelectedItems Is Nothing AndAlso Me.lstArtist.SelectedItems.Count > 0 Then
             Try
                 art = New Artista(lstArtist.SelectedItems(0).SubItems(0).Text, lstArtist.SelectedItems(0).SubItems(1).Text)
                 art.LeerArtista()
@@ -553,12 +558,12 @@ Public Class Form1
     ' PESTAÑA PAÍSES
     ' ==============
 
-    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstContries.SelectedIndexChanged
+    Private Sub lstPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstCountries.SelectedIndexChanged
         Me.TB_Id_Country.Text = String.Empty
         Dim pai As Pais
-        If Not Me.lstContries.SelectedItems Is Nothing Then
+        If Not Me.lstCountries.SelectedItems Is Nothing AndAlso Me.lstCountries.SelectedItems.Count > 0 Then
             Try
-                pai = New Pais(lstContries.SelectedItems(0).SubItems(0).Text, lstContries.SelectedItems(0).SubItems(1).Text)
+                pai = New Pais(lstCountries.SelectedItems(0).SubItems(0).Text, lstCountries.SelectedItems(0).SubItems(1).Text)
                 pai.LeerPais()
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -576,7 +581,7 @@ Public Class Form1
     Private Sub lstSites_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSites.SelectedIndexChanged
         Me.TB_Id_Site.Text = String.Empty
         Dim sit As Sitio
-        If Not Me.lstSites.SelectedItems Is Nothing Then
+        If Not Me.lstSites.SelectedItems Is Nothing AndAlso Me.lstSites.SelectedItems.Count > 0 Then
             Try
                 sit = New Sitio(lstSites.SelectedItems(0).SubItems(0).Text, lstSites.SelectedItems(0).SubItems(1).Text)
                 sit.LeerSitio()
@@ -585,7 +590,7 @@ Public Class Form1
                 Exit Sub
             End Try
             Me.TB_Id_Site.Text = sit.IDSitio
-            Me.TB_Name_Country.Text = sit.NomSitio
+            Me.TB_Name_Site.Text = sit.NomSitio
         End If
     End Sub
 
@@ -596,7 +601,7 @@ Public Class Form1
     Private Sub lstAlbumes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstAlbumes.SelectedIndexChanged
         Me.TB_ID_Album.Text = String.Empty
         Dim alb As Album
-        If Not Me.lstAlbumes.SelectedItems Is Nothing Then
+        If Not Me.lstAlbumes.SelectedItems Is Nothing AndAlso Me.lstAlbumes.SelectedItems.Count > 0 Then
             Try
                 alb = New Album(lstAlbumes.SelectedItems(0).SubItems(0).Text, lstAlbumes.SelectedItems(0).SubItems(1).Text)
                 alb.LeerAlbum()
@@ -616,7 +621,7 @@ Public Class Form1
     Private Sub lstSong_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstSong.SelectedIndexChanged
         Me.TB_Id_Song.Text = String.Empty
         Dim can As Cancion
-        If Not Me.lstSong.SelectedItems Is Nothing Then
+        If Not Me.lstSong.SelectedItems Is Nothing AndAlso Me.lstSong.SelectedItems.Count > 0 Then
             Try
                 can = New Cancion(lstSong.SelectedItems(0).SubItems(0).Text, lstSong.SelectedItems(0).SubItems(1).Text, lstSong.SelectedItems(0).SubItems(2).Text, lstSong.SelectedItems(0).SubItems(4).Text)
                 can.LeerCancion()
@@ -980,14 +985,6 @@ Public Class Form1
     End Sub
 
 
-    ' ===============
-    ' BOTONES REPORTS
-    ' ===============
-
-    ' =====================
-    ' BOTÓN BUSCAR REPORT 4
-    ' =====================
-
     ' =========================================================================================================
     ' MÉTODOS
     ' =========================================================================================================
@@ -1084,7 +1081,7 @@ Public Class Form1
     ' --------------------
 
     Private Sub Update_Country()
-        lstContries.Items.Clear()
+        lstCountries.Items.Clear()
         Dim pai As Pais = New Pais
         Try
             pai.LeerTodosPaises()
@@ -1096,10 +1093,10 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = p.IDPais
             item.SubItems.Add(p.NomPais)
-            lstContries.Items.Add(item)
+            lstCountries.Items.Add(item)
         Next
         ' Añade columnas al listView de Países
-        lstContries.View = View.Details
+        lstCountries.View = View.Details
     End Sub
 
     ' ===========================================
@@ -1220,7 +1217,7 @@ Public Class Form1
             item.SubItems.Add(s.tipo)
             lstSites.Items.Add(item)
         Next
-        For Each item As ListViewItem In lstContries.Items
+        For Each item As ListViewItem In lstCountries.Items
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Site.Items.Add(p)
         Next
@@ -1341,7 +1338,7 @@ Public Class Form1
             item.SubItems.Add(a.Pais.NomPais)
             lstArtist.Items.Add(item)
         Next
-        For Each item As ListViewItem In lstContries.Items
+        For Each item As ListViewItem In lstCountries.Items
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Artist.Items.Add(p)
         Next
@@ -1772,7 +1769,6 @@ Public Class Form1
         End Try
         For Each c As Cancion In can.CanDAO.Canciones
 
-            ' Check if the song is already in lstConcertSongs
             Dim songFound As Boolean = False
             For Each item As ListViewItem In lstConcertSongs.Items
                 If item.SubItems(0).Text = c.IDCancion Then
@@ -1781,7 +1777,6 @@ Public Class Form1
                 End If
             Next
 
-            ' If the song is not already in lstConcertSongs, add it to lstAllSongs
             If Not songFound Then
                 Dim item As New ListViewItem
                 item.Text = c.IDCancion
@@ -1810,12 +1805,12 @@ Public Class Form1
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistAdd(can) <> 1 Then
-                    'MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                     Exit Sub
                 End If
-                'MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+
             Catch ex As Exception
-                'MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                 Exit Sub
             End Try
         Next
@@ -1825,12 +1820,12 @@ Public Class Form1
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistRemove(can) <> 1 Then
-                    'MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                     Exit Sub
                 End If
-                'MessageBox.Show("Setlist con el ID " & can.IDCancion & " insertado correctamente")
+
             Catch ex As Exception
-                'MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                 Exit Sub
             End Try
         Next
@@ -1892,7 +1887,7 @@ Public Class Form1
             CB_Artist_Navegation.Items.Add(a)
         Next
 
-        For Each item As ListViewItem In lstContries.Items
+        For Each item As ListViewItem In lstCountries.Items
             Dim p As Pais = New Pais(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Country_Navegation.Items.Add(p)
         Next

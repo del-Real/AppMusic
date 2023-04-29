@@ -88,27 +88,26 @@
 
     Public Sub Informe3()
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("
-                                    SELECT DISTINCT artistas.Nombre
-                                    FROM artistas
-                                    JOIN albumes ON artistas.IdArtista = albumes.Artista
-                                    WHERE EXISTS (
-                                        SELECT 1
-                                        FROM canciones
-                                        WHERE canciones.Album = albumes.idAlbum
-                                        AND NOT EXISTS (
-                                            SELECT 1
-                                            FROM canciones c2
-                                            WHERE c2.Album = albumes.idAlbum
-                                            AND NOT EXISTS (
-                                                SELECT 1
-                                                FROM setlists
-                                                JOIN conciertos ON setlists.Concierto = conciertos.idConcierto
-                                                WHERE setlists.Canción = c2.idCancion
-                                                AND conciertos.Artista = artistas.IdArtista
-                                            )
-                                        )
-                                    )")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT artistas.Nombre " &
+                      "FROM artistas " &
+                      "JOIN albumes ON artistas.IdArtista=albumes.Artista " &
+                      "WHERE EXISTS ( " &
+                      "  SELECT 1 " &
+                      "  FROM canciones " &
+                      "  WHERE canciones.Album = albumes.idAlbum " &
+                      "  AND NOT EXISTS ( " &
+                      "    SELECT 1 " &
+                      "    FROM canciones c2 " &
+                      "    WHERE c2.Album=albumes.idAlbum " &
+                      "    AND NOT EXISTS ( " &
+                      "      SELECT 1 " &
+                      "      FROM setlists " &
+                      "      JOIN conciertos ON setlists.Concierto = conciertos.idConcierto " &
+                      "      WHERE setlists.Canción = c2.idCancion " &
+                      "      AND conciertos.Artista = artistas.IdArtista " &
+                      "    ) " &
+                      "  ) " &
+                      ")")
         For Each aux In col
             Dim a As Artista = New Artista
             a.IDArtista = CInt(aux(2))
