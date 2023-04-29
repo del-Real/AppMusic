@@ -283,8 +283,7 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report1()
-
-
+        lstReport1.Items.Clear()
         For Each item As ListViewItem In lstArtist.Items
             Dim a As Artista = New Artista(item.SubItems(0).Text, item.SubItems(1).Text)
             CB_Artist_Report1.Items.Add(a)
@@ -303,7 +302,7 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report2()
-
+        lstReport2.Items.Clear()
     End Sub
 
     ' ===============
@@ -311,7 +310,7 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report3()
-
+        lstReport3.Items.Clear()
     End Sub
 
 
@@ -355,7 +354,7 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report4()
-
+        lstReport4.Items.Clear()
     End Sub
 
     Private Sub ButtonFind_Report4_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report4.Click
@@ -377,7 +376,6 @@ Public Class Form1
                     can.Duracion = can1.Duracion
                     can.Album = can1.Album
                     can.OrdenCancion = can1.OrdenCancion
-                    ' Actualiza todos los campos relevantes de la canción
                     cancionesActualizadas.Add(can)
                     Exit For
                 End If
@@ -402,7 +400,7 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report5()
-
+        lstReport5.Items.Clear()
     End Sub
 
 
@@ -420,10 +418,25 @@ Public Class Form1
 
         a.Informe5(fechainicio, fechafinal)
         Dim artistasActualizados As New List(Of Artista)
-        For Each ar As Artista In a.ArtDAO.ArtistasInforme5
+
+        For Each art As Artista In a.ArtDAO.ArtistasInforme5
+            art.LeerArtista()
+            For Each art1 As Artista In a.ArtDAO.Artistas
+                If art1.IDArtista = art.IDArtista Then
+                    art.NomArtista = art1.NomArtista
+                    art.Pais = New Pais(art1.Pais.IDPais, art1.Pais.NomPais)
+                    artistasActualizados.Add(art)
+                    Exit For
+                End If
+            Next
+        Next
+
+        For Each art As Artista In artistasActualizados
             Dim item As New ListViewItem
-            item.Text = ar.IDArtista
-            item.SubItems.Add(ar.NomArtista)
+            item.Text = art.IDArtista
+            item.SubItems.Add(art.NomArtista)
+            art.Pais.LeerPais()
+            item.SubItems.Add(art.Pais.IDPais)
             lstReport5.Items.Add(item)
         Next
 
@@ -434,10 +447,11 @@ Public Class Form1
     ' ===============
 
     Private Sub Update_Report6()
-
+        lstReport6.Items.Clear()
     End Sub
 
     Private Sub ButtonFind_Report6_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report6.Click
+
         Dim fechainicio As Date = Me.DTP_Start_R6.Text
         Dim fechafinal As Date = Me.DTP_End_R6.Text
         Dim p As Pais = New Pais

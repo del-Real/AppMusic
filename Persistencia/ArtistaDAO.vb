@@ -69,6 +69,7 @@
         For Each aux In col
             Dim a As Artista = New Artista
             a.IDArtista = CInt(aux(2))
+            a.LeerArtista()
             Me.ArtistasInforme5.Add(a)
         Next
     End Sub

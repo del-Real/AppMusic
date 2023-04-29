@@ -49,7 +49,6 @@
                                       "GROUP BY paises.NombrePais " &
                                       "ORDER BY NumeroConciertos DESC")
         For Each aux In col
-            MessageBox.Show("Este es un mensaje emergente")
             Dim pa As Pais = New Pais
             pa.IDPais = aux(1).ToString
             pa.LeerPais()
