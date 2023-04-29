@@ -113,6 +113,54 @@ Public Class Form1
         lstSetlist_Site.Columns.Add("Album", 60)
         lstSetlist_Site.Columns.Add("Orden", 40)
 
+        'Report 1 (Song)
+
+        lstReport1.View = View.Details
+        lstReport1.Columns.Add("ID", 40)
+        lstReport1.Columns.Add("Name", 80)
+        lstReport1.Columns.Add("Duration", 40)
+        lstReport1.Columns.Add("Album", 60)
+        lstReport1.Columns.Add("Orden", 40)
+
+        'Report 2 (Album)
+
+        lstReport2.View = View.Details
+        lstReport2.Columns.Add("ID", 40)
+        lstReport2.Columns.Add("Name", 80)
+        lstReport2.Columns.Add("Year", 60)
+        lstReport2.Columns.Add("Artist", 80)
+
+        'Report 3 (Artist)
+
+        lstReport3.View = View.Details
+        lstReport3.Columns.Add("ID", 40)
+        lstReport3.Columns.Add("Name", 80)
+        lstReport3.Columns.Add("Country", 90)
+
+        'Report 4 (Song)
+
+        lstReport4.View = View.Details
+        lstReport4.Columns.Add("ID", 40)
+        lstReport4.Columns.Add("Name", 80)
+        lstReport4.Columns.Add("Duration", 40)
+        lstReport4.Columns.Add("Album", 60)
+        lstReport4.Columns.Add("Orden", 40)
+
+        'Report 5 (Artist)
+
+        lstReport5.View = View.Details
+        lstReport5.Columns.Add("ID", 40)
+        lstReport5.Columns.Add("Name", 80)
+        lstReport5.Columns.Add("Country", 90)
+
+        'Report 6 (Country)
+
+        lstReport6.View = View.Details
+        lstReport6.Columns.Add("ID", 75)
+        lstReport6.Columns.Add("Name", 150)
+
+        'Update tabs
+
         Update_Country()
         Update_Site()
         Update_Artist()
@@ -123,9 +171,13 @@ Public Class Form1
         Update_Site_Navegation()
     End Sub
 
-    ' =========================================================================================
+    ' =========================================================================================================
     ' PESTAÑAS
-    ' =========================================================================================
+    ' =========================================================================================================
+
+    ' ===========
+    ' TAB CONTROL
+    ' ===========
 
     Private Sub TabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl.SelectedIndexChanged
         Dim tabPage As TabPage = TabControl.SelectedTab
@@ -146,6 +198,8 @@ Public Class Form1
             Case "TabNavegation"
                 Update_Artist_Navegation()
                 Update_Site_Navegation()
+            Case "TabReport"
+
         End Select
 
         ' Las opciones del setlist estarán deshabilitadas a menos que se esté en la pestaña Concierto
@@ -166,6 +220,25 @@ Public Class Form1
             lstConcertSongs.Enabled = True
             lstAllSongs.Enabled = True
         End If
+
+        ' Ciertos controles estarán deshabilitados en la pestañas Navegation y Report
+
+        ButtonDelete.Enabled = True
+        ButtonModify.Enabled = True
+        ButtonAdd.Enabled = True
+
+        If TabControl.SelectedTab.Name = "TabNavegation" Then
+            ButtonDelete.Enabled = False
+            ButtonModify.Enabled = False
+            ButtonAdd.Enabled = False
+        End If
+
+        If TabControl.SelectedTab.Name = "TabReport" Then
+            ButtonDelete.Enabled = False
+            ButtonModify.Enabled = False
+            ButtonAdd.Enabled = False
+        End If
+
 
     End Sub
 
@@ -332,13 +405,9 @@ Public Class Form1
     End Sub
 
 
-    ' ===================
-    ' PESTAÑAS NAVEGACIÓN
-    ' ===================
-
-    '------------------
-    'NAVEGACIÓN ARTISTA
-    '------------------
+    ' ===========================
+    ' PESTAÑAS NAVEGACIÓN ARTISTA
+    ' ===========================
 
     Private Sub CB_Artist_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Artist_Navegation.SelectedIndexChanged
 
@@ -440,9 +509,9 @@ Public Class Form1
     End Sub
 
 
-    '----------------
-    'NAVEGACIÓN SITIO
-    '----------------
+    ' =========================
+    ' PESTAÑAS NAVEGACIÓN SITIO
+    ' =========================
 
     Private Sub CB_Site_Navegation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CB_Site_Navegation.SelectedIndexChanged
 
@@ -508,9 +577,9 @@ Public Class Form1
 
 
 
-    ' =========================================================================================
+    ' =========================================================================================================
     ' BOTONES FUNCIONES
-    ' =========================================================================================
+    ' =========================================================================================================
 
     ' ============
     ' BOTÓN AÑADIR
@@ -611,9 +680,26 @@ Public Class Form1
         End Select
     End Sub
 
-    ' =========================================================================================
+
+    ' ===============
+    ' BOTONES REPORTS
+    ' ===============
+
+    ' =====================
+    ' BOTÓN BUSCAR REPORT 4
+    ' =====================
+
+    Private Sub ButtonFind_Report4_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report4.Click
+
+    End Sub
+
+
+
+
+
+    ' =========================================================================================================
     ' MÉTODOS
-    ' =========================================================================================
+    ' =========================================================================================================
 
     ' ===========================================
     ' MÉTODOS PAIS
@@ -1536,4 +1622,5 @@ Public Class Form1
         Next
 
     End Sub
+
 End Class

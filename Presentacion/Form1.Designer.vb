@@ -95,25 +95,25 @@ Partial Class Form1
         lstConcert_Artist = New ListView()
         TabReport = New TabPage()
         TabControl1 = New TabControl()
-        TabPage1 = New TabPage()
+        TabReport1 = New TabPage()
         lstReport1 = New ListView()
         Label30 = New Label()
         Label31 = New Label()
         CB_Artist_Report1 = New ComboBox()
-        TabPage2 = New TabPage()
+        TabReport2 = New TabPage()
         Label32 = New Label()
         Label33 = New Label()
         CB_Artist_Report2 = New ComboBox()
         lstReport2 = New ListView()
-        TabPage3 = New TabPage()
+        TabReport3 = New TabPage()
         ButtonFind_Report3 = New Button()
         Label35 = New Label()
         lstReport3 = New ListView()
-        TabPage4 = New TabPage()
+        TabReport4 = New TabPage()
         ButtonFind_Report4 = New Button()
         Label34 = New Label()
         lstReport4 = New ListView()
-        TabPage5 = New TabPage()
+        TabReport5 = New TabPage()
         Label38 = New Label()
         Label37 = New Label()
         DTP_Start_R5 = New DateTimePicker()
@@ -121,7 +121,7 @@ Partial Class Form1
         ButtonFind_Report5 = New Button()
         Label36 = New Label()
         lstReport5 = New ListView()
-        TabPage6 = New TabPage()
+        TabReport6 = New TabPage()
         Label39 = New Label()
         Label40 = New Label()
         DTP_Start_R6 = New DateTimePicker()
@@ -153,12 +153,12 @@ Partial Class Form1
         TabNavegation.SuspendLayout()
         TabReport.SuspendLayout()
         TabControl1.SuspendLayout()
-        TabPage1.SuspendLayout()
-        TabPage2.SuspendLayout()
-        TabPage3.SuspendLayout()
-        TabPage4.SuspendLayout()
-        TabPage5.SuspendLayout()
-        TabPage6.SuspendLayout()
+        TabReport1.SuspendLayout()
+        TabReport2.SuspendLayout()
+        TabReport3.SuspendLayout()
+        TabReport4.SuspendLayout()
+        TabReport5.SuspendLayout()
+        TabReport6.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -934,12 +934,12 @@ Partial Class Form1
         ' 
         ' TabControl1
         ' 
-        TabControl1.Controls.Add(TabPage1)
-        TabControl1.Controls.Add(TabPage2)
-        TabControl1.Controls.Add(TabPage3)
-        TabControl1.Controls.Add(TabPage4)
-        TabControl1.Controls.Add(TabPage5)
-        TabControl1.Controls.Add(TabPage6)
+        TabControl1.Controls.Add(TabReport1)
+        TabControl1.Controls.Add(TabReport2)
+        TabControl1.Controls.Add(TabReport3)
+        TabControl1.Controls.Add(TabReport4)
+        TabControl1.Controls.Add(TabReport5)
+        TabControl1.Controls.Add(TabReport6)
         TabControl1.Font = New Font("Lato", 9.749999F, FontStyle.Bold, GraphicsUnit.Point)
         TabControl1.Location = New Point(12, 12)
         TabControl1.Name = "TabControl1"
@@ -948,19 +948,19 @@ Partial Class Form1
         TabControl1.Size = New Size(522, 272)
         TabControl1.TabIndex = 0
         ' 
-        ' TabPage1
+        ' TabReport1
         ' 
-        TabPage1.Controls.Add(lstReport1)
-        TabPage1.Controls.Add(Label30)
-        TabPage1.Controls.Add(Label31)
-        TabPage1.Controls.Add(CB_Artist_Report1)
-        TabPage1.Location = New Point(4, 25)
-        TabPage1.Name = "TabPage1"
-        TabPage1.Padding = New Padding(3)
-        TabPage1.Size = New Size(514, 243)
-        TabPage1.TabIndex = 0
-        TabPage1.Text = "Report 1"
-        TabPage1.UseVisualStyleBackColor = True
+        TabReport1.Controls.Add(lstReport1)
+        TabReport1.Controls.Add(Label30)
+        TabReport1.Controls.Add(Label31)
+        TabReport1.Controls.Add(CB_Artist_Report1)
+        TabReport1.Location = New Point(4, 25)
+        TabReport1.Name = "TabReport1"
+        TabReport1.Padding = New Padding(3)
+        TabReport1.Size = New Size(514, 243)
+        TabReport1.TabIndex = 0
+        TabReport1.Text = "Report 1"
+        TabReport1.UseVisualStyleBackColor = True
         ' 
         ' lstReport1
         ' 
@@ -996,19 +996,19 @@ Partial Class Form1
         CB_Artist_Report1.Size = New Size(121, 24)
         CB_Artist_Report1.TabIndex = 1
         ' 
-        ' TabPage2
+        ' TabReport2
         ' 
-        TabPage2.Controls.Add(Label32)
-        TabPage2.Controls.Add(Label33)
-        TabPage2.Controls.Add(CB_Artist_Report2)
-        TabPage2.Controls.Add(lstReport2)
-        TabPage2.Location = New Point(4, 25)
-        TabPage2.Name = "TabPage2"
-        TabPage2.Padding = New Padding(3)
-        TabPage2.Size = New Size(514, 243)
-        TabPage2.TabIndex = 1
-        TabPage2.Text = "Report 2"
-        TabPage2.UseVisualStyleBackColor = True
+        TabReport2.Controls.Add(Label32)
+        TabReport2.Controls.Add(Label33)
+        TabReport2.Controls.Add(CB_Artist_Report2)
+        TabReport2.Controls.Add(lstReport2)
+        TabReport2.Location = New Point(4, 25)
+        TabReport2.Name = "TabReport2"
+        TabReport2.Padding = New Padding(3)
+        TabReport2.Size = New Size(514, 243)
+        TabReport2.TabIndex = 1
+        TabReport2.Text = "Report 2"
+        TabReport2.UseVisualStyleBackColor = True
         ' 
         ' Label32
         ' 
@@ -1044,18 +1044,18 @@ Partial Class Form1
         lstReport2.TabIndex = 5
         lstReport2.UseCompatibleStateImageBehavior = False
         ' 
-        ' TabPage3
+        ' TabReport3
         ' 
-        TabPage3.Controls.Add(ButtonFind_Report3)
-        TabPage3.Controls.Add(Label35)
-        TabPage3.Controls.Add(lstReport3)
-        TabPage3.Location = New Point(4, 25)
-        TabPage3.Name = "TabPage3"
-        TabPage3.Padding = New Padding(3)
-        TabPage3.Size = New Size(514, 243)
-        TabPage3.TabIndex = 2
-        TabPage3.Text = "Report 3"
-        TabPage3.UseVisualStyleBackColor = True
+        TabReport3.Controls.Add(ButtonFind_Report3)
+        TabReport3.Controls.Add(Label35)
+        TabReport3.Controls.Add(lstReport3)
+        TabReport3.Location = New Point(4, 25)
+        TabReport3.Name = "TabReport3"
+        TabReport3.Padding = New Padding(3)
+        TabReport3.Size = New Size(514, 243)
+        TabReport3.TabIndex = 2
+        TabReport3.Text = "Report 3"
+        TabReport3.UseVisualStyleBackColor = True
         ' 
         ' ButtonFind_Report3
         ' 
@@ -1082,18 +1082,18 @@ Partial Class Form1
         lstReport3.TabIndex = 9
         lstReport3.UseCompatibleStateImageBehavior = False
         ' 
-        ' TabPage4
+        ' TabReport4
         ' 
-        TabPage4.Controls.Add(ButtonFind_Report4)
-        TabPage4.Controls.Add(Label34)
-        TabPage4.Controls.Add(lstReport4)
-        TabPage4.Location = New Point(4, 25)
-        TabPage4.Name = "TabPage4"
-        TabPage4.Padding = New Padding(3)
-        TabPage4.Size = New Size(514, 243)
-        TabPage4.TabIndex = 3
-        TabPage4.Text = "Report 4"
-        TabPage4.UseVisualStyleBackColor = True
+        TabReport4.Controls.Add(ButtonFind_Report4)
+        TabReport4.Controls.Add(Label34)
+        TabReport4.Controls.Add(lstReport4)
+        TabReport4.Location = New Point(4, 25)
+        TabReport4.Name = "TabReport4"
+        TabReport4.Padding = New Padding(3)
+        TabReport4.Size = New Size(514, 243)
+        TabReport4.TabIndex = 3
+        TabReport4.Text = "Report 4"
+        TabReport4.UseVisualStyleBackColor = True
         ' 
         ' ButtonFind_Report4
         ' 
@@ -1120,22 +1120,22 @@ Partial Class Form1
         lstReport4.TabIndex = 13
         lstReport4.UseCompatibleStateImageBehavior = False
         ' 
-        ' TabPage5
+        ' TabReport5
         ' 
-        TabPage5.Controls.Add(Label38)
-        TabPage5.Controls.Add(Label37)
-        TabPage5.Controls.Add(DTP_Start_R5)
-        TabPage5.Controls.Add(DTP_End_R5)
-        TabPage5.Controls.Add(ButtonFind_Report5)
-        TabPage5.Controls.Add(Label36)
-        TabPage5.Controls.Add(lstReport5)
-        TabPage5.Location = New Point(4, 25)
-        TabPage5.Name = "TabPage5"
-        TabPage5.Padding = New Padding(3)
-        TabPage5.Size = New Size(514, 243)
-        TabPage5.TabIndex = 4
-        TabPage5.Text = "Report 5"
-        TabPage5.UseVisualStyleBackColor = True
+        TabReport5.Controls.Add(Label38)
+        TabReport5.Controls.Add(Label37)
+        TabReport5.Controls.Add(DTP_Start_R5)
+        TabReport5.Controls.Add(DTP_End_R5)
+        TabReport5.Controls.Add(ButtonFind_Report5)
+        TabReport5.Controls.Add(Label36)
+        TabReport5.Controls.Add(lstReport5)
+        TabReport5.Location = New Point(4, 25)
+        TabReport5.Name = "TabReport5"
+        TabReport5.Padding = New Padding(3)
+        TabReport5.Size = New Size(514, 243)
+        TabReport5.TabIndex = 4
+        TabReport5.Text = "Report 5"
+        TabReport5.UseVisualStyleBackColor = True
         ' 
         ' Label38
         ' 
@@ -1194,7 +1194,7 @@ Partial Class Form1
         Label36.Name = "Label36"
         Label36.Size = New Size(220, 63)
         Label36.TabIndex = 17
-        Label36.Text = "List with complete information on songs that have been performed live the most times."
+        Label36.Text = "Ordered list of artists who have given the most concerts between 2 specific dates."
         ' 
         ' lstReport5
         ' 
@@ -1204,22 +1204,22 @@ Partial Class Form1
         lstReport5.TabIndex = 16
         lstReport5.UseCompatibleStateImageBehavior = False
         ' 
-        ' TabPage6
+        ' TabReport6
         ' 
-        TabPage6.Controls.Add(Label39)
-        TabPage6.Controls.Add(Label40)
-        TabPage6.Controls.Add(DTP_Start_R6)
-        TabPage6.Controls.Add(DTP_End_R6)
-        TabPage6.Controls.Add(ButtonFind_Report6)
-        TabPage6.Controls.Add(Label41)
-        TabPage6.Controls.Add(lstReport6)
-        TabPage6.Location = New Point(4, 25)
-        TabPage6.Name = "TabPage6"
-        TabPage6.Padding = New Padding(3)
-        TabPage6.Size = New Size(514, 243)
-        TabPage6.TabIndex = 5
-        TabPage6.Text = "Report 6"
-        TabPage6.UseVisualStyleBackColor = True
+        TabReport6.Controls.Add(Label39)
+        TabReport6.Controls.Add(Label40)
+        TabReport6.Controls.Add(DTP_Start_R6)
+        TabReport6.Controls.Add(DTP_End_R6)
+        TabReport6.Controls.Add(ButtonFind_Report6)
+        TabReport6.Controls.Add(Label41)
+        TabReport6.Controls.Add(lstReport6)
+        TabReport6.Location = New Point(4, 25)
+        TabReport6.Name = "TabReport6"
+        TabReport6.Padding = New Padding(3)
+        TabReport6.Size = New Size(514, 243)
+        TabReport6.TabIndex = 5
+        TabReport6.Text = "Report 6"
+        TabReport6.UseVisualStyleBackColor = True
         ' 
         ' Label39
         ' 
@@ -1474,16 +1474,16 @@ Partial Class Form1
         TabNavegation.PerformLayout()
         TabReport.ResumeLayout(False)
         TabControl1.ResumeLayout(False)
-        TabPage1.ResumeLayout(False)
-        TabPage1.PerformLayout()
-        TabPage2.ResumeLayout(False)
-        TabPage2.PerformLayout()
-        TabPage3.ResumeLayout(False)
-        TabPage4.ResumeLayout(False)
-        TabPage5.ResumeLayout(False)
-        TabPage5.PerformLayout()
-        TabPage6.ResumeLayout(False)
-        TabPage6.PerformLayout()
+        TabReport1.ResumeLayout(False)
+        TabReport1.PerformLayout()
+        TabReport2.ResumeLayout(False)
+        TabReport2.PerformLayout()
+        TabReport3.ResumeLayout(False)
+        TabReport4.ResumeLayout(False)
+        TabReport5.ResumeLayout(False)
+        TabReport5.PerformLayout()
+        TabReport6.ResumeLayout(False)
+        TabReport6.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
@@ -1575,12 +1575,12 @@ Partial Class Form1
     Friend WithEvents lstSetlist_Artist As ListView
     Friend WithEvents lstConcert_Artist As ListView
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents TabPage4 As TabPage
-    Friend WithEvents TabPage5 As TabPage
-    Friend WithEvents TabPage6 As TabPage
+    Friend WithEvents TabReport1 As TabPage
+    Friend WithEvents TabReport2 As TabPage
+    Friend WithEvents TabReport3 As TabPage
+    Friend WithEvents TabReport4 As TabPage
+    Friend WithEvents TabReport5 As TabPage
+    Friend WithEvents TabReport6 As TabPage
     Friend WithEvents lstReport3 As ListView
     Friend WithEvents Label31 As Label
     Friend WithEvents CB_Artist_Report1 As ComboBox
