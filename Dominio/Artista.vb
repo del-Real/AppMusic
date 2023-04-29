@@ -56,6 +56,10 @@
         Me.ArtDAO.Informe3()
     End Sub
 
+    Public Sub Informe5(startDate As Date, endDate As Date)
+        Me.ArtDAO.Informe5(startDate, endDate)
+    End Sub
+
     Public Overrides Function ToString() As String
         Return Me.IDArtista & " " & Me.NomArtista
     End Function

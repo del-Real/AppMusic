@@ -195,7 +195,7 @@ Partial Class Form1
         TabAlbum.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabAlbum.Location = New Point(4, 29)
         TabAlbum.Name = "TabAlbum"
-        TabAlbum.Padding = New Padding(3, 3, 3, 3)
+        TabAlbum.Padding = New Padding(3)
         TabAlbum.Size = New Size(540, 289)
         TabAlbum.TabIndex = 0
         TabAlbum.Text = "Album"
@@ -313,7 +313,7 @@ Partial Class Form1
         TabArtist.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabArtist.Location = New Point(4, 29)
         TabArtist.Name = "TabArtist"
-        TabArtist.Padding = New Padding(3, 3, 3, 3)
+        TabArtist.Padding = New Padding(3)
         TabArtist.Size = New Size(540, 289)
         TabArtist.TabIndex = 1
         TabArtist.Text = "Artist"
@@ -403,7 +403,7 @@ Partial Class Form1
         TabSong.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabSong.Location = New Point(4, 29)
         TabSong.Name = "TabSong"
-        TabSong.Padding = New Padding(3, 3, 3, 3)
+        TabSong.Padding = New Padding(3)
         TabSong.Size = New Size(540, 289)
         TabSong.TabIndex = 2
         TabSong.Text = "Song"
@@ -536,7 +536,7 @@ Partial Class Form1
         TabConcert.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabConcert.Location = New Point(4, 29)
         TabConcert.Name = "TabConcert"
-        TabConcert.Padding = New Padding(3, 3, 3, 3)
+        TabConcert.Padding = New Padding(3)
         TabConcert.Size = New Size(540, 289)
         TabConcert.TabIndex = 3
         TabConcert.Text = "Concert"
@@ -641,7 +641,7 @@ Partial Class Form1
         TabCountry.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabCountry.Location = New Point(4, 29)
         TabCountry.Name = "TabCountry"
-        TabCountry.Padding = New Padding(3, 3, 3, 3)
+        TabCountry.Padding = New Padding(3)
         TabCountry.Size = New Size(540, 289)
         TabCountry.TabIndex = 4
         TabCountry.Text = "Country"
@@ -707,7 +707,7 @@ Partial Class Form1
         TabSite.Font = New Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point)
         TabSite.Location = New Point(4, 29)
         TabSite.Name = "TabSite"
-        TabSite.Padding = New Padding(3, 3, 3, 3)
+        TabSite.Padding = New Padding(3)
         TabSite.RightToLeft = RightToLeft.No
         TabSite.Size = New Size(540, 289)
         TabSite.TabIndex = 5
@@ -815,7 +815,7 @@ Partial Class Form1
         TabNavegation.Controls.Add(lstConcert_Artist)
         TabNavegation.Location = New Point(4, 29)
         TabNavegation.Name = "TabNavegation"
-        TabNavegation.Padding = New Padding(3, 3, 3, 3)
+        TabNavegation.Padding = New Padding(3)
         TabNavegation.Size = New Size(540, 289)
         TabNavegation.TabIndex = 6
         TabNavegation.Text = "Navegation"
@@ -926,7 +926,7 @@ Partial Class Form1
         TabReport.Controls.Add(TabReports)
         TabReport.Location = New Point(4, 29)
         TabReport.Name = "TabReport"
-        TabReport.Padding = New Padding(3, 3, 3, 3)
+        TabReport.Padding = New Padding(3)
         TabReport.Size = New Size(540, 289)
         TabReport.TabIndex = 7
         TabReport.Text = "Reports"
@@ -956,7 +956,7 @@ Partial Class Form1
         TabReport1.Controls.Add(CB_Artist_Report1)
         TabReport1.Location = New Point(4, 25)
         TabReport1.Name = "TabReport1"
-        TabReport1.Padding = New Padding(3, 3, 3, 3)
+        TabReport1.Padding = New Padding(3)
         TabReport1.Size = New Size(514, 243)
         TabReport1.TabIndex = 0
         TabReport1.Text = "Report 1"
@@ -1004,7 +1004,7 @@ Partial Class Form1
         TabReport2.Controls.Add(lstReport2)
         TabReport2.Location = New Point(4, 25)
         TabReport2.Name = "TabReport2"
-        TabReport2.Padding = New Padding(3, 3, 3, 3)
+        TabReport2.Padding = New Padding(3)
         TabReport2.Size = New Size(514, 243)
         TabReport2.TabIndex = 1
         TabReport2.Text = "Report 2"
@@ -1051,7 +1051,7 @@ Partial Class Form1
         TabReport3.Controls.Add(lstReport3)
         TabReport3.Location = New Point(4, 25)
         TabReport3.Name = "TabReport3"
-        TabReport3.Padding = New Padding(3, 3, 3, 3)
+        TabReport3.Padding = New Padding(3)
         TabReport3.Size = New Size(514, 243)
         TabReport3.TabIndex = 2
         TabReport3.Text = "Report 3"
@@ -1089,7 +1089,7 @@ Partial Class Form1
         TabReport4.Controls.Add(lstReport4)
         TabReport4.Location = New Point(4, 25)
         TabReport4.Name = "TabReport4"
-        TabReport4.Padding = New Padding(3, 3, 3, 3)
+        TabReport4.Padding = New Padding(3)
         TabReport4.Size = New Size(514, 243)
         TabReport4.TabIndex = 3
         TabReport4.Text = "Report 4"
@@ -1131,7 +1131,7 @@ Partial Class Form1
         TabReport5.Controls.Add(lstReport5)
         TabReport5.Location = New Point(4, 25)
         TabReport5.Name = "TabReport5"
-        TabReport5.Padding = New Padding(3, 3, 3, 3)
+        TabReport5.Padding = New Padding(3)
         TabReport5.Size = New Size(514, 243)
         TabReport5.TabIndex = 4
         TabReport5.Text = "Report 5"
@@ -1215,7 +1215,7 @@ Partial Class Form1
         TabReport6.Controls.Add(lstReport6)
         TabReport6.Location = New Point(4, 25)
         TabReport6.Name = "TabReport6"
-        TabReport6.Padding = New Padding(3, 3, 3, 3)
+        TabReport6.Padding = New Padding(3)
         TabReport6.Size = New Size(514, 243)
         TabReport6.TabIndex = 5
         TabReport6.Text = "Report 6"

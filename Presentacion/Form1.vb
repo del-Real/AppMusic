@@ -405,12 +405,55 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub ButtonFind_Report5_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report5.Click
+
+        Dim fechainicio As Date = DTP_Start_R5.Text
+        Dim fechafinal As Date = DTP_End_R5.Text
+        Dim a As Artista = New Artista
+        Try
+            a.LeerTodosArtistas()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+
+        a.Informe5(fechainicio, fechafinal)
+        Dim artistasActualizados As New List(Of Artista)
+        For Each ar As Artista In a.ArtDAO.ArtistasInforme5
+            Dim item As New ListViewItem
+            item.Text = ar.IDArtista
+            item.SubItems.Add(ar.NomArtista)
+            lstReport5.Items.Add(item)
+        Next
+
+    End Sub
+
     ' ===============
     ' INFORME 6
     ' ===============
 
     Private Sub Update_Report6()
 
+    End Sub
+
+    Private Sub ButtonFind_Report6_Click(sender As Object, e As EventArgs) Handles ButtonFind_Report6.Click
+        Dim fechainicio As Date = Me.DTP_Start_R6.Text
+        Dim fechafinal As Date = Me.DTP_End_R6.Text
+        Dim p As Pais = New Pais
+        Try
+            p.LeerTodosPaises()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End Try
+        p.Informe6(fechainicio, fechafinal)
+        For Each pa As Pais In p.PaiDAO.PaisesInforme6
+            Dim item As New ListViewItem
+            item.Text = pa.IDPais
+            item.SubItems.Add(pa.NomPais)
+            lstReport6.Items.Add(item)
+        Next
     End Sub
 
     ' ===============
@@ -1786,5 +1829,6 @@ Public Class Form1
         Next
 
     End Sub
+
 
 End Class

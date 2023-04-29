@@ -2,9 +2,11 @@
 
     Public ReadOnly Property Artistas As Collection
     Public ReadOnly Property ArtistasInforme3 As Collection
+    Public ReadOnly Property ArtistasInforme5 As Collection
     Public Sub New()
         Me.Artistas = New Collection
         Me.ArtistasInforme3 = New Collection
+        Me.ArtistasInforme5 = New Collection
     End Sub
 
     Public Sub LeerTodos()
@@ -45,7 +47,7 @@
         Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM artistas WHERE IdArtista='" & a.IDArtista & "';")
     End Function
 
-    Public Function Informe3()
+    Public Sub Informe3()
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT artistas.Nombre FROM artistas JOIN albumes ON artistas.IdArtista=albumes.Artista JOIN canciones ON albumes.idAlbum=canciones.Album JOIN (SELECT Concierto, COUNT(DISTINCT Canción) as numCanciones FROM setlists GROUP BY Concierto) setlists_concierto ON setlists_concierto.Concierto=canciones.idCancion WHERE numCanciones = (SELECT COUNT(*) FROM canciones WHERE canciones.Album=albumes.idAlbum)")
         For Each aux In col
@@ -53,8 +55,23 @@
             a.IDArtista = CInt(aux(2))
             Me.ArtistasInforme3.Add(a)
         Next
-    End Function
+    End Sub
 
+
+    Public Sub Informe5(startDate As Date, endDate As Date)
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT artistas.Nombre, COUNT(conciertos.idConcierto) AS NumeroConciertos " &
+                                      "FROM setlist.conciertos " &
+                                      "JOIN setlist.artistas ON conciertos.Artista = artistas.IdArtista " &
+                                      "WHERE conciertos.FechaConcierto BETWEEN '" & startDate.ToString("yyyy-MM-dd") & "' AND '" & endDate.ToString("yyyy-MM-dd") & "' " &
+                                      "GROUP BY artistas.Nombre " &
+                                      "ORDER BY NumeroConciertos DESC;")
+        For Each aux In col
+            Dim a As Artista = New Artista
+            a.IDArtista = CInt(aux(2))
+            Me.ArtistasInforme5.Add(a)
+        Next
+    End Sub
 
 
 End Class

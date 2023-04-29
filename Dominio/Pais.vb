@@ -38,6 +38,10 @@
         Return Me.PaiDAO.Borrar(Me)
     End Function
 
+    Public Sub Informe6(fechainicio As Date, fechafinal As Date)
+        Me.PaiDAO.Informe6(fechainicio, fechafinal)
+    End Sub
+
     Public Overrides Function toString() As String
         Return Me.IDPais & " " & Me.NomPais
     End Function
