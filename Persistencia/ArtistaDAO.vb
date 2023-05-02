@@ -119,7 +119,7 @@
 
     Public Sub Informe5(startDate As Date, endDate As Date)
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT artistas.Nombre, COUNT(conciertos.idConcierto) AS NumeroConciertos " &
+        col = AgenteBD.ObtenerAgente.Leer("SELECT artistas.IdArtista, COUNT(conciertos.idConcierto) AS NumeroConciertos " &
                                       "FROM setlist.conciertos " &
                                       "JOIN setlist.artistas ON conciertos.Artista = artistas.IdArtista " &
                                       "WHERE conciertos.FechaConcierto BETWEEN '" & startDate.ToString("yyyy-MM-dd") & "' AND '" & endDate.ToString("yyyy-MM-dd") & "' " &
@@ -127,7 +127,7 @@
                                       "ORDER BY NumeroConciertos DESC;")
         For Each aux In col
             Dim a As Artista = New Artista
-            a.IDArtista = CInt(aux(2))
+            a.IDArtista = CInt(aux(1))
             a.LeerArtista()
             Me.ArtistasInforme5.Add(a)
         Next
