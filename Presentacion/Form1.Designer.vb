@@ -1367,18 +1367,18 @@ Partial Class Form1
         AddSong.Name = "AddSong"
         AddSong.Size = New Size(75, 23)
         AddSong.TabIndex = 28
-        AddSong.Text = "Add"
+        AddSong.Text = "<"
         AddSong.UseVisualStyleBackColor = True
         ' 
         ' RemoveSong
         ' 
         RemoveSong.Enabled = False
         RemoveSong.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        RemoveSong.Location = New Point(281, 610)
+        RemoveSong.Location = New Point(281, 568)
         RemoveSong.Name = "RemoveSong"
         RemoveSong.Size = New Size(75, 23)
         RemoveSong.TabIndex = 29
-        RemoveSong.Text = "Remove"
+        RemoveSong.Text = ">"
         RemoveSong.UseVisualStyleBackColor = True
         ' 
         ' OrderUp
@@ -1427,7 +1427,7 @@ Partial Class Form1
         ' 
         ModifySong.Enabled = False
         ModifySong.Font = New Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point)
-        ModifySong.Location = New Point(281, 574)
+        ModifySong.Location = New Point(281, 631)
         ModifySong.Margin = New Padding(3, 2, 3, 2)
         ModifySong.Name = "ModifySong"
         ModifySong.Size = New Size(75, 22)

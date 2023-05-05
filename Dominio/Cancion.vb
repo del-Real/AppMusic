@@ -6,6 +6,8 @@
     Public Property Album As Album
     Public ReadOnly Property CanDAO As CancionDAO
 
+    Public Property VecesInterpretadas As Integer
+
     Public Sub New(id As Integer, nombre As String, duracion As Integer, orden As Integer, album As Album)
         Me.IDCancion = id
         Me.NomCancion = nombre

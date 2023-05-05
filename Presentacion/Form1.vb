@@ -302,6 +302,7 @@ Public Class Form1
             can.Album.LeerAlbum()
             item.SubItems.Add(can.Album.IDAlbum)
             item.SubItems.Add(can.OrdenCancion)
+            item.SubItems.Add(can.VecesInterpretadas)
             lstReport1.Items.Add(item)
         Next
     End Sub
@@ -382,9 +383,7 @@ Public Class Form1
             MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End Try
-        For Each artista As Artista In a.ArtDAO.Artistas
-            a.Informe3()
-        Next
+        a.Informe3()
 
         Dim artistasActualizados As New List(Of Artista)
 
@@ -404,8 +403,8 @@ Public Class Form1
             Dim item As New ListViewItem
             item.Text = a.IDArtista
             item.SubItems.Add(a.NomArtista)
-            a.Pais.LeerPais()
-            item.SubItems.Add(a.Pais.NomPais)
+            'a.Pais.LeerPais()
+            'item.SubItems.Add(a.Pais.NomPais)
             lstReport3.Items.Add(item)
         Next
 
@@ -1483,9 +1482,27 @@ Public Class Form1
         Dim can As Cancion = New Cancion
         If Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty Then
             can.NomCancion = TB_Name_Song.Text
-            can.Duracion = CInt(TB_Duration_Song.Text)
+
+            ' Verificar si la duración es numérica
+            Dim duracion As Integer
+            If Integer.TryParse(TB_Duration_Song.Text, duracion) Then
+                can.Duracion = duracion
+            Else
+                MessageBox.Show("Introduzca un valor numérico para la duración de la canción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
             can.Album = CB_Album_Song.SelectedItem
-            can.OrdenCancion = CInt(TB_Order_Song.Text)
+
+            ' Verificar si el orden de canción es numérico
+            Dim ordenCancion As Integer
+            If Integer.TryParse(TB_Order_Song.Text, ordenCancion) Then
+                can.OrdenCancion = ordenCancion
+            Else
+                MessageBox.Show("Introduzca un valor numérico para el orden de la canción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
             Try
                 If can.InsertarCancion() <> 1 Then
                     MessageBox.Show("Error al insertar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1500,6 +1517,7 @@ Public Class Form1
         End If
 
     End Sub
+
 
     ' --------------
     ' SONG DELETE
@@ -1539,8 +1557,25 @@ Public Class Form1
         If Me.TB_Id_Song.Text <> String.Empty And Me.TB_Name_Song.Text <> String.Empty And Me.CB_Album_Song.Text <> String.Empty And Me.TB_Order_Song.Text <> String.Empty And Me.TB_Duration_Song.Text <> String.Empty Then
             can = New Cancion(CInt(Me.TB_Id_Song.Text), Me.TB_Name_Song.Text)
             can.Album = CB_Album_Song.SelectedItem
-            can.Duracion = CInt(TB_Duration_Song.Text)
-            can.OrdenCancion = CInt(TB_Order_Song.Text)
+
+            ' Verificar si la duración es numérica
+            Dim duracion As Integer
+            If Integer.TryParse(TB_Duration_Song.Text, duracion) Then
+                can.Duracion = duracion
+            Else
+                MessageBox.Show("Introduzca un valor numérico para la duración de la canción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            ' Verificar si el orden de canción es numérico
+            Dim ordenCancion As Integer
+            If Integer.TryParse(TB_Order_Song.Text, ordenCancion) Then
+                can.OrdenCancion = ordenCancion
+            Else
+                MessageBox.Show("Introduzca un valor numérico para el orden de la canción.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
             Try
                 If can.ActualizarCancion() <> 1 Then
                     MessageBox.Show("Error al actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1555,6 +1590,7 @@ Public Class Form1
         End If
 
     End Sub
+
 
     ' -----------------
     ' SONG CLEAR ALL
@@ -1799,37 +1835,40 @@ Public Class Form1
         c.IDConcierto = CInt(TB_Id_Concert.Text)
         c.LeerConcierto()
         c.LeerSetlist()
+
         For Each item As ListViewItem In lstConcertSongs.Items
             Dim can As Cancion = New Cancion
             can.IDCancion = item.SubItems(0).Text
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistAdd(can) <> 1 Then
-
+                    MessageBox.Show("Error al añadir la canción '" & can.NomCancion & "' al concierto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-
+                MessageBox.Show("Canción '" & can.NomCancion & "' añadida correctamente al concierto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
-
+                MessageBox.Show("Error al añadir la canción '" & can.NomCancion & "' al concierto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Next
+
         For Each item As ListViewItem In lstAllSongs.Items
             Dim can As Cancion = New Cancion
             can.IDCancion = item.SubItems(0).Text
             can.LeerCancion()
             Try
                 If c.ActualizarSetlistRemove(can) <> 1 Then
-
+                    MessageBox.Show("Error al eliminar la canción '" & can.NomCancion & "' del concierto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-
+                MessageBox.Show("Canción '" & can.NomCancion & "' eliminada correctamente del concierto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
-
+                MessageBox.Show("Error al eliminar la canción '" & can.NomCancion & "' del concierto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Next
     End Sub
+
 
     ' ==============================
     ' BOTÓN AÑADIR CANCIÓN (SETLIST)

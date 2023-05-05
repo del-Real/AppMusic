@@ -133,13 +133,11 @@
     End Function
 
     Public Function ActualizarSetlistAdd(ByVal c As Concierto, ByVal can As Cancion) As Integer
-        Dim sql As String = "INSERT INTO setlists (Concierto, Canción, OrdenSetlist) VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', 0) ON DUPLICATE KEY UPDATE OrdenSetlist = OrdenSetlist"
-        Return AgenteBD.ObtenerAgente.Modificar(sql)
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists (Concierto, Canción, OrdenSetlist) VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', 0) ON DUPLICATE KEY UPDATE OrdenSetlist = OrdenSetlist")
     End Function
 
     Public Function ActualizarSetlistRemove(ByVal c As Concierto, ByVal can As Cancion) As Integer
-        Dim sql As String = "DELETE FROM setlists WHERE Concierto = " & c.IDConcierto & " AND Canción = " & can.IDCancion & ";"
-        Return AgenteBD.ObtenerAgente.Modificar(sql)
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto = " & c.IDConcierto & " AND Canción = " & can.IDCancion & ";")
     End Function
 
 End Class
