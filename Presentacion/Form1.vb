@@ -550,6 +550,7 @@ Public Class Form1
             End Try
             Me.TB_Id_Artist.Text = art.IDArtista
             Me.TB_Name_Artist.Text = art.NomArtista
+            CB_Country_Artist.Text = lstArtist.SelectedItems(0).SubItems(2).Text
         End If
     End Sub
 
@@ -590,6 +591,8 @@ Public Class Form1
             End Try
             Me.TB_Id_Site.Text = sit.IDSitio
             Me.TB_Name_Site.Text = sit.NomSitio
+            CB_Type_Site.Text = lstSites.SelectedItems(0).SubItems(2).Text
+            CB_Country_Site.Text = lstSites.SelectedItems(0).SubItems(3).Text
         End If
     End Sub
 
@@ -610,6 +613,10 @@ Public Class Form1
             End Try
             Me.TB_ID_Album.Text = alb.IDAlbum
             Me.TB_Name_Album.Text = alb.NomAlbum
+            Dim yearText As String = lstAlbumes.SelectedItems(0).SubItems(2).Text
+            Dim yearValue As Integer = Integer.Parse(yearText)
+            DTP_Year_Album.Value = New DateTime(yearValue, 1, 1)
+            CB_Artist_Album.Text = lstAlbumes.SelectedItems(0).SubItems(3).Text
         End If
     End Sub
 
@@ -632,6 +639,7 @@ Public Class Form1
             Me.TB_Name_Song.Text = can.NomCancion
             Me.TB_Duration_Song.Text = can.Duracion
             Me.TB_Order_Song.Text = can.OrdenCancion
+            CB_Album_Song.Text = lstSong.SelectedItems(0).SubItems(3).Text
         End If
     End Sub
 
@@ -691,6 +699,8 @@ Public Class Form1
                 Exit Sub
             End Try
             Me.TB_Id_Concert.Text = con.IDConcierto
+            CB_Artist_Concert.Text = lstConcert.SelectedItems(0).SubItems(1).Text
+            CB_Site_Concert.Text = lstConcert.SelectedItems(0).SubItems(2).Text
             Me.DTP_Date_Concert.Text = con.FechaConcierto
         End If
     End Sub
