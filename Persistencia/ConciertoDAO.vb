@@ -136,8 +136,9 @@
         Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO setlists (Concierto, Canción, OrdenSetlist) VALUES ('" & c.IDConcierto & "', '" & can.IDCancion & "', 0) ON DUPLICATE KEY UPDATE OrdenSetlist = OrdenSetlist")
     End Function
 
-    Public Function ActualizarSetlistRemove(ByVal c As Concierto, ByVal can As Cancion) As Integer
-        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto = " & c.IDConcierto & " AND Canción = " & can.IDCancion & ";")
+    Public Function ClearSetlist(ByVal c As Concierto) As Integer
+        Return AgenteBD.ObtenerAgente.Modificar("DELETE FROM setlists WHERE Concierto = " & c.IDConcierto & ";")
     End Function
+
 
 End Class

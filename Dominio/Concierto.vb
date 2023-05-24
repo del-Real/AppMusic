@@ -67,8 +67,8 @@
         Return Me.ConDAO.ActualizarSetlistAdd(Me, c)
     End Function
 
-    Public Function ActualizarSetlistRemove(c As Cancion) As Integer
-        Return Me.ConDAO.ActualizarSetlistRemove(Me, c)
+    Public Function ClearSetlist() As Integer
+        Return Me.ConDAO.ClearSetlist(Me)
     End Function
 
 End Class

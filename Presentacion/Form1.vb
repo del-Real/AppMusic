@@ -705,6 +705,47 @@ Public Class Form1
         End If
     End Sub
 
+    'Change song order in setlist 
+    Private Sub lstConcertSongs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcertSongs.SelectedIndexChanged
+
+        Dim con As Concierto
+        Dim can As Cancion = New Cancion
+
+        If Me.lstConcertSongs.SelectedItems.Count = 1 Then
+            Try
+                con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
+                con.LeerConcierto()
+                con.LeerSetlist()
+                Try
+                    can.LeerTodasCanciones()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End Try
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End Try
+        End If
+    End Sub
+
+
+    Private Sub OrderUp_Click(sender As Object, e As EventArgs) Handles OrderUp.Click
+        If Me.lstConcertSongs.SelectedItems.Count = 1 Then
+            MessageBox.Show("Prueba arriba")
+        Else
+            MessageBox.Show("Debe seleccionar una canción del setlist")
+        End If
+    End Sub
+
+    Private Sub OrderDown_Click(sender As Object, e As EventArgs) Handles OrderDown.Click
+        If Me.lstConcertSongs.SelectedItems.Count = 1 Then
+            MessageBox.Show("Prueba abajo")
+        Else
+            MessageBox.Show("Debe seleccionar una canción del setlist")
+        End If
+    End Sub
+
 
     ' ===========================
     ' PESTAÑAS NAVEGACIÓN ARTISTA
@@ -885,8 +926,6 @@ Public Class Form1
         End If
 
     End Sub
-
-
 
     ' =========================================================================================================
     ' BOTONES FUNCIONES
@@ -1842,41 +1881,34 @@ Public Class Form1
 
     Private Sub ModifySetlist_Click(sender As Object, e As EventArgs) Handles ModifySong.Click
         Dim c As Concierto = New Concierto
+        Dim changes As Boolean = False
         c.IDConcierto = CInt(TB_Id_Concert.Text)
         c.LeerConcierto()
         c.LeerSetlist()
+        c.ClearSetlist()
 
         For Each item As ListViewItem In lstConcertSongs.Items
             Dim can As Cancion = New Cancion
             can.IDCancion = item.SubItems(0).Text
             can.LeerCancion()
             Try
+
                 If c.ActualizarSetlistAdd(can) <> 1 Then
                     MessageBox.Show("Error al añadir la canción '" & can.NomCancion & "' al concierto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                MessageBox.Show("Canción '" & can.NomCancion & "' añadida correctamente al concierto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'MessageBox.Show("Canción '" & can.NomCancion & "' añadida correctamente al concierto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                changes = True
             Catch ex As Exception
                 MessageBox.Show("Error al añadir la canción '" & can.NomCancion & "' al concierto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End Try
         Next
 
-        For Each item As ListViewItem In lstAllSongs.Items
-            Dim can As Cancion = New Cancion
-            can.IDCancion = item.SubItems(0).Text
-            can.LeerCancion()
-            Try
-                If c.ActualizarSetlistRemove(can) <> 1 Then
-                    MessageBox.Show("Error al eliminar la canción '" & can.NomCancion & "' del concierto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
-                MessageBox.Show("Canción '" & can.NomCancion & "' eliminada correctamente del concierto", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As Exception
-                MessageBox.Show("Error al eliminar la canción '" & can.NomCancion & "' del concierto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End Try
-        Next
+        If changes Then
+            MessageBox.Show("Cambios realizados")
+        End If
+
     End Sub
 
 
