@@ -707,32 +707,21 @@ Public Class Form1
 
     'Change song order in setlist 
     Private Sub lstConcertSongs_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstConcertSongs.SelectedIndexChanged
+        'Dim x As Integer
+        'x = lstConcertSongs.FocusedItem.Index
 
-        Dim con As Concierto
-        Dim can As Cancion = New Cancion
+        'Dim txtValue As String
+        'txtValue = lstConcertSongs.FocusedItem.SubItems(0).Text
+        'Debug.Print(txtValue)
 
-        If Me.lstConcertSongs.SelectedItems.Count = 1 Then
-            Try
-                con = New Concierto(lstConcert.SelectedItems(0).SubItems(0).Text)
-                con.LeerConcierto()
-                con.LeerSetlist()
-                Try
-                    can.LeerTodasCanciones()
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End Try
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Sub
-            End Try
-        End If
     End Sub
 
 
     Private Sub OrderUp_Click(sender As Object, e As EventArgs) Handles OrderUp.Click
         If Me.lstConcertSongs.SelectedItems.Count = 1 Then
             MessageBox.Show("Prueba arriba")
+
+
         Else
             MessageBox.Show("Debe seleccionar una canción del setlist")
         End If
